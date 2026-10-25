@@ -1,0 +1,327 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] rockchip: rk3288: add PSCI to start the secondary CPUs
+
+Xen (and any other non-secure OS) brings up secondary CPUs with PSCI
+CPU_ON. RK3288 has no PSCI firmware in this boot flow, so Xen used CPU0
+only ("Failed to bring up CPU 1 (error -19)").
+
+Enable U-Boot's ARMv7 PSCI monitor for RK3288 (select ARCH_SUPPORT_PSCI)
+and implement the board part in psci.c: PSCI_VERSION/FEATURES,
+CPU_ON, CPU_OFF, AFFINITY_INFO, MIGRATE_INFO_TYPE and SYSTEM_RESET.
+CPU_ON resets and powers the core up through the PMU and starts it from
+the boot ROM mailbox in SRAM (magic 0xdeadbeaf at +4, entry at +8), the
+same sequence as Linux's platsmp.c and TF-A's rk3288 pmu.c. The new core
+runs psci_cpu_entry, which switches it to non-secure HYP mode like the
+boot CPU, then jumps to the caller's entry point.
+
+Since power-on all secondary cores wait on that one mailbox, so the
+first CPU_ON would release every one of them. psci_board_init() powers
+them off before the non-secure switch, as Linux and TF-A do.
+
+PSCI is only used for a non-secure boot (bootm_boot_mode=nonsec): U-Boot
+then adds the /psci node and enable-method = "psci" to the DT and keeps
+its secure section reserved. Secure boot (plain Linux) is unchanged and
+still uses Linux's own rockchip,rk3066-smp method.
+
+The SMP pen hooks from the HYP patch are not needed with PSCI.
+
+Upstream-Status: Inappropriate [board bring-up]
+---
+diff -ruN a/arch/arm/mach-rockchip/Kconfig b/arch/arm/mach-rockchip/Kconfig
+--- a/arch/arm/mach-rockchip/Kconfig	2026-10-24 18:41:06.860557556 +0530
++++ b/arch/arm/mach-rockchip/Kconfig	2026-10-24 18:41:14.717064069 +0530
+@@ -101,6 +101,7 @@
+ 	select CPU_V7A
+ 	select CPU_V7_HAS_NONSEC
+ 	select CPU_V7_HAS_VIRT
++	select ARCH_SUPPORT_PSCI
+ 	select OF_BOARD_SETUP
+ 	select SKIP_LOWLEVEL_INIT_ONLY
+ 	select SUPPORT_SPL
+diff -ruN a/arch/arm/mach-rockchip/rk3288/Makefile b/arch/arm/mach-rockchip/rk3288/Makefile
+--- a/arch/arm/mach-rockchip/rk3288/Makefile	2026-10-24 18:41:06.864554484 +0530
++++ b/arch/arm/mach-rockchip/rk3288/Makefile	2026-10-24 18:41:14.717064069 +0530
+@@ -7,3 +7,4 @@
+ obj-y += clk_rk3288.o
+ obj-y += rk3288.o
+ obj-y += syscon_rk3288.o
++obj-$(CONFIG_ARMV7_PSCI) += psci.o
+diff -ruN a/arch/arm/mach-rockchip/rk3288/psci.c b/arch/arm/mach-rockchip/rk3288/psci.c
+--- a/arch/arm/mach-rockchip/rk3288/psci.c	1970-01-01 05:30:00.000000000 +0530
++++ b/arch/arm/mach-rockchip/rk3288/psci.c	2026-10-24 18:47:09.830431959 +0530
+@@ -0,0 +1,236 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * PSCI firmware for RK3288, run by U-Boot's ARMv7 secure monitor after
++ * a non-secure boot (bootm_boot_mode=nonsec): CPU_ON, CPU_OFF,
++ * AFFINITY_INFO and SYSTEM_RESET.
++ *
++ * Secondary cores are started through the boot ROM mailbox, the same
++ * way Linux (arch/arm/mach-rockchip/platsmp.c) and TF-A
++ * (plat/rockchip/rk3288/drivers/pmu/pmu.c) do it: the core is reset and
++ * powered up through the PMU, the boot ROM parks it in WFE, and it jumps
++ * to the address in the mailbox once the magic value is set.
++ *
++ * Everything here runs from the secure section with the MMU off, so it
++ * must not call regular U-Boot functions.
++ */
++
++#include <common.h>
++#include <asm/io.h>
++#include <asm/psci.h>
++#include <asm/system.h>
++#include <asm/secure.h>
++#include <linux/bitops.h>
++#include <linux/iopoll.h>
++
++#define RK3288_NR_CPUS			4
++#if RK3288_NR_CPUS > CONFIG_ARMV7_PSCI_NR_CPUS
++#error "invalid value for CONFIG_ARMV7_PSCI_NR_CPUS"
++#endif
++
++#define MPIDR_AFF0			GENMASK(7, 0)
++#define MPIDR_AFF1_AFF2			GENMASK(23, 8)
++
++#define SRAM_BASE			0xff700000
++#define BOOTROM_MAILBOX_MAGIC		(SRAM_BASE + 4)
++#define BOOTROM_MAILBOX_PC		(SRAM_BASE + 8)
++#define BOOTROM_MAGIC			0xdeadbeaf
++
++#define PMU_BASE			0xff730000
++#define PMU_PWRDN_CON			(PMU_BASE + 0x08)
++#define PMU_PWRDN_ST			(PMU_BASE + 0x0c)
++
++#define CRU_BASE			0xff760000
++#define CRU_GLB_SRST_FST		(CRU_BASE + 0x1b0)
++#define CRU_GLB_SRST_FST_VALUE		0xfdb9
++#define CRU_SOFTRST_CON0		(CRU_BASE + 0x1b8)	/* bit n: core n */
++
++/* Generic timer frequency (COUNTER_FREQUENCY), in ticks per millisecond */
++#define TICKS_PER_MS			24000
++
++static u8 psci_state[RK3288_NR_CPUS] __secure_data = {
++	PSCI_AFFINITY_LEVEL_ON,
++	PSCI_AFFINITY_LEVEL_OFF,
++	PSCI_AFFINITY_LEVEL_OFF,
++	PSCI_AFFINITY_LEVEL_OFF,
++};
++
++static void __secure psci_set_state(int cpu, u8 state)
++{
++	psci_state[cpu] = state;
++	dsb();
++	isb();
++}
++
++static u64 __secure rk3288_read_cntpct(void)
++{
++	u64 cnt;
++
++	isb();
++	asm volatile("mrrc p15, 0, %Q0, %R0, c14" : "=r" (cnt));
++	return cnt;
++}
++
++static void __secure rk3288_mdelay(unsigned int ms)
++{
++	u64 end = rk3288_read_cntpct() + (u64)ms * TICKS_PER_MS;
++
++	while (rk3288_read_cntpct() < end)
++		;
++}
++
++/* Wait (at most 10 ms) until the core's power domain is on or off */
++static int __secure rk3288_cpu_pd_wait(u32 cpu, bool on)
++{
++	u64 end = rk3288_read_cntpct() + 10 * TICKS_PER_MS;
++
++	while (!(readl(PMU_PWRDN_ST) & BIT(cpu)) != on) {
++		if (rk3288_read_cntpct() > end)
++			return -1;
++	}
++	return 0;
++}
++
++static int __secure rk3288_cpu_power_on(u32 cpu)
++{
++	/* a core that is still on is reset and powered off first */
++	if (!(readl(PMU_PWRDN_ST) & BIT(cpu))) {
++		writel(BIT(cpu) | BIT(cpu) << 16, CRU_SOFTRST_CON0);
++		setbits_le32(PMU_PWRDN_CON, BIT(cpu));
++		if (rk3288_cpu_pd_wait(cpu, false))
++			return -1;
++	}
++
++	clrbits_le32(PMU_PWRDN_CON, BIT(cpu));
++	if (rk3288_cpu_pd_wait(cpu, true))
++		return -1;
++
++	/* release the core from reset; it starts in the boot ROM */
++	writel(BIT(cpu) << 16, CRU_SOFTRST_CON0);
++	return 0;
++}
++
++/*
++ * Called on the boot CPU by psci_board_init(), still in secure state and
++ * before the switch to non-secure (regular U-Boot code, not in the secure
++ * section). Since power-on the secondary cores wait in the boot ROM for
++ * the mailbox magic, so all of them would follow the first CPU_ON. Power
++ * them off first, as Linux and TF-A do, so that CPU_ON starts one core.
++ */
++void rk3288_psci_cpus_off(void)
++{
++	u32 cpu, val;
++
++	writel(0, BOOTROM_MAILBOX_MAGIC);
++	for (cpu = 1; cpu < RK3288_NR_CPUS; cpu++) {
++		writel(BIT(cpu) | BIT(cpu) << 16, CRU_SOFTRST_CON0);
++		setbits_le32(PMU_PWRDN_CON, BIT(cpu));
++	}
++	if (readl_poll_timeout(PMU_PWRDN_ST, val, (val & 0xe) == 0xe, 10000))
++		printf("PSCI: secondary CPUs did not power off (0x%x)\n", val);
++}
++
++u32 __secure psci_version(void)
++{
++	return ARM_PSCI_VER_1_0;
++}
++
++s32 __secure psci_features(u32 function_id, u32 psci_fid)
++{
++	switch (psci_fid) {
++	case ARM_PSCI_0_2_FN_PSCI_VERSION:
++	case ARM_PSCI_0_2_FN_CPU_OFF:
++	case ARM_PSCI_0_2_FN_CPU_ON:
++	case ARM_PSCI_0_2_FN_AFFINITY_INFO:
++	case ARM_PSCI_0_2_FN_MIGRATE_INFO_TYPE:
++	case ARM_PSCI_0_2_FN_SYSTEM_RESET:
++	case ARM_PSCI_1_0_FN_PSCI_FEATURES:
++		return 0;
++	}
++	return ARM_PSCI_RET_NI;
++}
++
++u32 __secure psci_migrate_info_type(void)
++{
++	/* Trusted OS not present: MIGRATE is not needed */
++	return 2;
++}
++
++/* Called on the new core, in secure monitor mode, before it leaves for pc */
++void __secure psci_arch_cpu_entry(void)
++{
++	psci_set_state(psci_get_cpu_id(), PSCI_AFFINITY_LEVEL_ON);
++}
++
++static s32 __secure rk3288_target_cpu(u32 mpidr)
++{
++	u32 self;
++
++	asm volatile("mrc p15, 0, %0, c0, c0, 5" : "=r" (self));
++	if ((mpidr & MPIDR_AFF1_AFF2) != (self & MPIDR_AFF1_AFF2))
++		return -1;
++	if ((mpidr & ~(MPIDR_AFF0 | MPIDR_AFF1_AFF2)) ||
++	    (mpidr & MPIDR_AFF0) >= RK3288_NR_CPUS)
++		return -1;
++	return mpidr & MPIDR_AFF0;
++}
++
++s32 __secure psci_affinity_info(u32 function_id, u32 target_affinity,
++				u32 lowest_affinity_level)
++{
++	s32 cpu = rk3288_target_cpu(target_affinity);
++
++	if (lowest_affinity_level > 0 || cpu < 0)
++		return ARM_PSCI_RET_INVAL;
++
++	return psci_state[cpu];
++}
++
++s32 __secure psci_cpu_on(u32 function_id, u32 target_cpu, u32 pc,
++			 u32 context_id)
++{
++	s32 cpu = rk3288_target_cpu(target_cpu);
++
++	if (cpu < 0)
++		return ARM_PSCI_RET_INVAL;
++	if (psci_state[cpu] == PSCI_AFFINITY_LEVEL_ON)
++		return ARM_PSCI_RET_ALREADY_ON;
++	if (psci_state[cpu] == PSCI_AFFINITY_LEVEL_ON_PENDING)
++		return ARM_PSCI_RET_ON_PENDING;
++
++	psci_save(cpu, pc, context_id);
++	psci_set_state(cpu, PSCI_AFFINITY_LEVEL_ON_PENDING);
++
++	if (rk3288_cpu_power_on(cpu)) {
++		psci_set_state(cpu, PSCI_AFFINITY_LEVEL_OFF);
++		return ARM_PSCI_RET_INTERNAL_FAILURE;
++	}
++
++	/* let the boot ROM reach its WFE loop, then hand it the entry point */
++	rk3288_mdelay(1);
++	writel((u32)&psci_cpu_entry, BOOTROM_MAILBOX_PC);
++	writel(BOOTROM_MAGIC, BOOTROM_MAILBOX_MAGIC);
++	dsb();
++	asm volatile("sev");
++
++	return ARM_PSCI_RET_SUCCESS;
++}
++
++s32 __secure psci_cpu_off(void)
++{
++	u32 cpu = psci_get_cpu_id();
++
++	psci_cpu_off_common();
++	psci_set_state(cpu, PSCI_AFFINITY_LEVEL_OFF);
++
++	/* a core cannot cut its own power: CPU_ON resets it later */
++	while (1)
++		wfi();
++}
++
++void __secure psci_system_reset(void)
++{
++	writel(CRU_GLB_SRST_FST_VALUE, CRU_GLB_SRST_FST);
++	dsb();
++	while (1)
++		wfi();
++}
+diff -ruN a/arch/arm/mach-rockchip/rk3288/rk3288.c b/arch/arm/mach-rockchip/rk3288/rk3288.c
+--- a/arch/arm/mach-rockchip/rk3288/rk3288.c	2026-10-24 18:41:06.868551411 +0530
++++ b/arch/arm/mach-rockchip/rk3288/rk3288.c	2026-10-24 18:47:16.454737153 +0530
+@@ -159,6 +159,8 @@
+ #define RST_DMA1			BIT(2)	/* in CRU_SOFTRST_CON(1) */
+ #define RST_DMA2			BIT(0)	/* in CRU_SOFTRST_CON(4) */
+ 
++void rk3288_psci_cpus_off(void);	/* psci.c */
++
+ /*
+  * Called by armv7_init_nonsec() while still in secure state, only when
+  * booting non-secure. Open the SoC to the non-secure world the same way
+@@ -189,22 +191,11 @@
+ 	dsb();
+ 	writel(RST_DMA1 << 16, CRU_SOFTRST_CON(1));
+ 	writel(RST_DMA2 << 16, CRU_SOFTRST_CON(4));
+-}
+-
+-/*
+- * Only the boot CPU is switched to non-secure HYP mode. The secondary
+- * cores stay parked in the boot ROM; there is no PSCI for RK3288 yet.
+- */
+-void smp_set_core_boot_addr(unsigned long addr, int corenr)
+-{
+-}
+-
+-void smp_kick_all_cpus(void)
+-{
+-}
+ 
+-void smp_waitloop(unsigned previous_address)
+-{
++#ifdef CONFIG_ARMV7_PSCI
++	/* secondary cores off until PSCI CPU_ON (psci.c) */
++	rk3288_psci_cpus_off();
++#endif
+ }
+ #endif
+ 

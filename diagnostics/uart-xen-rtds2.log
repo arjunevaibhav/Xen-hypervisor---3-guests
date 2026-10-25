@@ -1,0 +1,259 @@
+xl info | grep xen_scheduler; sha256sum /tmp/rtos.bin
+xen_scheduler          : rtds
+f0adea2a0620c61c0e68162f00364614a1819d3cc7a9be8fb5c3f05d8db0d703  /tmp/rtos.bin
+root@tinker-board:~# 
+#### start rtos1 with 200 us every 1 ms
+xl create /tmp/rtos1.cfg && xl sched-rtds -d rtos1 -v all - p 1000 -b 200 -e 1
+Parsing config from /tmp/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+(d3) 
+(d3) [rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+(d3) [rtos] virtual timer 24000000 Hz, tick 1000 Hz
+(d3) [rtos] 4 tasks created, starting the scheduler
+root@tinker-board:~# (d3) [rtos] 10 ms task: 100 periods, min 9975 us, max 10078 us (report 1)
+(d3) [rtos] heartbeat 1, tick 1000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10009 us (report 2)
+(d3) [rtos] heartbeat 2, tick 2000
+(d3) [rtos] consumer received message 1 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9974 us, max 10026 us (report 3)
+(d3) [rtos] heartbeat 3, tick 3000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10009 us (report 4)
+(d3) [rtos] heartbeat 4, tick 4000
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10011 us (report 5)
+(d3) [rtos] heartbeat 5, tick 5000
+(d3) [rtos] consumer received message 2 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10013 us (report 6)
+(d3) [rtos] heartbeat 6, tick 6000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10008 us (report 7)
+(d3) [rtos] heartbeat 7, tick 7000
+(d3) [rtos] consumer received message 3 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10012 us (report 8)
+(d3) [rtos] heartbeat 8, tick 8000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 9)
+(d3) [rtos] heartbeat 9, tick 9000
+(d3) [rtos] 10 ms task: 100 periods, min 9969 us, max 10032 us (report 10)
+(d3) [rtos] heartbeat 10, tick 10000
+(d3) [rtos] consumer received message 4 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9988 us, max 10009 us (report 11)
+(d3) [rtos] heartbeat 11, tick 11000
+(d3) [rtos] 10 ms task: 100 periods, min 9915 us, max 10090 us (report 12)
+(d3) [rtos] heartbeat 12, tick 12000
+(d3) [rtos] consumer received message 5 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 13)
+(d3) [rtos] heartbeat 13, tick 13000
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10016 us (report 14)
+(d3) [rtos] heartbeat 14, tick 14000
+xl sched-rtds; xl sched-rtds -d rtos1 -v all
+Cpupool Pool-0: sched=RTDS
+Name                                ID    Period    Budget  Extratime
+Domain-0                             0     10000      4000        yes
+rtos1                                3     10000      4000        yes
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                3    0      1000       200        yes
+root@tinker-board:~# (d3) [rtos] 10 ms task: 100 periods, min 9969 us, max 10031 us (report 15)
+(d3) [rtos] heartbeat 15, tick 15000
+(d3) [rtos] consumer received message 6 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 16)
+(d3) [rtos] heartbeat 16, tick 16000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10010 us (report 17)
+(d3) [rtos] heartbeat 17, tick 17000
+(d3) [rtos] consumer received message 7 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10015 us (report 18)
+(d3) [rtos] heartbeat 18, tick 18000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10009 us (report 19)
+(d3) [rtos] heartbeat 19, tick 19000
+
+#### baseline 6 s
+(d3) [rtos] 10 ms task: 100 periods, min 9984 us, max 10021 us (report 20)
+(d3) [rtos] heartbeat 20, tick 20000
+(d3) [rtos] consumer received message 8 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10010 us (report 21)
+(d3) [rtos] heartbeat 21, tick 21000
+(d3) [rtos] 10 ms task: 100 periods, min 9987 us, max 10018 us (report 22)
+(d3) [rtos] heartbeat 22, tick 22000
+(d3) [rtos] consumer received message 9 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 23)
+(d3) [rtos] heartbeat 23, tick 23000
+(d3) [rtos] 10 ms task: 100 periods, min 9984 us, max 10021 us (report 24)
+(d3) [rtos] heartbeat 24, tick 24000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 25)
+(d3) [rtos] heartbeat 25, tick 25000
+(d3) [rtos] consumer received message 10 from the queue
+
+#### stress 1: Linux guest1 boots next to the RTOS
+xl create /etc/xen/guest1.cfg
+Parsing config from /etc/xen/guest1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+(d3) [rtos] 10 ms task: 100 periods, min 8498 us, max 10794 us (report 26)
+(d3) [rtos] heartbeat 26, tick 26001
+[  247.052824] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[  247.053075] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[  247.062191] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  247.063275] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  247.063359] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  247.063480] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  247.437267] xenbr0: port 1(vif4.0) entered blocking state
+[  247.437357] xenbr0: port 1(vif4.0) entered disabled state
+[  247.437647] device vif4.0 entered promiscuous mode
+(d3) [rtos] 10 ms task: 100 periods, min 7560 us, max 12438 us (report 27)
+(d3) [rtos] heartbeat 27, tick 27000
+root@tinker-board:~# (d3) [rtos] consumer received message 11 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9970 us, max 10028 us (report 28)
+(d3) [rtos] heartbeat 28, tick 28000
+(XEN) d4v0 Unhandled SMC/HVC: 0x8600ff01
+(XEN) d4v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(d3) [rtos] 10 ms task: 100 periods, min 9845 us, max 10115 us (report 29)
+(d3) [rtos] heartbeat 29, tick 29000
+(XEN) grant_table.c:1871:d4v0 Expanding d4 grant table from 1 to 2 frames
+[  249.948706] vif vif-4-0 vif4.0: Guest Rx ready
+[  249.948829] IPv6: ADDRCONF(NETDEV_CHANGE): vif4.0: link becomes ready
+[  249.950175] xenbr0: port 1(vif4.0) entered blocking state
+[  249.951115] xenbr0: port 1(vif4.0) entered forwarding state
+(d3) [rtos] 10 ms task: 100 periods, min 9949 us, max 10052 us (report 30)
+(d3) [rtos] heartbeat 30, tick 30000
+(d3) [rtos] consumer received message 12 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9963 us, max 10018 us (report 31)
+(d3) [rtos] heartbeat 31, tick 31000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 32)
+(d3) [rtos] heartbeat 32, tick 32000
+(d3) [rtos] consumer received message 13 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9988 us, max 10017 us (report 33)
+(d3) [rtos] heartbeat 33, tick 33000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 34)
+(d3) [rtos] heartbeat 34, tick 34000
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10010 us (report 35)
+(d3) [rtos] heartbeat 35, tick 35000
+(d3) [rtos] consumer received message 14 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10011 us (report 36)
+(d3) [rtos] heartbeat 36, tick 36000
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10008 us (report 37)
+(d3) [rtos] heartbeat 37, tick 37000
+(d3) [rtos] consumer received message 15 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10011 us (report 38)
+(d3) [rtos] heartbeat 38, tick 38000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10008 us (report 39)
+(d3) [rtos] heartbeat 39, tick 39000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 40)
+(d3) [rtos] heartbeat 40, tick 40000
+(d3) [rtos] consumer received message 16 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 41)
+(d3) [rtos] heartbeat 41, tick 41000
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10010 us (report 42)
+(d3) [rtos] heartbeat 42, tick 42000
+(d3) [rtos] consumer received message 17 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9916 us, max 10091 us (report 43)
+(d3) [rtos] heartbeat 43, tick 43000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 44)
+(d3) [rtos] heartbeat 44, tick 44000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10014 us (report 45)
+(d3) [rtos] heartbeat 45, tick 45000
+(d3) [rtos] consumer received message 18 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 46)
+(d3) [rtos] heartbeat 46, tick 46000
+(d3) [rtos] 10 ms task: 100 periods, min 9959 us, max 10033 us (report 47)
+(d3) [rtos] heartbeat 47, tick 47000
+(d3) [rtos] consumer received message 19 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 48)
+(d3) [rtos] heartbeat 48, tick 48000
+(d3) [rtos] 10 ms task: 100 periods, min 9987 us, max 10019 us (report 49)
+(d3) [rtos] heartbeat 49, tick 49000
+(d3) [rtos] 10 ms task: 100 periods, min 9970 us, max 10028 us (report 50)
+(d3) [rtos] heartbeat 50, tick 50000
+(d3) [rtos] consumer received message 20 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 51)
+(d3) [rtos] heartbeat 51, tick 51000
+(d3) [rtos] 10 ms task: 100 periods, min 9986 us, max 10021 us (report 52)
+(d3) [rtos] heartbeat 52, tick 52000
+(d3) [rtos] consumer received message 21 from the queue
+
+#### stress 2: dom0 100% busy for 8 s while guest1 runs
+md5sum /dev/zero & HOG=$!; sleep 8; kill $HOG
+[1] 509
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10044 us (report 53)
+(d3) [rtos] heartbeat 53, tick 53000
+(d3) [rtos] 10 ms task: 100 periods, min 9996 us, max 10007 us (report 54)
+(d3) [rtos] heartbeat 54, tick 54000
+(d3) [rtos] 10 ms task: 100 periods, min 9996 us, max 10003 us (report 55)
+(d3) [rtos] heartbeat 55, tick 55000
+(d3) [rtos] consumer received message 22 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9996 us, max 10004 us (report 56)
+(d3) [rtos] heartbeat 56, tick 56000
+(d3) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 57)
+(d3) [rtos] heartbeat 57, tick 57000
+(d3) [rtos] consumer received message 23 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9996 us, max 10005 us (report 58)
+(d3) [rtos] heartbeat 58, tick 58000
+(d3) [rtos] 10 ms task: 100 periods, min 9995 us, max 10006 us (report 59)
+(d3) [rtos] heartbeat 59, tick 59000
+(d3) [rtos] 10 ms task: 100 periods, min 9994 us, max 10004 us (report 60)
+(d3) [rtos] heartbeat 60, tick 60000
+(d3) [rtos] consumer received message 24 from the queue
+root@tinker-board:~# (d3) [rtos] 10 ms task: 100 periods, min 9979 us, max 10004 us (report 61)
+(d3) [rtos] heartbeat 61, tick 61000
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10009 us (report 62)
+(d3) [rtos] heartbeat 62, tick 62000
+(d3) [rtos] consumer received message 25 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9988 us, max 10011 us (report 63)
+(d3) [rtos] heartbeat 63, tick 63000
+(d3) [rtos] 10 ms task: 100 periods, min 9916 us, max 10089 us (report 64)
+(d3) [rtos] heartbeat 64, tick 64000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 65)
+(d3) [rtos] heartbeat 65, tick 65000
+(d3) [rtos] consumer received message 26 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9985 us, max 10014 us (report 66)
+(d3) [rtos] heartbeat 66, tick 66000
+xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      34.7
+rtos1                                        3    16     1     -b----       2.4
+guest1                                       4   127     1     -b----       3.3
+[1]+  Terminated              md5sum /dev/zero
+root@tinker-board:~# (d3) [rtos] 10 ms task: 100 periods, min 9970 us, max 10026 us (report 67)
+(d3) [rtos] heartbeat 67, tick 67000
+(d3) [rtos] consumer received message 27 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 68)
+(d3) [rtos] heartbeat 68, tick 68000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 69)
+(d3) [rtos] heartbeat 69, tick 69000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10015 us (report 70)
+(d3) [rtos] heartbeat 70, tick 70000
+(d3) [rtos] consumer received message 28 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10009 us (report 71)
+(d3) [rtos] heartbeat 71, tick 71000
+
+#### stopping guests
+xl destroy guest1
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10038 us (report 72)
+(d3) [rtos] heartbeat 72, tick 72000
+[  292.556439] xenbr0: port 1(vif4.0) entered disabled state
+[  292.568682] xenbr0: port 1(vif4.0) entered disabled state
+[  292.569169] device vif4.0 left promiscuous mode
+[  292.569238] xenbr0: port 1(vif4.0) entered disabled state
+(d3) [rtos] consumer received message 29 from the queue
+root@tinker-board:~# (d3) [rtos] 10 ms task: 100 periods, min 9976 us, max 10030 us (report 73)
+(d3) [rtos] heartbeat 73, tick 73000
+(d3) [rtos] 10 ms task: 100 periods, min 9989 us, max 10010 us (report 74)
+(d3) [rtos] heartbeat 74, tick 74000
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10009 us (report 75)
+(d3) [rtos] heartbeat 75, tick 75000
+(d3) [rtos] consumer received message 30 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10009 us (report 76)
+(d3) [rtos] heartbeat 76, tick 76000
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10007 us (report 77)
+(d3) [rtos] heartbeat 77, tick 77000
+(d3) [rtos] consumer received message 31 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9990 us, max 10010 us (report 78)
+(d3) [rtos] heartbeat 78, tick 78000
+(d3) [rtos] 10 ms task: 100 periods, min 9921 us, max 10077 us (report 79)
+(d3) [rtos] heartbeat 79, tick 79000
+(d3) [rtos] 10 ms task: 100 periods, min 9991 us, max 10010 us (report 80)
+(d3) [rtos] heartbeat 80, tick 80000
+(d3) [rtos] consumer received message 32 from the queue
+(d3) [rtos] 10 ms task: 100 periods, min 9992 us, max 10010 us (report 81)
+(d3) [rtos] heartbeat 81, tick 81000
+xl destroy rtos1
+root@tinker-board:~# xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      35.6
+root@tinker-board:~# 
+#### capture finished

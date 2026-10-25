@@ -1,0 +1,88 @@
+
+root@tinker-board:~# 
+#### rebooting from the shell
+reboot
+
+Broadcast message from root@tinker-board (hvc0) (Fri Mar  9 12:45:58 2018):
+
+The system is going down for reboot NOW!
+INIT: Switching to runlevel: 6
+INIT: Sending processes configured via /etc/inittab the TERM signal
+root@tinker-board:~# INIT: Sending processes configured via /etc/inittab the KILL signal
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Stopping syslogd/klogd: stopped syslogd (pid 290)
+stopped klogd (pid 293)
+done
+Unmounting remote filesystems...
+Deconfiguring network interfaces... done.
+Stopping xenconsoled
+Stopping QEMU
+WARNING: Not stopping xenstored, as it cannot be restarted.
+Sending all processes the TERM signal...
+Sending all processes the KILL signal...
+Deactivating swap...
+Unmounting local filesystems...
+[  676.215907] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+Rebooting... [  676.296654] reboot: Restarting system
+(XEN) Hardware Dom0 shutdown: rebooting machine
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+(XEN) Xen: Platform reset did not work properly!
+
+#### FAILED: no U-Boot

@@ -1,0 +1,118 @@
+
+root@tinker-board:~# 
+#### start Android
+xl create /etc/xen/android1.cfg
+Parsing config from /etc/xen/android1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[  223.966073] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  223.966350] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  223.966420] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  223.966524] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  224.094284] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  224.094611] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  224.094682] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  224.094786] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  225.161339] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  225.161799] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  225.161871] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  225.161974] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  225.471184] xenbr0: port 1(vif2.0) entered blocking state
+[  225.471264] xenbr0: port 1(vif2.0) entered disabled state
+[  225.471572] device vif2.0 entered promiscuous mode
+root@tinker-board:~# 
+#### wait 150 s for the boot
+(XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[  227.249415] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  227.306991] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  227.389709] vif vif-2-0 vif2.0: Guest Rx ready
+[  227.389850] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[  227.390052] xenbr0: port 1(vif2.0) entered blocking state
+[  227.390146] xenbr0: port 1(vif2.0) entered forwarding state
+
+root@tinker-board:~# 
+#### A) adb as root (old way): count USB resets in dmesg
+dmesg -c >/dev/null; adb connect 192.168.100.3:5555; sleep 88; adb -s 192.168.100.3:5555 shell getprop sys.boot_completed; adb kill-server;  sleep 1; dmesg | grep -c 'reset high-speed'
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+[  376.443083] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  378.153069] usb 1-1: reset high-speed USB device number 2 using dwc2
+connected to 192.168.100.3:5555
+[  379.863081] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  381.573110] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  383.283096] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  384.993094] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  386.703074] usb 1-1: reset high-speed USB device number 2 using dwc2
+1
+7
+root@tinker-board:~# 
+#### B) adb as an unprivileged user
+mkdir -p /tmp/adbhome && chmod 777 /tmp/adbhome; id nobody;  dmesg -c >/dev/null
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+root@tinker-board:~# su -s /bin/sh nobody -c 'HOME=/tmp/adbhome adb connect 192.1168.100.3:5555; sleep 8; HOME=/tmp/adbhome adb -s 192.168.100.3:5555 shell getproop sys.boot_completed; HOME=/tmp/adbhome adb kill-server'; sleep 1; dmesg | grep  -c 'reset high-speed'
+* daemon not running. starting it now on port 5037 *
+[  389.253038] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  390.933058] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  392.613062] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  394.293926] usb 1-1: reset high-speed USB device number 2 using dwc2
+ADB server didn't ACK
+* failed to start daemon *
+error: cannot connect to daemon
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+[  403.043138] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  404.753088] usb 1-1: reset high-speed USB device number 2 using dwc2
+error: device not found
+6
+root@tinker-board:~# 
+#### C) Android routing via dom0
+adb connect 192.168.100.3:5555 >/dev/null; adb -s 192.168.1 00.3:5555 root; sleep 4; adb connect 192.168.100.3:5555
+[  407.283085] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  408.993082] usb 1-1: reset high-speed USB device number 2 using dwc2
+restarting adbd as root
+[  410.703257] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  412.413154] usb 1-1: reset high-speed USB device number 2 using dwc2
+connected to 192.168.100.3:5555
+root@tinker-board:~# [  414.123101] usb 1-1: reset high-speed USB device number 2 using dwc2
+adb -s 192.168.100.3:5555 shell ip rule
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell ip route add default via 1922.168.100.1 dev eth0; echo rc=$?
+rc=0
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell 'ip route; ping -c 2 192.1688.100.1; ip route get 8.8.8.8'
+default via 192.168.100.1 dev eth0 
+192.168.100.0/24 dev eth0  proto kernel  scope link  src 192.168.100.3 
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=0.387 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.464 ms
+
+--- 192.168.100.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1024ms
+rtt min/avg/max/mdev = 0.387/0.425/0.464/0.043 ms
+8.8.8.8 via 192.168.100.1 dev eth0  src 192.168.100.3 
+    cache 
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell 'ndc network create 100; ndcc network interface add 100 eth0; ndc network route add 100 eth0 0.0.0.0/0 192.1668.100.1; ndc resolver setnetdns 100 "" 8.8.8.8 1.1.1.[  415.803097] usb 1-1: reset high-speed USB device number 2 using dwc2
+1; ndc network default set  100'
+200 0 success
+400 0 addInterfaceToNetwork() failed (Address family not supported by protocol)
+400 0 addRoute() failed (No such device)
+200 0 Resolver command succeeded
+200 0 success
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell 'ip rule | head -n 20; ip r oute show table all | grep -E "default|eth0" | head'
+default via 192.168.100.1 dev eth0 
+192.168.100.0/24 dev eth0  proto kernel  scope link  src 192.168.100.3 
+broadcast 192.168.100.0 dev eth0  table local  proto kernel  scope link  src 192.168.100.3 
+local 192.168.100.3 dev eth0  table local  proto kernel  scope host  src 192.168.100.3 
+broadcast 192.168.100.255 dev eth0  table local  proto kernel  scope link  src 192.168.100.3 
+fe80::/64 as to ::7400:0:1800:200:f981:a25a dev eth0  proto kernel  metric 256 
+local fe80::216:3eff:fe47:cb7d as to ::7400:0:1800:200:f981:a25a dev eth0  table local  proto kernel  metric 0 
+ff00::/8 as to ::800:400:400:0:3c00:0 dev eth0  table local  proto kernel  metric 256 
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell 'su 10000 ping -c 1 -W 2 19 2.168.100.1; echo rc=$?'
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=0.523 ms
+
+--- 192.168.100.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.523/0.523/0.523/0.000 ms
+rc=0
+root@tinker-board:~# adb kill-server
+root@tinker-board:~# 
+#### capture finished

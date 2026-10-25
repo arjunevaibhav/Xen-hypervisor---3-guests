@@ -1,0 +1,83 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] xen-fbfront: add a 16 bpp (RGB565) mode
+
+xen-fbfront always presents 32 bpp XRGB8888. Android 7's framebuffer
+gralloc asks for 16 bpp RGB565, cannot switch, and its software GLES
+renderer then has no EGL config for the remaining format, so
+SurfaceFlinger aborts ("no suitable EGLConfig found, giving up").
+
+Add a "depth" parameter (32 by default, or 16 for RGB565). The backend
+(QEMU's xenfb) takes the depth from the shared page.
+
+Upstream-Status: Inappropriate [Android guest specific]
+---
+--- a/drivers/video/fbdev/xen-fbfront.c	2026-10-25 10:56:06.372773453 +0530
++++ b/drivers/video/fbdev/xen-fbfront.c	2026-10-25 10:56:06.392773500 +0530
+@@ -63,6 +63,15 @@
+ enum { KPARAM_MEM, KPARAM_WIDTH, KPARAM_HEIGHT, KPARAM_CNT };
+ static int video[KPARAM_CNT] = { 2, XENFB_WIDTH, XENFB_HEIGHT };
+ module_param_array(video, int, NULL, 0);
++
++/*
++ * Bits per pixel: 32 (XRGB8888) or 16 (RGB565). The backend reads the depth
++ * from the shared page. Android 7's software renderer has no EGL config for
++ * the 32 bpp layout, so its guest uses xen_fbfront.depth=16.
++ */
++static int depth = XENFB_DEPTH;
++module_param(depth, int, 0);
++MODULE_PARM_DESC(depth, "Bits per pixel: 32 (default) or 16 (RGB565)");
+ MODULE_PARM_DESC(video,
+ 	"Video memory size in MB, width, height in pixels (default 2,800,600)");
+ 
+@@ -300,7 +309,7 @@
+ 
+ 	required_mem_len = var->xres * var->yres * xenfb_info->page->depth / 8;
+ 	if (var->bits_per_pixel == xenfb_info->page->depth &&
+-	    var->xres <= info->fix.line_length / (XENFB_DEPTH / 8) &&
++	    var->xres <= info->fix.line_length / (depth / 8) &&
+ 	    required_mem_len <= info->fix.smem_len) {
+ 		var->xres_virtual = var->xres;
+ 		var->yres_virtual = var->yres;
+@@ -388,8 +397,10 @@
+ 						    video[KPARAM_HEIGHT]);
+ 
+ 	/* If requested res does not fit in available memory, use default */
++	if (depth != 16 && depth != 32)
++		depth = XENFB_DEPTH;
+ 	fb_size = video[KPARAM_MEM] * 1024 * 1024;
+-	if (video[KPARAM_WIDTH] * video[KPARAM_HEIGHT] * XENFB_DEPTH / 8
++	if (video[KPARAM_WIDTH] * video[KPARAM_HEIGHT] * depth / 8
+ 	    > fb_size) {
+ 		pr_warn("display parameters %d,%d,%d invalid, use defaults\n",
+ 			video[KPARAM_MEM], video[KPARAM_WIDTH],
+@@ -435,11 +446,17 @@
+ 	fb_info->fbops = &xenfb_fb_ops;
+ 	fb_info->var.xres_virtual = fb_info->var.xres = video[KPARAM_WIDTH];
+ 	fb_info->var.yres_virtual = fb_info->var.yres = video[KPARAM_HEIGHT];
+-	fb_info->var.bits_per_pixel = XENFB_DEPTH;
++	fb_info->var.bits_per_pixel = depth;
+ 
+-	fb_info->var.red = (struct fb_bitfield){16, 8, 0};
+-	fb_info->var.green = (struct fb_bitfield){8, 8, 0};
+-	fb_info->var.blue = (struct fb_bitfield){0, 8, 0};
++	if (depth == 16) {
++		fb_info->var.red = (struct fb_bitfield){11, 5, 0};
++		fb_info->var.green = (struct fb_bitfield){5, 6, 0};
++		fb_info->var.blue = (struct fb_bitfield){0, 5, 0};
++	} else {
++		fb_info->var.red = (struct fb_bitfield){16, 8, 0};
++		fb_info->var.green = (struct fb_bitfield){8, 8, 0};
++		fb_info->var.blue = (struct fb_bitfield){0, 8, 0};
++	}
+ 
+ 	fb_info->var.activate = FB_ACTIVATE_NOW;
+ 	fb_info->var.height = -1;
+@@ -447,7 +464,7 @@
+ 	fb_info->var.vmode = FB_VMODE_NONINTERLACED;
+ 
+ 	fb_info->fix.visual = FB_VISUAL_TRUECOLOR;
+-	fb_info->fix.line_length = fb_info->var.xres * XENFB_DEPTH / 8;
++	fb_info->fix.line_length = fb_info->var.xres * depth / 8;
+ 	fb_info->fix.smem_start = 0;
+ 	fb_info->fix.smem_len = fb_size;
+ 	strcpy(fb_info->fix.id, "xen");

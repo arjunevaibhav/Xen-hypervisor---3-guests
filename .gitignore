@@ -1,0 +1,12 @@
+# Upstream layers and the build directory: downloaded/created by the build
+# steps in docs/PROJECT-DOCUMENTATION.md (Chapter 4)
+/poky/
+/meta-arm/
+/meta-openembedded/
+/meta-rockchip/
+/meta-virtualization/
+/build/
+/.claude/
+
+# Card images are too big for GitHub (100 MB limit); checksums stay in SHA256SUMS
+*.wic

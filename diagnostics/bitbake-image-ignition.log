@@ -1,0 +1,325 @@
+Loading cache...done.
+Loaded 4102 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 2642 .bb files complete (2640 cached, 2 parsed). 4101 targets, 203 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 44 Local 0 Mirrors 0 Missed 44 Current 1741 (0% match, 97% complete)
+Removing 2 stale sstate objects for arch allarch...done.
+Removing 2 stale sstate objects for arch tinker_board...done.
+Removing 3 stale sstate objects for arch cortexa17t2hf-neon...done.
+NOTE: Executing Tasks
+NOTE: Running task 1977 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_fetch)
+NOTE: Running task 2123 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_fetch)
+NOTE: recipe catch2-2.13.10-r0: task do_fetch: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_fetch: Started
+NOTE: Running task 2622 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_fetch)
+NOTE: Running task 2627 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_fetch)
+NOTE: Running task 2628 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_fetch)
+NOTE: Running task 2722 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_fetch)
+NOTE: recipe bats-1.6.1-r0: task do_fetch: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_fetch: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_fetch: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_fetch: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2861 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_unpack)
+NOTE: recipe ignition-watch-1.0-r0: task do_unpack: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3019 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_patch)
+NOTE: recipe ignition-watch-1.0-r0: task do_patch: Started
+NOTE: Running task 3199 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_prepare_recipe_sysroot)
+NOTE: recipe ignition-watch-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 3207 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_deploy_source_date_epoch)
+NOTE: recipe ignition-watch-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe ignition-watch-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3449 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_configure)
+NOTE: recipe ignition-watch-1.0-r0: task do_configure: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_configure: Succeeded
+NOTE: Running task 3638 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_compile)
+NOTE: Running task 3662 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_populate_lic)
+NOTE: Running task 3707 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_write_rpm)
+NOTE: recipe ignition-watch-1.0-r0: task do_compile: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_populate_lic: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_compile: Succeeded
+NOTE: recipe ignition-watch-1.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3708 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_install)
+NOTE: Running task 3709 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guests/xen-guests.bb:do_package_write_rpm)
+NOTE: recipe ignition-watch-1.0-r0: task do_install: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-guests-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_install: Succeeded
+NOTE: Running task 3710 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_package)
+NOTE: recipe ignition-watch-1.0-r0: task do_package: Started
+NOTE: recipe xen-guests-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4201 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_qa)
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_package: Succeeded
+NOTE: Running task 4202 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_packagedata)
+NOTE: recipe ignition-watch-1.0-r0: task do_packagedata: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 4203 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guests/xen-guests.bb:do_package_qa)
+NOTE: recipe xen-guests-1.0-r0: task do_package_qa: Started
+NOTE: recipe xen-guests-1.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 4207 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package_qa)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_fetch: Succeeded
+NOTE: Running task 4279 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_unpack)
+NOTE: Running task 4280 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_prepare_recipe_sysroot)
+NOTE: recipe python3-packaging-21.3-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_unpack: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_fetch: Succeeded
+NOTE: Running task 4281 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_unpack)
+NOTE: recipe python3-packaging-21.3-r0: task do_unpack: Succeeded
+NOTE: Running task 4282 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_patch)
+NOTE: recipe libgpiod-1.6.3-r0: task do_unpack: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_patch: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_unpack: Succeeded
+NOTE: Running task 4283 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_patch)
+NOTE: recipe python3-packaging-21.3-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_patch: Succeeded
+NOTE: Running task 4284 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4285 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_populate_lic)
+NOTE: recipe libgpiod-1.6.3-r0: task do_patch: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_patch: Succeeded
+NOTE: Running task 4286 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4287 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_populate_lic)
+NOTE: recipe python3-packaging-21.3-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_populate_lic: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_populate_lic: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_deploy_source_date_epoch: Started
+NOTE: Running task 4288 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_configure)
+NOTE: recipe libgpiod-1.6.3-r0: task do_populate_lic: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_configure: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_populate_lic: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_configure: Succeeded
+NOTE: Running task 4289 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_compile)
+NOTE: recipe python3-packaging-21.3-r0: task do_compile: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_compile: Succeeded
+NOTE: Running task 4290 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_install)
+NOTE: recipe python3-packaging-21.3-r0: task do_install: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_install: Succeeded
+NOTE: Running task 4291 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_package)
+NOTE: recipe python3-packaging-21.3-r0: task do_package: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_fetch: Succeeded
+NOTE: Running task 4292 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_unpack)
+NOTE: Running task 4293 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_prepare_recipe_sysroot)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_unpack: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_unpack: Succeeded
+NOTE: Running task 4294 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_patch)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_patch: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_patch: Succeeded
+NOTE: Running task 4295 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4296 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_populate_lic)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_populate_lic: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4297 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_configure)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_populate_lic: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_package: Succeeded
+NOTE: Running task 4298 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_packagedata)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_configure: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_packagedata: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_configure: Succeeded
+NOTE: Running task 4299 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_compile)
+NOTE: recipe python3-packaging-21.3-r0: task do_packagedata: Succeeded
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_compile: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_compile: Succeeded
+NOTE: Running task 4300 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_install)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_install: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_install: Succeeded
+NOTE: Running task 4301 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_package)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package: Succeeded
+NOTE: Running task 4302 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_packagedata)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_packagedata: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_packagedata: Succeeded
+NOTE: Running task 4303 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_package_write_rpm)
+NOTE: Running task 4304 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pyparsing_3.0.7.bb:do_package_qa)
+NOTE: Running task 4305 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_package_write_rpm)
+NOTE: Running task 4306 of 4354 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-packaging_21.3.bb:do_package_qa)
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package_write_rpm: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_package_write_rpm: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package_qa: Started
+NOTE: recipe python3-packaging-21.3-r0: task do_package_qa: Started
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package_qa: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_package_qa: Succeeded
+NOTE: recipe python3-pyparsing-3.0.7-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe python3-packaging-21.3-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe bats-1.6.1-r0: task do_fetch: Succeeded
+NOTE: Running task 4307 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_unpack)
+NOTE: Running task 4308 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe bats-1.6.1-r0: task do_unpack: Started
+NOTE: recipe bats-1.6.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe bats-1.6.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe bats-1.6.1-r0: task do_unpack: Succeeded
+NOTE: Running task 4309 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_patch)
+NOTE: recipe bats-1.6.1-r0: task do_patch: Started
+NOTE: recipe bats-1.6.1-r0: task do_patch: Succeeded
+NOTE: Running task 4310 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4311 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_populate_lic)
+NOTE: recipe bats-1.6.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe bats-1.6.1-r0: task do_populate_lic: Started
+NOTE: recipe bats-1.6.1-r0: task do_populate_lic: Succeeded
+NOTE: recipe bats-1.6.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4312 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_configure)
+NOTE: recipe bats-1.6.1-r0: task do_configure: Started
+NOTE: recipe bats-1.6.1-r0: task do_configure: Succeeded
+NOTE: Running task 4313 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_compile)
+NOTE: recipe bats-1.6.1-r0: task do_compile: Started
+NOTE: recipe bats-1.6.1-r0: task do_compile: Succeeded
+NOTE: Running task 4314 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_install)
+NOTE: recipe bats-1.6.1-r0: task do_install: Started
+NOTE: recipe bats-1.6.1-r0: task do_install: Succeeded
+NOTE: Running task 4315 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_package)
+NOTE: recipe bats-1.6.1-r0: task do_package: Started
+NOTE: recipe bats-1.6.1-r0: task do_package: Succeeded
+NOTE: Running task 4316 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_packagedata)
+NOTE: recipe bats-1.6.1-r0: task do_packagedata: Started
+NOTE: recipe bats-1.6.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 4317 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_package_write_rpm)
+NOTE: Running task 4318 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/bats/bats_1.6.1.bb:do_package_qa)
+NOTE: recipe bats-1.6.1-r0: task do_package_write_rpm: Started
+NOTE: recipe bats-1.6.1-r0: task do_package_qa: Started
+NOTE: recipe bats-1.6.1-r0: task do_package_qa: Succeeded
+NOTE: recipe bats-1.6.1-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe catch2-2.13.10-r0: task do_fetch: Succeeded
+NOTE: Running task 4319 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_unpack)
+NOTE: Running task 4320 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_prepare_recipe_sysroot)
+NOTE: recipe catch2-2.13.10-r0: task do_unpack: Started
+NOTE: recipe catch2-2.13.10-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe catch2-2.13.10-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe catch2-2.13.10-r0: task do_unpack: Succeeded
+NOTE: Running task 4321 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_patch)
+NOTE: recipe catch2-2.13.10-r0: task do_patch: Started
+NOTE: recipe catch2-2.13.10-r0: task do_patch: Succeeded
+NOTE: Running task 4322 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4323 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_generate_toolchain_file)
+NOTE: Running task 4324 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_populate_lic)
+NOTE: recipe catch2-2.13.10-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe catch2-2.13.10-r0: task do_generate_toolchain_file: Started
+NOTE: recipe catch2-2.13.10-r0: task do_populate_lic: Started
+NOTE: recipe catch2-2.13.10-r0: task do_generate_toolchain_file: Succeeded
+NOTE: recipe catch2-2.13.10-r0: task do_populate_lic: Succeeded
+NOTE: recipe catch2-2.13.10-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4325 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_configure)
+NOTE: recipe catch2-2.13.10-r0: task do_configure: Started
+NOTE: recipe catch2-2.13.10-r0: task do_configure: Succeeded
+NOTE: Running task 4326 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_compile)
+NOTE: recipe catch2-2.13.10-r0: task do_compile: Started
+NOTE: recipe catch2-2.13.10-r0: task do_compile: Succeeded
+NOTE: Running task 4327 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_install)
+NOTE: recipe catch2-2.13.10-r0: task do_install: Started
+NOTE: recipe catch2-2.13.10-r0: task do_install: Succeeded
+NOTE: Running task 4328 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_populate_sysroot)
+NOTE: Running task 4329 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_package)
+NOTE: recipe catch2-2.13.10-r0: task do_populate_sysroot: Started
+NOTE: recipe catch2-2.13.10-r0: task do_package: Started
+NOTE: recipe catch2-2.13.10-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4330 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libgpiod-1.6.3-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe catch2-2.13.10-r0: task do_package: Succeeded
+NOTE: Running task 4331 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_packagedata)
+NOTE: recipe catch2-2.13.10-r0: task do_packagedata: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4332 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_configure)
+NOTE: recipe catch2-2.13.10-r0: task do_packagedata: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_configure: Started
+NOTE: Running task 4333 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_package_write_rpm)
+NOTE: Running task 4334 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-test/catch2/catch2_2.13.10.bb:do_package_qa)
+NOTE: recipe catch2-2.13.10-r0: task do_package_write_rpm: Started
+NOTE: recipe catch2-2.13.10-r0: task do_package_qa: Started
+NOTE: recipe catch2-2.13.10-r0: task do_package_qa: Succeeded
+NOTE: recipe catch2-2.13.10-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_configure: Succeeded
+NOTE: Running task 4335 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_configure_ptest_base)
+NOTE: recipe libgpiod-1.6.3-r0: task do_configure_ptest_base: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_configure_ptest_base: Succeeded
+NOTE: Running task 4336 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_compile)
+NOTE: recipe libgpiod-1.6.3-r0: task do_compile: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_compile: Succeeded
+NOTE: Running task 4337 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_compile_ptest_base)
+NOTE: recipe libgpiod-1.6.3-r0: task do_compile_ptest_base: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_compile_ptest_base: Succeeded
+NOTE: Running task 4338 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_install)
+NOTE: recipe libgpiod-1.6.3-r0: task do_install: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_install: Succeeded
+NOTE: Running task 4339 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_install_ptest_base)
+NOTE: recipe libgpiod-1.6.3-r0: task do_install_ptest_base: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_install_ptest_base: Succeeded
+NOTE: Running task 4340 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_package)
+NOTE: recipe libgpiod-1.6.3-r0: task do_package: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_package: Succeeded
+NOTE: Running task 4341 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_packagedata)
+NOTE: recipe libgpiod-1.6.3-r0: task do_packagedata: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_packagedata: Succeeded
+NOTE: Running task 4342 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_package_write_rpm)
+NOTE: Running task 4343 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_package_write_rpm)
+NOTE: Running task 4344 of 4354 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-support/libgpiod/libgpiod_1.6.3.bb:do_package_qa)
+NOTE: Running task 4345 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/ignition-watch/ignition-watch.bb:do_package_qa)
+NOTE: recipe ignition-watch-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_package_write_rpm: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_package_qa: Started
+NOTE: recipe libgpiod-1.6.3-r0: task do_package_qa: Started
+NOTE: recipe ignition-watch-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe ignition-watch-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_package_qa: Succeeded
+NOTE: recipe libgpiod-1.6.3-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4346 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 4347 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_flush_pseudodb)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 4348 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_qa)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 4349 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Succeeded
+NOTE: Running task 4350 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs_wicenv)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Succeeded
+NOTE: Running task 4351 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_wic)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Succeeded
+NOTE: Running task 4352 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_complete)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 4353 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_populate_lic_deploy)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Succeeded
+NOTE: Running noexec task 4354 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_build)
+NOTE: Tasks Summary: Attempted 4354 tasks of which 4257 didn't need to be rerun and all succeeded.

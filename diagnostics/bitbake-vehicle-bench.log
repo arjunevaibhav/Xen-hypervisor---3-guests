@@ -1,0 +1,324 @@
+Loading cache...done.
+Loaded 4100 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 2640 .bb files complete (2637 cached, 3 parsed). 4099 targets, 203 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 41 Local 0 Mirrors 0 Missed 41 Current 1701 (0% match, 97% complete)
+Removing 2 stale sstate objects for arch allarch...done.
+Removing 19 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 1353 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_fetch)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_fetch: Started
+NOTE: Running task 2426 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_fetch)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_fetch: Started
+NOTE: Running task 2596 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_fetch)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_fetch: Succeeded
+NOTE: Running task 2674 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_unpack)
+NOTE: Running task 2675 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_prepare_recipe_sysroot)
+NOTE: Running task 2695 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_fetch)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_fetch: Started
+NOTE: Running task 2696 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_fetch)
+NOTE: recipe can-utils-2021.08.0-r0: task do_fetch: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_fetch: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2863 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_unpack)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2900 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_unpack)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_unpack: Started
+NOTE: Running task 2955 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_prepare_recipe_sysroot)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_unpack: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_unpack: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3005 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_patch)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_patch: Started
+NOTE: Running task 3147 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_prepare_recipe_sysroot)
+NOTE: recipe vehicle-bench-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 3224 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_deploy_source_date_epoch)
+NOTE: recipe vehicle-bench-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3500 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_patch)
+NOTE: recipe vehicle-bench-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3554 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_configure)
+NOTE: Running task 3589 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_populate_lic)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_patch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 3647 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_deploy_source_date_epoch)
+NOTE: Running task 3648 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_populate_lic)
+NOTE: recipe vehicle-bench-1.0-r0: task do_configure: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_lic: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_configure: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: Running task 3749 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_compile)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_lic: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_compile: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3950 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_configure)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_configure: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 4172 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_install)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_configure: Succeeded
+NOTE: recipe can-utils-2021.08.0-r0: task do_fetch: Succeeded
+NOTE: Running task 4173 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_unpack)
+NOTE: Running task 4174 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_compile)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_compile: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_unpack: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_install: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_install: Succeeded
+NOTE: Running task 4175 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package)
+NOTE: recipe can-utils-2021.08.0-r0: task do_unpack: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_package: Started
+NOTE: Running task 4176 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_patch)
+NOTE: recipe can-utils-2021.08.0-r0: task do_patch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 4177 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_install)
+NOTE: Running task 4178 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_deploy)
+NOTE: recipe can-utils-2021.08.0-r0: task do_patch: Succeeded
+NOTE: Running task 4179 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4180 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_populate_lic)
+NOTE: recipe can-utils-2021.08.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_install: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_populate_lic: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe can-utils-2021.08.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_install: Succeeded
+NOTE: Running task 4181 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package: Succeeded
+NOTE: Running task 4182 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_packagedata)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_packagedata: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_package: Succeeded
+NOTE: Running task 4183 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_packagedata)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 4184 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guests/xen-guests.bb:do_package_write_rpm)
+NOTE: recipe vehicle-bench-1.0-r0: task do_packagedata: Started
+NOTE: Running task 4185 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package_write_rpm)
+NOTE: Running task 4186 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guests/xen-guests.bb:do_package_qa)
+NOTE: Running task 4187 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package_qa)
+NOTE: recipe xen-guests-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_packagedata: Succeeded
+NOTE: recipe xen-guests-1.0-r0: task do_package_qa: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_qa: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe xen-guests-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe xen-guests-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_unpack: Succeeded
+NOTE: Running task 4188 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_symlink_kernsrc)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_symlink_kernsrc: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_symlink_kernsrc: Succeeded
+NOTE: Running task 4189 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_checkout)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_checkout: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_checkout: Succeeded
+NOTE: Running task 4190 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_validate_branches)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_validate_branches: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_validate_branches: Succeeded
+NOTE: Running task 4191 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_metadata)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_metadata: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_metadata: Succeeded
+NOTE: Running task 4192 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_patch)
+NOTE: Running task 4193 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_version_sanity_check)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_patch: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_version_sanity_check: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_version_sanity_check: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_patch: Succeeded
+NOTE: Running task 4194 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4195 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_configme)
+NOTE: Running task 4196 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_populate_lic)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configme: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_lic: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_lic: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configme: Succeeded
+NOTE: Running task 4197 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_configure)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_configure: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_configure: Succeeded
+NOTE: Running task 4198 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_configcheck)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configcheck: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configcheck: Succeeded
+NOTE: Running task 4199 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile: Started
+WARNING: libsocketcan-0.0.12-r0 do_fetch: Failed to fetch URL git://git.pengutronix.de/git/tools/libsocketcan.git;protocol=https;branch=master, attempting MIRRORS if available
+NOTE: recipe libsocketcan-0.0.12-r0: task do_fetch: Succeeded
+NOTE: Running task 4200 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_unpack)
+NOTE: Running task 4201 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_unpack: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe libsocketcan-0.0.12-r0: task do_unpack: Succeeded
+NOTE: Running task 4202 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_patch)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_patch: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_patch: Succeeded
+NOTE: Running task 4203 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4204 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_populate_lic)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_populate_lic: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_populate_lic: Succeeded
+NOTE: recipe libsocketcan-0.0.12-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4205 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_configure)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_configure: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_configure: Succeeded
+NOTE: Running task 4206 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_compile)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_compile: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_compile: Succeeded
+NOTE: Running task 4207 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_install)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_install: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_install: Succeeded
+NOTE: Running task 4208 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_package)
+NOTE: Running task 4209 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_populate_sysroot)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_populate_sysroot: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4210 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_prepare_recipe_sysroot)
+NOTE: recipe can-utils-2021.08.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4211 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_configure)
+NOTE: recipe can-utils-2021.08.0-r0: task do_configure: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package: Succeeded
+NOTE: Running task 4212 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_packagedata)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_packagedata: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_packagedata: Succeeded
+NOTE: Running task 4213 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_package_write_rpm)
+NOTE: Running task 4214 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/libsocketcan_0.0.12.bb:do_package_qa)
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package_write_rpm: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package_qa: Started
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package_qa: Succeeded
+NOTE: recipe libsocketcan-0.0.12-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe can-utils-2021.08.0-r0: task do_configure: Succeeded
+NOTE: Running task 4215 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_compile)
+NOTE: recipe can-utils-2021.08.0-r0: task do_compile: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_compile: Succeeded
+NOTE: Running task 4216 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_install)
+NOTE: recipe can-utils-2021.08.0-r0: task do_install: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_install: Succeeded
+NOTE: Running task 4217 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_package)
+NOTE: recipe can-utils-2021.08.0-r0: task do_package: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_package: Succeeded
+NOTE: Running task 4218 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_packagedata)
+NOTE: recipe can-utils-2021.08.0-r0: task do_packagedata: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 4219 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_package_write_rpm)
+NOTE: Running task 4220 of 4258 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-extended/socketcan/can-utils_git.bb:do_package_qa)
+NOTE: recipe can-utils-2021.08.0-r0: task do_package_write_rpm: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_package_qa: Started
+NOTE: recipe can-utils-2021.08.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe can-utils-2021.08.0-r0: task do_package_qa: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile: Succeeded
+NOTE: Running task 4221 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_shared_workdir)
+NOTE: Running task 4222 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_link_images)
+NOTE: Running task 4223 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_transform_kernel)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_shared_workdir: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_link_images: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_transform_kernel: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_link_images: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_shared_workdir: Succeeded
+NOTE: Running task 4224 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile_kernelmodules)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_transform_kernel: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile_kernelmodules: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile_kernelmodules: Succeeded
+NOTE: Running task 4225 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_strip)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_strip: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_strip: Succeeded
+NOTE: Running task 4226 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_sizecheck)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_sizecheck: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_sizecheck: Succeeded
+NOTE: Running task 4227 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_install)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_install: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_install: Succeeded
+NOTE: Running task 4228 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package)
+NOTE: Running task 4229 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_populate_sysroot)
+NOTE: Running task 4230 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_bundle_initramfs)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_sysroot: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_bundle_initramfs: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_bundle_initramfs: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package: Succeeded
+NOTE: Running task 4232 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_packagedata)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_packagedata: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_packagedata: Succeeded
+NOTE: Running task 4233 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package_write_rpm)
+NOTE: Running task 4234 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xenbr0/xenbr0.bb:do_package_write_rpm)
+NOTE: Running task 4235 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package_write_rpm)
+NOTE: Running task 4246 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package_qa)
+NOTE: Running task 4247 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xenbr0/xenbr0.bb:do_package_qa)
+NOTE: Running task 4248 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package_qa)
+NOTE: Running task 4249 of 4258 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_deploy)
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe xenbr0-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe xenbr0-1.0-r0: task do_package_qa: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_qa: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_write_rpm: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_qa: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy: Started
+NOTE: recipe xenbr0-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe xenbr0-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_qa: Succeeded
+NOTE: Running task 4250 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 4251 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_flush_pseudodb)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 4252 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_qa)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 4253 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Succeeded
+NOTE: Running task 4254 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs_wicenv)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Succeeded
+NOTE: Running task 4255 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_wic)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Succeeded
+NOTE: Running task 4256 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_complete)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 4257 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_populate_lic_deploy)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Succeeded
+NOTE: Running noexec task 4258 of 4258 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_build)
+NOTE: Tasks Summary: Attempted 4258 tasks of which 4162 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.

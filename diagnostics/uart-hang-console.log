@@ -1,0 +1,5 @@
+
+xl destroy android1 2>/dev/null; sleep 2; xl create /tmp/android1-ramfb.cfg
+xl console android1
+
+^]

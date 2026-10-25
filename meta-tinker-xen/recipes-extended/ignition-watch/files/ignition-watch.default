@@ -1,0 +1,12 @@
+# ignition-watch: power off when the car's ignition (ACC) goes off.
+# Only enable it once ACC is wired to the GPIO through a level shifter
+# (12 V must never reach the 3.3 V pin) - see the meta-tinker-xen README.
+ENABLED=0
+
+# GPIO line: header pin 7 = GPIO0_C1 = gpiochip0 line 17 (check: gpioinfo gpiochip0)
+CHIP=gpiochip0
+LINE=17
+# level the pin reads while ACC is on (1 = high, 0 for an inverting optocoupler)
+ACC_ON_LEVEL=1
+# seconds ACC must stay off before powering off
+OFF_DELAY=10

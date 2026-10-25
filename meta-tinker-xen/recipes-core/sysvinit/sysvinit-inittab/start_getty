@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# busybox' getty does this itself, util-linux' agetty needs extra help
+getty="/sbin/getty"
+case $(readlink -f "${getty}") in
+    */busybox*)
+        ;;
+    *)
+        if [ -x "/usr/bin/setsid" ] ; then
+            setsid="/usr/bin/setsid"
+        fi
+        ;;
+esac
+
+# Under Xen the board UART belongs to the hypervisor (dom0 logs in on hvc0):
+# ttyS2 exists in dom0 but cannot be used, and getty would respawn too fast.
+if [ "$2" != "hvc0" ] && grep -qs xen /sys/hypervisor/type; then
+    sleep 1000
+    exit 0
+fi
+
+if [ -e /sys/class/tty/$2 -a -c /dev/$2 ]; then
+	${setsid:-} ${getty} -L $1 $2 $3
+else
+    # Prevent respawning to fast error if /dev entry does not exist
+    sleep 1000
+fi

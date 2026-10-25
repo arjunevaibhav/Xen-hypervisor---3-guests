@@ -1,0 +1,40 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          xenbr0
+# Required-Start:    $local_fs
+# Default-Start:     2 3 4 5
+# Short-Description: Bridge xenbr0 + NAT for Xen guests (192.168.100.1/24)
+### END INIT INFO
+#
+# Guest network: guests get "vif = ['bridge=xenbr0']" and an address in
+# 192.168.100.0/24 with dom0 (192.168.100.1) as gateway. eth0 is not added to
+# the bridge: dom0 routes and NATs the guests' traffic out of whatever
+# interface has the default route (eth0 when a LAN cable gives it DHCP).
+
+BRIDGE=xenbr0
+ADDR=192.168.100.1/24
+SUBNET=192.168.100.0/24
+
+case "$1" in
+start)
+    echo "Setting up bridge $BRIDGE ($ADDR)"
+    [ -e /sys/class/net/$BRIDGE ] || brctl addbr $BRIDGE
+    brctl stp $BRIDGE off
+    brctl setfd $BRIDGE 0
+    ip addr add $ADDR dev $BRIDGE 2>/dev/null
+    ip link set $BRIDGE up
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+    iptables -t nat -C POSTROUTING -s $SUBNET ! -o $BRIDGE -j MASQUERADE 2>/dev/null ||
+        iptables -t nat -A POSTROUTING -s $SUBNET ! -o $BRIDGE -j MASQUERADE
+    ;;
+stop)
+    iptables -t nat -D POSTROUTING -s $SUBNET ! -o $BRIDGE -j MASQUERADE 2>/dev/null
+    ip link set $BRIDGE down 2>/dev/null
+    brctl delbr $BRIDGE 2>/dev/null
+    ;;
+*)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0

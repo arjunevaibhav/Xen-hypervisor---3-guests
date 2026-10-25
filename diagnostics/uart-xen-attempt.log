@@ -1,0 +1,83 @@
+reboot
+
+Broadcast message from root@tinker-board (ttyS2) (Fri Mar  9 12:36:07 2018):
+
+The system is going down for reboot NOW!
+INIT: INIT: Sending processes configured via /etc/inittab the TERM signal
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Stopping syslogd/klogd: stopped syslogd (pid 247)
+stopped klogd (pid 250)
+done
+Unmounting remote filesystems...
+Deconfiguring network interfaces... done.
+Sending all processes the TERM signal...
+Sending all processes the KILL signal...
+[   82.009748] random: dd: uninitialized urandom read (512 bytes read)
+Deactivating swap...
+Unmounting local filesystems...
+[   82.075396] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+Rebooting... [   82.249929] reboot: Restarting system
+
+U-Boot TPL 2022.01 (Jan 10 2022 - 18:46:34)
+Returning to boot ROM...
+
+U-Boot SPL 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+
+U-Boot 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+SoC: Rockchip rk3288
+Reset cause: RST
+Model: Tinker-RK3288
+DRAM:  2 GiB
+PMIC:  RK808 
+MMC:   dwmmc@ff0c0000: 1
+Loading Environment from MMC... *** Warning - bad CRC, using default environment
+
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+In:    serial
+Out:   serial
+Err:   serial
+Model: Tinker-RK3288
+Net:   eth0: ethernet@ff290000
+starting USB...
+Bus usb@ff540000: USB DWC2
+Bus usb@ff580000: USB DWC2
+scanning bus usb@ff540000 for devices... 2 USB Device(s) found
+scanning bus usb@ff580000 for devices... 1 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot:  2  0 
+=> 
+=> setenv xen_addr 0x02000000
+=> setenv dom0_addr 0x04000000
+=> load mmc 1:6 ${fdt_addr_r} /rk3288-tinker.dtb
+40844 bytes read in 5 ms (7.8 MiB/s)
+=> load mmc 1:6 ${xen_addr} /xen
+1048632 bytes read in 49 ms (20.4 MiB/s)
+=> load mmc 1:6 ${dom0_addr} /zImage
+10379776 bytes read in 452 ms (21.9 MiB/s)
+=> fdt addr ${fdt_addr_r}
+=> fdt resize 1024
+=> fdt set /chosen \#address-cells <1>
+=> fdt set /chosen \#size-cells <1>
+=> fdt set /chosen xen,xen-bootargs "console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 loglvl=all guest_loglvl=all"
+=> fdt mknod /chosen module@4000000
+=> fdt set /chosen/module@4000000 compatible "xen,linux-zimage" "xen,multiboot-module"
+=> fdt set /chosen/module@4000000 reg <${dom0_addr} 0x${filesize}>
+=> fdt set /chosen/module@4000000 bootargs "console=hvc0 earlycon=xenboot root=PARTUUID=15ebdc28-677e-4a2d-83a8-93e63cb4754c rootwait rw rootfstype=ext4"
+=> bootz ${xen_addr} - ${fdt_addr_r}
+Kernel image @ 0x2000000 [ 0x000000 - 0x13e290 ]
+## Flattened Device Tree blob at 01f00000
+   Booting using the fdt blob at 0x1f00000
+dwc2_usb usb@ff540000: Error disabling vbus supply
+device_remove: Device 'usb@ff540000' failed to remove, but children are gone
+   Loading Device Tree to 0fff1000, end 0fffefff ... OK
+
+Starting kernel ...
+
+- UART enabled -
+- Boot CPU booting -
+- Xen must be entered in NS Hyp mode -
+- Please update the bootloader -
+- Boot failed -

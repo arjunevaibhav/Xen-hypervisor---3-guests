@@ -1,0 +1,109 @@
+
+root@tinker-board:~# 
+#### restart Android with the new ramdisk
+xl destroy android1; sleep 2; xl create /etc/xen/android1.c fg
+[ 1571.904271] xenbr0: port 1(vif2.0) entered disabled state
+[ 1571.916728] xenbr0: port 1(vif2.0) entered disabled state
+[ 1571.917109] device vif2.0 left promiscuous mode
+[ 1571.917189] xenbr0: port 1(vif2.0) entered disabled state
+Parsing config from /etc/xen/android1.cfg
+[ 1577.931159] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 1577.932615] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 1577.932707] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 1577.932831] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 1578.104575] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 1578.105749] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 1578.105841] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 1578.105961] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 1579.931000] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 1579.932006] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 1579.932099] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 1579.932226] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 1580.314751] xenbr0: port 1(vif3.0) entered blocking state
+[ 1580.314851] xenbr0: port 1(vif3.0) entered disabled state
+[ 1580.315194] device vif3.0 entered promiscuous mode
+root@tinker-board:~# adb kill-server; adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+(XEN) d3v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d3v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[ 1582.337543] xen-blkback: backend/vbd/3/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 1582.415481] xen-blkback: backend/vbd/3/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 1582.549390] vif vif-3-0 vif3.0: Guest Rx ready
+[ 1582.549533] IPv6: ADDRCONF(NETDEV_CHANGE): vif3.0: link becomes ready
+[ 1582.549847] xenbr0: port 1(vif3.0) entered blocking state
+[ 1582.549912] xenbr0: port 1(vif3.0) entered forwarding state
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+1
+root@tinker-board:~# 
+#### PASS Android boot_completed with the PV screen - 77 s
+adb -s 192.168.100.3:5555 shell 'getprop ro.config.low_ram;  cat /sys/class/graphics/fb0/name /sys/class/graphics/fb0/bits_per_pixel'
+true
+xen
+16
+root@tinker-board:~# 
+#### low_ram / fb: xen 16 root@tinker-board:~# 
+adb -s 192.168.100.3:5555 shell dumpsys activity activities  | grep -m1 mResumedActivity
+    mResumedActivity: ActivityRecord{31bf80a u0 com.android.launcher3/.Launcher t0}
+root@tinker-board:~# 
+#### PASS launcher shown
+adb -s 192.168.100.3:5555 shell 'logcat -d | grep -c "Faile d to choose config"'
+15
+root@tinker-board:~# 
+#### HWUI config failures since boot: 15
+adb -s 192.168.100.3:5555 shell dumpsys input | grep -B2 -A440 'Xen Virtual Pointer' | grep -E 'Classes|DeviceType' | head -n 2
+      Classes: 0x00000004
+        DeviceType: touchScreen
+root@tinker-board:~# 
+#### PASS Xen pointer is a touchscreen - 40 'Xen Virtual Pointer' | grep -E 'Classes|DeviceType' | head -n 2  Classes: 0x00000004  DeviceType: touchScreen  root@tinker-board:~#
+
+#### viewer path without a monitor: RAM framebuffer as /dev/fb0
+[ -c /dev/fb0 ] || modprobe vfb vfb_enable=1 videomemorysizee=4194304 mode_option=1024x768-32@60; cat /sys/class/graphics/fb0/name /sys/classs/graphics/fb0/virtual_size /sys/class/graphics/fb0/bits_per_pixel
+[ 1663.187250] Console: switching to colour frame buffer device 128x48
+[ 1663.199353] fb0: Virtual frame buffer device, using 4096K of video memory
+[ 1663.303346] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+Virtual FB
+1024,768
+32
+root@tinker-board:~# [ 1663.316262] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 1663.316361] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 1663.316487] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+tail -n 3 /var/log/android-hdmi.log
+android-hdmi: /dev/fb0 1024x768, 32 bpp
+android-hdmi: guest 800x600 on 1024x768 monitor at +112+84
+android-hdmi: connected to 127.0.0.1:5900
+root@tinker-board:~# 
+#### PASS android-hdmi attached - guest 800x600 on 1024x768 monitor at +112+84
+dd if=/dev/fb0 bs=4096 count=768 2>/dev/null | od -An -v -t x1 | tr -s ' ' '\n' | grep -vc '^00$'
+144065
+root@tinker-board:~# 
+#### PASS Android picture in /dev/fb0 - 144065 non-zero bytes
+(adb -s 192.168.100.3:5555 shell getevent -lc 12 > /tmp/ev. txt 2>&1 &); sleep 4
+root@tinker-board:~# android-hdmi -t 400,300; sleep 3; grep -E 'BTN_TOUCH|ABS_X| ABS_Y' /tmp/ev.txt | head -n 8
+android-hdmi: guest 800x600 on 0x0 monitor at +0+0
+android-hdmi: tapped 400,300
+/dev/input/event1: EV_KEY       BTN_TOUCH            DOWN                
+/dev/input/event1: EV_ABS       ABS_X                0000018f            
+/dev/input/event1: EV_ABS       ABS_Y                0000012b            
+/dev/input/event1: EV_KEY       BTN_TOUCH            UP                  
+root@tinker-board:~# 
+#### PASS tap reaches Android as a touch
+adb -s 192.168.100.3:5555 shell screencap -p /data/local/tmpp/s.png; adb -s 192.168.100.3:5555 shell ls -l /data/local/tmp/s.png
+-rw-rw-r-- 1 shell shell 0 2018-03-09 13:03 /data/local/tmp/s.png
+root@tinker-board:~# 
+#### PASS Android screenshot
+timeout 4 speaker-test -c 2 -t sine -l 1 2>&1 | tail -n 4
+-sh: timeout: command not found
+root@tinker-board:~# 
+#### FAIL speaker-test plays (listen for a 440 Hz tone)
+adb kill-server
+root@tinker-board:~# 
+#### capture finished

@@ -1,0 +1,29 @@
+
+root@tinker-board:~# xl cpupool-cpu-remove Pool-0 3; xl cpupool-create 'name="rt "' 'sched="rtds"' 'cpus="3"'
+(XEN) Removing cpu 3 from runqueue 0
+Using config file "command line"
+cpupool name:   rt
+scheduler:      rtds
+number of cpus: 1
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+root@tinker-board:~# xl create /etc/xen/rtos1.cfg 'kernel="/tmp/rtos-pv.bin"' &&  xl sched-rtds -d rtos1 -v all -p 1000 -b 200 -e 1
+Parsing config from /etc/xen/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+root@tinker-board:~# 
+#### UART output while rtos1 runs (should have no [rtos] lines):
+
+#### xl console rtos1:
+xl console rtos1
+
+[rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+[rtos] virtual timer 24000000 Hz, tick 1000 Hz
+[rtos] 4 tasks created, starting the scheduler
+[rtos] 10 ms task: 1000 periods, min 9988 us, max 10046 us; heartbeats 9, queue messages 3 (report 1)
+[rtos] 10 ms task: 1000 periods, min 9997 us, max 10001 us; heartbeats 19, queue messages 7 (report 2)
+[rtos] 10 ms task: 1000 periods, min 9976 us, max 10024 us; heartbeats 29, queue messages 11 (report 3)
+[rtos] 10 ms task: 1000 periods, min 9997 us, max 10001 us; heartbeats 39, queue messages 15 (report 4)
+[rtos] 10 ms task: 1000 periods, min 9998 us, max 10002 us; heartbeats 49, queue messages 19 (report 5)
+root@tinker-board:~# 
+root@tinker-board:~# 

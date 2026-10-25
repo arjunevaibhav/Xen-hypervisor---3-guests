@@ -1,0 +1,64 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          xen-guests
+# Required-Start:    xencommons xenbr0
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start the Xen guests listed in /etc/default/xen-guests
+### END INIT INFO
+#
+# rtos1 (FreeRTOS) is started with rtos1-start, which first moves CPU 3 into
+# its own RTDS cpupool; any other name is started with xl create
+# /etc/xen/<name>.cfg. Disable with XEN_GUESTS="" in /etc/default/xen-guests.
+
+XEN_GUESTS="rtos1 android1"
+SHUTDOWN_TIMEOUT=30
+[ -r /etc/default/xen-guests ] && . /etc/default/xen-guests
+
+running() { xl domid "$1" >/dev/null 2>&1; }
+
+start_guest() {
+    running "$1" && return 0
+    echo "Starting Xen guest $1"
+    case "$1" in
+    rtos1) rtos1-start >/dev/null ;;
+    *)     xl create "/etc/xen/$1.cfg" >/dev/null ;;
+    esac
+}
+
+stop_guest() {
+    running "$1" || return 0
+    echo "Stopping Xen guest $1"
+    case "$1" in
+    rtos1) xl destroy "$1" ;;
+    *)
+        # Linux-based guests sync their disks on a shutdown request
+        xl shutdown "$1" >/dev/null 2>&1
+        n=0
+        while running "$1" && [ $n -lt $SHUTDOWN_TIMEOUT ]; do
+            sleep 1; n=$((n + 1))
+        done
+        running "$1" && xl destroy "$1"
+        ;;
+    esac
+}
+
+case "$1" in
+start)
+    for g in $XEN_GUESTS; do start_guest "$g" || echo "  $g failed to start"; done
+    ;;
+stop)
+    for g in $(echo $XEN_GUESTS | tr ' ' '\n' | sed '1!G;h;$!d'); do stop_guest "$g"; done
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+status)
+    xl list
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+exit 0

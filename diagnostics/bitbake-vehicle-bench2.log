@@ -1,0 +1,102 @@
+Loading cache...done.
+Loaded 4102 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 2641 .bb files complete (2640 cached, 1 parsed). 4100 targets, 203 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 14 Local 0 Mirrors 0 Missed 14 Current 699 (0% match, 98% complete)
+Removing 9 stale sstate objects for arch cortexa17t2hf-neon...done.
+Removing 4 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 2171 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_fetch)
+NOTE: Running task 2205 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_install)
+NOTE: recipe vehicle-bench-1.0-r0: task do_fetch: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2206 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_unpack)
+NOTE: Running task 2336 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_prepare_recipe_sysroot)
+NOTE: recipe vehicle-bench-1.0-r0: task do_unpack: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 2398 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_patch)
+NOTE: recipe vehicle-bench-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_install: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_patch: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 2399 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_deploy_source_date_epoch)
+NOTE: Running task 2400 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_populate_lic)
+NOTE: recipe vehicle-bench-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_lic: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2401 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_configure)
+NOTE: recipe vehicle-bench-1.0-r0: task do_configure: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_configure: Succeeded
+NOTE: Running task 2402 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_compile)
+NOTE: recipe vehicle-bench-1.0-r0: task do_compile: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 2403 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_install)
+NOTE: recipe vehicle-bench-1.0-r0: task do_install: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_install: Succeeded
+NOTE: Running task 2404 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package)
+NOTE: Running task 2405 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_populate_sysroot)
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_sysroot: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_package: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_package: Succeeded
+NOTE: Running task 2406 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_packagedata)
+NOTE: recipe vehicle-bench-1.0-r0: task do_packagedata: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_packagedata: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_install: Succeeded
+NOTE: Running task 2407 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_populate_sysroot)
+NOTE: Running task 2408 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 2416 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_deploy)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package: Succeeded
+NOTE: Running task 2417 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_packagedata)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Succeeded
+NOTE: Running task 2418 of 2423 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package)
+NOTE: Running task 2419 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package_write_rpm)
+NOTE: Running task 2420 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_package_qa)
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_qa: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package: Started
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe vehicle-bench-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package: Succeeded
+NOTE: Running setscene task 713 of 713 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_packagedata_setscene)
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata_setscene: Started
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata_setscene: Succeeded
+NOTE: Running task 2422 of 2423 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package_write_rpm)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Succeeded
+NOTE: Running noexec task 2423 of 2423 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/vehicle-bench/vehicle-bench.bb:do_build)
+NOTE: Tasks Summary: Attempted 2423 tasks of which 2401 didn't need to be rerun and all succeeded.

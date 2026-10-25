@@ -1,0 +1,64 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          vehicle-bench
+# Required-Start:    xen-guests
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Automotive bench: CAN bus -> can2rtos -> FreeRTOS vehicle task
+### END INIT INFO
+#
+# Bench mode (default): a virtual CAN bus vcan0 with the vehicle-sim test
+# vehicle. Real bus: IFACE=can0 SIM=0 in /etc/default/vehicle-bench; the
+# interface is then brought up in LISTEN-ONLY mode, so the board can never
+# transmit on (or acknowledge frames of) the vehicle bus.
+
+ENABLED=1
+IFACE=vcan0
+BITRATE=500000
+SIM=1
+LOG=/var/log/vehicle-bench.log
+[ -r /etc/default/vehicle-bench ] && . /etc/default/vehicle-bench
+
+case "$1" in
+start)
+    [ "$ENABLED" = 1 ] || exit 0
+    case "$IFACE" in
+    vcan*)
+        modprobe vcan 2>/dev/null
+        [ -e /sys/class/net/$IFACE ] || ip link add dev $IFACE type vcan
+        ;;
+    *)
+        ip link set $IFACE down 2>/dev/null
+        ip link set $IFACE type can bitrate $BITRATE listen-only on || {
+            echo "vehicle-bench: cannot set $IFACE to listen-only, not starting"; exit 1; }
+        ;;
+    esac
+    ip link set $IFACE up
+    echo "Starting vehicle bench on $IFACE ($([ "$SIM" = 1 ] && echo simulated vehicle || echo listen-only))"
+    if [ "$SIM" = 1 ]; then
+        vehicle-sim -i $IFACE >>$LOG 2>&1 </dev/null &
+        echo $! > /var/run/vehicle-sim.pid
+    fi
+    ( while :; do can2rtos -i $IFACE -d rtos1; sleep 2; done ) >>$LOG 2>&1 </dev/null &
+    echo $! > /var/run/can2rtos.pid
+    ;;
+stop)
+    for p in vehicle-sim can2rtos; do
+        [ -f /var/run/$p.pid ] && kill "$(cat /var/run/$p.pid)" 2>/dev/null
+        rm -f /var/run/$p.pid
+    done
+    killall can2rtos vehicle-sim 2>/dev/null
+    ;;
+pause)
+    # stop the simulated vehicle's frames (or resume them): signal-loss test
+    killall -USR1 vehicle-sim
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart|pause}"
+    exit 1
+    ;;
+esac
+exit 0

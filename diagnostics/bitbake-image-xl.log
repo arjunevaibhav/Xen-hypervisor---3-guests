@@ -1,0 +1,1122 @@
+Loading cache...done.
+Loaded 4094 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 192 Local 0 Mirrors 0 Missed 192 Current 1509 (0% match, 88% complete)
+Removing 2 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 2415 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_fetch)
+NOTE: Running task 2484 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_fetch)
+NOTE: recipe libepoxy-1.5.10-r0: task do_fetch: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_fetch: Started
+NOTE: Running task 2639 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_fetch)
+NOTE: Running task 2676 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_fetch)
+NOTE: Running task 2715 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_fetch)
+NOTE: Running task 2757 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_fetch)
+NOTE: Running task 2758 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_fetch)
+NOTE: Running task 2759 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_fetch)
+NOTE: recipe libsdl2-2.0.20-r0: task do_fetch: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_fetch: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_fetch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_fetch: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_fetch: Started
+NOTE: recipe qemu-6.2.0-r0: task do_fetch: Started
+NOTE: recipe qemu-6.2.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2784 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_write_config)
+NOTE: recipe libepoxy-1.5.10-r0: task do_write_config: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_write_config: Succeeded
+NOTE: Running task 2828 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_unpack)
+NOTE: recipe qemu-6.2.0-r0: task do_unpack: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_fetch: Succeeded
+NOTE: Running task 2829 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_unpack)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_unpack: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_unpack: Succeeded
+NOTE: Running task 2830 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_patch)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_patch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_patch: Succeeded
+NOTE: Running task 2831 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_write_config)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_write_config: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_write_config: Succeeded
+NOTE: Running task 2873 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_write_config)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_write_config: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_write_config: Succeeded
+NOTE: Running task 2934 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_write_config)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_write_config: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_write_config: Succeeded
+NOTE: Running task 2939 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_fetch)
+NOTE: recipe libepoxy-1.5.10-r0: task do_fetch: Succeeded
+NOTE: Running task 2940 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_unpack)
+NOTE: recipe dbus-glib-0.112-r0: task do_fetch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_unpack: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_unpack: Succeeded
+NOTE: Running task 2941 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_patch)
+NOTE: recipe libepoxy-1.5.10-r0: task do_patch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_patch: Succeeded
+NOTE: Running task 2942 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_deploy_source_date_epoch)
+NOTE: recipe libepoxy-1.5.10-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2943 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libepoxy-1.5.10-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 2944 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_configure)
+NOTE: recipe libepoxy-1.5.10-r0: task do_configure: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_fetch: Succeeded
+NOTE: Running task 2945 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_fetch)
+NOTE: recipe dbus-native-1.14.8-r0: task do_fetch: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_fetch: Succeeded
+NOTE: Running task 2948 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_fetch)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_fetch: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_fetch: Succeeded
+NOTE: Running task 2953 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_deploy_source_date_epoch)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2956 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 2957 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_configure)
+NOTE: recipe libepoxy-1.5.10-r0: task do_configure: Succeeded
+NOTE: Running task 2958 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_compile)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_configure: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_compile: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_fetch: Succeeded
+NOTE: Running task 2959 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_unpack)
+NOTE: recipe libsdl2-2.0.20-r0: task do_unpack: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_fetch: Succeeded
+NOTE: Running task 2960 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_unpack)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_unpack: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_unpack: Succeeded
+NOTE: Running task 2961 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_patch)
+NOTE: recipe libsdl2-2.0.20-r0: task do_unpack: Succeeded
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_patch: Started
+NOTE: Running task 2962 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_patch)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_patch: Succeeded
+NOTE: Running task 2963 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_deploy_source_date_epoch)
+NOTE: recipe libsdl2-2.0.20-r0: task do_patch: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2964 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libsdl2-2.0.20-r0: task do_patch: Succeeded
+NOTE: Running task 2965 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_deploy_source_date_epoch)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2966 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_generate_toolchain_file)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 2967 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_configure)
+NOTE: recipe libsdl2-2.0.20-r0: task do_generate_toolchain_file: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_configure: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_generate_toolchain_file: Succeeded
+NOTE: Running task 2988 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_unpack)
+NOTE: recipe dbus-glib-0.112-r0: task do_unpack: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_unpack: Succeeded
+NOTE: Running task 2989 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_patch)
+NOTE: recipe dbus-glib-0.112-r0: task do_patch: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_fetch: Succeeded
+NOTE: Running task 2990 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_unpack)
+NOTE: recipe dbus-glib-0.112-r0: task do_patch: Succeeded
+NOTE: Running task 2991 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_prepare_recipe_sysroot)
+NOTE: recipe ifupdown-0.8.39-r0: task do_unpack: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe ifupdown-0.8.39-r0: task do_unpack: Succeeded
+NOTE: Running task 3222 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_patch)
+NOTE: recipe ifupdown-0.8.39-r0: task do_patch: Started
+NOTE: Running task 3590 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_unpack)
+NOTE: recipe dbus-native-1.14.8-r0: task do_unpack: Started
+NOTE: recipe qemu-6.2.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3591 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_patch)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_configure: Succeeded
+NOTE: Running task 3592 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_compile)
+NOTE: recipe ifupdown-0.8.39-r0: task do_patch: Succeeded
+NOTE: Running task 3593 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_deploy_source_date_epoch)
+NOTE: recipe qemu-6.2.0-r0: task do_patch: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_unpack: Succeeded
+NOTE: Running task 3594 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_patch)
+NOTE: recipe ifupdown-0.8.39-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_compile: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_patch: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3595 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_configure)
+NOTE: recipe dbus-native-1.14.8-r0: task do_patch: Succeeded
+NOTE: Running task 3596 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_unpack)
+NOTE: recipe ifupdown-0.8.39-r0: task do_configure: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_configure: Succeeded
+NOTE: Running noexec task 3597 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_fetch)
+NOTE: Running task 3598 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_prepare_recipe_sysroot)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_unpack: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_unpack: Succeeded
+NOTE: Running task 3599 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_patch)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_patch: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_patch: Succeeded
+NOTE: Running task 3602 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_fetch)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_compile: Succeeded
+NOTE: Running task 3603 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_install)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_fetch: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_fetch: Succeeded
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3604 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_unpack)
+NOTE: Running task 3605 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_rootfs)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_unpack: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_install: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_unpack: Succeeded
+NOTE: Running task 3606 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_patch)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_rootfs: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_patch: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_patch: Succeeded
+NOTE: Running task 3607 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_deploy_source_date_epoch)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3610 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_configure_ptest_base)
+NOTE: recipe ifupdown-0.8.39-r0: task do_configure_ptest_base: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_configure_ptest_base: Succeeded
+NOTE: Running task 3611 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_compile)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_install: Succeeded
+NOTE: Running task 3612 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_populate_sysroot)
+NOTE: recipe ifupdown-0.8.39-r0: task do_compile: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_populate_sysroot: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3613 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_fetch: Succeeded
+NOTE: Running task 3624 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_package)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_compile: Succeeded
+NOTE: Running task 3627 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_unpack)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_unpack: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_unpack: Succeeded
+NOTE: Running task 3628 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_patch)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_patch: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_patch: Succeeded
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3632 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_configure)
+NOTE: Running task 3633 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_fetch)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_configure: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_fetch: Started
+NOTE: recipe qemu-6.2.0-r0: task do_patch: Succeeded
+NOTE: Running task 3634 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_deploy_source_date_epoch)
+NOTE: recipe qemu-6.2.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe qemu-6.2.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3635 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_fetch)
+NOTE: recipe alsa-state-0.2.0-r5: task do_fetch: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_fetch: Succeeded
+NOTE: Running task 3636 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_fetch)
+NOTE: recipe consolekit-0.4.6-r0: task do_fetch: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_fetch: Succeeded
+NOTE: Running task 3637 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_fetch)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_fetch: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_fetch: Succeeded
+NOTE: Running task 3638 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_fetch)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_fetch: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_configure: Succeeded
+NOTE: Running task 3639 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_compile)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_compile: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_fetch: Succeeded
+NOTE: Running task 3640 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_fetch)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_fetch: Succeeded
+NOTE: Running task 3641 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_fetch)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_fetch: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_fetch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_compile: Succeeded
+NOTE: Running task 3642 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_install)
+NOTE: recipe libepoxy-1.5.10-r0: task do_install: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_fetch: Succeeded
+NOTE: Running task 3645 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_fetch: Succeeded
+NOTE: Running task 3655 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_deploy_source_date_epoch)
+NOTE: recipe dbus-glib-0.112-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3656 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_prepare_recipe_sysroot)
+NOTE: recipe dbus-native-1.14.8-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3657 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_deploy_source_date_epoch)
+NOTE: recipe libepoxy-1.5.10-r0: task do_install: Succeeded
+NOTE: Running task 3658 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_populate_sysroot)
+NOTE: recipe dbus-native-1.14.8-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_populate_sysroot: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3659 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_package)
+NOTE: recipe libepoxy-1.5.10-r0: task do_package: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3669 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_fetch)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_fetch: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 3670 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_fetch)
+NOTE: recipe dbus-native-1.14.8-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3671 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_configure)
+NOTE: recipe cpio-native-2.14-r0: task do_fetch: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_configure: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package: Succeeded
+NOTE: Running task 3672 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_packagedata)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_packagedata: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 3679 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_unpack)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_unpack: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_compile: Succeeded
+NOTE: Running task 3680 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_install)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_unpack: Succeeded
+NOTE: Running task 3681 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_unpack)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_install: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_unpack: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_unpack: Succeeded
+NOTE: Running task 3682 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_unpack)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_configure: Succeeded
+NOTE: Running task 3683 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_compile)
+NOTE: recipe consolekit-0.4.6-r0: task do_unpack: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_compile: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_unpack: Succeeded
+NOTE: Running task 3684 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_unpack)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_unpack: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_install: Succeeded
+NOTE: Running task 3685 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_populate_sysroot)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_unpack: Succeeded
+NOTE: Running task 3686 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_package)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_populate_sysroot: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_package: Succeeded
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package: Started
+NOTE: Running task 3687 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_packagedata)
+NOTE: recipe libepoxy-1.5.10-r0: task do_packagedata: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_packagedata: Succeeded
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3688 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_prepare_recipe_sysroot)
+NOTE: Running task 3689 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_unpack)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_unpack: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe cpio-native-2.14-r0: task do_fetch: Succeeded
+NOTE: Running task 3690 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_unpack)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_unpack: Succeeded
+NOTE: Running task 3691 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_unpack)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_unpack: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_unpack: Succeeded
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_unpack: Started
+NOTE: Running task 3693 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_patch)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_unpack: Succeeded
+NOTE: Running task 3694 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_patch)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_patch: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_patch: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_patch: Succeeded
+NOTE: recipe alsa-state-0.2.0-r5: task do_patch: Succeeded
+NOTE: Running task 3695 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_patch)
+NOTE: Running task 3696 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_patch)
+NOTE: recipe consolekit-0.4.6-r0: task do_patch: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_patch: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_patch: Succeeded
+NOTE: Running task 3697 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_patch)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_patch: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_patch: Succeeded
+NOTE: Running task 3698 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_patch)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_patch: Succeeded
+NOTE: Running task 3699 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_patch)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_patch: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_patch: Started
+NOTE: Running task 3700 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_configure)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_patch: Succeeded
+NOTE: Running task 3702 of 4179 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_patch: Succeeded
+NOTE: Running task 3703 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_compile_ptest_base)
+NOTE: recipe libsdl2-2.0.20-r0: task do_configure: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_compile_ptest_base: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_compile_ptest_base: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package: Started
+NOTE: Running task 3704 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_install)
+NOTE: recipe ifupdown-0.8.39-r0: task do_install: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_install: Succeeded
+NOTE: Running task 3717 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_unpack)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_unpack: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3719 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_patch)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_patch: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 3720 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_compile: Succeeded
+NOTE: Running task 3721 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_install)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3722 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_unpack)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_install: Started
+NOTE: recipe cpio-native-2.14-r0: task do_unpack: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package: Succeeded
+NOTE: recipe cpio-native-2.14-r0: task do_unpack: Succeeded
+NOTE: Running task 3723 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_patch)
+NOTE: Running task 3724 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_packagedata)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_install: Succeeded
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_packagedata: Started
+NOTE: Running task 3725 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_package)
+NOTE: recipe cpio-native-2.14-r0: task do_patch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package: Started
+NOTE: recipe cpio-native-2.14-r0: task do_patch: Succeeded
+NOTE: Running task 3726 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_populate_sysroot)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_populate_sysroot: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 3736 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_deploy_source_date_epoch)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3737 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-state-0.2.0-r5: task do_deploy_source_date_epoch: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3738 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_deploy_source_date_epoch)
+NOTE: recipe consolekit-0.4.6-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3739 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_prepare_recipe_sysroot)
+NOTE: recipe consolekit-0.4.6-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3740 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3741 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_configure)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3742 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_configure: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3743 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3744 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3755 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_install_ptest_base)
+NOTE: recipe ifupdown-0.8.39-r0: task do_install_ptest_base: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package: Succeeded
+NOTE: recipe ifupdown-0.8.39-r0: task do_install_ptest_base: Succeeded
+NOTE: Running task 3756 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_packagedata)
+NOTE: Running task 3760 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_package)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_packagedata: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_package: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_packagedata: Succeeded
+NOTE: Running task 3765 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3766 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-state-0.2.0-r5: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3767 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3768 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3769 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_prepare_recipe_sysroot)
+NOTE: recipe ifupdown-0.8.39-r0: task do_package: Succeeded
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_prepare_recipe_sysroot: Started
+NOTE: Running task 3770 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3772 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_configure)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3773 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_configure)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_configure: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_configure: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_configure: Succeeded
+NOTE: Running task 3774 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_configure)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_configure: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_configure: Succeeded
+NOTE: Running task 3775 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_compile)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_compile: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package: Succeeded
+NOTE: Running task 3776 of 4179 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_packagedata)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_configure: Succeeded
+NOTE: Running task 3777 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_configure)
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_configure: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Succeeded
+NOTE: Running task 3778 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_configure)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_configure: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_configure: Succeeded
+NOTE: Running task 3779 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_configure)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_configure: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_configure: Succeeded
+NOTE: Running task 3781 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_compile)
+NOTE: recipe alsa-state-0.2.0-r5: task do_compile: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_compile: Succeeded
+NOTE: Running task 3782 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_compile)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_compile: Started
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 3783 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_flush_pseudodb)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 3784 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_image_qa)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_qa: Started
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 3785 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_image)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image: Started
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image: Succeeded
+NOTE: Running task 3786 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_compile)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_compile: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_compile: Succeeded
+NOTE: Running task 3787 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_compile)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_compile: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_compile: Succeeded
+NOTE: Running task 3789 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_install)
+NOTE: recipe alsa-state-0.2.0-r5: task do_install: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_configure: Succeeded
+NOTE: recipe libsdl2-2.0.20-r0: task do_configure: Succeeded
+NOTE: Running task 3790 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_compile)
+NOTE: Running task 3791 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_compile)
+NOTE: recipe alsa-state-0.2.0-r5: task do_install: Succeeded
+NOTE: Running task 3792 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_install)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_compile: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_install: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_compile: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_install: Succeeded
+NOTE: Running task 3793 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_install)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_install: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_install: Succeeded
+NOTE: Running task 3795 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_package)
+NOTE: recipe alsa-state-0.2.0-r5: task do_package: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_configure: Succeeded
+NOTE: Running task 3796 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_compile)
+NOTE: recipe dbus-native-1.14.8-r0: task do_compile: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_package: Succeeded
+NOTE: Running task 3797 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_package)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_compile: Succeeded
+NOTE: Running task 3798 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_install)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_install: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_install: Succeeded
+NOTE: Running task 3799 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_package)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_compile: Succeeded
+NOTE: Running task 3800 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_install)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_install: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package: Succeeded
+NOTE: Running task 3801 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_package)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package: Succeeded
+NOTE: Running task 3806 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_deploy_source_date_epoch)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3810 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_deploy_source_date_epoch)
+NOTE: recipe cpio-native-2.14-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe cpio-native-2.14-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 3811 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_prepare_recipe_sysroot)
+NOTE: recipe cpio-native-2.14-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe cpio-native-2.14-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3812 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_configure)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_install: Succeeded
+NOTE: Running task 3813 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_package)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package: Succeeded
+NOTE: recipe cpio-native-2.14-r0: task do_configure: Started
+NOTE: Running task 3815 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3817 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_configure)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_configure: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_configure: Succeeded
+NOTE: Running task 3819 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_compile)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_compile: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 3823 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_packagedata)
+NOTE: recipe ifupdown-0.8.39-r0: task do_packagedata: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_packagedata: Succeeded
+NOTE: Running task 3828 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_packagedata)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_packagedata: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 3829 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_packagedata)
+NOTE: recipe alsa-state-0.2.0-r5: task do_packagedata: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_packagedata: Succeeded
+NOTE: Running task 3830 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_packagedata)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_packagedata: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_packagedata: Succeeded
+NOTE: Running task 3831 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_packagedata)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_packagedata: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 3863 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_populate_lic)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_populate_lic: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3871 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_populate_lic)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_populate_lic: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_configure: Succeeded
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_compile: Succeeded
+NOTE: Running task 3872 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_compile)
+NOTE: Running task 3873 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_install)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_compile: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3883 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_populate_lic)
+NOTE: recipe libepoxy-1.5.10-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_install: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3884 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_populate_lic)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_install: Succeeded
+NOTE: Running task 3885 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_package)
+NOTE: recipe libsdl2-2.0.20-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3886 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_populate_lic)
+NOTE: recipe cpio-native-2.14-r0: task do_populate_lic: Started
+NOTE: recipe cpio-native-2.14-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3893 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_populate_lic)
+NOTE: recipe qemu-6.2.0-r0: task do_populate_lic: Started
+NOTE: recipe qemu-6.2.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3894 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_populate_lic)
+NOTE: recipe ifupdown-0.8.39-r0: task do_populate_lic: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3912 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_populate_lic)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_populate_lic: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3935 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_populate_lic)
+NOTE: recipe dbus-native-1.14.8-r0: task do_populate_lic: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3936 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_populate_lic)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package: Succeeded
+NOTE: recipe dbus-glib-native-0.112-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package: Succeeded
+NOTE: Running task 3937 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_packagedata)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_packagedata: Started
+NOTE: Running task 3938 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_packagedata)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3939 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_package_write_rpm)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_packagedata: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_packagedata: Succeeded
+NOTE: Running task 3940 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/xkeyboard-config_2.35.1.bb:do_package_qa)
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package_write_rpm: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package_qa: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_packagedata: Succeeded
+NOTE: Running task 3941 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxi_1.8.bb:do_package_write_rpm)
+NOTE: recipe libxi-1_1.8-r0: task do_package_write_rpm: Started
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 3942 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxi_1.8.bb:do_package_qa)
+NOTE: recipe libxi-1_1.8-r0: task do_package_qa: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_compile: Succeeded
+NOTE: Running task 3943 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_install)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_install: Started
+NOTE: recipe libxi-1_1.8-r0: task do_package_qa: Succeeded
+NOTE: Running task 3944 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libdaemon/libdaemon_0.14.bb:do_package_write_rpm)
+NOTE: recipe libdaemon-0.14-r0: task do_package_write_rpm: Started
+NOTE: recipe libxi-1_1.8-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3945 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libdaemon/libdaemon_0.14.bb:do_package_qa)
+NOTE: recipe libdaemon-0.14-r0: task do_package_qa: Started
+NOTE: recipe libdaemon-0.14-r0: task do_package_qa: Succeeded
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_install: Succeeded
+NOTE: Running task 3946 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ell/ell_0.50.bb:do_package_write_rpm)
+NOTE: Running task 3947 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_package)
+NOTE: recipe libdaemon-0.14-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe xkeyboard-config-2.35.1-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3948 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ell/ell_0.50.bb:do_package_qa)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package: Started
+NOTE: Running task 3949 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libvorbis/libvorbis_1.3.7.bb:do_package_write_rpm)
+NOTE: recipe ell-0.50-r0: task do_package_write_rpm: Started
+NOTE: recipe ell-0.50-r0: task do_package_qa: Started
+NOTE: recipe libvorbis-1.3.7-r0: task do_package_write_rpm: Started
+NOTE: recipe ell-0.50-r0: task do_package_qa: Succeeded
+NOTE: Running task 3950 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libvorbis/libvorbis_1.3.7.bb:do_package_qa)
+NOTE: recipe libvorbis-1.3.7-r0: task do_package_qa: Started
+NOTE: recipe libvorbis-1.3.7-r0: task do_package_qa: Succeeded
+NOTE: Running task 3951 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libogg/libogg_1.3.5.bb:do_package_write_rpm)
+NOTE: recipe ell-0.50-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3952 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libogg/libogg_1.3.5.bb:do_package_qa)
+NOTE: recipe libogg-1.3.5-r0: task do_package_write_rpm: Started
+NOTE: recipe libogg-1.3.5-r0: task do_package_qa: Started
+NOTE: recipe libvorbis-1.3.7-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3953 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/flac/flac_1.3.4.bb:do_package_write_rpm)
+NOTE: recipe flac-1.3.4-r0: task do_package_write_rpm: Started
+NOTE: recipe libogg-1.3.5-r0: task do_package_qa: Succeeded
+NOTE: Running task 3954 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/flac/flac_1.3.4.bb:do_package_qa)
+NOTE: recipe flac-1.3.4-r0: task do_package_qa: Started
+NOTE: recipe libogg-1.3.5-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3955 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_populate_lic)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_populate_lic: Started
+NOTE: recipe flac-1.3.4-r0: task do_package_qa: Succeeded
+NOTE: Running task 3956 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_package_write_rpm)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3957 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/libnss-mdns/libnss-mdns_0.15.1.bb:do_package_qa)
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package_write_rpm: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package_qa: Started
+NOTE: recipe flac-1.3.4-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3958 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/mobile-broadband-provider-info/mobile-broadband-provider-info_git.bb:do_package_write_rpm)
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_package_write_rpm: Started
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 3959 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/mobile-broadband-provider-info/mobile-broadband-provider-info_git.bb:do_package_qa)
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_package_qa: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package: Succeeded
+NOTE: recipe libnss-mdns-0.15.1-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3960 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_populate_lic)
+NOTE: Running task 3961 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_packagedata)
+NOTE: recipe alsa-state-0.2.0-r5: task do_populate_lic: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_packagedata: Started
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_package_qa: Succeeded
+NOTE: recipe alsa-state-0.2.0-r5: task do_populate_lic: Succeeded
+NOTE: Running task 3962 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_package_write_rpm)
+NOTE: Running task 3963 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/alsa-state/alsa-state.bb:do_package_qa)
+NOTE: recipe alsa-state-0.2.0-r5: task do_package_write_rpm: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_package_qa: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_packagedata: Succeeded
+NOTE: Running task 3964 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_populate_lic)
+NOTE: recipe dbus-glib-0.112-r0: task do_populate_lic: Started
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3965 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_populate_lic)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_populate_lic: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_package_qa: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3966 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_package_write_rpm)
+NOTE: Running task 3967 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsamplerate/libsamplerate0_0.2.2.bb:do_package_qa)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3968 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_package_write_rpm)
+NOTE: recipe dbus-native-1.14.8-r0: task do_compile: Succeeded
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package_write_rpm: Started
+NOTE: Running task 3969 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_install)
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package_qa: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package_write_rpm: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_install: Started
+NOTE: recipe alsa-state-0.2.0-r5: task do_package_write_rpm: Succeeded
+NOTE: Running task 3970 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxkbcommon_1.4.1.bb:do_package_qa)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package_qa: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package_qa: Succeeded
+NOTE: Running task 3971 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxtst_1.2.3.bb:do_package_write_rpm)
+NOTE: recipe libxtst-1_1.2.3-r0: task do_package_write_rpm: Started
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 3972 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxtst_1.2.3.bb:do_package_qa)
+NOTE: recipe libxtst-1_1.2.3-r0: task do_package_qa: Started
+NOTE: recipe libsamplerate0-0.2.2-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3973 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/avahi/avahi_0.8.bb:do_package_write_rpm)
+NOTE: recipe libxtst-1_1.2.3-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3974 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/avahi/avahi_0.8.bb:do_package_qa)
+NOTE: recipe dbus-native-1.14.8-r0: task do_install: Succeeded
+NOTE: Running task 3975 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus_1.14.8.bb:do_populate_sysroot)
+NOTE: recipe libxkbcommon-1.4.1-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe avahi-0.8-r0: task do_package_write_rpm: Started
+NOTE: Running task 3976 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/libtool/libtool_2.4.7.bb:do_package_write_rpm)
+NOTE: recipe dbus-native-1.14.8-r0: task do_populate_sysroot: Started
+NOTE: recipe avahi-0.8-r0: task do_package_qa: Started
+NOTE: recipe libxtst-1_1.2.3-r0: task do_package_qa: Succeeded
+NOTE: Running task 3977 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/libtool/libtool_2.4.7.bb:do_package_qa)
+NOTE: recipe libtool-2.4.7-r0: task do_package_write_rpm: Started
+NOTE: recipe libtool-2.4.7-r0: task do_package_qa: Started
+NOTE: recipe dbus-native-1.14.8-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3978 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libtool-2.4.7-r0: task do_package_qa: Succeeded
+NOTE: recipe dbus-glib-native-0.112-r0: task do_prepare_recipe_sysroot: Started
+NOTE: Running task 3979 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/ofono/ofono_1.34.bb:do_package_write_rpm)
+NOTE: recipe ofono-1.34-r0: task do_package_write_rpm: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 3980 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_configure)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_configure: Started
+NOTE: recipe libtool-2.4.7-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3981 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/ofono/ofono_1.34.bb:do_package_qa)
+NOTE: recipe ofono-1.34-r0: task do_package_qa: Started
+NOTE: recipe avahi-0.8-r0: task do_package_qa: Succeeded
+NOTE: Running task 3982 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsndfile/libsndfile1_1.0.31.bb:do_package_write_rpm)
+NOTE: recipe libsndfile1-1.0.31-r0: task do_package_write_rpm: Started
+NOTE: recipe ofono-1.34-r0: task do_package_qa: Succeeded
+NOTE: Running task 3983 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsndfile/libsndfile1_1.0.31.bb:do_package_qa)
+NOTE: recipe libsndfile1-1.0.31-r0: task do_package_qa: Started
+NOTE: recipe libsndfile1-1.0.31-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3984 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/sbc/sbc_1.5.bb:do_package_write_rpm)
+NOTE: recipe libsndfile1-1.0.31-r0: task do_package_qa: Succeeded
+NOTE: Running task 3985 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/sbc/sbc_1.5.bb:do_package_qa)
+WARNING: virglrenderer-0.9.1-r0 do_fetch: Failed to fetch URL git://anongit.freedesktop.org/git/virglrenderer;branch=branch-0.9.1;protocol=https, attempting MIRRORS if available
+NOTE: recipe sbc-1.5-r0: task do_package_write_rpm: Started
+NOTE: recipe sbc-1.5-r0: task do_package_qa: Started
+NOTE: recipe avahi-0.8-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3986 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libatomic-ops/libatomic-ops_7.6.14.bb:do_package_write_rpm)
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_package_write_rpm: Started
+NOTE: recipe ofono-1.34-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3987 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libatomic-ops/libatomic-ops_7.6.14.bb:do_package_qa)
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_package_qa: Started
+NOTE: recipe sbc-1.5-r0: task do_package_qa: Succeeded
+NOTE: Running task 3988 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/speex/speexdsp_1.2.0.bb:do_package_write_rpm)
+NOTE: recipe speexdsp-1.2.0-r0: task do_package_write_rpm: Started
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_package_qa: Succeeded
+NOTE: Running task 3989 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/speex/speexdsp_1.2.0.bb:do_package_qa)
+NOTE: recipe sbc-1.5-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3990 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_populate_lic)
+NOTE: recipe speexdsp-1.2.0-r0: task do_package_qa: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3991 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_package_write_rpm)
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package_write_rpm: Started
+NOTE: recipe speexdsp-1.2.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 3992 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils_1.2.6.bb:do_package_qa)
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3993 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_populate_lic)
+NOTE: recipe consolekit-0.4.6-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package_qa: Started
+NOTE: recipe speexdsp-1.2.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3994 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_populate_lic)
+NOTE: recipe consolekit-0.4.6-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3995 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_package_write_rpm)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package_write_rpm: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3996 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-utils-scripts_1.2.6.bb:do_package_qa)
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package_qa: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package_qa: Succeeded
+NOTE: Running task 3997 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_populate_lic)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_populate_lic: Started
+NOTE: recipe alsa-utils-scripts-1.2.6-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 3998 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_package_write_rpm)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3999 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-plugins_1.2.6.bb:do_package_qa)
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package_write_rpm: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package_qa: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package_qa: Succeeded
+NOTE: Running task 4000 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_populate_lic)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_populate_lic: Started
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_populate_lic: Succeeded
+NOTE: Running task 4001 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_package_write_rpm)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package_write_rpm: Started
+NOTE: recipe alsa-utils-1.2.6-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4002 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.6.3.bb:do_package_qa)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package_qa: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package_qa: Succeeded
+NOTE: Running task 4003 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_populate_lic)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_populate_lic: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 4004 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_package_write_rpm)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package_qa: Succeeded
+NOTE: Running task 4005 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-topology-conf_1.2.5.1.bb:do_package_qa)
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package_write_rpm: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package_qa: Started
+NOTE: recipe alsa-plugins-1.2.6-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4009 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_package_write_rpm)
+NOTE: recipe libepoxy-1.5.10-r0: task do_package_write_rpm: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 4010 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libepoxy/libepoxy_1.5.10.bb:do_package_qa)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_fetch: Succeeded
+NOTE: Running task 4011 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_unpack)
+NOTE: recipe libepoxy-1.5.10-r0: task do_package_qa: Started
+NOTE: recipe alsa-topology-conf-1.2.5.1-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe virglrenderer-0.9.1-r0: task do_unpack: Started
+NOTE: Running task 4012 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_prepare_recipe_sysroot)
+NOTE: recipe alsa-ucm-conf-1.2.6.3-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4013 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/mesa/libglu_9.0.2.bb:do_package_write_rpm)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libglu-2_9.0.2-r0: task do_package_write_rpm: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_package_qa: Succeeded
+NOTE: Running task 4014 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/mesa/libglu_9.0.2.bb:do_package_qa)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4015 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-lib_1.2.6.1.bb:do_package_write_rpm)
+NOTE: recipe libglu-2_9.0.2-r0: task do_package_qa: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_unpack: Succeeded
+NOTE: Running task 4016 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_patch)
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_package_write_rpm: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_patch: Started
+NOTE: recipe libepoxy-1.5.10-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4017 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-lib_1.2.6.1.bb:do_package_qa)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_patch: Succeeded
+NOTE: Running task 4018 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_package_qa: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe libglu-2_9.0.2-r0: task do_package_qa: Succeeded
+NOTE: Running task 4019 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_populate_lic)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4020 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_configure)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_populate_lic: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_configure: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 4021 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcroco/libcroco_0.6.13.bb:do_package_write_rpm)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_configure: Succeeded
+NOTE: recipe libcroco-0.6.13-r0: task do_package_write_rpm: Started
+NOTE: Running task 4022 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_compile)
+NOTE: recipe libglu-2_9.0.2-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4023 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcroco/libcroco_0.6.13.bb:do_package_qa)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_compile: Started
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_package_qa: Succeeded
+NOTE: recipe libcroco-0.6.13-r0: task do_package_qa: Started
+NOTE: Running task 4024 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysfsutils/sysfsutils_2.1.0.bb:do_package_write_rpm)
+NOTE: recipe sysfsutils-2.1.0-r5: task do_package_write_rpm: Started
+NOTE: recipe libcroco-0.6.13-r0: task do_package_qa: Succeeded
+NOTE: Running task 4025 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysfsutils/sysfsutils_2.1.0.bb:do_package_qa)
+NOTE: recipe sysfsutils-2.1.0-r5: task do_package_qa: Started
+NOTE: recipe libcroco-0.6.13-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4026 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcheck/libcheck_0.15.2.bb:do_package_write_rpm)
+NOTE: recipe libcheck-0.15.2-r0: task do_package_write_rpm: Started
+NOTE: recipe sysfsutils-2.1.0-r5: task do_package_qa: Succeeded
+NOTE: recipe sysfsutils-2.1.0-r5: task do_package_write_rpm: Succeeded
+NOTE: Running task 4027 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcheck/libcheck_0.15.2.bb:do_package_qa)
+NOTE: Running task 4028 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_package_write_rpm)
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe libcheck-0.15.2-r0: task do_package_qa: Started
+NOTE: Running task 4029 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ifupdown/ifupdown_0.8.39.bb:do_package_qa)
+NOTE: recipe ifupdown-0.8.39-r0: task do_package_write_rpm: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_configure: Succeeded
+NOTE: Running task 4030 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_compile)
+NOTE: recipe ifupdown-0.8.39-r0: task do_package_qa: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_compile: Started
+NOTE: recipe libcheck-0.15.2-r0: task do_package_qa: Succeeded
+NOTE: Running task 4039 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libnl/libnl_3.5.0.bb:do_package_write_rpm)
+NOTE: recipe ifupdown-0.8.39-r0: task do_package_qa: Succeeded
+NOTE: Running task 4040 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libnl/libnl_3.5.0.bb:do_package_qa)
+NOTE: recipe libnl-1_3.5.0-r0: task do_package_write_rpm: Started
+NOTE: recipe libnl-1_3.5.0-r0: task do_package_qa: Started
+NOTE: recipe libcheck-0.15.2-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4041 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-graphics/libsdl/libsdl_1.2.15.bb:do_package_write_rpm)
+NOTE: recipe libsdl-1.2.15-r3: task do_package_write_rpm: Started
+NOTE: recipe ifupdown-0.8.39-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4042 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-graphics/libsdl/libsdl_1.2.15.bb:do_package_qa)
+NOTE: recipe libsdl-1.2.15-r3: task do_package_qa: Started
+NOTE: recipe libsdl-1.2.15-r3: task do_package_qa: Succeeded
+NOTE: Running task 4043 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/gettext/gettext_0.21.bb:do_package_write_rpm)
+NOTE: recipe gettext-0.21-r0: task do_package_write_rpm: Started
+NOTE: recipe libsdl-1.2.15-r3: task do_package_write_rpm: Succeeded
+NOTE: Running task 4044 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/gettext/gettext_0.21.bb:do_package_qa)
+NOTE: recipe libnl-1_3.5.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe gettext-0.21-r0: task do_package_qa: Started
+NOTE: Running task 4045 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/dtc/dtc_1.6.1.bb:do_package_write_rpm)
+NOTE: recipe dtc-1.6.1-r0: task do_package_write_rpm: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_compile: Succeeded
+NOTE: Running task 4046 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_install)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_install: Started
+NOTE: recipe libnl-1_3.5.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 4047 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/dtc/dtc_1.6.1.bb:do_package_qa)
+NOTE: recipe dtc-1.6.1-r0: task do_package_qa: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_install: Succeeded
+NOTE: Running task 4048 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_populate_sysroot)
+NOTE: recipe dbus-glib-native-0.112-r0: task do_populate_sysroot: Started
+NOTE: recipe dtc-1.6.1-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4049 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-extended/libaio/libaio_0.3.112.bb:do_package_write_rpm)
+NOTE: recipe libaio-0.3.112-r0: task do_package_write_rpm: Started
+NOTE: recipe dbus-glib-native-0.112-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4050 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_prepare_recipe_sysroot)
+NOTE: recipe dtc-1.6.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 4051 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-extended/libaio/libaio_0.3.112.bb:do_package_qa)
+NOTE: recipe dbus-glib-0.112-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe libaio-0.3.112-r0: task do_package_qa: Started
+NOTE: recipe cpio-native-2.14-r0: task do_configure: Succeeded
+NOTE: Running task 4052 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_compile)
+NOTE: recipe cpio-native-2.14-r0: task do_compile: Started
+NOTE: recipe libaio-0.3.112-r0: task do_package_qa: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4053 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_configure)
+NOTE: Running task 4054 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-networking/recipes-support/bridge-utils/bridge-utils_1.7.1.bb:do_package_write_rpm)
+NOTE: recipe dbus-glib-0.112-r0: task do_configure: Started
+NOTE: recipe bridge-utils-1.7.1-r0: task do_package_write_rpm: Started
+NOTE: recipe libaio-0.3.112-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4055 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-networking/recipes-support/bridge-utils/bridge-utils_1.7.1.bb:do_package_qa)
+NOTE: recipe bridge-utils-1.7.1-r0: task do_package_qa: Started
+NOTE: recipe bridge-utils-1.7.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 4056 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-devtools/yajl/yajl_2.1.0.bb:do_package_write_rpm)
+NOTE: recipe yajl-2.1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe bridge-utils-1.7.1-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4057 of 4179 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-devtools/yajl/yajl_2.1.0.bb:do_package_qa)
+NOTE: recipe yajl-2.1.0-r0: task do_package_qa: Started
+NOTE: recipe yajl-2.1.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 4058 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/pciutils/pciutils_3.7.0.bb:do_package_write_rpm)
+NOTE: recipe pciutils-3.7.0-r0: task do_package_write_rpm: Started
+NOTE: recipe yajl-2.1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4059 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/pciutils/pciutils_3.7.0.bb:do_package_qa)
+NOTE: recipe pciutils-3.7.0-r0: task do_package_qa: Started
+NOTE: recipe pciutils-3.7.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 4060 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/gnu-efi/gnu-efi_3.0.14.bb:do_package_write_rpm)
+NOTE: recipe gnu-efi-3.0.14-r0: task do_package_write_rpm: Started
+NOTE: recipe gettext-0.21-r0: task do_package_qa: Succeeded
+NOTE: Running task 4061 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/gnu-efi/gnu-efi_3.0.14.bb:do_package_qa)
+NOTE: recipe gnu-efi-3.0.14-r0: task do_package_qa: Started
+NOTE: recipe pciutils-3.7.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe gnu-efi-3.0.14-r0: task do_package_qa: Succeeded
+NOTE: recipe gnu-efi-3.0.14-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe cpio-native-2.14-r0: task do_compile: Succeeded
+NOTE: Running task 4120 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_install)
+NOTE: recipe cpio-native-2.14-r0: task do_install: Started
+NOTE: recipe cpio-native-2.14-r0: task do_install: Succeeded
+NOTE: Running task 4121 of 4179 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/cpio/cpio_2.14.bb:do_populate_sysroot)
+NOTE: recipe cpio-native-2.14-r0: task do_populate_sysroot: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_compile: Succeeded
+NOTE: Running task 4122 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_install)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_install: Started
+NOTE: recipe cpio-native-2.14-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4123 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_image_cpio)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_cpio: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_install: Succeeded
+NOTE: Running task 4124 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_populate_sysroot)
+NOTE: Running task 4125 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_package)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_populate_sysroot: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_cpio: Succeeded
+NOTE: Running task 4126 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-guest-initramfs.bb:do_image_complete)
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-guest-initramfs-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 4127 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_install)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_install: Started
+NOTE: recipe gettext-0.21-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package: Succeeded
+NOTE: Running task 4128 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_packagedata)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_packagedata: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_packagedata: Succeeded
+NOTE: Running task 4129 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_package_write_rpm)
+NOTE: Running task 4130 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/virglrenderer/virglrenderer_0.9.1.bb:do_package_qa)
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package_write_rpm: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package_qa: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_compile: Succeeded
+NOTE: Running task 4131 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_install)
+NOTE: recipe libsdl2-2.0.20-r0: task do_install: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_install: Succeeded
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package_qa: Succeeded
+NOTE: Running task 4132 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_populate_sysroot)
+NOTE: Running task 4133 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_package)
+NOTE: recipe libsdl2-2.0.20-r0: task do_populate_sysroot: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_package: Started
+NOTE: recipe virglrenderer-0.9.1-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_configure: Succeeded
+NOTE: Running task 4134 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_compile)
+NOTE: recipe dbus-glib-0.112-r0: task do_compile: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_install: Succeeded
+NOTE: Running task 4135 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_package)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4136 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_prepare_recipe_sysroot)
+NOTE: recipe qemu-6.2.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe qemu-6.2.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4137 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_configure)
+NOTE: recipe qemu-6.2.0-r0: task do_configure: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_package: Succeeded
+NOTE: Running task 4138 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_packagedata)
+NOTE: recipe dbus-glib-0.112-r0: task do_compile: Succeeded
+NOTE: Running task 4139 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_install)
+NOTE: recipe libsdl2-2.0.20-r0: task do_packagedata: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_install: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_packagedata: Succeeded
+NOTE: Running task 4140 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_package_write_rpm)
+NOTE: Running task 4141 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/libsdl2/libsdl2_2.0.20.bb:do_package_qa)
+NOTE: recipe libsdl2-2.0.20-r0: task do_package_write_rpm: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_package_qa: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_install: Succeeded
+NOTE: Running task 4142 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_package)
+NOTE: Running task 4143 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_populate_sysroot)
+NOTE: recipe dbus-glib-0.112-r0: task do_package: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_populate_sysroot: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4144 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_prepare_recipe_sysroot)
+NOTE: recipe libsdl2-2.0.20-r0: task do_package_qa: Succeeded
+NOTE: recipe consolekit-0.4.6-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package: Succeeded
+NOTE: Running task 4145 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_packagedata)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_packagedata: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 4146 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_configure)
+NOTE: recipe consolekit-0.4.6-r0: task do_configure: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 4147 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_package_write_rpm)
+NOTE: Running task 4148 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-extended/xen-guest-demo/xen-guest-demo.bb:do_package_qa)
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package_qa: Started
+NOTE: recipe libsdl2-2.0.20-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_package: Succeeded
+NOTE: Running task 4149 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_packagedata)
+NOTE: recipe dbus-glib-0.112-r0: task do_packagedata: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_packagedata: Succeeded
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package_qa: Succeeded
+NOTE: Running task 4150 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_package_write_rpm)
+NOTE: Running task 4151 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/dbus/dbus-glib_0.112.bb:do_package_qa)
+NOTE: recipe dbus-glib-0.112-r0: task do_package_write_rpm: Started
+NOTE: recipe dbus-glib-0.112-r0: task do_package_qa: Started
+NOTE: recipe xen-guest-demo-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_package_qa: Succeeded
+NOTE: recipe dbus-glib-0.112-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe consolekit-0.4.6-r0: task do_configure: Succeeded
+NOTE: Running task 4152 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_compile)
+NOTE: recipe consolekit-0.4.6-r0: task do_compile: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_compile: Succeeded
+NOTE: Running task 4153 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_install)
+NOTE: recipe consolekit-0.4.6-r0: task do_install: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_install: Succeeded
+NOTE: Running task 4154 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_package)
+NOTE: recipe consolekit-0.4.6-r0: task do_package: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_package: Succeeded
+NOTE: Running task 4155 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_packagedata)
+NOTE: recipe consolekit-0.4.6-r0: task do_packagedata: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_packagedata: Succeeded
+NOTE: Running task 4156 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_package_write_rpm)
+NOTE: Running task 4157 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/consolekit/consolekit_0.4.6.bb:do_package_qa)
+NOTE: Running task 4158 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_15.0.bb:do_package_write_rpm)
+NOTE: Running task 4159 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_15.0.bb:do_package_qa)
+NOTE: recipe consolekit-0.4.6-r0: task do_package_write_rpm: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_package_qa: Started
+NOTE: recipe pulseaudio-15.0-r0: task do_package_write_rpm: Started
+NOTE: recipe pulseaudio-15.0-r0: task do_package_qa: Started
+NOTE: recipe consolekit-0.4.6-r0: task do_package_qa: Succeeded
+NOTE: recipe consolekit-0.4.6-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe pulseaudio-15.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe pulseaudio-15.0-r0: task do_package_qa: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_configure: Succeeded
+NOTE: Running task 4160 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_configure_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_configure_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_configure_ptest_base: Succeeded
+NOTE: Running task 4161 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_compile)
+NOTE: recipe qemu-6.2.0-r0: task do_compile: Started
+Bitbake still alive (no events for 600s). Active tasks:
+/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_compile
+NOTE: recipe qemu-6.2.0-r0: task do_compile: Succeeded
+NOTE: Running task 4162 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_compile_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_compile_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_compile_ptest_base: Succeeded
+NOTE: Running task 4163 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_install)
+NOTE: recipe qemu-6.2.0-r0: task do_install: Started
+NOTE: recipe qemu-6.2.0-r0: task do_install: Succeeded
+NOTE: Running task 4164 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_install_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_install_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_install_ptest_base: Succeeded
+NOTE: Running task 4165 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package)
+NOTE: recipe qemu-6.2.0-r0: task do_package: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package: Succeeded
+NOTE: Running task 4166 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_packagedata)
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata: Started
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 4167 of 4179 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package_write_rpm)
+NOTE: Running task 4168 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_write_rpm)
+NOTE: Running task 4169 of 4179 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_qa)
+NOTE: Running task 4170 of 4179 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package_qa)
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 4171 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 4172 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_flush_pseudodb)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 4173 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_qa)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 4174 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Succeeded
+NOTE: Running task 4175 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs_wicenv)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Succeeded
+NOTE: Running task 4176 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_wic)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Succeeded
+NOTE: Running task 4177 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_complete)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 4178 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_populate_lic_deploy)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Succeeded
+NOTE: Running noexec task 4179 of 4179 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_build)
+NOTE: Tasks Summary: Attempted 4179 tasks of which 3816 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.

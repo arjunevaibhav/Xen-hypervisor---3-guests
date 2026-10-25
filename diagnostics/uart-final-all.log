@@ -1,0 +1,247 @@
+
+#### joined during boot: boot.scr had already run (seen live: release Xen 917560 bytes)
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+Starting hardware watchdog keep-alive (/dev/watchdog, every 5s)
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+Starting /usr/sbin/xenstored....
+Setting domain 0 name, domid and JSON config...
+Done setting up Dom0
+Starting xenconsoled...
+Starting QEMU as disk backend for dom0
+/etc/rc5.d/S80xencommons: line 73: /usr/bin/qemu-system-i386: No such file or directory
+Starting Xen guest rtos1
+(XEN) Removing cpu 3 from runqueue 0
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+Parsing config from /etc/xen/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+Starting Xen guest android1
+Parsing config from /etc/xen/android1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[   21.691402] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   21.691799] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   21.691889] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   21.692013] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   21.846623] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   21.847013] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   21.847104] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   21.847227] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   23.208175] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   23.209655] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   23.209745] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   23.209868] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   23.592275] xenbr0: port 1(vif2.0) entered blocking state
+[   23.592377] xenbr0: port 1(vif2.0) entered disabled state
+[   23.592794] device vif2.0 entered promiscuous mode
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: 
+#### PASS autoboot boot.scr - seen live before the test started
+
+#### FAIL release Xen
+
+#### FAIL 4 CPUs
+
+#### PASS guests autostart messages
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: (XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[   25.666367] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[   25.835644] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[   25.946263] vif vif-2-0 vif2.0: Guest Rx ready
+[   25.946421] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[   25.946661] xenbr0: port 1(vif2.0) entered blocking state
+[   25.946742] xenbr0: port 1(vif2.0) entered forwarding state
+root
+root@tinker-board:~# xl info | grep -E 'nr_cpus|xen_scheduler'; xl list; xl cpupoool-list -c; xl sched-rtds -d rtos1 -v all
+nr_cpus                : 4
+xen_scheduler          : credit2
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      19.7
+rtos1                                        1    16     1     -b----       0.2
+android1                                     2   767     2     r-----       3.2
+Name               CPU list
+Pool-0             0,1,2
+rt                 3
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0      1000       200        yes
+root@tinker-board:~# 
+#### PASS rtos1 + android1 running
+
+#### PASS rt pool on CPU 3 with 1000/200
+cat /sys/class/thermal/thermal_zone1/temp /sys/class/thermall/thermal_zone2/temp
+35000
+34090
+root@tinker-board:~# 
+#### PASS temperatures readable - 35000 34090
+P=$(cat /var/run/hw-watchdog.pid); kill -0 $P && echo WDT-$(((1+1))ALIVE
+WDT-2ALIVE
+root@tinker-board:~# 
+#### PASS hardware watchdog keep-alive running
+cat /proc/sys/net/ipv4/ip_forward; iptables -t nat -S POSTROOUTING; ip route; cat /sys/class/net/eth0/carrier
+1
+-P POSTROUTING ACCEPT
+-A POSTROUTING -s 192.168.100.0/24 ! -o xenbr0 -j MASQUERADE
+192.168.100.0/24 dev xenbr0 scope link  src 192.168.100.1 
+0
+root@tinker-board:~# 
+#### PASS NAT rule + forwarding
+
+#### dom0 uplink (LAN cable): no
+
+#### UART quiet check (30 s, no [rtos] lines expected)
+
+#### PASS UART quiet - 0 [rtos] lines
+xl console rtos1
+
+[rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+[rtos] virtual timer 24000000 Hz, tick 1000 Hz
+[rtos] 4 tasks created, starting the scheduler
+[rtos] 10 ms task: 1000 periods, min 9961 us, max 10043 us; heartbeats 9, queue messages 3 (report 1)
+[rtos] 10 ms task: 1000 periods, min 9949 us, max 10053 us; heartbeats 19, queue messages 7 (report 2)
+[rtos] 10 ms task: 1000 periods, min 9975 us, max 10024 us; heartbeats 29, queue messages 11 (report 3)
+[rtos] 10 ms task: 1000 periods, min 9976 us, max 10025 us; heartbeats 39, queue messages 15 (report 4)
+[rtos] 10 ms task: 1000 periods, min 9957 us, max 10034 us; heartbeats 49, queue messages 19 (report 5)
+root@tinker-board:~# 
+root@tinker-board:~# 
+#### PASS FreeRTOS PV console - 9975-10024 9976-10025 9957-10034
+
+#### waiting for Android (max 8 min)
+dmesg -c > /dev/null; adb start-server
+* daemon not running. starting it now on port 5037 *
+adb connect 192.168.100.3:5555
+adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+ADB server didn't ACK
+* failed to start daemon *
+root@tinker-board:~# adb connect 192.168.100.3:5555
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+error: device not found
+root@tinker-board:~# adb connect 192.168.100.3:5555
+unable to connect to 192.168.100.3:5555:5555
+root@tinker-board:~# 
+#### FAIL Android boot_completed
+adb -s 192.168.100.3:5555 shell dumpsys activity activities  | grep -m1 mResumedActivity
+error: device not found
+root@tinker-board:~# 
+#### FAIL Android launcher
+adb -s 192.168.100.3:5555 shell 'ip route; ping -c 1 -W 2 1 92.168.100.1 >/dev/null && echo GW-$((1+1))OK'
+error: device not found
+root@tinker-board:~# 
+#### FAIL Android default route via dom0
+adb kill-server; echo RESETS=$(dmesg | grep -c 'reset high- speed')
+RESETS=0
+root@tinker-board:~# 
+#### PASS no USB hub resets from adb - 0
+
+#### reboot (guests stop, board resets, everything comes back)
+reboot
+
+Broadcast message from root@tinker-board (hvc0) (Fri Mar  9 12:46:03 2018):
+
+The system is going down for reboot NOW!
+INIT: Switching to runlevel: 6
+INIT: Sending processes configured via /etc/inittab the TERM signal
+root@tinker-board:~# INIT: Sending processes configured via /etc/inittab the KILL signal
+Stopping Xen guest android1

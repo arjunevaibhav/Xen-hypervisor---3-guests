@@ -1,0 +1,116 @@
+
+root@tinker-board:~# xl console android1
+[  121.348665] binder: undelivered transaction 35112, process died.
+[  121.349044] binder: undelivered transaction 35142, process died.
+[  121.349121] binder: undelivered transaction 35144, process died.
+[  121.349199] binder: undelivered transaction 35167, process died.
+[  121.349276] binder: undelivered transaction 35231, process died.
+[  121.349336] binder: undelivered transaction 35232, process died.
+[  121.349408] binder: undelivered transaction 35235, process died.
+[  121.349473] binder: undelivered transaction 35241, process died.
+[  121.349546] binder: undelivered transaction 35242, process died.
+[  121.349624] binder: undelivered transaction 35344, process died.
+[  121.349698] binder: undelivered transaction 35346, process died.
+[  121.349762] binder: undelivered transaction 35349, process died.
+[  121.349834] binder: undelivered transaction 35632, process died.
+[  121.349916] binder: undelivered transaction 35633, process died.
+[  121.349980] binder: undelivered transaction 35635, process died.
+[  121.350055] binder: undelivered transaction 35638, process died.
+[  121.350544] binder: undelivered transaction 35113, process died.
+[  121.350619] binder: undelivered transaction 35148, process died.
+[  121.361690] binder: 138:658 transaction failed 29189/-22, size 60-0 line 2807
+[  121.363119] binder: 370:422 transaction failed 29189/-22, size 320-0 line 2807
+[  121.430652] binder: 370:370 transaction failed 29189/-22, size 96-0 line 2807
+[  121.852988] binder: 370:370 transaction failed 29189/-22, size 84-0 line 2807
+[  123.449630] binder: 370:745 transaction failed 29189/-22, size 0-0 line 2807
+[  126.718070] binder: undelivered transaction 37841, process died.
+[  126.718152] binder: undelivered transaction 38931, process died.
+[  126.718304] binder: undelivered transaction 35806, process died.
+[  126.718391] binder: undelivered transaction 38438, process died.
+[  126.718452] binder: undelivered transaction 38501, process died.
+[  126.718526] binder: undelivered transaction 38761, process died.
+[  126.718854] binder: undelivered transaction 35743, process died.
+[  126.718944] binder: undelivered transaction 37830, process died.
+[  128.216016] type=1400 audit(1520599750.502:434): avc: denied { map } for pid=1478 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8322 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  130.638727] binder: undelivered transaction 38929, process died.
+[  130.639058] binder: undelivered transaction 38998, process died.
+[  130.639316] binder: undelivered transaction 38959, process died.
+[  130.639392] binder: undelivered transaction 38977, process died.
+[  130.639468] binder: undelivered transaction 39048, process died.
+[  130.639544] binder: undelivered transaction 39049, process died.
+[  130.639606] binder: undelivered transaction 39053, process died.
+[  130.639689] binder: undelivered transaction 39057, process died.
+[  130.639766] binder: undelivered transaction 39061, process died.
+[  130.639841] binder: undelivered transaction 39161, process died.
+[  130.639916] binder: undelivered transaction 39163, process died.
+[  130.639975] binder: undelivered transaction 39166, process died.
+[  130.640048] binder: undelivered transaction 39446, process died.
+[  130.640121] binder: undelivered transaction 39447, process died.
+[  130.640196] binder: undelivered transaction 39449, process died.
+[  130.640255] binder: undelivered transaction 39454, process died.
+[  130.640789] binder: undelivered transaction 38935, process died.
+[  130.640861] binder: undelivered transaction 38956, process died.
+[  130.653471] binder: 138:658 transaction failed 29189/-22, size 60-0 line 2807
+[  130.654784] binder: 370:422 transaction failed 29189/-22, size 320-0 line 2807
+[  130.733717] binder: 370:370 transaction failed 29189/-22, size 96-0 line 2807
+[  131.152457] binder: 370:370 transaction failed 29189/-22, size 84-0 line 2807
+[  132.759592] binder: 370:685 transaction failed 29189/-22, size 0-0 line 2807
+[  135.968100] binder: undelivered transaction 39657, process died.
+[  135.968189] binder: undelivered transaction 42347, process died.
+[  135.968246] binder: undelivered transaction 42416, process died.
+[  135.968308] binder: undelivered transaction 42632, process died.
+[  135.968488] binder: undelivered transaction 41700, process died.
+[  135.968604] binder: undelivered transaction 42815, process died.
+[  135.968922] binder: undelivered transaction 39587, process died.
+[  135.968994] binder: undelivered transaction 41687, process died.
+[  139.688706] binder: undelivered transaction 42813, process died.
+[  139.689083] binder: undelivered transaction 42887, process died.
+[  139.689338] binder: undelivered transaction 42844, process died.
+[  139.689408] binder: undelivered transaction 42866, process died.
+[  139.689470] binder: undelivered transaction 42937, process died.
+[  139.689548] binder: undelivered transaction 42938, process died.
+[  139.689621] binder: undelivered transaction 42945, process died.
+[  139.689695] binder: undelivered transaction 42950, process died.
+[  139.689760] binder: undelivered transaction 42951, process died.
+[  139.689830] binder: undelivered transaction 43050, process died.
+[  139.689903] binder: undelivered transaction 43052, process died.
+[  139.689977] binder: undelivered transaction 43055, process died.
+[  139.690036] binder: undelivered transaction 43343, process died.
+[  139.690119] binder: undelivered transaction 43344, process died.
+[  139.690195] binder: undelivered transaction 43346, process died.
+[  139.690270] binder: undelivered transaction 43353, process died.
+[  139.690717] binder: undelivered transaction 42819, process died.
+[  139.690798] binder: undelivered transaction 42842, process died.
+[  139.703162] binder: 138:138 transaction failed 29189/-22, size 60-0 line 2807
+[  139.704609] binder: 370:422 transaction failed 29189/-22, size 320-0 line 2807
+[  139.810440] binder: 370:370 transaction failed 29189/-22, size 96-0 line 2807
+[  140.172943] binder: 370:370 transaction failed 29189/-22, size 84-0 line 2807
+[  141.759655] binder: 370:494 transaction failed 29189/-22, size 0-0 line 2807
+[  141.799649] type=1400 audit(1520599764.122:435): avc: denied { map } for pid=370 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+echo 1 > /proc/sys/kernel/printk
+/system/bin/sh: can't create /proc/sys/kernel/printk: Permission denied
+1|generic:/ $ [  144.638207] binder: undelivered transaction 43533, process died.
+[  144.638296] binder: undelivered transaction 46178, process died.
+[  144.638355] binder: undelivered transaction 46179, process died.
+[  144.638442] binder: undelivered transaction 46337, process died.
+[  144.638635] binder: undelivered transaction 45534, process died.
+[  144.638699] binder: undelivered transaction 46468, process died.
+[  144.638961] binder: undelivered transaction 43467, process died.
+[  144.639035] binder: undelivered transaction 45516, process died.
+su 0 sh -c 'echo 1 > /proc/sys/kernel/printk'
+[  147.586688] type=1400 audit(1520599769.922:436): avc: denied { map } for pid=1648 comm="su" path="/system/xbin/su" dev="xvda" ino=1752 scontext=u:r:su:s0 tcontext=u:object_r:su_exec:s0 tclass=file permissive=1
+[  147.587845] type=1400 audit(1520599769.922:437): avc: denied { map } for pid=1648 comm="su" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:su:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  147.588270] type=1400 audit(1520599769.922:438): avc: denied { map } for pid=1648 comm="su" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=8347 scontext=u:r:su:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+generic:/ $ getprop init.svc.xen-net; getprop init.svc.zygote; ls -l /xen-net.svc.xen-net; getprop init.svc.zygote; ls -l /xen-net.                         <sh
+
+running
+-rwxr-x--- 1 root root 674 2026-10-24 16:34 /xen-net.sh
+generic:/ $ ifconfig eth0 | head -n 2
+eth0      Link encap:Ethernet  HWaddr 00:16:3e:73:0e:c6
+          BROADCAST MULTICAST  MTU:1500  Metric:1
+generic:/ $ logcat -d -s AndroidRuntime:E | grep -A8 'IN SYSTEM PROCESS' | taiAndroidRuntime:E | grep -A8 'IN SYSTEM PROCESS' | tai                         <l -n 12
+generic:/ $ logcat -d | grep -iE 'xen-net|/xen-net.sh|init: .*xen' | tail -n 6rep -iE 'xen-net|/xen-net.sh|init: .*xen' | tail -n 6                         <
+03-09 12:48:22.842   992   992 I ls      : type=1400 audit(0.0:400): avc: denied { getattr } for path="/xen-net.sh" dev="rootfs" ino=7908 scontext=u:r:shell:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+03-09 12:49:36.042  1709  1709 I ls      : type=1400 audit(0.0:448): avc: denied { getattr } for path="/xen-net.sh" dev="rootfs" ino=7908 scontext=u:r:shell:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+generic:/ $ root@tinker-board:~# 
+root@tinker-board:~# 

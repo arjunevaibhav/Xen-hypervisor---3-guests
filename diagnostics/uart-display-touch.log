@@ -1,0 +1,127 @@
+
+#### joined at U-Boot autoboot (no keys sent)
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+Starting hardware watchdog keep-alive (/dev/watchdog, every 5s)
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+Starting /usr/sbin/xenstored....
+Setting domain 0 name, domid and JSON config...
+Done setting up Dom0
+Starting xenconsoled...
+Starting QEMU as disk backend for dom0
+Starting Xen guest rtos1
+(XEN) Removing cpu 3 from runqueue 0
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+Parsing config from /etc/xen/rtos1.cfg
+Starting Xen guest android1
+Parsing config from /etc/xen/android1.cfg
+[   23.227698] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   23.228055] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   23.228147] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   23.228271] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   23.390731] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   23.391141] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   23.391230] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   23.391355] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   25.228934] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   25.230306] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   25.230399] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   25.230522] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   25.616657] xenbr0: port 1(vif2.0) entered blocking state
+[   25.616758] xenbr0: port 1(vif2.0) entered disabled state
+[   25.617101] device vif2.0 entered promiscuous mode
+(XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[   27.733746] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[   27.809731] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[   27.971278] vif vif-2-0 vif2.0: Guest Rx ready
+[   27.971426] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[   27.971749] xenbr0: port 1(vif2.0) entered blocking state
+[   27.971816] xenbr0: port 1(vif2.0) entered forwarding state
+android-hdmi: no /dev/fb0 (HDMI driver not loaded)
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: 
+#### FAIL boot to dom0 with release Xen and 4 CPUs
+
+#### PASS guests autostarted
+
+#### FAIL android-hdmi service started - no line means no /dev/fb0
+root
+root@tinker-board:~# 
+root@tinker-board:~# lsmod | grep -E 'rockchipdrm|dw_hdmi|snd_usb_audio'; ls -l //dev/fb0; cat /sys/class/drm/card*-HDMI-A-1/status /sys/class/drm/card*-HDMI-A-1//modes 2>/dev/null | head -n 3; cat /sys/class/graphics/fb0/virtual_size 2>/dev/ null
+snd_usb_audio 221184 0 - Live 0xbf0a7000
+snd_hwdep 16384 1 snd_usb_audio, Live 0xbf09e000
+snd_usbmidi_lib 28672 1 snd_usb_audio, Live 0xbf096000
+snd_pcm 90112 1 snd_usb_audio, Live 0xbf065000
+snd 57344 6 snd_usb_audio,snd_hwdep,snd_usbmidi_lib,snd_rawmidi,snd_pcm,snd_timer, Live 0xbf04c000
+mc 32768 1 snd_usb_audio, Live 0xbf043000
+rockchipdrm 81920 0 - Live 0xbf022000
+analogix_dp 36864 1 rockchipdrm, Live 0xbf014000
+dw_hdmi 32768 1 rockchipdrm, Live 0xbf006000
+dw_mipi_dsi 20480 1 rockchipdrm, Live 0xbf000000
+ls: /dev/fb0: No such file or directory
+disconnected
+root@tinker-board:~# 
+#### FAIL HDMI driver + /dev/fb0 in dom0
+
+#### HDMI monitor: not connected (or not detected)
+aplay -l; amixer -c 0 scontrols | head -n 4
+**** List of PLAYBACK Hardware Devices ****
+card 0: Audio [USB Audio], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: Audio [USB Audio], device 1: USB Audio [USB Audio #1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: Audio [USB Audio], device 2: USB Audio [USB Audio #2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+Simple mixer control 'PCM',0
+Simple mixer control 'PCM',1
+Simple mixer control 'PCM',2
+Simple mixer control 'Mic',0
+root@tinker-board:~# 
+#### PASS USB audio codec in ALSA - card 0: Audio [USB Audio], device 0: USB Audio [USB Audio]
+xl list; ps | grep -c '[q]emu-system-i386'; netstat -ltn 2> /dev/null | grep 5900
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      26.7
+rtos1                                        1    16     1     -b----       0.5
+android1                                     2   767     2     r-----      13.0
+2
+tcp        0      0 127.0.0.1:5900          0.0.0.0:*               LISTEN      
+root@tinker-board:~# 
+#### PASS QEMU device model running with VNC on 127.0.0.1:5900
+tail -n 5 /var/log/android-hdmi.log
+tail: can't open '/var/log/android-hdmi.log': No such file or directory
+tail: no files
+root@tinker-board:~# 
+#### FAIL android-hdmi connected to the guest screen
+adb start-server
+* daemon not running. starting it now on port 5037 *
+ADB server didn't ACK
+* failed to start daemon *
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# 

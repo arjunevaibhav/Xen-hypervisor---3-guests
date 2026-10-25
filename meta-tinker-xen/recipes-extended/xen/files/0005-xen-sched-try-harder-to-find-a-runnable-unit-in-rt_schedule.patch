@@ -1,0 +1,49 @@
+From 0f1dec89d324d93fa056334ac384c6845f480fe8 Mon Sep 17 00:00:00 2001
+From: Juergen Gross <jgross@suse.com>
+Date: Fri, 2 Dec 2022 10:29:19 +0100
+Subject: [PATCH] xen/sched: try harder to find a runnable unit in
+ rt_schedule()
+
+Instead of directly falling back to the idle unit in case the top
+unit from the run queue happened to be not runnable, consult the run
+queue again.
+
+Suggested-by: Dario Faggioli <dfaggioli@suse.com>
+Signed-off-by: Juergen Gross <jgross@suse.com>
+Reviewed-by: Dario Faggioli <dfaggioli@suse.com>
+Upstream-Status: Backport
+---
+ xen/common/sched/rt.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/xen/common/sched/rt.c b/xen/common/sched/rt.c
+index 05988cbd3de4..d443cd5831b9 100644
+--- a/xen/common/sched/rt.c
++++ b/xen/common/sched/rt.c
+@@ -1101,15 +1101,20 @@ rt_schedule(const struct scheduler *ops, struct sched_unit *currunit,
+     }
+     else
+     {
+-        snext = runq_pick(ops, cpumask_of(sched_cpu), cur_cpu);
+-
+-        if ( snext == NULL )
+-            snext = rt_unit(sched_idle_unit(sched_cpu));
+-        else if ( !unit_runnable_state(snext->unit) )
++        while ( true )
+         {
++            snext = runq_pick(ops, cpumask_of(sched_cpu), cur_cpu);
++
++            if ( snext == NULL )
++            {
++                snext = rt_unit(sched_idle_unit(sched_cpu));
++                break;
++            }
++            if ( unit_runnable_state(snext->unit) )
++                break;
++
+             q_remove(snext);
+             replq_remove(ops, snext);
+-            snext = rt_unit(sched_idle_unit(sched_cpu));
+         }
+ 
+         /* if scurr has higher priority and budget, still pick scurr */

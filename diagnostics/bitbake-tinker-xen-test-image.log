@@ -1,0 +1,353 @@
+Loading cache...done.
+Loaded 4091 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 69 Local 0 Mirrors 0 Missed 69 Current 1376 (0% match, 95% complete)
+Removing 15 stale sstate objects for arch cortexa17t2hf-neon...done.
+Removing 17 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 1698 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_fetch)
+NOTE: Running task 1949 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_configcheck)
+NOTE: recipe busybox-1.35.0-r0: task do_fetch: Started
+NOTE: Running task 1950 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_version_sanity_check)
+NOTE: recipe busybox-1.35.0-r0: task do_fetch: Succeeded
+NOTE: Running task 2115 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_unpack)
+NOTE: Running task 2116 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_prepare_recipe_sysroot)
+NOTE: Running task 2154 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_fetch)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_version_sanity_check: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_fetch: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configcheck: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_fetch: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_unpack: Started
+NOTE: Running task 2364 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_unpack)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_version_sanity_check: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe busybox-1.35.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_unpack: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_unpack: Succeeded
+NOTE: Running task 2498 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_prepare_recipe_sysroot)
+NOTE: Running task 2502 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_patch)
+NOTE: Running task 2510 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_configure)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_prepare_recipe_sysroot: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_patch: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_patch: Succeeded
+NOTE: Running task 2642 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_deploy_source_date_epoch)
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_configure: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_deploy_source_date_epoch: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2900 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_configure)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_configure: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_configure: Succeeded
+NOTE: Running task 3059 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_compile)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_compile: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_compile: Succeeded
+NOTE: Running task 3187 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_install)
+NOTE: recipe busybox-1.35.0-r0: task do_unpack: Succeeded
+NOTE: Running task 3192 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_patch)
+NOTE: Running task 3194 of 3746 (virtual:native:/home/arjune/yocto-rk3288/meta-virtualization/recipes-kernel/linux/yocto-cfg-fragments.bb:do_populate_lic)
+NOTE: Running task 3231 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_populate_lic)
+NOTE: Running noexec task 3304 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_fetch)
+NOTE: recipe busybox-1.35.0-r0: task do_patch: Started
+NOTE: recipe yocto-cfg-fragments-native-v5.14+git25509cd5563356638e78d33ec7e5354225fbd3db-r0: task do_populate_lic: Started
+NOTE: Running task 3409 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_populate_lic)
+NOTE: recipe yocto-cfg-fragments-native-v5.14+git25509cd5563356638e78d33ec7e5354225fbd3db-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3572 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/initscripts/initscripts_1.0.bb:do_package_write_rpm)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_lic: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_install: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_populate_lic: Started
+NOTE: Running task 3573 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/initscripts/initscripts_1.0.bb:do_package_qa)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_populate_lic: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_lic: Succeeded
+NOTE: recipe initscripts-1.0-r155: task do_package_write_rpm: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_install: Succeeded
+NOTE: Running task 3574 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_package)
+NOTE: Running task 3581 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/iproute2/iproute2_5.17.0.bb:do_package_write_rpm)
+NOTE: recipe initscripts-1.0-r155: task do_package_qa: Started
+NOTE: Running task 3653 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/ell/ell_0.50.bb:do_populate_lic)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_configure: Succeeded
+NOTE: Running task 3654 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_compile)
+NOTE: recipe iproute2-5.17.0-r0: task do_package_write_rpm: Started
+NOTE: recipe ell-0.50-r0: task do_populate_lic: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_compile: Started
+NOTE: recipe ell-0.50-r0: task do_populate_lic: Succeeded
+NOTE: recipe initscripts-1.0-r155: task do_package_qa: Succeeded
+NOTE: Running task 3655 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/flac/flac_1.3.4.bb:do_populate_lic)
+NOTE: Running task 3656 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libvorbis/libvorbis_1.3.7.bb:do_populate_lic)
+NOTE: recipe flac-1.3.4-r0: task do_populate_lic: Started
+NOTE: recipe libvorbis-1.3.7-r0: task do_populate_lic: Started
+NOTE: recipe flac-1.3.4-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3657 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libogg/libogg_1.3.5.bb:do_populate_lic)
+NOTE: recipe libvorbis-1.3.7-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3658 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxi_1.8.bb:do_populate_lic)
+NOTE: recipe initscripts-1.0-r155: task do_package_write_rpm: Succeeded
+NOTE: recipe libogg-1.3.5-r0: task do_populate_lic: Started
+NOTE: Running task 3659 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libdaemon/libdaemon_0.14.bb:do_populate_lic)
+NOTE: recipe libxi-1_1.8-r0: task do_populate_lic: Started
+NOTE: recipe libdaemon-0.14-r0: task do_populate_lic: Started
+NOTE: recipe libogg-1.3.5-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3660 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/mobile-broadband-provider-info/mobile-broadband-provider-info_git.bb:do_populate_lic)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package: Succeeded
+NOTE: recipe libxi-1_1.8-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3661 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_packagedata)
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_populate_lic: Started
+NOTE: Running task 3662 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/sbc/sbc_1.5.bb:do_populate_lic)
+NOTE: recipe libdaemon-0.14-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3663 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/ofono/ofono_1.34.bb:do_populate_lic)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_packagedata: Started
+NOTE: recipe sbc-1.5-r0: task do_populate_lic: Started
+NOTE: recipe ofono-1.34-r0: task do_populate_lic: Started
+NOTE: recipe mobile-broadband-provider-info-1_20230416-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3664 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/libsndfile/libsndfile1_1.0.31.bb:do_populate_lic)
+NOTE: recipe sbc-1.5-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3665 of 3746 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/perl/libxml-parser-perl_2.46.bb:do_populate_lic)
+NOTE: recipe libsndfile1-1.0.31-r0: task do_populate_lic: Started
+NOTE: recipe ofono-1.34-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3666 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/xorg-lib/libxtst_1.2.3.bb:do_populate_lic)
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_packagedata: Succeeded
+NOTE: Running task 3667 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_package_write_rpm)
+NOTE: recipe libsndfile1-1.0.31-r0: task do_populate_lic: Succeeded
+NOTE: recipe libxml-parser-perl-native-2.46-r0: task do_populate_lic: Started
+NOTE: Running task 3668 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:do_package_qa)
+NOTE: recipe libxtst-1_1.2.3-r0: task do_populate_lic: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package_write_rpm: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package_qa: Started
+NOTE: recipe libxml-parser-perl-native-2.46-r0: task do_populate_lic: Succeeded
+NOTE: recipe libxtst-1_1.2.3-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3671 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libatomic-ops/libatomic-ops_7.6.14.bb:do_populate_lic)
+NOTE: Running task 3672 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/speex/speexdsp_1.2.0.bb:do_populate_lic)
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_populate_lic: Started
+NOTE: recipe speexdsp-1.2.0-r0: task do_populate_lic: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package_qa: Succeeded
+NOTE: recipe libatomic-ops-7.6.14-r0: task do_populate_lic: Succeeded
+NOTE: recipe speexdsp-1.2.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3673 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/libtool/libtool_2.4.7.bb:do_populate_lic)
+NOTE: Running task 3674 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/avahi/avahi_0.8.bb:do_populate_lic)
+NOTE: Running task 3675 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcroco/libcroco_0.6.13.bb:do_populate_lic)
+NOTE: recipe libcroco-0.6.13-r0: task do_populate_lic: Started
+NOTE: recipe libtool-2.4.7-r0: task do_populate_lic: Started
+NOTE: recipe avahi-0.8-r0: task do_populate_lic: Started
+NOTE: recipe sysvinit-inittab-2.88dsf-r10: task do_package_write_rpm: Succeeded
+NOTE: Running task 3676 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/alsa/alsa-lib_1.2.6.1.bb:do_populate_lic)
+NOTE: recipe libtool-2.4.7-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3677 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-graphics/mesa/libglu_9.0.2.bb:do_populate_lic)
+NOTE: recipe libcroco-0.6.13-r0: task do_populate_lic: Succeeded
+NOTE: recipe avahi-0.8-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3678 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_15.0.bb:do_populate_lic)
+NOTE: Running task 3679 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/sysfsutils/sysfsutils_2.1.0.bb:do_populate_lic)
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_populate_lic: Started
+NOTE: recipe pulseaudio-15.0-r0: task do_populate_lic: Started
+NOTE: recipe libglu-2_9.0.2-r0: task do_populate_lic: Started
+NOTE: recipe sysfsutils-2.1.0-r5: task do_populate_lic: Started
+NOTE: recipe busybox-1.35.0-r0: task do_patch: Succeeded
+NOTE: Running task 3680 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_deploy_source_date_epoch)
+NOTE: recipe alsa-lib-1.2.6.1-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3681 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_populate_lic)
+NOTE: recipe libglu-2_9.0.2-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3682 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libcheck/libcheck_0.15.2.bb:do_populate_lic)
+NOTE: recipe pulseaudio-15.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3683 of 3746 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-devtools/yajl/yajl_2.1.0.bb:do_populate_lic)
+NOTE: recipe sysfsutils-2.1.0-r5: task do_populate_lic: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: Running task 3684 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-extended/libaio/libaio_0.3.112.bb:do_populate_lic)
+NOTE: recipe libcheck-0.15.2-r0: task do_populate_lic: Started
+NOTE: recipe busybox-1.35.0-r0: task do_populate_lic: Started
+NOTE: recipe yajl-2.1.0-r0: task do_populate_lic: Started
+NOTE: recipe busybox-1.35.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: recipe libaio-0.3.112-r0: task do_populate_lic: Started
+NOTE: recipe busybox-1.35.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe libcheck-0.15.2-r0: task do_populate_lic: Succeeded
+NOTE: recipe yajl-2.1.0-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3685 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_configure)
+NOTE: recipe libaio-0.3.112-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3686 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/pciutils/pciutils_3.7.0.bb:do_populate_lic)
+NOTE: Running task 3687 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/gnu-efi/gnu-efi_3.0.14.bb:do_populate_lic)
+NOTE: Running task 3688 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/gettext/gettext_0.21.bb:do_populate_lic)
+NOTE: Running task 3689 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-support/libnl/libnl_3.5.0.bb:do_populate_lic)
+NOTE: recipe gnu-efi-3.0.14-r0: task do_populate_lic: Started
+NOTE: recipe libnl-1_3.5.0-r0: task do_populate_lic: Started
+NOTE: recipe gettext-0.21-r0: task do_populate_lic: Started
+NOTE: recipe pciutils-3.7.0-r0: task do_populate_lic: Started
+NOTE: recipe busybox-1.35.0-r0: task do_configure: Started
+NOTE: recipe iproute2-5.17.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe libnl-1_3.5.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe gettext-0.21-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3690 of 3746 (/home/arjune/yocto-rk3288/meta-openembedded/meta-oe/recipes-graphics/libsdl/libsdl_1.2.15.bb:do_populate_lic)
+NOTE: recipe pciutils-3.7.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe gnu-efi-3.0.14-r0: task do_populate_lic: Succeeded
+NOTE: Running task 3691 of 3746 (/home/arjune/yocto-rk3288/meta-openembedded/meta-networking/recipes-support/bridge-utils/bridge-utils_1.7.1.bb:do_populate_lic)
+NOTE: Running task 3692 of 3746 (virtual:native:/home/arjune/yocto-rk3288/poky/meta/recipes-extended/acpica/acpica_20211217.bb:do_populate_lic)
+NOTE: Running task 3693 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/dtc/dtc_1.6.1.bb:do_populate_lic)
+NOTE: Running task 3694 of 3746 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_populate_lic)
+NOTE: recipe libsdl-1.2.15-r3: task do_populate_lic: Started
+NOTE: recipe dtc-1.6.1-r0: task do_populate_lic: Started
+NOTE: recipe bridge-utils-1.7.1-r0: task do_populate_lic: Started
+NOTE: recipe acpica-native-20211217-r0: task do_populate_lic: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Started
+NOTE: recipe libsdl-1.2.15-r3: task do_populate_lic: Succeeded
+NOTE: recipe dtc-1.6.1-r0: task do_populate_lic: Succeeded
+NOTE: recipe bridge-utils-1.7.1-r0: task do_populate_lic: Succeeded
+NOTE: recipe acpica-native-20211217-r0: task do_populate_lic: Succeeded
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Succeeded
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_compile: Succeeded
+NOTE: Running task 3698 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_install)
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_install: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_install: Succeeded
+NOTE: Running task 3699 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_package)
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_configcheck: Succeeded
+NOTE: Running task 3700 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package: Succeeded
+NOTE: Running setscene task 1441 of 1445 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/bluez5/bluez5_5.65.bb:do_package_qa_setscene)
+NOTE: Running setscene task 1442 of 1445 (/home/arjune/yocto-rk3288/poky/meta/recipes-connectivity/bluez5/bluez5_5.65.bb:do_package_write_rpm_setscene)
+NOTE: Running setscene task 1443 of 1445 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_package_qa_setscene)
+NOTE: Running setscene task 1444 of 1445 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_package_write_rpm_setscene)
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package_qa_setscene: Started
+NOTE: recipe bluez5-5.65-r0: task do_package_qa_setscene: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package_write_rpm_setscene: Started
+NOTE: recipe bluez5-5.65-r0: task do_package_write_rpm_setscene: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package_qa_setscene: Succeeded
+NOTE: recipe bluez5-5.65-r0: task do_package_qa_setscene: Succeeded
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_package_write_rpm_setscene: Succeeded
+NOTE: recipe bluez5-5.65-r0: task do_package_write_rpm_setscene: Succeeded
+NOTE: Running setscene task 1445 of 1445 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/python/python3-pygobject_3.42.0.bb:do_packagedata_setscene)
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_packagedata_setscene: Started
+NOTE: recipe python3-pygobject-3.42.0-r0: task do_packagedata_setscene: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_configure: Succeeded
+NOTE: Running task 3706 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_configure_ptest_base)
+NOTE: recipe busybox-1.35.0-r0: task do_configure_ptest_base: Started
+NOTE: recipe busybox-1.35.0-r0: task do_configure_ptest_base: Succeeded
+NOTE: Running task 3707 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_compile)
+NOTE: recipe busybox-1.35.0-r0: task do_compile: Started
+NOTE: recipe busybox-1.35.0-r0: task do_compile: Succeeded
+NOTE: Running task 3708 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_compile_ptest_base)
+NOTE: recipe busybox-1.35.0-r0: task do_compile_ptest_base: Started
+NOTE: recipe busybox-1.35.0-r0: task do_compile_ptest_base: Succeeded
+NOTE: Running task 3709 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_install)
+NOTE: recipe busybox-1.35.0-r0: task do_install: Started
+NOTE: recipe busybox-1.35.0-r0: task do_install: Succeeded
+NOTE: Running task 3710 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_install_ptest_base)
+NOTE: recipe busybox-1.35.0-r0: task do_install_ptest_base: Started
+NOTE: recipe busybox-1.35.0-r0: task do_install_ptest_base: Succeeded
+NOTE: Running task 3711 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_package)
+NOTE: recipe busybox-1.35.0-r0: task do_package: Started
+NOTE: recipe busybox-1.35.0-r0: task do_package: Succeeded
+NOTE: Running task 3712 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_packagedata)
+NOTE: recipe busybox-1.35.0-r0: task do_packagedata: Started
+NOTE: recipe busybox-1.35.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 3713 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_write_rpm)
+NOTE: Running task 3714 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_package_write_rpm)
+NOTE: Running task 3715 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/busybox/busybox_1.35.0.bb:do_package_qa)
+NOTE: Running task 3716 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_qa)
+NOTE: recipe packagegroup-core-boot-1.0-r17: task do_package_write_rpm: Started
+NOTE: recipe packagegroup-core-boot-1.0-r17: task do_package_qa: Started
+NOTE: recipe busybox-1.35.0-r0: task do_package_write_rpm: Started
+NOTE: recipe busybox-1.35.0-r0: task do_package_qa: Started
+NOTE: recipe packagegroup-core-boot-1.0-r17: task do_package_qa: Succeeded
+NOTE: recipe packagegroup-core-boot-1.0-r17: task do_package_write_rpm: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_package_qa: Succeeded
+NOTE: recipe busybox-1.35.0-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile: Succeeded
+NOTE: Running task 3717 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_shared_workdir)
+NOTE: Running task 3718 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_kernel_link_images)
+NOTE: Running task 3719 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_transform_kernel)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_shared_workdir: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_link_images: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_transform_kernel: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_kernel_link_images: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_transform_kernel: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_shared_workdir: Succeeded
+NOTE: Running task 3720 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile_kernelmodules)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile_kernelmodules: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_compile_kernelmodules: Succeeded
+NOTE: Running task 3721 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_strip)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_strip: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_strip: Succeeded
+NOTE: Running task 3722 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_sizecheck)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_sizecheck: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_sizecheck: Succeeded
+NOTE: Running task 3723 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_install)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_install: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_install: Succeeded
+NOTE: Running task 3724 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package)
+NOTE: Running task 3725 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_populate_sysroot)
+NOTE: Running task 3726 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_bundle_initramfs)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_sysroot: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_bundle_initramfs: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_bundle_initramfs: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 3727 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_prepare_recipe_sysroot)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package: Succeeded
+NOTE: Running task 3728 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_packagedata)
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_packagedata: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_packagedata: Succeeded
+NOTE: Running task 3729 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-extended/iptables/iptables_1.8.7.bb:do_package_write_rpm)
+NOTE: Running task 3730 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-extended/iptables/iptables_1.8.7.bb:do_package_qa)
+NOTE: Running task 3735 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package_write_rpm)
+NOTE: Running task 3736 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_package_qa)
+NOTE: Running task 3737 of 3746 (/home/arjune/yocto-rk3288/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_deploy)
+NOTE: recipe iptables-1.8.7-r0: task do_package_qa: Started
+NOTE: recipe iptables-1.8.7-r0: task do_package_write_rpm: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_write_rpm: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_qa: Started
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_deploy: Succeeded
+NOTE: recipe iptables-1.8.7-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe iptables-1.8.7-r0: task do_package_qa: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe linux-yocto-5.15.201+gitAUTOINC+b75d71b7f2_b5ccd2e275-r0: task do_package_qa: Succeeded
+NOTE: Running task 3738 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 3739 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_flush_pseudodb)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 3740 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_qa)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 3741 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image: Succeeded
+NOTE: Running task 3742 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_rootfs_wicenv)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_rootfs_wicenv: Succeeded
+NOTE: Running task 3743 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_wic)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Succeeded
+NOTE: Running task 3744 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_complete)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 3745 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_populate_lic_deploy)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Succeeded
+NOTE: Running noexec task 3746 of 3746 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_build)
+NOTE: Tasks Summary: Attempted 3746 tasks of which 3643 didn't need to be rerun and all succeeded.

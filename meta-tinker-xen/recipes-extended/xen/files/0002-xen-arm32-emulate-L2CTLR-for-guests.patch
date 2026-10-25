@@ -1,0 +1,54 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] xen/arm32: emulate L2CTLR for guests
+
+L2CTLR (p15,1,c9,c0,2) is implementation defined and trapped through
+HCR.TIDCP. Xen injected an undefined instruction, which kills Linux
+dom0 on RK3288 in rk3288_suspend_init(). Like KVM, return the hardware
+value with the domain's CPU count and ignore writes.
+
+Upstream-Status: Pending
+---
+diff -ruN a/xen/arch/arm/vcpreg.c b/xen/arch/arm/vcpreg.c
+--- a/xen/arch/arm/vcpreg.c	2026-10-23 17:31:43.197866975 +0530
++++ b/xen/arch/arm/vcpreg.c	2026-10-23 17:32:05.694920410 +0530
+@@ -230,6 +230,29 @@
+             set_user_reg(regs, regidx, v->arch.actlr);
+         break;
+ 
++#ifdef CONFIG_ARM_32
++    /*
++     * HCR.TIDCP
++     *
++     * The L2 Control Register of the Cortex-A7/A12/A15/A17 is
++     * implementation defined, so it traps. Linux reads it, e.g. in the
++     * Rockchip RK3288 suspend setup. Like KVM, return the hardware value
++     * with the number of CPUs of the domain and ignore writes.
++     */
++    case HSR_CPREG32(L2CTLR):
++        if ( psr_mode_is_user(regs) )
++            return inject_undef_exception(regs, hsr);
++        if ( cp32.read )
++        {
++            uint32_t l2ctlr = READ_CP32(L2CTLR);
++
++            l2ctlr &= ~(3U << 24);
++            l2ctlr |= ((v->domain->max_vcpus - 1) & 3U) << 24;
++            set_user_reg(regs, regidx, l2ctlr);
++        }
++        break;
++#endif
++
+     /*
+      * HCR_EL2.TSW
+      *
+diff -ruN a/xen/include/asm-arm/cpregs.h b/xen/include/asm-arm/cpregs.h
+--- a/xen/include/asm-arm/cpregs.h	2026-10-23 17:31:43.228867043 +0530
++++ b/xen/include/asm-arm/cpregs.h	2026-10-23 17:32:01.292909315 +0530
+@@ -226,6 +226,7 @@
+ #define TLBIALLNSNH     p15,4,c8,c7,4   /* Invalidate Entire Non-Secure Non-Hyp. Unified TLB */
+ 
+ /* CP15 CR9: Performance monitors */
++#define L2CTLR          p15,1,c9,c0,2   /* L2 Control Register (Cortex-A7/A12/A15/A17) */
+ #define PMCR            p15,0,c9,c12,0  /* Perf. Mon. Control Register */
+ #define PMCNTENSET      p15,0,c9,c12,1  /* Perf. Mon. Count Enable Set register */
+ #define PMCNTENCLR      p15,0,c9,c12,2  /* Perf. Mon. Count Enable Clear register */

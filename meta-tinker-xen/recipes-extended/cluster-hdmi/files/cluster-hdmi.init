@@ -1,0 +1,44 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          cluster-hdmi
+# Required-Start:    vehicle-bench
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Instrument-cluster dashboard on the HDMI monitor
+### END INIT INFO
+#
+# Shows the vehicle data (CAN, receive only) and the FreeRTOS real-time
+# warnings on the HDMI monitor. /dev/fb0 appears when a monitor is connected,
+# so the service waits for it. Uses the bus from /etc/default/vehicle-bench.
+# Disable with ENABLED=0 in /etc/default/cluster-hdmi.
+
+ENABLED=1
+FBDEV=/dev/fb0
+IFACE=vcan0
+PIDFILE=/var/run/cluster-hdmi.pid
+LOG=/var/log/cluster-hdmi.log
+[ -r /etc/default/vehicle-bench ] && . /etc/default/vehicle-bench
+[ -r /etc/default/cluster-hdmi ] && . /etc/default/cluster-hdmi
+
+case "$1" in
+start)
+    [ "$ENABLED" = 1 ] || exit 0
+    echo "Starting cluster-hdmi (waits for $FBDEV, i.e. an HDMI monitor)"
+    ( while [ ! -c $FBDEV ]; do sleep 2; done
+      while :; do cluster-hdmi -f $FBDEV -i $IFACE; sleep 2; done ) >>$LOG 2>&1 </dev/null &
+    echo $! > $PIDFILE
+    ;;
+stop)
+    [ -f $PIDFILE ] && kill "$(cat $PIDFILE)" 2>/dev/null
+    killall cluster-hdmi 2>/dev/null
+    rm -f $PIDFILE
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit 0

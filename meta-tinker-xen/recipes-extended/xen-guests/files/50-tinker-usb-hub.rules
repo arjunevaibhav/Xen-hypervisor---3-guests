@@ -1,0 +1,5 @@
+# Keep the Tinker Board's onboard GL850G USB hub out of runtime suspend.
+# Waking it from suspend ends in a reset ("usb 1-1: reset high-speed USB
+# device"), and the adb server in dom0 wakes it every ~1.7 s while it scans
+# for USB devices.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0608", ATTR{power/control}="on"

@@ -1,0 +1,48 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] xen/arm32: add Cortex-A12 and Cortex-A17 processor info
+
+Without a proc_info entry Xen stops with "Missing processor info".
+The RK3288 (Cortex-A17 class) reports MIDR 0x410fc0d1, i.e. Cortex-A12.
+Like Linux (arch/arm/mm/proc-v7.S), handle A12/A17 like the A15: the
+only per-CPU setup is setting the ACTLR SMP bit (bit 6, NSACR.NS_SMP
+is granted by the bootloader).
+
+Upstream-Status: Pending
+---
+diff -ruN a/xen/arch/arm/arm32/proc-v7.S b/xen/arch/arm/arm32/proc-v7.S
+--- a/xen/arch/arm/arm32/proc-v7.S	2026-10-23 17:20:25.854969313 +0530
++++ b/xen/arch/arm/arm32/proc-v7.S	2026-10-23 17:20:25.874969508 +0530
+@@ -21,6 +21,8 @@
+ #include <asm/sysregs.h>
+ 
+ ca15mp_init:
++ca12mp_init:
++ca17mp_init:
+ ca7mp_init:
+ brahma15mp_init:
+         /* Set up the SMP bit in ACTLR */
+@@ -39,6 +41,24 @@
+         .size __v7_ca15mp_proc_info, . - __v7_ca15mp_proc_info
+ 
+         .section ".proc.info", #alloc
++        .type __v7_ca12mp_proc_info, #object
++__v7_ca12mp_proc_info:
++        .long 0x410FC0D0             /* Cortex-A12 (also reported by RK3288) */
++        .long 0xFF0FFFF0             /* Mask */
++        .long ca12mp_init
++        .long caxx_processor
++        .size __v7_ca12mp_proc_info, . - __v7_ca12mp_proc_info
++
++        .section ".proc.info", #alloc
++        .type __v7_ca17mp_proc_info, #object
++__v7_ca17mp_proc_info:
++        .long 0x410FC0E0             /* Cortex-A17 */
++        .long 0xFF0FFFF0             /* Mask */
++        .long ca17mp_init
++        .long caxx_processor
++        .size __v7_ca17mp_proc_info, . - __v7_ca17mp_proc_info
++
++        .section ".proc.info", #alloc
+         .type __v7_ca7mp_proc_info, #object
+ __v7_ca7mp_proc_info:
+         .long 0x410FC070             /* Cortex-A7 */

@@ -1,0 +1,78 @@
+Loading cache...done.
+Loaded 4098 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 8 Local 0 Mirrors 0 Missed 8 Current 147 (0% match, 94% complete)
+Removing 8 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 607 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_fetch)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_fetch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_fetch: Succeeded
+NOTE: Running task 625 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_unpack)
+NOTE: Running task 626 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_prepare_recipe_sysroot)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_unpack: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_unpack: Succeeded
+NOTE: Running task 627 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_patch)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_patch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_patch: Succeeded
+NOTE: Running task 628 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_deploy_source_date_epoch)
+NOTE: Running task 629 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_populate_lic)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_lic: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_lic: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 630 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_configure)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_configure: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_configure: Succeeded
+NOTE: Running task 631 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_compile)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_compile: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 632 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_install)
+NOTE: Running task 633 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_deploy)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_deploy: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_install: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_install: Succeeded
+NOTE: Running task 634 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package)
+NOTE: Running task 635 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_populate_sysroot)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_sysroot: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package: Succeeded
+NOTE: Running task 636 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_packagedata)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_packagedata: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 637 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package_write_rpm)
+NOTE: Running task 638 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_package_qa)
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_qa: Started
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe freertos-xen-guest-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running noexec task 639 of 639 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-rtos/freertos-xen-guest/freertos-xen-guest.bb:do_build)
+NOTE: Tasks Summary: Attempted 639 tasks of which 623 didn't need to be rerun and all succeeded.

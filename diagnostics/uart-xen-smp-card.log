@@ -1,0 +1,9 @@
+
+#### 1) waiting for power-on; NOT touching autoboot (max 3600 s)
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+[  242.256352] random: crng init done
+[  242.256416] random: 1 urandom warning(s) missed due to ratelimiting
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+INIT: Id "S2" respawning too fast: disabled for 5 minutes

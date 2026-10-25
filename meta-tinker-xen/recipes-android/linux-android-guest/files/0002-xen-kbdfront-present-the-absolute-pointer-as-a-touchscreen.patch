@@ -1,0 +1,43 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] xen-kbdfront: present the absolute pointer as a touchscreen
+
+QEMU's xenfb backend gives the guest an absolute pointer with mouse
+buttons. Android's EventHub only classifies a single-touch device as a
+touchscreen if it reports BTN_TOUCH, and only maps it to the display if
+it has INPUT_PROP_DIRECT, so the Xen pointer was ignored.
+
+In absolute mode, also advertise BTN_TOUCH and INPUT_PROP_DIRECT and
+send BTN_TOUCH together with BTN_LEFT.
+
+Upstream-Status: Inappropriate [Android guest specific]
+---
+--- a/drivers/input/misc/xen-kbdfront.c	2026-10-25 10:07:41.344584090 +0530
++++ b/drivers/input/misc/xen-kbdfront.c	2026-10-25 10:07:41.379580692 +0530
+@@ -98,6 +98,10 @@
+ 	}
+ 
+ 	input_event(dev, EV_KEY, key->keycode, value);
++	/* An absolute pointer is presented as a touchscreen: left = touch */
++	if (dev == info->ptr && key->keycode == BTN_LEFT &&
++	    test_bit(BTN_TOUCH, dev->keybit))
++		input_event(dev, EV_KEY, BTN_TOUCH, value);
+ 	input_sync(dev);
+ }
+ 
+@@ -288,6 +292,16 @@
+ 	for (i = BTN_LEFT; i <= BTN_TASK; i++)
+ 		__set_bit(i, ptr->keybit);
+ 
++	/*
++	 * Android only uses a single-touch device as a touchscreen if it has
++	 * BTN_TOUCH and INPUT_PROP_DIRECT; without them an absolute pointer
++	 * (e.g. QEMU's xenfb backend, driven over VNC) is ignored.
++	 */
++	if (abs) {
++		__set_bit(BTN_TOUCH, ptr->keybit);
++		__set_bit(INPUT_PROP_DIRECT, ptr->propbit);
++	}
++
+ 	ret = input_register_device(ptr);
+ 	if (ret) {
+ 		input_free_device(ptr);

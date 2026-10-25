@@ -1,0 +1,39 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          hw-watchdog
+# Required-Start:    $local_fs
+# Default-Start:     2 3 4 5
+# Short-Description: Keep the RK3288 hardware watchdog alive from dom0
+### END INIT INFO
+#
+# dom0 owns the SoC watchdog (dw_wdt, watchdog@ff800000). Once /dev/watchdog
+# is open it must be written regularly, or the watchdog resets the board
+# (default timeout 30 s). So if Xen or dom0 hangs (e.g. after a Xen panic
+# that does not reboot), the board restarts by itself. The keep-alive loop
+# never closes the device cleanly, so the watchdog stays armed even while
+# the system reboots.
+
+DEV=/dev/watchdog
+INTERVAL=5
+PIDFILE=/var/run/hw-watchdog.pid
+
+case "$1" in
+start)
+    [ -c $DEV ] || { echo "hw-watchdog: no $DEV"; exit 0; }
+    [ -f $PIDFILE ] && kill -0 "$(cat $PIDFILE)" 2>/dev/null && exit 0
+    echo "Starting hardware watchdog keep-alive ($DEV, every ${INTERVAL}s)"
+    ( exec 3>$DEV; while :; do printf k >&3; sleep $INTERVAL; done ) </dev/null >/dev/null 2>&1 &
+    echo $! > $PIDFILE
+    ;;
+stop)
+    # The watchdog stays armed: stopping the keep-alive resets the board
+    # after the timeout unless the system reboots or powers off first.
+    [ -f $PIDFILE ] && kill "$(cat $PIDFILE)" 2>/dev/null
+    rm -f $PIDFILE
+    ;;
+*)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0

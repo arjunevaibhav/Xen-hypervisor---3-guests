@@ -1,0 +1,108 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] DEBUG: trace the non-secure/HYP switch on UART2
+
+Temporary bring-up aid, do not keep: prints I G S M E <HSCTLR> C h Y/N markers
+and forces HSCTLR to its RES1 value before the exception return.
+
+Upstream-Status: Inappropriate [debug]
+---
+diff -ruN a/arch/arm/cpu/armv7/nonsec_virt.S b/arch/arm/cpu/armv7/nonsec_virt.S
+--- a/arch/arm/cpu/armv7/nonsec_virt.S	2026-10-23 16:55:14.154216424 +0530
++++ b/arch/arm/cpu/armv7/nonsec_virt.S	2026-10-23 17:11:25.896627500 +0530
+@@ -14,6 +14,30 @@
+ .arch_extension sec
+ .arch_extension virt
+ 
++
++/* DEBUG: write one character to the RK3288 UART2 THR (clobbers r9, r10) */
++.macro dbg_putc ch
++	ldr	r10, =0xff690000
++	mov	r9, #\ch
++	str	r9, [r10]
++.endm
++
++
++/* DEBUG: print a register as 8 hex digits on UART2 (clobbers r7, r9-r11) */
++.macro dbg_puthex reg
++	mov	r7, \reg
++	mov	r11, #8
++98:	mov	r9, r7, lsr #28
++	cmp	r9, #10
++	addlt	r9, r9, #'0'
++	addge	r9, r9, #('a' - 10)
++	ldr	r10, =0xff690000
++	str	r9, [r10]
++	mov	r7, r7, lsl #4
++	subs	r11, r11, #1
++	bne	98b
++.endm
++
+ 	.pushsection ._secure.text, "ax"
+ 
+ 	.align	5
+@@ -43,6 +67,7 @@
+  * ip: target PC
+  */
+ _secure_monitor:
++	dbg_putc 'M'
+ #ifdef CONFIG_ARMV7_PSCI
+ 	ldr	r5, =_psci_vectors		@ Switch to the next monitor
+ 	mcr	p15, 0, r5, c12, c0, 1
+@@ -96,6 +121,15 @@
+ 	mcrrne	p15, 4, r4, r4, c14		@ Reset CNTVOFF to zero
+ 1:
+ 	mov	lr, ip
++	mov	r8, lr				@ DEBUG: real target
++	adr	lr, _dbg_hyp_stub		@ DEBUG: run stub in HYP first
++	dbg_putc 'E'
++	mrc	p15, 4, r7, c1, c0, 0		@ DEBUG: read HSCTLR
++	dbg_puthex r7
++	ldr	r7, =0x30c50830			@ DEBUG: HSCTLR RES1 bits only
++	mcr	p15, 4, r7, c1, c0, 0
++	isb
++	dbg_putc 'C'
+ 	mov	ip, #(F_BIT | I_BIT | A_BIT)	@ Set A, I and F
+ 	tst	lr, #1				@ Check for Thumb PC
+ 	orrne	ip, ip, #T_BIT			@ Set T if Thumb
+@@ -103,6 +137,17 @@
+ 	msr	spsr_cxfs, ip			@ Set full SPSR
+ 	movs	pc, lr				@ ERET to non-secure
+ 
++/* DEBUG: first code executed after the exception return (HYP if all went well) */
++_dbg_hyp_stub:
++	dbg_putc 'h'
++	mrs	r9, cpsr
++	and	r9, r9, #0x1f
++	cmp	r9, #0x1a			@ HYP mode?
++	moveq	r9, #'Y'
++	movne	r9, #'N'
++	str	r9, [r10]
++	bx	r8
++
+ ENTRY(_do_nonsec_entry)
+ 	mov	ip, r0
+ 	mov	r0, r1
+diff -ruN a/arch/arm/cpu/armv7/virt-v7.c b/arch/arm/cpu/armv7/virt-v7.c
+--- a/arch/arm/cpu/armv7/virt-v7.c	2026-10-23 16:55:14.169216699 +0530
++++ b/arch/arm/cpu/armv7/virt-v7.c	2026-10-23 16:55:30.250063194 +0530
+@@ -124,6 +124,7 @@
+ 	for (i = 1; i <= itlinesnr; i++)
+ 		writel((unsigned)-1, gic_dist_addr + GICD_IGROUPRn + 4 * i);
+ 
++	writel('G', 0xff690000);	/* DEBUG: GIC distributor done */
+ 	psci_board_init();
+ 
+ 	/*
+diff -ruN a/arch/arm/lib/bootm.c b/arch/arm/lib/bootm.c
+--- a/arch/arm/lib/bootm.c	2026-10-23 16:55:14.162216570 +0530
++++ b/arch/arm/lib/bootm.c	2026-10-23 16:55:30.250063194 +0530
+@@ -364,7 +364,9 @@
+ 	if (!fake) {
+ #ifdef CONFIG_ARMV7_NONSEC
+ 		if (armv7_boot_nonsec()) {
++			writel('I', 0xff690000);	/* DEBUG */
+ 			armv7_init_nonsec();
++			writel('S', 0xff690000);	/* DEBUG */
+ 			secure_ram_addr(_do_nonsec_entry)(kernel_entry,
+ 							  0, machid, r2);
+ 		} else

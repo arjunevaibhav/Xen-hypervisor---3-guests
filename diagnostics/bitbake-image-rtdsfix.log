@@ -1,0 +1,81 @@
+Loading cache...done.
+Loaded 4103 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 2642 .bb files complete (2641 cached, 1 parsed). 4101 targets, 203 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 5 Local 0 Mirrors 0 Missed 5 Current 1780 (0% match, 99% complete)
+Removing 2 stale sstate objects for arch tinker_board...done.
+Removing 3 stale sstate objects for arch cortexa17t2hf-neon...done.
+NOTE: Executing Tasks
+NOTE: Running task 3431 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_fetch)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_fetch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_fetch: Succeeded
+NOTE: Running task 3971 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_unpack)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_unpack: Started
+NOTE: Running task 4298 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_prepare_recipe_sysroot)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_unpack: Succeeded
+NOTE: Running task 4342 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_patch)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_patch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_patch: Succeeded
+NOTE: Running task 4343 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_post_patch)
+NOTE: Running task 4344 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_deploy_source_date_epoch)
+NOTE: Running task 4345 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_populate_lic)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_post_patch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_post_patch: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 4346 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_configure)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_configure: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_configure: Succeeded
+NOTE: Running task 4347 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_compile)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_compile: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_compile: Succeeded
+NOTE: Running task 4348 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_install)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_install: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_install: Succeeded
+NOTE: Running task 4349 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_populate_sysroot)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 4350 of 4354 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_deploy)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Succeeded
+NOTE: Running task 4351 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_wic)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_wic: Succeeded
+NOTE: Running task 4352 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_image_complete)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_image_complete: Succeeded
+NOTE: Running task 4353 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_populate_lic_deploy)
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Started
+NOTE: recipe tinker-xen-test-image-1.0-r0: task do_populate_lic_deploy: Succeeded
+NOTE: Running noexec task 4354 of 4354 (/home/arjune/yocto-rk3288/meta-tinker-xen/recipes-core/images/tinker-xen-test-image.bb:do_build)
+NOTE: Tasks Summary: Attempted 4354 tasks of which 4338 didn't need to be rerun and all succeeded.

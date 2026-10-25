@@ -1,0 +1,947 @@
+
+#### 1) board after autoboot from the new card (listening first, no keys)
+1 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot:  2  1  0 
+MMC Device 0 not found
+no mmc device at slot 0
+switch to partitions #0, OK
+mmc1 is current device
+Scanning mmc 1:6...
+Found U-Boot script /boot.scr
+2318 bytes read in 3 ms (753.9 KiB/s)
+## Executing script at 00000000
+40844 bytes read in 6 ms (6.5 MiB/s)
+1048632 bytes read in 49 ms (20.4 MiB/s)
+10453504 bytes read in 455 ms (21.9 MiB/s)
+Kernel image @ 0x2000000 [ 0x000000 - 0x13e290 ]
+## Flattened Device Tree blob at 01f00000
+   Booting using the fdt blob at 0x1f00000
+dwc2_usb usb@ff540000: Error disabling vbus supply
+device_remove: Device 'usb@ff540000' failed to remove, but children are gone
+ERROR: reserving fdt memory region failed (addr=79e00000 size=6200000 flags=0)
+   Loading Device Tree to 0fff1000, end 0fffefff ... OK
+
+Starting kernel ...
+
+- UART enabled -
+- Boot CPU booting -
+- Setting up control registers -
+- Turning on paging -
+- Zero BSS -
+- Ready -
+(XEN) Checking for initrd in /chosen
+(XEN) RAM: 0000000000000000 - 000000007fffffff
+(XEN) 
+(XEN) MODULE[0]: 0000000002000000 - 000000000213e290 Xen         
+(XEN) MODULE[1]: 000000000fff1000 - 000000000fffc000 Device Tree 
+(XEN) MODULE[2]: 0000000004000000 - 00000000049f8200 Kernel      
+(XEN)  RESVD[0]: 0000000079e00000 - 0000000080000000
+(XEN)  RESVD[1]: 000000007bfd1000 - 000000007bfd4000
+(XEN)  RESVD[2]: 00000000fe000000 - 00000000feffffff
+(XEN) 
+(XEN) CMDLINE[0000000004000000]:chosen console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+(XEN) 
+(XEN) Command line: console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=credit2 loglvl=all guest_loglvl=all
+(XEN) Xen heap: 0000000074000000-0000000078000000 (16384 pages)
+(XEN) Dom heap: 507904 pages
+(XEN) Domain heap initialised
+(XEN) Booting using Device Tree
+(XEN) Platform: Rockchip RK3288
+(XEN) Looking for dtuart at "serial2", options ""
+(XEN) Automatic baud rate determination was requested, but a baud rate was not set up
+ Xen 4.16.1
+(XEN) Xen version 4.16.1 (arjune@) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0) debug=y Sat Oct 24 07:55:10 UTC 2026
+(XEN) Latest ChangeSet: Tue Apr 12 14:21:23 2022 +0200 git:f265444922-dirty
+(XEN) build-id: 6c3e66c87d4531ed2c12708f803656d9449fe4c7
+(XEN) Processor: 410fc0d1: "ARM Limited", variant: 0x0, part 0xc0d,rev 0x1
+(XEN) 32-bit Execution:
+(XEN)   Processor Features: 00001131:00011011
+(XEN)     Instruction Sets: AArch32 A32 Thumb Thumb-2 ThumbEE Jazelle
+(XEN)     Extensions: GenericTimer Security
+(XEN)   Debug Features: 02010555
+(XEN)   Auxiliary Features: 00000000
+(XEN)   Memory Model Features: 10101105 40000000
+(XEN)                          01240000 02102211
+(XEN)   ISA Features: 02101110 13112111 21232041
+(XEN)                 11112131 00011142 00000000
+(XEN) Using SMC Calling Convention v1.0
+(XEN) Using PSCI v1.0
+(XEN) SMP: Allowing 4 CPUs
+(XEN) Generic Timer IRQ: phys=30 hyp=26 virt=27 Freq: 24000 KHz
+(XEN) GICv2 initialization:
+(XEN)         gic_dist_addr=00000000ffc01000
+(XEN)         gic_cpu_addr=00000000ffc02000
+(XEN)         gic_hyp_addr=00000000ffc04000
+(XEN)         gic_vcpu_addr=00000000ffc06000
+(XEN)         gic_maintenance_irq=25
+(XEN) GICv2: 192 lines, 4 cpus, secure (IID 0200143b).
+(XEN) XSM Framework v1.0.1 initialized
+(XEN) Initialising XSM SILO mode
+(XEN) Using scheduler: SMP Credit Scheduler rev2 (credit2)
+(XEN) Initializing Credit2 scheduler
+(XEN)  load_precision_shift: 18
+(XEN)  load_window_shift: 30
+(XEN)  underload_balance_tolerance: 0
+(XEN)  overload_balance_tolerance: -3
+(XEN)  runqueues arrangement: socket
+(XEN)  cap enforcement granularity: 10ms
+(XEN) load tracking window length 1073741824 ns
+(XEN) Allocated console ring of 32 KiB.
+(XEN) VFP implementer 0x41 architecture 3 part 0x30 variant 0xd rev 0x0
+(XEN) CPU0: Guest atomics will try 1 times before pausing the domain
+(XEN) Bringing up CPU1
+- CPU 00000501 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU1: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 1 booted.
+(XEN) Bringing up CPU2
+- CPU 00000502 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU2: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 2 booted.
+(XEN) Bringing up CPU3
+- CPU 00000503 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU3: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 3 booted.
+(XEN) Brought up 4 CPUs
+(XEN) I/O virtualisation disabled
+(XEN) P2M: 40-bit IPA
+(XEN) P2M: 3 levels with order-1 root, VTCR 0x80003558
+(XEN) Scheduling granularity: cpu, 1 CPU per sched-resource
+(XEN) Adding cpu 0 to runqueue 0
+(XEN)  First cpu on runqueue, activating
+(XEN) Adding cpu 1 to runqueue 0
+(XEN) Adding cpu 2 to runqueue 0
+(XEN) Adding cpu 3 to runqueue 0
+(XEN) alternatives: Patching with alt table 002d29f0 -> 002d2abc
+(XEN) CPU0 will execute BPIALL on guest exit
+(XEN) CPU2 will execute BPIALL on guest exit
+(XEN) CPU3 will execute BPIALL on guest exit
+(XEN) CPU1 will execute BPIALL on guest exit
+(XEN) *** LOADING DOMAIN 0 ***
+(XEN) Loading d0 kernel from boot module @ 0000000004000000
+(XEN) Allocating 1:1 mappings totalling 512MB for dom0:
+(XEN) BANK[0] 0x00000020000000-0x00000040000000 (512MB)
+(XEN) Grant table range: 0x00000002000000-0x00000002040000
+(XEN) Allocating PPI 16 for event channel interrupt
+(XEN) The extended regions are only supported for 64-bit guest currently
+(XEN) Loading zImage from 0000000004000000 to 0000000027600000-0000000027ff8200
+(XEN) Loading d0 DTB to 0x0000000028000000-0x0000000028009c95
+(XEN) Initial low memory virq threshold set at 0x4000 pages.
+(XEN) Scrubbing Free RAM in background
+(XEN) Std. Loglevel: All
+(XEN) Guest Loglevel: All
+(XEN) *** Serial input to DOM0 (type 'CTRL-a' three times to switch input)
+(XEN) Freed 344kB init memory.
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.201-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 SMP Mon Feb 23 04:44:11 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Rockchip RK3288 Asus Tinker Board
+[    0.000000] earlycon: xenboot0 at I/O port 0x0 (options '')
+[    0.000000] printk: bootconsole [xenboot0] enabled
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x3c000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  [mem 0x0000000040000000-0x00000000feffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   node   0: [mem 0x00000000fe000000-0x00000000feffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000020000000-0x00000000feffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+(XEN) d0v0 Unhandled SMC/HVC: 0x8600ff01
+[    0.000000] percpu: Embedded 16 pages/cpu s35468 r8192 d21876 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 134016
+[    0.000000] Kernel command line: console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 426996K/540672K available (15360K kernel code, 2246K rwdata, 5684K rodata, 2048K init, 412K bss, 48140K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=1.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER4
+(XEN) d0v0: vGICD: unhandled word write  ¬ôôôôôôôôÅto ICACTIVER8
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER12
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER20
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000001] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000046] Switching to timer-based delay loop, resolution 41ns
+[    0.007350] Console: colour dummy device 80x30
+[    0.007402] printk: console [hvc0] enabled
+[    0.007402] printk: console [hvc0] enabled
+[    0.007464] printk: bootconsole [xenboot0] disabled
+[    0.007464] printk: bootconsole [xenboot0] disabled
+[    0.007581] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.007689] CPU: Testing write buffer coherency: ok
+[    0.007779] CPU0: Spectre v2: using BPIALL workaround
+[    0.007837] pid_max: default: 32768 minimum: 301
+[    0.008085] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.008177] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.009450] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.011717] xen:grant_table: Grant tables using version 1 layout
+[    0.011840] Grant table initialized
+[    0.011957] xen:events: Using FIFO-based ABI
+[    0.012049] Xen: initializing cpu0
+[    0.012194] Setting up static identity map for 0x20300000 - 0x203000ac
+[    0.014387] rcu: Hierarchical SRCU implementation.
+[    0.019371] EFI services will not be available.
+[    0.019613] smp: Bringing up secondary CPUs ...
+[    0.019675] smp: Brought up 1 node, 1 CPU
+[    0.019764] SMP: Total of 1 processors activated (48.00 BogoMIPS).
+[    0.019838] CPU: All CPU(s) started in SVC mode.
+[    0.020379] devtmpfs: initialized
+[    0.030179] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.030517] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.030630] futex hash table entries: 256 (order: 2, 16384 bytes, linear)
+[    0.032771] pinctrl core: initialized pinctrl subsystem
+[    0.034503] DMI not present or invalid.
+[    0.035504] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.038275] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.041799] thermal_sys: Registered thermal governor 'step_wise'
+[    0.042027] OF: /thermal-zones/cpu-thermal/cooling-maps/map0: could not find phandle 2
+[    0.042193] thermal_sys: Add a cooling_device property with at least one device
+[    0.042267] thermal_sys: failed to build thermal zone cpu-thermal: -2
+[    0.042760] xen:swiotlb_xen: Warning: only able to allocate 8 MB for software IO TLB
+[    0.045972] software IO TLB: mapped [mem 0x23000000-0x23800000] (8MB)
+[    0.046593] No ATAGs?
+[    0.046741] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.046843] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.046929] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.050598] Serial: AMBA PL011 UART driver
+[    0.077732] platform ff980000.hdmi: Fixing up cyclic dependency with ff940000.vop
+[    0.077921] platform ff980000.hdmi: Fixing up cyclic dependency with ff930000.vop
+[    0.095158] rockchip-gpio ff750000.gpio0: probed /pinctrl/gpio0@ff750000
+[    0.096116] rockchip-gpio ff780000.gpio1: probed /pinctrl/gpio1@ff780000
+[    0.097031] rockchip-gpio ff790000.gpio2: probed /pinctrl/gpio2@ff790000
+[    0.097932] rockchip-gpio ff7a0000.gpio3: probed /pinctrl/gpio3@ff7a0000
+[    0.098946] rockchip-gpio ff7b0000.gpio4: probed /pinctrl/gpio4@ff7b0000
+[    0.099912] rockchip-gpio ff7c0000.gpio5: probed /pinctrl/gpio5@ff7c0000
+[    0.100871] rockchip-gpio ff7d0000.gpio6: probed /pinctrl/gpio6@ff7d0000
+[    0.101800] rockchip-gpio ff7e0000.gpio7: probed /pinctrl/gpio7@ff7e0000
+[    0.102717] rockchip-gpio ff7f0000.gpio8: probed /pinctrl/gpio8@ff7f0000
+[    0.128645] xen:balloon: Initialising balloon driver
+[    0.133374] iommu: Default domain type: Translated 
+[    0.133440] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.135659] vgaarb: loaded
+[    0.136688] SCSI subsystem initialized
+[    0.137278] usbcore: registered new interface driver usbfs
+[    0.137402] usbcore: registered new interface driver hub
+[    0.137507] usbcore: registered new device driver usb
+[    0.139850] pps_core: LinuxPPS API ver. 1 registered
+[    0.139957] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.140084] PTP clock support registered
+[    0.140409] EDAC MC: Ver: 3.0.0
+[    0.144430] clocksource: Switched to clocksource arch_sys_counter
+[    0.248244] NET: Registered PF_INET protocol family
+[    0.248533] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.249623] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.249736] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.249831] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    0.249996] TCP bind hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.250169] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.250325] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.250428] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.250681] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.276280] RPC: Registered named UNIX socket transport module.
+[    0.276357] RPC: Registered udp transport module.
+[    0.276412] RPC: Registered tcp transport module.
+[    0.276465] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.276534] PCI: CLS 0 bytes, default 64
+[    0.277162] armv7-pmu arm-pmu: hw perfevents: failed to parse interrupt-affinity[0]
+[    0.277256] armv7-pmu: probe of arm-pmu failed with error -22
+[    0.278799] Initialise system trusted keyrings
+[    0.279421] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    0.288139] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.289115] NFS: Registering the id_resolver key type
+[    0.289244] Key type id_resolver registered
+[    0.289295] Key type id_legacy registered
+[    0.289455] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.289529] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.289643] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.290394] Key type asymmetric registered
+[    0.290453] Asymmetric key parser 'x509' registered
+[    0.290602] bounce: pool size: 64 pages
+[    0.290719] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.290802] io scheduler mq-deadline registered
+[    0.290859] io scheduler kyber registered
+[    0.386438] dma-pl330 ff250000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.386535] dma-pl330 ff250000.dma-controller: 	DBUFF-128x8bytes Num_Chans-8 Num_Peri-20 Num_Events-16
+[    0.387575] dma-pl330 ff600000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.387665] dma-pl330 ff600000.dma-controller: 	DBUFF-64x8bytes Num_Chans-5 Num_Peri-6 Num_Events-10
+[    0.408736] xen:xen_evtchn: Event-channel device installed
+[    0.524666] Serial: 8250/16550 driver, 5 ports, IRQ sharing enabled
+[    0.528175] ff180000.serial: ttyS0 at MMIO 0xff180000 (irq = 38, base_baud = 1500000) is a 16550A
+[    0.541723] ff190000.serial: ttyS1 at MMIO 0xff190000 (irq = 39, base_baud = 1500000) is a 16550A
+[    0.543186] ff1b0000.serial: ttyS3 at MMIO 0xff1b0000 (irq = 40, base_baud = 1500000) is a 16550A
+[    0.544667] ff1c0000.serial: ttyS4 at MMIO 0xff1c0000 (irq = 41, base_baud = 1500000) is a 16550A
+[    0.548213] SuperH (H)SCI(F) driver initialized
+[    0.550020] msm_serial: driver initialized
+[    0.550074] STMicroelectronics ASC driver initialized
+[    0.551192] STM32 USART driver initialized
+[    0.609695] brd: module loaded
+[    0.632771] loop: module loaded
+[    0.632892] Invalid max_queues (4), will use default max: 1.
+[    0.650720] CAN device driver interface
+[    0.652394] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.654457] e1000e: Intel(R) PRO/1000 Network Driver
+[    0.654517] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.654654] igb: Intel(R) Gigabit Ethernet Network Driver
+[    0.654714] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.662433] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.662579] pegasus: Pegasus/Pegasus II USB Ethernet driver
+[    0.662692] usbcore: registered new interface driver pegasus
+[    0.662830] usbcore: registered new interface driver asix
+[    0.662941] usbcore: registered new interface driver ax88179_178a
+[    0.663060] usbcore: registered new interface driver cdc_ether
+[    0.663190] usbcore: registered new interface driver smsc75xx
+[    0.663336] usbcore: registered new interface driver smsc95xx
+[    0.663457] usbcore: registered new interface driver net1080
+[    0.663577] usbcore: registered new interface driver cdc_subset
+[    0.663695] usbcore: registered new interface driver zaurus
+[    0.663823] usbcore: registered new interface driver cdc_ncm
+[    0.667398] dwc2 ff540000.usb: supply vusb_d not found, using dummy regulator
+[    0.667630] dwc2 ff540000.usb: supply vusb_a not found, using dummy regulator
+[    0.798924] dwc2 ff540000.usb: DWC OTG Controller
+[    0.799018] dwc2 ff540000.usb: new USB bus registered, assigned bus number 1
+[    0.799128] dwc2 ff540000.usb: irq 48, io mem 0xff540000
+[    0.800092] hub 1-0:1.0: USB hub found
+[    0.800200] hub 1-0:1.0: 1 port detected
+[    0.801094] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
+[    0.801326] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
+[    0.954915] dwc2 ff580000.usb: EPs: 10, dedicated fifos, 972 entries in SPRAM
+[    0.968813] dwc2 ff580000.usb: DWC OTG Controller
+[    0.968920] dwc2 ff580000.usb: new USB bus registered, assigned bus number 2
+[    0.969042] dwc2 ff580000.usb: irq 49, io mem 0xff580000
+[    0.969860] hub 2-0:1.0: USB hub found
+[    0.970015] hub 2-0:1.0: 1 port detected
+[    0.971898] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.971975] ehci-pci: EHCI PCI platform driver
+[    0.972084] ehci-platform: EHCI generic platform driver
+[    0.972487] ehci-platform ff500000.usb: EHCI Host Controller
+[    0.972584] ehci-platform ff500000.usb: new USB bus registered, assigned bus number 3
+[    0.973168] ehci-platform ff500000.usb: irq 47, io mem 0xff500000
+[    1.171370] usb 1-1: new high-speed USB device number 2 using dwc2
+[    1.197634] ehci-platform ff500000.usb: USB 2.0 started, EHCI 1.00
+[    1.211566] hub 3-0:1.0: USB hub found
+[    1.211675] hub 3-0:1.0: 1 port detected
+[    1.212463] ehci-omap: OMAP-EHCI Host Controller driver
+[    1.212765] ehci-orion: EHCI orion driver
+[    1.213077] SPEAr-ehci: EHCI SPEAr driver
+[    1.213369] ehci-st: EHCI STMicroelectronics driver
+[    1.213648] ehci-atmel: EHCI Atmel driver
+[    1.213915] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.214003] ohci-pci: OHCI PCI platform driver
+[    1.214134] ohci-platform: OHCI generic platform driver
+[    1.214559] SPEAr-ohci: OHCI SPEAr driver
+[    1.214833] ohci-st: OHCI STMicroelectronics driver
+[    1.215111] ohci-atmel: OHCI Atmel driver
+[    1.216223] usbcore: registered new interface driver usb-storage
+[    1.224851] i2c_dev: i2c /dev entries driver
+[    1.280463] rk808 0-001b: chip id: 0x0
+[    1.524148] usb 3-1: new high-speed USB device number 2 using ehci-platform
+[    1.537732] hub 1-1:1.0: USB hub found
+[    1.537909] vdd_arm: supplied by vcc_sys
+[    1.551517] hub 1-1:1.0: 4 ports detected
+[    1.565038] vdd_gpu: supplied by vcc_sys
+[    1.565470] vcc_ddr: supplied by vcc_sys
+[    1.570098] vcc_io: supplied by vcc_sys
+[    1.579409] vcc18_ldo1: supplied by vcc_sys
+[    1.588481] vcc33_mipi: supplied by vcc_sys
+[    1.638121] vdd_10: supplied by vcc_sys
+[    1.648995] vcc18_codec: supplied by vcc_io
+[    1.666782] vccio_sd: supplied by vcc_io
+[    1.690915] vdd10_lcd: Bringing 800000uV into 1000000-1000000uV
+[    1.699541] vdd10_lcd: supplied by vcc_io
+[    1.718717] vcc_18: supplied by vcc_sys
+[    1.736991] vcc18_lcd: supplied by vcc_sys
+[    1.739412] vcc33_sd: supplied by vcc_io
+[    1.739798] vcc33_lan: supplied by vcc_io
+[    1.765495] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    1.765593] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    1.770782] dw_wdt ff800000.watchdog: No valid TOPs array specified
+[    1.780505] cpu cpu0: OPP table can't be empty
+[    1.783604] sdhci: Secure Digital Host Controller Interface driver
+[    1.783692] sdhci: Copyright(c) Pierre Ossman
+[    1.787170] Synopsys Designware Multimedia Card Interface Driver
+[    1.790348] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.797167] dwmmc_rockchip ff0c0000.mmc: IDMAC supports 32-bit address mode.
+[    1.797413] dwmmc_rockchip ff0c0000.mmc: Using internal DMA controller.
+[    1.797494] dwmmc_rockchip ff0c0000.mmc: Version ID is 270a
+[    1.797665] dwmmc_rockchip ff0c0000.mmc: DW MMC controller at irq 34,32 bit host data width,256 deep fifo
+[    1.798276] mmc_host mmc0: card is polling.
+[    1.807456] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    1.807696] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    1.807777] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    1.807916] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    1.812059] mmc_host mmc0: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    1.827462] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.829524] usbcore: registered new interface driver usbhid
+[    1.829591] usbhid: USB HID core driver
+[    1.838122] NET: Registered PF_INET6 protocol family
+[    1.856277] Segment Routing with IPv6
+[    1.856401] In-situ OAM (IOAM) with IPv6
+[    1.856557] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.857356] NET: Registered PF_PACKET protocol family
+[    1.857468] can: controller area network core
+[    1.857693] NET: Registered PF_CAN protocol family
+[    1.857759] can: raw protocol
+[    1.857809] can: broadcast manager protocol
+[    1.857866] can: netlink gateway - max_hops=1
+[    1.858328] Key type dns_resolver registered
+[    1.858809] NET: Registered PF_VSOCK protocol family
+[    1.860494] ThumbEE CPU extension supported.
+[    1.860567] Registering SWP/SWPB emulation handler
+[    1.862736] Loading compiled-in X.509 certificates
+[    1.889996] vcc_sd: supplied by vcc_io
+[    1.893837] rk_gmac-dwmac ff290000.ethernet: IRQ eth_lpi not found
+[    1.893973] rk_gmac-dwmac ff290000.ethernet: Deprecated MDIO bus assumption used
+[    1.894113] rk_gmac-dwmac ff290000.ethernet: PTP uses main clock
+[    1.894468] rk_gmac-dwmac ff290000.ethernet: clock input or output? (input).
+[    1.894559] rk_gmac-dwmac ff290000.ethernet: TX delay(0x30).
+[    1.894647] rk_gmac-dwmac ff290000.ethernet: RX delay(0x10).
+[    1.894722] rk_gmac-dwmac ff290000.ethernet: integrated PHY? (no).
+[    1.894848] rk_gmac-dwmac ff290000.ethernet: cannot get clock clk_mac_speed
+[    1.894921] rk_gmac-dwmac ff290000.ethernet: clock input from PHY
+[    1.900002] rk_gmac-dwmac ff290000.ethernet: init for RGMII
+[    1.914549] rk_gmac-dwmac ff290000.ethernet: User ID: 0x10, Synopsys ID: 0x35
+[    1.914644] rk_gmac-dwmac ff290000.ethernet: 	DWMAC1000
+[    1.914715] rk_gmac-dwmac ff290000.ethernet: DMA HW capability register supported
+[    1.914794] rk_gmac-dwmac ff290000.ethernet: RX Checksum Offload Engine supported
+[    1.914871] rk_gmac-dwmac ff290000.ethernet: COE Type 2
+[    1.914930] rk_gmac-dwmac ff290000.ethernet: TX Checksum insertion supported
+[    1.915006] rk_gmac-dwmac ff290000.ethernet: Wake-Up On Lan supported
+[    1.915161] rk_gmac-dwmac ff290000.ethernet: Normal descriptors
+[    1.915234] rk_gmac-dwmac ff290000.ethernet: Ring mode enabled
+[    1.915302] rk_gmac-dwmac ff290000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    1.966274] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ div = 0)
+[    1.967011] mmc0: new high speed SDHC card at address aaaa
+[    1.968024] mmcblk0: mmc0:aaaa SK32G 29.7 GiB 
+[    1.976841] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    1.976936] GPT:5422101 != 62333951
+[    1.976982] GPT:Alternate GPT header not at the end of the disk.
+[    1.977044] GPT:5422101 != 62333951
+[    1.977089] GPT: Use GNU Parted to correct GPT errors.
+[    1.977195]  mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9
+[    2.979647] RTL8211E Gigabit Ethernet stmmac-0:00: attached PHY driver (mii_bus:phy_addr=stmmac-0:00, irq=POLL)
+[    2.979768] RTL8211E Gigabit Ethernet stmmac-0:01: attached PHY driver (mii_bus:phy_addr=stmmac-0:01, irq=POLL)
+[    2.983376] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.983474] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    2.990291] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    2.990549] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    2.990630] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    2.990749] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    2.994191] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.994287] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.002124] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    3.003065] clk: Not disabling unused clocks
+[    3.006075] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.006182] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.008665] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.008941] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.009022] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.009138] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.013394] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.013492] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.021513] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.023041] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.023125] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.023280] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.048665] EXT4-fs (mmcblk0p7): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    3.048832] VFS: Mounted root (ext4 filesystem) on device 179:7.
+[    3.049683] devtmpfs: mounted
+[    3.055900] Freeing unused kernel image (initmem) memory: 2048K
+[    3.061914] Run /sbin/init as init process
+INIT: version 3.01 booting
+[    3.196729] input: Generic USB Audio Consumer Control as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input1
+[    3.264895] input: Generic USB Audio as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input2
+[    3.265519] hid-generic 0003:0BDA:49F6.0001: input: USB HID v1.11 Device [Generic USB Audio] on usb-ff500000.usb-1/input6
+[    3.269477] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.269572] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.276716] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.277007] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.277089] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.277209] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+Starting udev
+[    3.659811] udevd[98]: starting version 3.2.10
+[    3.672380] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.674040] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.674245] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.708802] udevd[99]: starting eudev-3.2.10
+[    5.212852] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Fri Mar  9 12:34:56 UTC 2018
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+[    6.407593] random: dd: uninitialized urandom read (512 bytes read)
+INIT: Entering runlevel: 5
+Configuring network interfaces... udhcpc: started, v1.35.0
+[    6.707518] rk_gmac-dwmac ff290000.ethernet eth0: PHY [stmmac-0:00] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+[    6.708586] rk_gmac-dwmac ff290000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    6.714632] rk_gmac-dwmac ff290000.ethernet eth0: No Safety Features support found
+[    6.714728] rk_gmac-dwmac ff290000.ethernet eth0: PTP not supported by HW
+[    6.715345] rk_gmac-dwmac ff290000.ethernet eth0: configuring for phy/rgmii link mode
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+Starting /usr/sbin/xenstored....
+Setting domain 0 name, domid and JSON config...
+Done setting up Dom0
+Starting xenconsoled...
+Starting QEMU as disk backend for dom0
+/etc/rc5.d/S80xencommons: line 73: /usr/bin/qemu-system-i386: No such file or directory
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: 
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: root
+root@tinker-board:~# xl info | grep -E 'nr_cpus|xen_scheduler'; xl dmesg | grep  -E 'Brought up|Using PSCI'; cat /proc/cmdline
+nr_cpus                : 4
+xen_scheduler          : credit2
+(XEN) Using PSCI v1.0
+(XEN) Brought up 4 CPUs
+console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+root@tinker-board:~# 
+#### rtos1-start (creates the rt pool on CPU 3)
+rtos1-start
+(XEN) Removing cpu 3 from runqueue 0
+Using config file "command line"
+cpupool name:   rt
+scheduler:      rtds
+number of cpus: 1
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+(XEN) rt.c:745: RTDS: timer initialized on cpu 3
+Parsing config from /etc/xen/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[   35.131230] random: xl: uninitialized urandom read (128 bytes read)
+(d1) 
+(d1) [rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+(d1) [rtos] virtual timer 24000000 Hz, tick 1000 Hz
+(d1) [rtos] 4 tasks created, starting the scheduler
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0      1000       200        yes
+root@tinker-board:~# (d1) [rtos] 10 ms task: 1000 periods, min 9970 us, max 10053 us; heartbeats 9, queue messages 3 (report 1)
+xl cpupool-list; xl cpupool-list -c
+Name               CPUs   Sched     Active   Domain count
+Pool-0               3   credit2       y          1
+rt                   1      rtds       y          1
+Name               CPU list
+Pool-0             0,1,2
+rt                 3
+root@tinker-board:~# (d1) [rtos] 10 ms task: 1000 periods, min 9969 us, max 10042 us; heartbeats 19, queue messages 7 (report 2)
+(d1) [rtos] 10 ms task: 1000 periods, min 9989 us, max 10007 us; heartbeats 29, queue messages 11 (report 3)
+
+#### 2) starting the Android guest
+xl create /etc/xen/android1.cfg
+Parsing config from /etc/xen/android1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[   70.113197] random: xl: uninitialized urandom read (128 bytes read)
+[   71.695010] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   71.695111] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   71.701830] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   71.702125] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   71.702205] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   71.702322] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   71.833209] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   71.833309] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   71.840449] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   71.840783] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   71.840863] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   71.840983] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   72.935191] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   72.935292] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   72.942755] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   72.943233] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   72.943313] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   72.943431] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   73.264143] xenbr0: port 1(vif2.0) entered blocking state
+[   73.264233] xenbr0: port 1(vif2.0) entered disabled state
+[   73.264620] device vif2.0 entered promiscuous mode
+root@tinker-board:~# (XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[   75.194002] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+(d1) [rtos] 10 ms task: 1000 periods, min 9888 us, max 10103 us; heartbeats 39, queue messages 15 (report 4)
+[   75.357173] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 1 to 2 frames
+[   75.440146] vif vif-2-0 vif2.0: Guest Rx ready
+[   75.440278] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[   75.440500] xenbr0: port 1(vif2.0) entered blocking state
+[   75.440575] xenbr0: port 1(vif2.0) entered forwarding state
+(XEN) gnttab_mark_dirty not implemented yet
+(XEN) grant_table.c:1871:d2v1 Expanding d2 grant table from 2 to 3 frames
+(d1) [rtos] 10 ms task: 1000 periods, min 9929 us, max 10071 us; heartbeats 49, queue messages 19 (report 5)
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 3 to 4 frames
+(d1) [rtos] 10 ms task: 1000 periods, min 9957 us, max 10043 us; heartbeats 59, queue messages 23 (report 6)
+xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      27.1
+rtos1                                        1    16     1     -b----       2.0
+android1                                     2   767     2     -b----      19.4
+root@tinker-board:~# 
+#### 3) Android console (kernel + init), 240 s
+xl console android1
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.14.336-android-xen (@arjune) (gcc version 11.5.0 (GCC)) #2 SMP Sat Oct 24 14:31:50 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=30c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: XENVM-4.16
+[    0.000000] random: crng init done
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x000000006c000000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 14 pages/cpu s36748 r0 d20596 u57344
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 194880
+[    0.000000] Kernel command line: console=hvc0 androidboot.hardware=xen androidboot.console=hvc0 androidboot.selinux=permissive video=vfb:640x480-16@60 vfb.videomemorysize=4194304
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 686604K/786432K available (14336K kernel code, 1963K rwdata, 5208K rodata, 2048K init, 518K bss, 34292K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0800000 - 0xff800000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xf0000000   ( 768 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc1200000   (16352 kB)
+[    0.000000]       .init : 0xc1800000 - 0xc1a00000   (2048 kB)
+[    0.000000]       .data : 0xc1a00000 - 0xc1beac70   (1964 kB)
+[    0.000000]        .bss : 0xc1bf6494 - 0xc1c77de8   ( 519 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU event tracing is enabled.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000007] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000023] Switching to timer-based delay loop, resolution 41ns
+[    0.000282] Console: colour dummy device 80x30
+[    0.002750] console [hvc0] enabled
+[    0.002820] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.002925] CPU: Testing write buffer coherency: ok
+[    0.003017] CPU0: Spectre v2: using BPIALL workaround
+[    0.003072] pid_max: default: 32768 minimum: 301
+[    0.003239] Security Framework initialized
+[    0.003288] SELinux:  Initializing.
+[    0.003442] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.003518] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.004552] /cpus/cpu@0 missing clock-frequency property
+[    0.004626] /cpus/cpu@1 missing clock-frequency property
+[    0.004682] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.006115] xen:grant_table: Grant tables using version 1 layout
+[    0.006228] Grant table initialized
+[    0.006358] xen:events: Using FIFO-based ABI
+[    0.006442] Xen: initializing cpu0
+[    0.006584] Setting up static identity map for 0x40400000 - 0x40400178
+[    0.008734] Hierarchical SRCU implementation.
+[    0.009207] EFI services will not be available.
+[    0.009423] smp: Bringing up secondary CPUs ...
+[    0.063401] Xen: initializing cpu1
+[    0.063500] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.063507] CPU1: Spectre v2: using BPIALL workaround
+[    0.064300] smp: Brought up 1 node, 2 CPUs
+[    0.064353] SMP: Total of 2 processors activated (96.00 BogoMIPS).
+[    0.064413] CPU: All CPU(s) started in SVC mode.
+[    0.065746] devtmpfs: initialized
+[    0.066807] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.067118] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.067223] futex hash table entries: 512 (order: 3, 32768 bytes)
+[    0.069350] pinctrl core: initialized pinctrl subsystem
+[    0.070478] DMI not present or invalid.
+[    0.070967] NET: Registered protocol family 16
+[    0.074003] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.075854] No ATAGs?
+[    0.075980] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.076103] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.076182] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.201828] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 1
+[    0.201943] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 1
+[    0.203539] Serial: AMBA PL011 UART driver
+[    0.221269] xen:balloon: Initialising balloon driver
+[    0.223236] vgaarb: loaded
+[    0.224066] SCSI subsystem initialized
+[    0.224657] usbcore: registered new interface driver usbfs
+[    0.224779] usbcore: registered new interface driver hub
+[    0.224900] usbcore: registered new device driver usb
+[    0.225601] media: Linux media interface: v0.10
+[    0.225723] Linux video capture interface: v2.00
+[    0.225835] pps_core: LinuxPPS API ver. 1 registered
+[    0.225903] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.226009] PTP clock support registered
+[    0.226236] EDAC MC: Ver: 3.0.0
+[    0.226865] dmi: Firmware registration failed.
+[    0.227548] Advanced Linux Sound Architecture Driver Initialized.
+[    0.228164] Bluetooth: Core ver 2.22
+[    0.228275] NET: Registered protocol family 31
+[    0.228335] Bluetooth: HCI device and connection manager initialized
+[    0.228406] Bluetooth: HCI socket layer initialized
+[    0.228473] Bluetooth: L2CAP socket layer initialized
+[    0.228561] Bluetooth: SCO socket layer initialized
+[    0.230236] clocksource: Switched to clocksource arch_sys_counter
+[    0.326768] NET: Registered protocol family 2
+[    0.327043] IP idents hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.328164] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.328339] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.328585] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.328736] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.328847] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.329071] NET: Registered protocol family 1
+[    0.329712] RPC: Registered named UNIX socket transport module.
+[    0.329780] RPC: Registered udp transport module.
+[    0.329831] RPC: Registered tcp transport module.
+[    0.329882] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.330369] Trying to unpack rootfs image as initramfs...
+[    0.429527] Freeing initrd memory: 1240K
+[    0.432667] audit: initializing netlink subsys (disabled)
+[    0.433125] audit: type=2000 audit(0.300:1): state=initialized audit_enabled=0 res=1
+[    0.433656] workingset: timestamp_bits=14 max_order=18 bucket_order=4
+[    0.440499] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.441412] NFS: Registering the id_resolver key type
+[    0.441513] Key type id_resolver registered
+[    0.441563] Key type id_legacy registered
+[    0.441655] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.442273] fuse init (API version 7.26)
+[    0.452864] NET: Registered protocol family 38
+[    0.453451] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.453559] io scheduler noop registered
+[    0.453606] io scheduler deadline registered
+[    0.453816] io scheduler cfq registered (default)
+[    0.453887] io scheduler mq-deadline registered
+[    0.453944] io scheduler kyber registered
+[    0.466917] Console: switching to colour frame buffer device 80x30
+[    0.469908] fb0: Virtual frame buffer device, using 4096K of video memory
+[    0.492516] xen:xen_evtchn: Event-channel device installed
+[    0.637692] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.640273] SuperH (H)SCI(F) driver initialized
+[    0.640793] msm_serial: driver initialized
+[    0.640985] STMicroelectronics ASC driver initialized
+[    0.653734] brd: module loaded
+[    0.660952] loop: module loaded
+[    0.661104] Invalid max_queues (4), will use default max: 2.
+[    0.677082] tun: Universal TUN/TAP device driver, 1.6
+[    0.677621] CAN device driver interface
+[    0.678763] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.679643] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    0.679731] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.679839] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    0.679905] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.682024] usbcore: registered new interface driver rt2800usb
+[    0.682117] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.690962] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    0.691087] usbcore: registered new interface driver pegasus
+[    0.691193] usbcore: registered new interface driver r8152
+[    0.691307] usbcore: registered new interface driver asix
+[    0.691403] usbcore: registered new interface driver ax88179_178a
+[    0.691513] usbcore: registered new interface driver cdc_ether
+[    0.691624] usbcore: registered new interface driver smsc75xx
+[    0.691727] usbcore: registered new interface driver smsc95xx
+[    0.691830] usbcore: registered new interface driver net1080
+[    0.691932] usbcore: registered new interface driver cdc_subset
+[    0.692043] usbcore: registered new interface driver zaurus
+[    0.692145] usbcore: registered new interface driver cdc_ncm
+[    0.693608] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.693686] ehci-pci: EHCI PCI platform driver
+[    0.693779] ehci-platform: EHCI generic platform driver
+[    0.693939] ehci-orion: EHCI orion driver
+[    0.694090] SPEAr-ehci: EHCI SPEAr driver
+[    0.694241] ehci-st: EHCI STMicroelectronics driver
+[    0.694409] ehci-exynos: EHCI EXYNOS driver
+[    0.694560] ehci-atmel: EHCI Atmel driver
+[    0.694711] ehci-msm: Qualcomm On-Chip EHCI Host Controller
+[    0.694868] tegra-ehci: Tegra EHCI driver
+[    0.695022] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.695108] ohci-pci: OHCI PCI platform driver
+[    0.695212] ohci-platform: OHCI generic platform driver
+[    0.695379] ohci-exynos: OHCI EXYNOS driver
+[    0.695530] SPEAr-ohci: OHCI SPEAr driver
+[    0.695684] ohci-st: OHCI STMicroelectronics driver
+[    0.695848] ohci-atmel: OHCI Atmel driver
+[    0.696432] usbcore: registered new interface driver usb-storage
+[    0.697729] udc-core: couldn't find an available UDC - added [g_ether] to list of pending drivers
+[    0.702744] i2c /dev entries driver
+[    0.705217] IR NEC protocol handler initialized
+[    0.705278] IR RC5(x/sz) protocol handler initialized
+[    0.705331] IR RC6 protocol handler initialized
+[    0.705383] IR JVC protocol handler initialized
+[    0.705435] IR Sony protocol handler initialized
+[    0.705495] IR SANYO protocol handler initialized
+[    0.705549] IR Sharp protocol handler initialized
+[    0.705601] IR MCE Keyboard/mouse protocol handler initialized
+[    0.705660] IR XMP protocol handler initialized
+[    0.706326] vivid-000: using single planar format API
+[    0.710070] vivid-000: V4L2 capture device registered as video0
+[    0.710363] vivid-000: V4L2 output device registered as video1
+[    0.710609] vivid-000: V4L2 capture device registered as vbi0, supports raw and sliced VBI
+[    0.710903] vivid-000: V4L2 output device registered as vbi1, supports raw and sliced VBI
+[    0.838883] vivid-000: V4L2 capture device registered as swradio0
+[    0.839137] vivid-000: V4L2 receiver device registered as radio0
+[    0.839377] vivid-000: V4L2 transmitter device registered as radio1
+[    0.841625] usbcore: registered new interface driver uvcvideo
+[    0.841705] USB Video Class driver (1.1.1)
+[    0.841750] gspca_main: v2.14.0 registered
+[    0.848829] sdhci: Secure Digital Host Controller Interface driver
+[    0.848909] sdhci: Copyright(c) Pierre Ossman
+[    0.849824] Synopsys Designware Multimedia Card Interface Driver
+[    0.850807] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.852903] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.854326] usbcore: registered new interface driver usbhid
+[    0.854398] usbhid: USB HID core driver
+[    0.855356] ashmem: initialized
+[    0.858888] usbcore: registered new interface driver snd-usb-audio
+[    0.865646] nf_conntrack version 0.5.0 (12288 buckets, 49152 max)
+[    0.866345] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    0.867443] NET: Registered protocol family 10
+[    0.868725] Segment Routing with IPv6
+[    0.868881] mip6: Mobile IPv6
+[    0.868947] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[    0.869374] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    0.871258] NET: Registered protocol family 17
+[    0.871901] can: controller area network core (rev 20170425 abi 9)
+[    0.872040] NET: Registered protocol family 29
+[    0.872103] can: raw protocol (rev 20170425)
+[    0.872161] can: broadcast manager protocol (rev 20170425 t)
+[    0.872234] can: netlink gateway (rev 20170425) max_hops=1
+[    0.872612] Key type dns_resolver registered
+[    0.872904] ThumbEE CPU extension supported.
+[    0.872975] Registering SWP/SWPB emulation handler
+[    0.937070] blkfront: xvda: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.963997] blkfront: xvdb: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.990737] hctosys: unable to open rtc device (rtc0)
+[    0.990860] ALSA device list:
+[    0.990906]   No soundcards found.
+[    0.998089] Freeing unused kernel memory: 2048K
+[    1.018934] init: init first stage started!
+[    1.033184] SELinux:  Permission validate_trans in class security not defined in policy.
+[    1.033295] SELinux:  Permission getrlimit in class process not defined in policy.
+[    1.033368] SELinux:  Class process2 not defined in policy.
+[    1.033478] SELinux:  Permission map in class file not defined in policy.
+[    1.033562] SELinux:  Permission map in class dir not defined in policy.
+[    1.033646] SELinux:  Permission map in class lnk_file not defined in policy.
+[    1.033732] SELinux:  Permission map in class chr_file not defined in policy.
+[    1.033817] SELinux:  Permission map in class blk_file not defined in policy.
+[    1.033903] SELinux:  Permission map in class sock_file not defined in policy.
+[    1.033988] SELinux:  Permission map in class fifo_file not defined in policy.
+[    1.034079] SELinux:  Permission map in class socket not defined in policy.
+[    1.038177] SELinux:  Permission map in class tcp_socket not defined in policy.
+[    1.038271] SELinux:  Permission map in class udp_socket not defined in policy.
+[    1.038360] SELinux:  Permission map in class rawip_socket not defined in policy.
+[    1.038456] SELinux:  Permission map in class netlink_socket not defined in policy.
+[    1.038554] SELinux:  Permission map in class packet_socket not defined in policy.
+[    1.038650] SELinux:  Permission map in class key_socket not de(d1) [rtos] 10 ms task: 1000 periods, min 9982 us, max 10017 us; heartbeats 69, queue messages 27 (report 7)
+[   34.314622] type=1400 audit(1520598996.769:283): avc: denied { map } for pid=132 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1766 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+[   36.044922] capability: warning: `main' uses 32-bit capabilities (legacy support in use)
+[   39.292306] type=1400 audit(1520599001.749:284): avc: denied { map } for pid=373 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   39.313639] type=1400 audit(1520599001.769:285): avc: denied { map } for pid=373 comm="system_server" path="/system/framework/oat/arm/services.odex" dev="xvda" ino=933 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   39.577676] type=1400 audit(1520599002.029:286): avc: denied { map } for pid=373 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8328 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9945 us, max 10054 us; heartbeats 79, queue messages 31 (report 8)
+[   43.187287] type=1400 audit(1520599005.639:287): avc: denied { map } for pid=373 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  118.204588] random: crng init done
+[  118.204653] random: 1 urandom warning(s) missed due to ratelimiting
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+(d1) [rtos] 10 ms task: 1000 periods, min 9966 us, max 10034 us; heartbeats 89, queue messages 35 (report 9)
+(d1) [rtos] 10 ms task: 1000 periods, min 9991 us, max 10009 us; heartbeats 99, queue messages 39 (report 10)
+[   65.670349] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   65.670826] type=1400 audit(1520599028.129:288): avc: denied { wake_alarm } for pid=126 comm="healthd" capability=35 scontext=u:r:healthd:s0 tcontext=u:r:healthd:s0 tclass=capability2 permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9975 us, max 10025 us; heartbeats 109, queue messages 43 (report 11)
+[   79.559010] type=1400 audit(1520599042.009:289): avc: denied { map } for pid=373 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9992 us, max 10007 us; heartbeats 119, queue messages 47 (report 12)
+[   81.660736] type=1400 audit(1520599044.109:290): avc: denied { map } for pid=136 comm="installd" path="/dev/__properties__/u:object_r:dalvik_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:installd:s0 tcontext=u:object_r:dalvik_prop:s0 tclass=file permissive=1
+[   81.661308] type=1400 audit(1520599044.109:291): avc: denied { dac_read_search } for pid=136 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[   81.690603] type=1400 audit(1520599044.109:292): avc: denied { map } for pid=136 comm="installd" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:installd:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[   83.754584] type=1400 audit(1520599046.209:293): avc: denied { map } for pid=127 comm="lmkd" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1765 scontext=u:r:lmkd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   83.755080] type=1400 audit(1520599046.209:294): avc: denied { map } for pid=127 comm="lmkd" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1760 scontext=u:r:lmkd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   83.809490] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   85.378749] type=1400 audit(1520599047.829:295): avc: denied { map } for pid=373 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[   85.514534] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[   86.275700] type=1400 audit(1520599048.729:296): avc: denied { map } for pid=415 comm="installd" path="/dev/__properties__/u:object_r:vold_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:installd:s0 tcontext=u:object_r:vold_prop:s0 tclass=file permissive=1
+[   86.276803] type=1400 audit(1520599048.729:297): avc: denied { map } for pid=415 comm="installd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1769 scontext=u:r:installd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[   86.282020] type=1400 audit(1520599048.739:298): avc: denied { map } for pid=415 comm="dex2oat" path="/system/bin/dex2oat" dev="xvda" ino=260 scontext=u:r:dex2oat:s0 tcontext=u:object_r:dex2oat_exec:s0 tclass=file permissive=1
+[   86.282625] type=1400 audit(1520599048.739:299): avc: denied { map } for pid=415 comm="dex2oat" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:dex2oat:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   86.284492] type=1400 audit(1520599048.739:300): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1779 scontext=u:r:dex2oat:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[   86.670315] type=1400 audit(1520599049.119:301): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1754 scontext=u:r:dex2oat:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   86.677745] type=1400 audit(1520599049.129:302): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1765 scontext=u:r:dex2oat:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   86.678626] type=1400 audit(1520599049.129:303): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1760 scontext=u:r:dex2oat:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   86.717292] type=1400 audit(1520599049.169:304): avc: denied { map } for pid=415 comm="dex2oat" path="/data/app/SmokeTestApp/SmokeTestApp.apk" dev="xvdb" ino=22 scontext=u:r:dex2oat:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9973 us, max 10024 us; heartbeats 129, queue messages 51 (report 13)
+[   94.359706] type=1400 audit(1520599056.809:307): avc: denied { dac_read_search } for pid=112 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[   95.889458] type=1400 audit(1520599058.339:308): avc: denied { map } for pid=373 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1747 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[   96.711038] type=1400 audit(1520599059.169:309): avc: denied { map } for pid=373 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[   96.800918] type=1400 audit(1520599059.259:310): avc: denied { map } for pid=373 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14197 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[   97.566419] type=1400 audit(1520599060.019:311): avc: denied { map } for pid=373 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[   97.754580] type=1400 audit(1520599060.209:312): avc: denied { map } for pid=132 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   97.850979] type=1400 audit(1520599060.209:313): avc: denied { dac_read_search } for pid=464 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[   97.852101] type=1400 audit(1520599060.219:314): avc: denied { map } for pid=373 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1759 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[   97.852520] type=1400 audit(1520599060.259:315): avc: denied { map } for pid=469 comm="sdcard" path="/system/bin/sdcard" dev="xvda" ino=418 scontext=u:r:sdcardd:s0 tcontext=u:object_r:sdcardd_exec:s0 tclass=file permissive=1
+[   97.853332] type=1400 audit(1520599060.259:316): avc: denied { map } for pid=469 comm="sdcard" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:sdcardd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9955 us, max 10049 us; heartbeats 139, queue messages 55 (report 14)
+[  101.443835] type=1400 audit(1520599063.829:350): avc: denied { dac_read_search } for pid=595 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  103.280638] type=1400 audit(1520599064.099:351): avc: denied { map } for pid=129 comm="Binder:129_3" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  103.281084] type=1400 audit(1520599064.139:352): avc: denied { map } for pid=373 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  103.281472] type=1400 audit(1520599064.839:353): avc: denied { map } for pid=595 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1754 scontext=u:r:system_app:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  103.281976] type=1400 audit(1520599064.839:354): avc: denied { map } for pid=595 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1760 scontext=u:r:system_app:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  103.282368] type=1400 audit(1520599064.839:355): avc: denied { map } for pid=111 comm="debuggerd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1769 scontext=u:r:debuggerd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  103.282760] type=1400 audit(1520599064.889:356): avc: denied { map } for pid=625 comm="debuggerd" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:debuggerd:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  103.283719] type=1400 audit(1520599064.889:357): avc: denied { map } for pid=625 comm="debuggerd" path="/system/framework/arm/boot.oat" dev="xvda" ino=886 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  103.284107] type=1400 audit(1520599064.969:358): avc: denied { map } for pid=140 comm="Binder:140_2" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  103.284502] type=1400 audit(1520599065.039:359): avc: denied { map } for pid=141 comm="Binder:141_2" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1769 scontext=u:r:mediaserver:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  108.755779] type=1400 audit(1520599071.119:363): avc: denied { map } for pid=488 comm="ndroid.systemui" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  109.087782] init: Service 'bootanim' (pid 195) exited with status 0
+[  109.270321] type=1400 audit(1520599071.259:364): avc: denied { map } for pid=533 comm="Binder:533_4" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  109.270827] type=1400 audit(1520599071.269:365): avc: denied { map } for pid=138 comm="mediacodec" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  109.271271] type=1400 audit(1520599071.449:366): avc: denied { map } for pid=129 comm="Binder:129_2" path="/system/etc/event-log-tags" dev="xvda" ino=498 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  109.271732] type=1400 audit(1520599071.469:367): avc: denied { map } for pid=141 comm="Binder:141_4" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1775 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  109.272180] type=1400 audit(1520599071.539:368): avc: denied { map } for pid=540 comm="Binder:540_4" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:system_app:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  109.272673] type=1400 audit(1520599071.589:369): avc: denied { map } for pid=488 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1754 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  109.273157] type=1400 audit(1520599071.589:370): avc: denied { map } for pid=488 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1760 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 1000 periods, min 9953 us, max 10047 us; heartbeats 149, queue messages 59 (report 15)
+[  111.840877] type=1400 audit(1520599074.279:371): avc: denied { map } for pid=762 comm="debuggerd" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:debuggerd:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[  111.881189] binder: undelivered transaction 10365, process died.
+[  111.881303] binder: undelivered transaction 17932, process died.
+[  111.881459] binder: undelivered transaction 17931, process died.
+[  111.881679] binder: undelivered transaction 10435, process died.
+[  111.881767] binder: undelivered transaction 12655, process died.
+[  111.881834] binder: undelivered transaction 15089, process died.
+[  111.960363] type=1400 audit(1520599074.369:372): avc: denied { map } for pid=132 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8338 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1

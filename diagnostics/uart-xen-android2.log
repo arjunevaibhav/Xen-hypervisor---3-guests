@@ -1,0 +1,1383 @@
+
+root@tinker-board:~# 
+#### stop the crash-looping guest, install the fixed ramdisk
+xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----     105.0
+root@tinker-board:~# R=/var/lib/xen/android/ramdisk.img; dd if=$R of=/tmp/rd.img  bs=1265344 count=1 && cat /tmp/ov.gz >> /tmp/rd.img && md5sum /tmp/rd.img
+1+0 records in
+1+0 records out
+dbe40b43b95d13f4decd9022d0a198c0  /tmp/rd.img
+root@tinker-board:~# md5sum /tmp/rd.img | grep -q dbe40b43b95d13f4decd9022d0a198 c0 && mv /tmp/rd.img $R && sync && echo RAMDISK-OK
+RAMDISK-OK
+root@tinker-board:~# 
+#### start Android
+xl create /etc/xen/android1.cfg
+Parsing config from /etc/xen/android1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[  589.507432] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[  589.507537] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[  589.512474] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  589.513081] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  589.513207] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  589.513328] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  589.644721] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[  589.644824] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[  589.650132] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  589.650469] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  589.650551] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  589.650672] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  590.728069] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[  590.728170] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[  590.733073] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  590.733568] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  590.733652] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  590.733786] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  591.045443] xenbr0: port 1(vif2.0) entered blocking state
+[  591.045534] xenbr0: port 1(vif2.0) entered disabled state
+[  591.045825] device vif2.0 entered promiscuous mode
+root@tinker-board:~# (XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[  592.981970] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 1 to 2 frames
+[  593.039859] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  593.108892] vif vif-2-0 vif2.0: Guest Rx ready
+[  593.109016] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[  593.109277] xenbr0: port 1(vif2.0) entered blocking state
+[  593.109349] xenbr0: port 1(vif2.0) entered forwarding state
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 2 to 3 frames
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 3 to 4 frames
+xl console android1
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.14.336-android-xen (@arjune) (gcc version 11.5.0 (GCC)) #1 SMP Sat Oct 24 13:43:46 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=30c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: XENVM-4.16
+[    0.000000] random: crng init done
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x000000006c000000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 14 pages/cpu s36748 r0 d20596 u57344
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 194880
+[    0.000000] Kernel command line: console=hvc0 androidboot.hardware=xen androidboot.console=hvc0 androidboot.selinux=permissive video=vfb:640x480-16@60 vfb.videomemorysize=4194304
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 686604K/786432K available (14336K kernel code, 1963K rwdata, 5208K rodata, 2048K init, 518K bss, 34292K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0800000 - 0xff800000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xf0000000   ( 768 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc1200000   (16352 kB)
+[    0.000000]       .init : 0xc1800000 - 0xc1a00000   (2048 kB)
+[    0.000000]       .data : 0xc1a00000 - 0xc1beac70   (1964 kB)
+[    0.000000]        .bss : 0xc1bf6494 - 0xc1c77de8   ( 519 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU event tracing is enabled.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000007] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000023] Switching to timer-based delay loop, resolution 41ns
+[    0.000281] Console: colour dummy device 80x30
+[    0.002846] console [hvc0] enabled
+[    0.002917] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.003021] CPU: Testing write buffer coherency: ok
+[    0.003112] CPU0: Spectre v2: using BPIALL workaround
+[    0.003166] pid_max: default: 32768 minimum: 301
+[    0.003331] Security Framework initialized
+[    0.003381] SELinux:  Initializing.
+[    0.003571] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.003648] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.004680] /cpus/cpu@0 missing clock-frequency property
+[    0.004754] /cpus/cpu@1 missing clock-frequency property
+[    0.004812] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.006258] xen:grant_table: Grant tables using version 1 layout
+[    0.006373] Grant table initialized
+[    0.006486] xen:events: Using FIFO-based ABI
+[    0.006568] Xen: initializing cpu0
+[    0.006708] Setting up static identity map for 0x40400000 - 0x40400178
+[    0.008856] Hierarchical SRCU implementation.
+[    0.009325] EFI services will not be available.
+[    0.009543] smp: Bringing up secondary CPUs ...
+[    0.064168] Xen: initializing cpu1
+[    0.064266] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.064273] CPU1: Spectre v2: using BPIALL workaround
+[    0.065070] smp: Brought up 1 node, 2 CPUs
+[    0.065123] SMP: Total of 2 processors activated (96.00 BogoMIPS).
+[    0.065183] CPU: All CPU(s) started in SVC mode.
+[    0.066495] devtmpfs: initialized
+[    0.067554] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.067866] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.067973] futex hash table entries: 512 (order: 3, 32768 bytes)
+[    0.070146] pinctrl core: initialized pinctrl subsystem
+[    0.071269] DMI not present or invalid.
+[    0.071757] NET: Registered protocol family 16
+[    0.074787] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.076638] No ATAGs?
+[    0.076764] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.076888] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.201569] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.201845] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 1
+[    0.201952] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 1
+[    0.203496] Serial: AMBA PL011 UART driver
+[    0.221482] xen:balloon: Initialising balloon driver
+[    0.223252] vgaarb: loaded
+[    0.224126] SCSI subsystem initialized
+[    0.224909] usbcore: registered new interface driver usbfs
+[    0.225033] usbcore: registered new interface driver hub
+[    0.225155] usbcore: registered new device driver usb
+[    0.225854] media: Linux media interface: v0.10
+[    0.225979] Linux video capture interface: v2.00
+[    0.226092] pps_core: LinuxPPS API ver. 1 registered
+[    0.226161] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.226272] PTP clock support registered
+[    0.226499] EDAC MC: Ver: 3.0.0
+[    0.226945] dmi: Firmware registration failed.
+[    0.227841] Advanced Linux Sound Architecture Driver Initialized.
+[    0.228461] Bluetooth: Core ver 2.22
+[    0.228574] NET: Registered protocol family 31
+[    0.228639] Bluetooth: HCI device and connection manager initialized
+[    0.228712] Bluetooth: HCI socket layer initialized
+[    0.228774] Bluetooth: L2CAP socket layer initialized
+[    0.228860] Bluetooth: SCO socket layer initialized
+[    0.230449] clocksource: Switched to clocksource arch_sys_counter
+[    0.326645] NET: Registered protocol family 2
+[    0.326884] IP idents hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.327990] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.328140] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.328385] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.328546] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.328656] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.328882] NET: Registered protocol family 1
+[    0.329573] RPC: Registered named UNIX socket transport module.
+[    0.329644] RPC: Registered udp transport module.
+[    0.329734] RPC: Registered tcp transport module.
+[    0.329788] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.330155] Trying to unpack rootfs image as initramfs...
+[    0.431577] Freeing initrd memory: 1240K
+[    0.434593] audit: initializing netlink subsys (disabled)
+[    0.435029] audit: type=2000 audit(0.300:1): state=initialized audit_enabled=0 res=1
+[    0.435552] workingset: timestamp_bits=14 max_order=18 bucket_order=4
+[    0.442484] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.443330] NFS: Registering the id_resolver key type
+[    0.443473] Key type id_resolver registered
+[    0.443534] Key type id_legacy registered
+[    0.443628] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.444219] fuse init (API version 7.26)
+[    0.454351] NET: Registered protocol family 38
+[    0.454906] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.455010] io scheduler noop registered
+[    0.455058] io scheduler deadline registered
+[    0.455267] io scheduler cfq registered (default)
+[    0.455345] io scheduler mq-deadline registered
+[    0.455403] io scheduler kyber registered
+[    0.468462] Console: switching to colour frame buffer device 80x30
+[    0.471761] fb0: Virtual frame buffer device, using 4096K of video memory
+[    0.494215] xen:xen_evtchn: Event-channel device installed
+[    0.632738] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.635231] SuperH (H)SCI(F) driver initialized
+[    0.635746] msm_serial: driver initialized
+[    0.635942] STMicroelectronics ASC driver initialized
+[    0.648563] brd: module loaded
+[    0.655717] loop: module loaded
+[    0.655869] Invalid max_queues (4), will use default max: 2.
+[    0.672183] tun: Universal TUN/TAP device driver, 1.6
+[    0.672742] CAN device driver interface
+[    0.673850] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.674719] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    0.674815] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.674924] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    0.674993] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.677011] usbcore: registered new interface driver rt2800usb
+[    0.677109] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.685289] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    0.685428] usbcore: registered new interface driver pegasus
+[    0.685535] usbcore: registered new interface driver r8152
+[    0.685628] usbcore: registered new interface driver asix
+[    0.685721] usbcore: registered new interface driver ax88179_178a
+[    0.685824] usbcore: registered new interface driver cdc_ether
+[    0.685945] usbcore: registered new interface driver smsc75xx
+[    0.686056] usbcore: registered new interface driver smsc95xx
+[    0.686160] usbcore: registered new interface driver net1080
+[    0.686263] usbcore: registered new interface driver cdc_subset
+[    0.686363] usbcore: registered new interface driver zaurus
+[    0.686461] usbcore: registered new interface driver cdc_ncm
+[    0.687558] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.687631] ehci-pci: EHCI PCI platform driver
+[    0.687727] ehci-platform: EHCI generic platform driver
+[    0.687915] ehci-orion: EHCI orion driver
+[    0.688055] SPEAr-ehci: EHCI SPEAr driver
+[    0.688196] ehci-st: EHCI STMicroelectronics driver
+[    0.688342] ehci-exynos: EHCI EXYNOS driver
+[    0.688479] ehci-atmel: EHCI Atmel driver
+[    0.688628] ehci-msm: Qualcomm On-Chip EHCI Host Controller
+[    0.688775] tegra-ehci: Tegra EHCI driver
+[    0.688914] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.689019] ohci-pci: OHCI PCI platform driver
+[    0.689128] ohci-platform: OHCI generic platform driver
+[    0.689284] ohci-exynos: OHCI EXYNOS driver
+[    0.689425] SPEAr-ohci: OHCI SPEAr driver
+[    0.689567] ohci-st: OHCI STMicroelectronics driver
+[    0.689714] ohci-atmel: OHCI Atmel driver
+[    0.690244] usbcore: registered new interface driver usb-storage
+[    0.691469] udc-core: couldn't find an available UDC - added [g_ether] to list of pending drivers
+[    0.695967] i2c /dev entries driver
+[    0.698444] IR NEC protocol handler initialized
+[    0.698506] IR RC5(x/sz) protocol handler initialized
+[    0.698558] IR RC6 protocol handler initialized
+[    0.698609] IR JVC protocol handler initialized
+[    0.698659] IR Sony protocol handler initialized
+[    0.698715] IR SANYO protocol handler initialized
+[    0.698767] IR Sharp protocol handler initialized
+[    0.698820] IR MCE Keyboard/mouse protocol handler initialized
+[    0.698880] IR XMP protocol handler initialized
+[    0.699543] vivid-000: using single planar format API
+[    0.703512] vivid-000: V4L2 capture device registered as video0
+[    0.703806] vivid-000: V4L2 output device registered as video1
+[    0.704065] vivid-000: V4L2 capture device registered as vbi0, supports raw and sliced VBI
+[    0.817060] blkfront: xvda: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.833144] vivid-000: V4L2 output device registered as vbi1, supports raw and sliced VBI
+[    0.833391] vivid-000: V4L2 capture device registered as swradio0
+[    0.833678] vivid-000: V4L2 receiver device registered as radio0
+[    0.833934] vivid-000: V4L2 transmitter device registered as radio1
+[    0.836019] usbcore: registered new interface driver uvcvideo
+[    0.836097] USB Video Class driver (1.1.1)
+[    0.836142] gspca_main: v2.14.0 registered
+[    0.843726] sdhci: Secure Digital Host Controller Interface driver
+[    0.843824] sdhci: Copyright(c) Pierre Ossman
+[    0.844808] Synopsys Designware Multimedia Card Interface Driver
+[    0.845719] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.847939] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.849347] usbcore: registered new interface driver usbhid
+[    0.849435] usbhid: USB HID core driver
+[    0.850558] ashmem: initialized
+[    0.854339] usbcore: registered new interface driver snd-usb-audio
+[    0.859010] blkfront: xvdb: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.861106] nf_conntrack version 0.5.0 (12288 buckets, 49152 max)
+[    0.861866] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    0.863769] NET: Registered protocol family 10
+[    0.865069] Segment Routing with IPv6
+[    0.865251] mip6: Mobile IPv6
+[    0.865323] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[    0.866100] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    0.867305] NET: Registered protocol family 17
+[    0.867840] can: controller area network core (rev 20170425 abi 9)
+[    0.867971] NET: Registered protocol family 29
+[    0.868067] can: raw protocol (rev 20170425)
+[    0.868125] can: broadcast manager protocol (rev 20170425 t)
+[    0.868212] can: netlink gateway (rev 20170425) max_hops=1
+[    0.868595] Key type dns_resolver registered
+[    0.868867] ThumbEE CPU extension supported.
+[    0.868933] Registering SWP/SWPB emulation handler
+[    0.873746] hctosys: unable to open rtc device (rtc0)
+[    0.873868] ALSA device list:
+[    0.873915]   No soundcards found.
+[    0.881173] Freeing unused kernel memory: 2048K
+[    0.929058] init: init first stage started!
+[    0.943371] SELinux:  Permission validate_trans in class security not defined in policy.
+[    0.943521] SELinux:  Permission getrlimit in class process not defined in policy.
+[    0.943595] SELinux:  Class process2 not defined in policy.
+[    0.943706] SELinux:  Permission map in class file not defined in policy.
+[    0.943788] SELinux:  Permission map in class dir not defined in policy.
+[    0.943871] SELinux:  Permission map in class lnk_file not defined in policy.
+[    0.943957] SELinux:  Permission map in class chr_file not defined in policy.
+[    0.944041] SELinux:  Permission map in class blk_file not defined in policy.
+[    0.944127] SELinux:  Permission map in class sock_file not defined in policy.
+[    0.944211] SELinux:  Permission map in class fifo_file not defined in policy.
+[    0.944300] SELinux:  Permission map in class socket not defined in policy.
+[    0.944376] SELinux:  Permission map in class tcp_socket not defined in policy.
+[    0.944466] SELinux:  Permission map in class udp_socket not defined in policy.
+[    1.032966] SELinux:  Permission map in class rawip_socket not defined in policy.
+[    1.033081] SELinux:  Permission map in class netlink_socket not defined in policy.
+[    1.033[   34.105139] type=1400 audit(1520599515.472:284): avc: denied { map } for pid=131 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1758 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+[   35.911205] capability: warning: `main' uses 32-bit capabilities (legacy support in use)
+[   39.020477] type=1400 audit(1520599520.382:285): avc: denied { map } for pid=373 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   39.041965] type=1400 audit(1520599520.412:286): avc: denied { map } for pid=373 comm="system_server" path="/system/framework/oat/arm/services.odex" dev="xvda" ino=933 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   39.296408] type=1400 audit(1520599520.662:287): avc: denied { map } for pid=373 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   42.853817] type=1400 audit(1520599524.222:288): avc: denied { map } for pid=373 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[   52.756059] type=1400 audit(1520599534.122:289): avc: denied { map } for pid=373 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[   52.940957] type=1400 audit(1520599534.302:290): avc: denied { map } for pid=373 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[   53.109507] type=1400 audit(1520599534.472:291): avc: denied { map } for pid=135 comm="installd" path="/dev/__properties__/u:object_r:dalvik_prop:s0" dev="tmpfs" ino=1741 scontext=u:r:installd:s0 tcontext=u:object_r:dalvik_prop:s0 tclass=file permissive=1
+[   53.109937] type=1400 audit(1520599534.472:292): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[   54.965142] type=1400 audit(1520599536.332:293): avc: denied { map } for pid=126 comm="lmkd" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:lmkd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   54.969169] type=1400 audit(1520599536.332:294): avc: denied { map } for pid=126 comm="lmkd" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:lmkd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   55.040539] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   55.045412] type=1400 audit(1520599536.412:295): avc: denied { wake_alarm } for pid=125 comm="healthd" capability=35 scontext=u:r:healthd:s0 tcontext=u:r:healthd:s0 tclass=capability2 permissive=1
+[   56.143187] type=1400 audit(1520599537.512:296): avc: denied { map } for pid=373 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[   56.264703] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[   57.090702] type=1400 audit(1520599538.452:297): avc: denied { map } for pid=135 comm="installd" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:installd:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[   57.098589] type=1400 audit(1520599538.462:298): avc: denied { map } for pid=414 comm="installd" path="/dev/__properties__/u:object_r:vold_prop:s0" dev="tmpfs" ino=1745 scontext=u:r:installd:s0 tcontext=u:object_r:vold_prop:s0 tclass=file permissive=1
+[   57.951642] type=1400 audit(1520599539.322:309): avc: denied { map } for pid=417 comm="installd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:installd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[   58.034058] type=1400 audit(1520599539.402:310): avc: denied { map } for pid=417 comm="dex2oat" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:dex2oat:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   64.530505] type=1400 audit(1520599545.892:311): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[   65.188943] type=1400 audit(1520599546.542:312): avc: denied { map } for pid=373 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:system_server:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   65.189431] type=1400 audit(1520599546.542:313): avc: denied { map } for pid=373 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:system_server:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   65.189839] type=1400 audit(1520599546.542:314): avc: denied { map } for pid=110 comm="debuggerd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:debuggerd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[   65.226210] type=1400 audit(1520599546.562:315): avc: denied { map } for pid=440 comm="debuggerd" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:debuggerd:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[   65.227358] type=1400 audit(1520599546.562:316): avc: denied { map } for pid=440 comm="debuggerd" path="/system/framework/arm/boot.oat" dev="xvda" ino=886 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   65.251067] type=1400 audit(1520599546.592:317): avc: denied { map } for pid=440 comm="debuggerd" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=1744 scontext=u:r:debuggerd:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[   66.120774] type=1400 audit(1520599547.482:318): avc: denied { map } for pid=440 comm="debuggerd" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[   68.285436] binder_alloc: 373: binder_alloc_buf, no vma
+[   68.285527] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[   68.331547] binder: undelivered transaction 5623, process died.
+[   68.331653] binder: undelivered transaction 5626, process died.
+[   68.331721] binder: undelivered transaction 5630, process died.
+[   68.331820] binder: undelivered transaction 5633, process died.
+[   68.331910] binder: undelivered transaction 5637, process died.
+[   68.331997] binder: undelivered transaction 5640, process died.
+[   68.332086] binder: undelivered transaction 5644, process died.
+[   68.332173] binder: undelivered transaction 5647, process died.
+[   68.332259] binder: undelivered transaction 5651, process died.
+[   68.332346] binder: undelivered transaction 5654, process died.
+[   68.332441] binder: undelivered transaction 5658, process died.
+[   68.332546] binder: undelivered transaction 5661, process died.
+[   68.332634] binder: undelivered transaction 5665, process died.
+[   68.332725] binder: undelivered transaction 5668, process died.
+[   68.332809] binder: undelivered transaction 5672, process died.
+[   68.332897] binder: undelivered transaction 5675, process died.
+[   68.332982] binder: undelivered transaction 5679, process died.
+[   68.333068] binder: undelivered transaction 5682, process died.
+[   68.333153] binder: undelivered transaction 5686, process died.
+[   68.333240] binder: undelivered transaction 5689, process died.
+[   68.333326] binder: undelivered transaction 5693, process died.
+[   68.333421] binder: undelivered transaction 5696, process died.
+[   68.333526] binder: undelivered transaction 5700, process died.
+[   68.333616] binder: undelivered transaction 5703, process died.
+[   68.333701] binder: undelivered transaction 5707, process died.
+[   68.333788] binder: undelivered transaction 5710, process died.
+[   68.333874] binder: undelivered transaction 5714, process died.
+[   68.333960] binder: undelivered transaction 5717, process died.
+[   68.334047] binder: undelivered transaction 5721, process died.
+[   68.334133] binder: undelivered transaction 5724, process died.
+[   68.334219] binder: undelivered transaction 5728, process died.
+[   68.334287] binder: undelivered transaction 5731, process died.
+[   68.334356] binder: undelivered transaction 5735, process died.
+[   68.334469] binder: undelivered transaction 5738, process died.
+[   68.334536] binder: undelivered transaction 5742, process died.
+[   68.334601] binder: undelivered transaction 5745, process died.
+[   68.334665] binder: undelivered transaction 5749, process died.
+[   68.334730] binder: undelivered transaction 5752, process died.
+[   68.334795] binder: undelivered transaction 5756, process died.
+[   68.334858] binder: undelivered transaction 5759, process died.
+[   68.334921] binder: undelivered transaction 5763, process died.
+[   68.334984] binder: undelivered transaction 5766, process died.
+[   68.335049] binder: undelivered transaction 5770, process died.
+[   68.335113] binder: undelivered transaction 5773, process died.
+[   68.335176] binder: undelivered transaction 5777, process died.
+[   68.335239] binder: undelivered transaction 5780, process died.
+[   68.335302] binder: undelivered transaction 5784, process died.
+[   68.335366] binder: undelivered transaction 5787, process died.
+[   68.335430] binder: undelivered transaction 5791, process died.
+[   68.335493] binder: undelivered transaction 5794, process died.
+[   68.335556] binder: undelivered transaction 5798, process died.
+[   68.335619] binder: undelivered transaction 5801, process died.
+[   68.335682] binder: undelivered transaction 5805, process died.
+[   68.335745] binder: undelivered transaction 5808, process died.
+[   68.335822] binder: undelivered transaction 5812, process died.
+[   68.335886] binder: undelivered transaction 5815, process died.
+[   68.335949] binder: undelivered transaction 5819, process died.
+[   68.336013] binder: undelivered transaction 5822, process died.
+[   68.336076] binder: undelivered transaction 5826, process died.
+[   68.336139] binder: undelivered transaction 5829, process died.
+[   68.499989] binder: undelivered transaction 5833, process died.
+[   68.500067] binder: undelivered transaction 5836, process died.
+[   68.500131] binder: undelivered transaction 5840, process died.
+[   68.500194] binder: undelivered transaction 5843, process died.
+[   68.500257] binder: undelivered transaction 5847, process died.
+[   68.500322] binder: undelivered transaction 5850, process died.
+[   68.500417] binder: undelivered transaction 5854, process died.
+[   68.500490] binder: undelivered transaction 5857, process died.
+[   68.500557] binder: undelivered transaction 5861, process died.
+[   68.500780] binder: undelivered transaction 5622, process died.
+[   68.510559] type=1400 audit(1520599549.872:319): avc: denied { map } for pid=127 comm="servicemanager" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:servicemanager:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   68.545638] type=1400 audit(1520599549.872:320): avc: denied { map } for pid=127 comm="servicemanager" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:servicemanager:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   68.583001] init: Service 'zygote' (pid 131) killed by signal 9
+[   68.583142] init: Service 'zygote' (pid 131) killing any children in process group
+[   68.583502] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[   68.583783] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[   68.583928] init: Service 'audioserver' is being killed...
+[   68.584159] init: Service 'cameraserver' is being killed...
+[   68.584436] init: Service 'media' is being killed...
+[   68.584695] init: Service 'netd' is being killed...
+[   68.587069] init: Starting service 'zygote'...
+[   68.589770] init: Service 'cameraserver' (pid 133) killed by signal 9
+[   69.800591] type=1400 audit(1520599551.162:338): avc: denied { map } for pid=448 comm="cameraserver" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:cameraserver:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   69.840582] type=1400 audit(1520599551.192:339): avc: denied { map } for pid=448 comm="cameraserver" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:cameraserver:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   69.900658] type=1400 audit(1520599551.232:340): avc: denied { map } for pid=448 comm="cameraserver" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:cameraserver:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   69.901204] type=1400 audit(1520599551.232:341): avc: denied { map } for pid=448 comm="cameraserver" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:cameraserver:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   69.901812] type=1400 audit(1520599551.232:342): avc: denied { map } for pid=448 comm="cameraserver" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:cameraserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[   70.100571] type=1400 audit(1520599551.462:343): avc: denied { map } for pid=450 comm="audioserver" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:audioserver:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   70.152640] type=1400 audit(1520599551.522:344): avc: denied { map } for pid=450 comm="audioserver" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:audioserver:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   70.153168] type=1400 audit(1520599551.522:345): avc: denied { map } for pid=450 comm="audioserver" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:audioserver:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   70.153668] type=1400 audit(1520599551.522:346): avc: denied { map } for pid=450 comm="audioserver" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:audioserver:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   70.250585] type=1400 audit(1520599551.542:347): avc: denied { map } for pid=450 comm="audioserver" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:audioserver:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   74.778123] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[   74.819828] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[   74.945215] type=1400 audit(1520599556.262:361): avc: denied { map } for pid=665 comm="ip" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:netd:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   74.946456] type=1400 audit(1520599556.272:362): avc: denied { map } for pid=451 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   75.060695] type=1400 audit(1520599556.422:363): avc: denied { map } for pid=640 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[   75.190595] type=1400 audit(1520599556.512:364): avc: denied { map } for pid=640 comm="system_server" path="/system/framework/framework-res.apk" dev="xvda" ino=902 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   76.600578] type=1400 audit(1520599557.962:365): avc: denied { map } for pid=640 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[   78.094090] type=1400 audit(1520599559.462:366): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[   78.780447] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   79.073566] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[   79.076929] type=1400 audit(1520599560.372:367): avc: denied { map } for pid=640 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[   80.696707] type=1400 audit(1520599562.062:368): avc: denied { map } for pid=640 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[   81.580598] type=1400 audit(1520599562.932:369): avc: denied { map } for pid=128 comm="Binder:128_1" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   81.581051] type=1400 audit(1520599562.932:370): avc: denied { map } for pid=640 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[   81.665258] type=1400 audit(1520599563.032:371): avc: denied { map } for pid=640 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[   82.446309] type=1400 audit(1520599563.812:372): avc: denied { map } for pid=640 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[   83.037275] type=1400 audit(1520599563.812:373): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[   83.046325] type=1400 audit(1520599563.842:374): avc: denied { dac_read_search } for pid=723 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[   83.046895] type=1400 audit(1520599563.892:375): avc: denied { map } for pid=729 comm="sdcard" path="/system/bin/sdcard" dev="xvda" ino=418 scontext=u:r:sdcardd:s0 tcontext=u:object_r:sdcardd_exec:s0 tclass=file permissive=1
+[   83.047885] type=1400 audit(1520599563.892:376): avc: denied { map } for pid=729 comm="sdcard" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:sdcardd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   83.048306] type=1400 audit(1520599563.892:377): avc: denied { map } for pid=729 comm="sdcard" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:sdcardd:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[   87.115294] type=1400 audit(1520599568.462:411): avc: denied { map } for pid=741 comm="ndroid.systemui" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   88.175541] binder_alloc: 640: binder_alloc_buf, no vma
+[   88.175630] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[   88.314590] binder: release 640:653 transaction 9179 in, still active
+[   88.314680] binder: send failed reply for transaction 9179 to 723:723
+[   88.314779] binder: release 640:731 transaction 8094 out, still active
+[   88.315175] binder: undelivered transaction 9285, process died.
+[   88.315251] binder: undelivered transaction 9289, process died.
+[   88.315316] binder: undelivered transaction 9292, process died.
+[   88.315380] binder: undelivered transaction 9296, process died.
+[   88.315443] binder: undelivered transaction 9304, process died.
+[   88.315507] binder: undelivered transaction 9318, process died.
+[   88.315571] binder: undelivered transaction 9321, process died.
+[   88.315633] binder: undelivered transaction 9325, process died.
+[   88.315695] binder: undelivered transaction 9328, process died.
+[   88.315757] binder: undelivered transaction 9332, process died.
+[   88.315818] binder: undelivered transaction 9376, process died.
+[   88.315880] binder: undelivered transaction 9380, process died.
+[   88.315943] binder: undelivered transaction 9383, process died.
+[   88.316005] binder: undelivered transaction 9387, process died.
+[   88.316068] binder: undelivered transaction 9390, process died.
+[   88.316130] binder: undelivered transaction 9394, process died.
+[   88.316192] binder: undelivered transaction 9434, process died.
+[   88.316255] binder: undelivered transaction 9448, process died.
+[   88.316317] binder: undelivered transaction 9451, process died.
+[   88.316379] binder: undelivered transaction 9455, process died.
+[   88.316442] binder: undelivered transaction 9458, process died.
+[   88.316504] binder: undelivered transaction 9503, process died.
+[   88.316988] binder: send failed reply for transaction 9280 to 846:846
+[   88.317069] binder: undelivered transaction 9281, process died.
+[   88.317136] binder: send failed reply for transaction 9282 to 741:741
+[   88.325310] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[   88.352530] binder: 846:846 transaction failed 29189/-22, size 1916-4 line 2807
+[   88.386624] binder: 723:723 transaction failed 29189/-22, size 3080-4 line 2807
+[   88.531759] init: Service 'zygote' (pid 447) killed by signal 9
+[   88.531895] init: Service 'zygote' (pid 447) killing any children in process group
+[   88.532573] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[   88.532812] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[   88.532970] init: Service 'audioserver' is being killed...
+[   88.533367] init: Service 'cameraserver' is being killed...
+[   88.533625] init: Service 'media' is being killed...
+[   88.533901] init: Service 'netd' is being killed...
+[   88.534252] init: Untracked pid 723 killed by signal 9
+[   88.534518] init: Untracked pid 846 killed by signal 9
+[   88.591312] binder: release 449:508 transaction 9690 out, still active
+[   88.591420] binder: release 449:508 transaction 8094 in, still active
+[   88.700613] type=1400 audit(1520599569.932:412): avc: denied { map } for pid=894 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[   88.701724] type=1400 audit(1520599569.932:413): avc: denied { map } for pid=893 comm="app_process" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:zygote:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[   88.702718] type=1400 audit(1520599569.932:414): avc: denied { map } for pid=893 comm="app_process" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:zygote:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   88.703188] type=1400 audit(1520599569.942:415): avc: denied { map } for pid=893 comm="app_process" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:zygote:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[   88.703731] type=1400 audit(1520599569.942:416): avc: denied { map } for pid=137 comm="Binder:137_3" path="/system/lib/libstagefright.so" dev="xvda" ino=1189 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   88.704257] type=1400 audit(1520599569.992:417): avc: denied { map } for pid=896 comm="audioserver" path="/system/bin/audioserver" dev="xvda" ino=225 scontext=u:r:audioserver:s0 tcontext=u:object_r:audioserver_exec:s0 tclass=file permissive=1
+[   88.705192] type=1400 audit(1520599569.992:418): avc: denied { map } for pid=896 comm="audioserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:audioserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   88.705670] type=1400 audit(1520599569.992:419): avc: denied { map } for pid=896 comm="audioserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:audioserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[   88.706122] type=1400 audit(1520599569.992:420): avc: denied { map } for pid=897 comm="cameraserver" path="/system/bin/cameraserver" dev="xvda" ino=239 scontext=u:r:cameraserver:s0 tcontext=u:object_r:cameraserver_exec:s0 tclass=file permissive=1
+[   89.190624] binder: 137:879 transaction failed 29189/0, size 8-0 line 2739
+[   89.190739] binder: send failed reply for transaction 9690, target dead
+[   89.190807] binder: send failed reply for transaction 8094, target dead
+[   92.136589] type=1400 audit(1520599573.502:459): avc: denied { map } for pid=893 comm="main" path="/dev/__properties__/u:object_r:radio_prop:s0" dev="tmpfs" ino=1768 scontext=u:r:zygote:s0 tcontext=u:object_r:radio_prop:s0 tclass=file permissive=1
+[   93.110616] type=1400 audit(1520599574.472:460): avc: denied { map } for pid=893 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1758 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+[   94.430602] type=1400 audit(1520599575.792:461): avc: denied { map } for pid=1086 comm="sh" path="/system/bin/sh" dev="xvda" ino=431 scontext=u:r:netd:s0 tcontext=u:object_r:shell_exec:s0 tclass=file permissive=1
+[   94.696039] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[   94.724718] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[   94.811565] type=1400 audit(1520599576.182:462): avc: denied { map } for pid=894 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   95.057995] type=1400 audit(1520599576.422:463): avc: denied { map } for pid=1104 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[   95.500718] type=1400 audit(1520599576.862:464): avc: denied { map } for pid=1104 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[   97.080605] type=1400 audit(1520599578.442:465): avc: denied { map } for pid=1104 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[   97.160602] type=1400 audit(1520599578.522:466): avc: denied { map } for pid=1104 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[   97.266816] type=1400 audit(1520599578.622:467): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[   97.830317] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   98.086345] type=1400 audit(1520599579.412:468): avc: denied { map } for pid=1104 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[   98.115003] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[   99.150597] type=1400 audit(1520599580.512:469): avc: denied { map } for pid=1104 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[   99.167041] type=1400 audit(1520599580.532:470): avc: denied { map } for pid=1104 comm="system_server" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   99.441169] type=1400 audit(1520599580.802:471): avc: denied { map } for pid=128 comm="Binder:128_5" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   99.560932] type=1400 audit(1520599580.922:472): avc: denied { map } for pid=1104 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[   99.590799] type=1400 audit(1520599580.952:473): avc: denied { map } for pid=1104 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[  100.040649] type=1400 audit(1520599581.402:474): avc: denied { map } for pid=893 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  100.261801] type=1400 audit(1520599581.422:475): avc: denied { map } for pid=1104 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  102.610736] type=1400 audit(1520599582.532:494): avc: denied { map } for pid=1230 comm="sdcard" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:sdcardd:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  102.846160] type=1400 audit(1520599582.532:495): avc: denied { map } for pid=1230 comm="sdcard" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:sdcardd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  102.846631] type=1400 audit(1520599582.532:496): avc: denied { map } for pid=1230 comm="sdcard" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:sdcardd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[  102.847048] type=1400 audit(1520599582.532:497): avc: denied { map } for pid=1230 comm="sdcard" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:sdcardd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  102.847481] type=1400 audit(1520599582.612:498): avc: denied { map } for pid=1104 comm="android.display" path="/system/priv-app/InputDevices/InputDevices.apk" dev="xvda" ino=1550 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  102.847905] type=1400 audit(1520599582.762:499): avc: denied { map } for pid=1242 comm="m.android.phon" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  102.848886] type=1400 audit(1520599582.802:500): avc: denied { dac_read_search } for pid=1248 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  103.287237] type=1400 audit(1520599582.902:501): avc: denied { map } for pid=1248 comm="ngs:CryptKeepe" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_app:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  103.287763] type=1400 audit(1520599582.922:502): avc: denied { map } for pid=1242 comm="m.android.phone" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:radio:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  103.288207] type=1400 audit(1520599583.022:503): avc: denied { map } for pid=1248 comm="ngs:CryptKeeper" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_app:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  104.195538] binder_alloc: 1104: binder_alloc_buf, no vma
+[  104.195647] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[  104.302039] binder: release 1104:1174 transaction 11725 out, still active
+[  104.302304] binder: undelivered transaction 13078, process died.
+[  104.302311] binder: undelivered transaction 13085, process died.
+[  104.302316] binder: undelivered transaction 13135, process died.
+[  104.302320] binder: undelivered transaction 13182, process died.
+[  104.302325] binder: undelivered transaction 13187, process died.
+[  104.302330] binder: undelivered transaction 13190, process died.
+[  104.302334] binder: undelivered transaction 13209, process died.
+[  104.302339] binder: undelivered transaction 13212, process died.
+[  104.302344] binder: undelivered transaction 13216, process died.
+[  104.302348] binder: undelivered transaction 13219, process died.
+[  104.302353] binder: undelivered transaction 13238, process died.
+[  104.302357] binder: undelivered transaction 13241, process died.
+[  104.302362] binder: undelivered transaction 13245, process died.
+[  104.302367] binder: undelivered transaction 13248, process died.
+[  104.302371] binder: undelivered transaction 13282, process died.
+[  104.302376] binder: undelivered transaction 13297, process died.
+[  104.302380] binder: undelivered transaction 13301, process died.
+[  104.302385] binder: undelivered transaction 13334, process died.
+[  104.302389] binder: undelivered transaction 13355, process died.
+[  104.302393] binder: undelivered transaction 13358, process died.
+[  104.302398] binder: undelivered transaction 13446, process died.
+[  104.302402] binder: undelivered transaction 13460, process died.
+[  104.302407] binder: undelivered transaction 13464, process died.
+[  104.302412] binder: undelivered transaction 13494, process died.
+[  104.302417] binder: undelivered transaction 13520, process died.
+[  104.302421] binder: undelivered transaction 13523, process died.
+[  104.302426] binder: undelivered transaction 13558, process died.
+[  104.302882] binder: undelivered transaction 13076, process died.
+[  104.302891] binder: send failed reply for transaction 13077 to 1301:1301
+[  104.302904] binder: send failed reply for transaction 13082 to 1190:1190
+[  104.302915] binder: send failed reply for transaction 13186 to 1242:1242
+[  104.302925] binder: send failed reply for transaction 13252 to 1167:1287
+[  104.309658] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  104.317916] binder: 1190:1190 transaction failed 29189/-22, size 3304-4 line 2807
+[  104.386247] binder: 1301:1301 transaction failed 29189/-22, size 96-0 line 2807
+[  104.412711] binder: 1301:1301 transaction failed 29189/-22, size 3380-4 line 2807
+[  104.621148] binder: release 1190:1281 transaction 12544 out, still active
+[  104.621802] init: Service 'zygote' (pid 893) killed by signal 9
+[  104.621906] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  104.622050] init: Service 'zygote' (pid 893) killing any children in process group
+[  104.622734] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  104.623014] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  104.623184] init: Service 'audioserver' is being killed...
+[  104.623430] init: Service 'cameraserver' is being killed...
+[  104.623651] init: Service 'media' is being killed...
+[  104.623875] init: Service 'netd' is being killed...
+[  104.626362] init: Starting service 'zygote'...
+[  104.645943] init: Service 'audioserver' (pid 896) killed by signal 9
+[  104.662121] binder: release 898:963 transaction 13671 out, still active
+[  104.662234] binder: release 898:963 transaction 11725 in, still active
+[  104.662311] binder: release 898:1237 transaction 12544 in, still active
+[  104.662412] binder: send failed reply for transaction 12544, target dead
+[  105.096226] binder: 137:879 transaction failed 29189/0, size 8-0 line 2739
+[  105.096344] binder: send failed reply for transaction 13671, target dead
+[  105.096413] binder: send failed reply for transaction 11725, target dead
+[  107.820586] type=1400 audit(1520599589.172:541): avc: denied { map } for pid=1352 comm="app_process" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:zygote:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  107.870746] type=1400 audit(1520599589.232:542): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:zygote:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[  107.871301] type=1400 audit(1520599589.232:543): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:zygote:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  107.871776] type=1400 audit(1520599589.232:544): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:zygote:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  107.896008] type=1400 audit(1520599589.242:545): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:dalvik_prop:s0" dev="tmpfs" ino=1741 scontext=u:r:zygote:s0 tcontext=u:object_r:dalvik_prop:s0 tclass=file permissive=1
+[  107.896572] type=1400 audit(1520599589.242:546): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:config_prop:s0" dev="tmpfs" ino=1742 scontext=u:r:zygote:s0 tcontext=u:object_r:config_prop:s0 tclass=file permissive=1
+[  107.897257] type=1400 audit(1520599589.242:547): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:vold_prop:s0" dev="tmpfs" ino=1745 scontext=u:r:zygote:s0 tcontext=u:object_r:vold_prop:s0 tclass=file permissive=1
+[  107.897802] type=1400 audit(1520599589.242:548): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:zygote:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  107.901217] type=1400 audit(1520599589.242:549): avc: denied { map } for pid=1352 comm="zygote" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=1744 scontext=u:r:zygote:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[  107.910150] type=1400 audit(1520599589.262:550): avc: denied { map } for pid=1352 comm="zygote" path="/data/dalvik-cache/arm/system@framework@boot.art" dev="xvdb" ino=7074 scontext=u:r:zygote:s0 tcontext=u:object_r:dalvikcache_data_file:s0 tclass=file permissive=1
+[  110.894266] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  110.920549] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  112.850616] type=1400 audit(1520599594.212:560): avc: denied { map } for pid=1549 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  112.930627] type=1400 audit(1520599594.292:561): avc: denied { map } for pid=1549 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  113.035987] type=1400 audit(1520599594.392:562): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  113.690104] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  113.900706] type=1400 audit(1520599595.262:563): avc: denied { map } for pid=1549 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  113.966267] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  115.040584] type=1400 audit(1520599596.402:564): avc: denied { map } for pid=1549 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[  115.455068] type=1400 audit(1520599596.822:565): avc: denied { map } for pid=1549 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  115.470877] type=1400 audit(1520599596.832:566): avc: denied { map } for pid=1549 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[  116.002955] type=1400 audit(1520599597.322:567): avc: denied { map } for pid=1549 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  116.003225] type=1400 audit(1520599597.322:568): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  116.221755] type=1400 audit(1520599597.372:569): avc: denied { map } for pid=1627 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  116.872252] audit: audit_lost=99 audit_rate_limit=20 audit_backlog_limit=64
+[  116.872353] audit: rate limit exceeded
+[  118.781525] binder: 128:154 transaction failed 29189/-22, size 156-0 line 2807
+[  119.441530] type=1400 audit(1520599598.242:587): avc: denied { map } for pid=1686 comm="sdcard" path="/system/bin/sdcard" dev="xvda" ino=418 scontext=u:r:sdcardd:s0 tcontext=u:object_r:sdcardd_exec:s0 tclass=file permissive=1
+[  119.590757] type=1400 audit(1520599598.432:590): avc: denied { map } for pid=1686 comm="sdcard" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:sdcardd:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  119.610845] type=1400 audit(1520599598.432:591): avc: denied { map } for pid=1686 comm="sdcard" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:sdcardd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  119.611362] type=1400 audit(1520599598.432:592): avc: denied { map } for pid=1686 comm="sdcard" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:sdcardd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[  119.611905] type=1400 audit(1520599598.432:593): avc: denied { map } for pid=1686 comm="sdcard" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:sdcardd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  119.612410] type=1400 audit(1520599598.462:594): avc: denied { map } for pid=1549 comm="android.display" path="/system/priv-app/InputDevices/InputDevices.apk" dev="xvda" ino=1550 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  119.612920] type=1400 audit(1520599598.482:595): avc: denied { map } for pid=1686 comm="sdcard" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:sdcardd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  119.613400] type=1400 audit(1520599598.622:596): avc: denied { map } for pid=1702 comm="m.android.phon" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  119.613936] type=1400 audit(1520599598.762:597): avc: denied { map } for pid=1650 comm="ndroid.systemui" path="/system/lib/libsoundpool.so" dev="xvda" ino=1182 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  119.614409] type=1400 audit(1520599598.782:598): avc: denied { map } for pid=1702 comm="m.android.phone" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:radio:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  120.035432] binder_alloc: 1549: binder_alloc_buf, no vma
+[  120.035543] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[  120.396603] binder: release 1549:1634 transaction 15694 out, still active
+[  120.397098] binder: undelivered transaction 17327, process died.
+[  120.397199] binder: undelivered transaction 17330, process died.
+[  120.397293] binder: undelivered transaction 17410, process died.
+[  120.397385] binder: undelivered transaction 17424, process died.
+[  120.397488] binder: undelivered transaction 17428, process died.
+[  120.397555] binder: undelivered transaction 17446, process died.
+[  120.397644] binder: undelivered transaction 17450, process died.
+[  120.397728] binder: undelivered transaction 17453, process died.
+[  120.397798] binder: undelivered transaction 17472, process died.
+[  120.397863] binder: undelivered transaction 17475, process died.
+[  120.397928] binder: undelivered transaction 17479, process died.
+[  120.398012] binder: undelivered transaction 17523, process died.
+[  120.398094] binder: undelivered transaction 17527, process died.
+[  120.398164] binder: undelivered transaction 17530, process died.
+[  120.398230] binder: undelivered transaction 17581, process died.
+[  120.398295] binder: undelivered transaction 17584, process died.
+[  120.398360] binder: undelivered transaction 17588, process died.
+[  120.398448] binder: undelivered transaction 17686, process died.
+[  120.398552] binder: undelivered transaction 17690, process died.
+[  120.399217] binder: send failed reply for transaction 17319 to 1702:1702
+[  120.399333] binder: undelivered transaction 17321, process died.
+[  120.399458] binder: send failed reply for transaction 17324 to 1762:1762
+[  120.399577] binder: send failed reply for transaction 17326 to 1650:1650
+[  120.400067] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  120.417067] binder: 1650:1650 transaction failed 29189/-22, size 4176-4 line 2807
+[  120.424192] binder: 1762:1762 transaction failed 29189/-22, size 1916-4 line 2807
+[  120.431513] binder: 1702:1702 transaction failed 29189/-22, size 5448-4 line 2807
+[  120.832770] init: Service 'zygote' (pid 1352) killed by signal 9
+[  120.832912] init: Service 'zygote' (pid 1352) killing any children in process group
+[  120.833643] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  120.833889] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  120.834041] init: Service 'audioserver' is being killed...
+[  120.834370] init: Service 'cameraserver' is being killed...
+[  120.834650] init: Service 'media' is being killed...
+[  120.834916] init: Service 'netd' is being killed...
+[  120.837273] init: Starting service 'zygote'...
+[  120.838768] init: Service 'netd' (pid 1356) killed by signal 9
+[  120.873330] binder: release 1355:1418 transaction 18056 out, still active
+[  120.873486] binder: release 1355:1418 transaction 15694 in, still active
+[  120.873597] binder: release 1355:1697 transaction 16416 in, still active
+[  120.873690] binder: send failed reply for transaction 16416 to 1650:1722
+[  121.420599] binder: 137:1690 transaction failed 29189/0, size 8-0 line 2739
+[  121.420711] binder: send failed reply for transaction 18056, target dead
+[  121.420779] binder: send failed reply for transaction 15694, target dead
+[  122.100769] binder: undelivered TRANSACTION_ERROR: 29189
+[  122.101512] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  125.220571] type=1400 audit(1520599606.582:649): avc: denied { map } for pid=1825 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1758 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+[  126.777888] type=1400 audit(1520599608.142:650): avc: denied { map } for pid=2017 comm="sh" path="/system/bin/sh" dev="xvda" ino=431 scontext=u:r:netd:s0 tcontext=u:object_r:shell_exec:s0 tclass=file permissive=1
+[  127.022494] type=1400 audit(1520599608.382:651): avc: denied { map } for pid=2023 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  127.076139] type=1400 audit(1520599608.432:652): avc: denied { map } for pid=2023 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  127.084229] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  127.112423] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  127.220587] type=1400 audit(1520599608.572:653): avc: denied { map } for pid=1826 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  127.480677] type=1400 audit(1520599608.842:654): avc: denied { map } for pid=2023 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  127.955951] type=1400 audit(1520599609.322:655): avc: denied { map } for pid=2023 comm="system_server" path="/system/framework/oat/arm/com.android.location.provider.odex" dev="xvda" ino=919 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  129.100621] type=1400 audit(1520599610.462:656): avc: denied { map } for pid=2023 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  129.170584] type=1400 audit(1520599610.532:657): avc: denied { map } for pid=2023 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  129.300941] type=1400 audit(1520599610.632:658): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  129.850871] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  130.125275] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  131.170590] type=1400 audit(1520599612.532:660): avc: denied { map } for pid=2023 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[  131.458958] type=1400 audit(1520599612.822:661): avc: denied { map } for pid=128 comm="Binder:128_5" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  131.580592] type=1400 audit(1520599612.942:662): avc: denied { map } for pid=2023 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  131.601179] type=1400 audit(1520599612.962:663): avc: denied { map } for pid=2023 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[  132.048931] type=1400 audit(1520599613.412:664): avc: denied { map } for pid=2023 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  132.280585] type=1400 audit(1520599613.422:665): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  132.281151] type=1400 audit(1520599613.492:666): avc: denied { map } for pid=2098 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  132.282358] type=1400 audit(1520599613.532:667): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  132.282843] type=1400 audit(1520599613.542:668): avc: denied { map } for pid=139 comm="Binder:139_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  132.283295] type=1400 audit(1520599613.572:669): avc: denied { map } for pid=2112 comm="ndroid.systemu" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  136.415525] binder_alloc: 2023: binder_alloc_buf, no vma
+[  136.415640] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[  136.641249] binder: release 2023:2105 transaction 20063 out, still active
+[  136.641700] binder: undelivered transaction 21806, process died.
+[  136.641786] binder: undelivered transaction 21809, process died.
+[  136.641882] binder: undelivered transaction 21813, process died.
+[  136.641975] binder: undelivered transaction 21893, process died.
+[  136.642060] binder: undelivered transaction 21907, process died.
+[  136.642144] binder: undelivered transaction 21910, process died.
+[  136.642230] binder: undelivered transaction 21929, process died.
+[  136.642316] binder: undelivered transaction 21932, process died.
+[  136.642403] binder: undelivered transaction 21936, process died.
+[  136.642491] binder: undelivered transaction 21954, process died.
+[  136.642577] binder: undelivered transaction 21958, process died.
+[  136.642662] binder: undelivered transaction 21961, process died.
+[  136.642751] binder: undelivered transaction 22006, process died.
+[  136.642838] binder: undelivered transaction 22009, process died.
+[  136.642925] binder: undelivered transaction 22015, process died.
+[  136.643010] binder: undelivered transaction 22063, process died.
+[  136.643095] binder: undelivered transaction 22067, process died.
+[  136.643185] binder: undelivered transaction 22070, process died.
+[  136.643276] binder: undelivered transaction 22169, process died.
+[  136.643360] binder: undelivered transaction 22172, process died.
+[  136.643485] binder: undelivered transaction 22176, process died.
+[  136.643570] binder: undelivered transaction 22228, process died.
+[  136.643654] binder: undelivered transaction 22232, process died.
+[  136.644362] binder: send failed reply for transaction 21776 to 2171:2171
+[  136.644472] binder: send failed reply for transaction 21794 to 2229:2229
+[  136.644576] binder: undelivered transaction 21801, process died.
+[  136.644670] binder: send failed reply for transaction 21805 to 2112:2112
+[  136.651220] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  136.655304] binder: 2171:2171 transaction failed 29189/-22, size 188-0 line 2807
+[  136.669307] binder: 2112:2112 transaction failed 29189/-22, size 4796-4 line 2807
+[  136.684539] binder: 2171:2171 transaction failed 29189/-22, size 220-4 line 2807
+[  136.688329] binder: 2171:2171 transaction failed 29189/-22, size 268-8 line 2807
+[  137.141552] init: Service 'zygote' (pid 1825) killed by signal 9
+[  137.141697] init: Service 'zygote' (pid 1825) killing any children in process group
+[  137.142333] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  137.142610] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  137.142790] init: Service 'audioserver' is being killed...
+[  137.143028] init: Service 'cameraserver' is being killed...
+[  137.143289] init: Service 'media' is being killed...
+[  137.143522] init: Service 'netd' is being killed...
+[  137.146414] init: Service 'netd' (pid 1826) killed by signal 9
+[  137.146561] init: Service 'netd' (pid 1826) killing any children in process group
+[  137.160968] binder: release 1829:1892 transaction 22534 out, still active
+[  137.161075] binder: release 1829:1892 transaction 20063 in, still active
+[  137.161148] binder: release 1829:2164 transaction 20709 in, still active
+[  137.161215] binder: send failed reply for transaction 20709 to 2112:2177
+[  137.409591] binder: 137:1690 transaction failed 29189/0, size 8-0 line 2739
+[  137.409699] binder: send failed reply for transaction 22534, target dead
+[  137.409765] binder: send failed reply for transaction 20063, target dead
+[  138.755960] type=1400 audit(1520599618.542:707): avc: denied { map } for pid=2299 comm="app_process" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:zygote:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  138.757077] type=1400 audit(1520599618.542:708): avc: denied { map } for pid=2299 comm="app_process" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:zygote:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  138.757636] type=1400 audit(1520599618.542:709): avc: denied { map } for pid=2299 comm="app_process" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:zygote:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  138.758128] type=1400 audit(1520599618.552:710): avc: denied { map } for pid=2300 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[  138.758593] type=1400 audit(1520599618.552:711): avc: denied { map } for pid=2300 comm="netd" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:netd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  138.759055] type=1400 audit(1520599618.572:712): avc: denied { map } for pid=2303 comm="mediaserver" path="/system/bin/mediaserver" dev="xvda" ino=355 scontext=u:r:mediaserver:s0 tcontext=u:object_r:mediaserver_exec:s0 tclass=file permissive=1
+[  138.760244] type=1400 audit(1520599618.572:713): avc: denied { map } for pid=2303 comm="mediaserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  139.021091] type=1400 audit(1520599618.572:714): avc: denied { map } for pid=2303 comm="mediaserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:mediaserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  139.021624] type=1400 audit(1520599618.582:715): avc: denied { map } for pid=2301 comm="audioserver" path="/system/bin/audioserver" dev="xvda" ino=225 scontext=u:r:audioserver:s0 tcontext=u:object_r:audioserver_exec:s0 tclass=file permissive=1
+[  139.022144] type=1400 audit(1520599618.582:716): avc: denied { map } for pid=2301 comm="audioserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:audioserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  139.130980] binder: undelivered TRANSACTION_ERROR: 29189
+[  139.131643] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  143.380179] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  143.417531] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  145.281402] type=1400 audit(1520599626.652:760): avc: denied { map } for pid=2495 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  145.358167] type=1400 audit(1520599626.722:761): avc: denied { map } for pid=2495 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  145.482553] type=1400 audit(1520599626.822:762): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  145.750584] type=1400 audit(1520599627.082:763): avc: denied { map } for pid=2495 comm="system_server" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  146.020094] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  146.307853] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  146.350605] type=1400 audit(1520599627.602:764): avc: denied { map } for pid=2495 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  147.356552] type=1400 audit(1520599628.722:765): avc: denied { map } for pid=2495 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[  147.645520] type=1400 audit(1520599629.012:766): avc: denied { map } for pid=128 comm="Binder:128_3" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  147.770769] type=1400 audit(1520599629.142:767): avc: denied { map } for pid=2495 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  147.798388] type=1400 audit(1520599629.162:768): avc: denied { map } for pid=2495 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[  148.253826] type=1400 audit(1520599629.622:769): avc: denied { dac_read_search } for pid=2572 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  151.587964] type=1400 audit(1520599629.632:772): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  151.588456] type=1400 audit(1520599629.682:773): avc: denied { map } for pid=2572 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  151.589146] type=1400 audit(1520599629.752:774): avc: denied { map } for pid=139 comm="Binder:139_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  151.589663] type=1400 audit(1520599629.792:775): avc: denied { map } for pid=137 comm="Binder:137_3" path="/system/lib/libstagefright_soft_mp3dec.so" dev="xvda" ino=1208 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  151.590155] type=1400 audit(1520599629.802:776): avc: denied { map } for pid=2578 comm="WebViewLoader-" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:shared_relro:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  152.370911] type=1400 audit(1520599629.842:777): avc: denied { map } for pid=2572 comm="putmethod.latin" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  152.371447] type=1400 audit(1520599629.852:778): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  152.371976] type=1400 audit(1520599629.872:779): avc: denied { map } for pid=2590 comm="ndroid.systemu" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  152.372484] type=1400 audit(1520599629.902:780): avc: denied { map } for pid=2601 comm="iptables-restor" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:netd:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  152.373326] type=1400 audit(1520599629.922:781): avc: denied { map } for pid=2578 comm="der-armeabi-v7a" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:shared_relro:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  152.615424] binder_alloc: 2495: binder_alloc_buf, no vma
+[  152.615533] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[  152.920543] binder: release 2495:2584 transaction 24538 out, still active
+[  152.920964] binder: undelivered transaction 25881, process died.
+[  152.921089] binder: undelivered transaction 25899, process died.
+[  152.921181] binder: undelivered transaction 25913, process died.
+[  152.921255] binder: undelivered transaction 25917, process died.
+[  152.921323] binder: undelivered transaction 25922, process died.
+[  152.921390] binder: undelivered transaction 25940, process died.
+[  152.921511] binder: undelivered transaction 25944, process died.
+[  152.921594] binder: undelivered transaction 25947, process died.
+[  152.921661] binder: undelivered transaction 25981, process died.
+[  152.921727] binder: undelivered transaction 26041, process died.
+[  152.921792] binder: undelivered transaction 26045, process died.
+[  152.921888] binder: undelivered transaction 26048, process died.
+[  152.921981] binder: undelivered transaction 26067, process died.
+[  152.922049] binder: undelivered transaction 26070, process died.
+[  152.922114] binder: undelivered transaction 26074, process died.
+[  152.922185] binder: undelivered transaction 26092, process died.
+[  152.922282] binder: undelivered transaction 26096, process died.
+[  152.922351] binder: undelivered transaction 26111, process died.
+[  152.922429] binder: undelivered transaction 26144, process died.
+[  152.922494] binder: undelivered transaction 26147, process died.
+[  152.922575] binder: undelivered transaction 26187, process died.
+[  152.922664] binder: undelivered transaction 26201, process died.
+[  152.922733] binder: undelivered transaction 26205, process died.
+[  152.922798] binder: undelivered transaction 26237, process died.
+[  152.922862] binder: undelivered transaction 26307, process died.
+[  152.922932] binder: undelivered transaction 26310, process died.
+[  152.923031] binder: undelivered transaction 26320, process died.
+[  152.923100] binder: undelivered transaction 26366, process died.
+[  152.923164] binder: undelivered transaction 26370, process died.
+[  152.923229] binder: undelivered transaction 26373, process died.
+[  152.923300] binder: undelivered transaction 26408, process died.
+[  152.923400] binder: undelivered transaction 26411, process died.
+[  152.923509] binder: undelivered transaction 26415, process died.
+[  152.923574] binder: undelivered transaction 26451, process died.
+[  152.923640] binder: undelivered transaction 26455, process died.
+[  152.923728] binder: undelivered transaction 26488, process died.
+[  152.923831] binder: undelivered transaction 26503, process died.
+[  152.924554] binder: undelivered transaction 25874, process died.
+[  152.924650] binder: send failed reply for transaction 25875 to 2649:2649
+[  152.924758] binder: send failed reply for transaction 25909 to 2704:2704
+[  152.924880] binder: send failed reply for transaction 25921 to 2590:2590
+[  152.931687] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  152.948796] binder: 2590:2590 transaction failed 29189/-22, size 4176-4 line 2807
+[  153.007826] binder: 2303:2363 transaction failed 29189/0, size 16-4 line 2739
+[  153.007951] binder: send failed reply for transaction 24538, target dead
+[  153.071886] init: Service 'zygote' (pid 2299) killed by signal 9
+[  153.072030] init: Service 'zygote' (pid 2299) killing any children in process group
+[  153.072709] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  153.072950] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  153.073104] init: Service 'audioserver' is being killed...
+[  153.073335] init: Service 'cameraserver' is being killed...
+[  153.073554] init: Service 'media' is being killed...
+[  153.073774] init: Service 'netd' is being killed...
+[  153.076569] init: Service 'netd' (pid 2300) killed by signal 9
+[  153.076684] init: Service 'netd' (pid 2300) killing any children in process group
+[  154.011013] binder: undelivered transaction 26734, process died.
+[  154.011695] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  156.620753] type=1400 audit(1520599637.982:847): avc: denied { map } for pid=2762 comm="main" path="/dev/__properties__/u:object_r:qemu_prop:s0" dev="tmpfs" ino=1740 scontext=u:r:zygote:s0 tcontext=u:object_r:qemu_prop:s0 tclass=file permissive=1
+[  157.460600] type=1400 audit(1520599638.822:848): avc: denied { map } for pid=2762 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1758 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+[  159.090585] type=1400 audit(1520599640.342:849): avc: denied { map } for pid=2952 comm="sh" path="/system/bin/sh" dev="xvda" ino=431 scontext=u:r:netd:s0 tcontext=u:object_r:shell_exec:s0 tclass=file permissive=1
+[  159.267506] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  159.324332] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  159.350060] type=1400 audit(1520599640.712:850): avc: denied { map } for pid=2961 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  159.380807] type=1400 audit(1520599640.732:851): avc: denied { map } for pid=2961 comm="system_server" path="/system/framework/oat/arm/services.odex" dev="xvda" ino=933 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  159.400897] type=1400 audit(1520599640.752:852): avc: denied { map } for pid=2972 comm="ip" path="/system/bin/ip" dev="xvda" ino=316 scontext=u:r:netd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  159.412436] type=1400 audit(1520599640.772:853): avc: denied { map } for pid=2961 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  159.427834] type=1400 audit(1520599640.792:854): avc: denied { map } for pid=2763 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  159.815791] type=1400 audit(1520599641.182:855): avc: denied { map } for pid=2961 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  161.380611] type=1400 audit(1520599642.732:856): avc: denied { map } for pid=2961 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  162.180616] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  162.421157] type=1400 audit(1520599643.752:859): avc: denied { map } for pid=2961 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  162.454863] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  163.928368] type=1400 audit(1520599645.292:860): avc: denied { map } for pid=2961 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  163.952246] type=1400 audit(1520599645.312:861): avc: denied { map } for pid=2961 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[  164.410556] type=1400 audit(1520599645.772:862): avc: denied { dac_read_search } for pid=3034 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  165.500809] type=1400 audit(1520599645.782:863): avc: denied { map } for pid=2961 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  165.555038] audit: audit_lost=101 audit_rate_limit=20 audit_backlog_limit=64
+[  165.555157] audit: rate limit exceeded
+[  165.595621] type=1400 audit(1520599645.782:864): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  165.596120] type=1400 audit(1520599645.812:865): avc: denied { map } for pid=3034 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  165.596633] type=1400 audit(1520599645.872:866): avc: denied { map } for pid=3042 comm="WebViewLoader-" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:shared_relro:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  165.597347] type=1400 audit(1520599645.892:867): avc: denied { map } for pid=139 comm="Binder:139_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  165.597879] type=1400 audit(1520599645.942:868): avc: denied { map } for pid=137 comm="Binder:137_2" path="/system/lib/libstagefright_soft_mp3dec.so" dev="xvda" ino=1208 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  168.770557] binder_alloc: 2961: binder_alloc_buf, no vma
+[  168.770660] binder: 128:178 transaction failed 29189/-3, size 68-0 line 2928
+[  168.980622] binder_alloc: 2961: binder_alloc_buf, no vma
+[  168.980720] binder: 2766:2824 transaction failed 29189/-3, size 16-4 line 2928
+[  168.980798] binder: send failed reply for transaction 28750 to 2961:3041
+[  169.149294] type=1400 audit(1520599650.472:903): avc: denied { map } for pid=137 comm="Binder:137_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  169.211191] type=1400 audit(1520599650.562:904): avc: denied { map } for pid=2766 comm="Binder:2766_1" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  169.211634] binder: release 2961:3011 transaction 30024 in, still active
+[  169.211708] binder: send failed reply for transaction 30024 to 3109:3109
+[  169.211787] binder: undelivered TRANSACTION_ERROR: 29189
+[  169.211848] binder: release 2961:3108 transaction 30013 in, still active
+[  169.211914] binder: send failed reply for transaction 30013 to 3049:3049
+[  169.212023] binder: release 2961:3134 transaction 29994 in, still active
+[  169.212117] binder: send failed reply for transaction 29994 to 3114:3114
+[  169.212365] binder: undelivered transaction 30069, process died.
+[  169.212448] binder: undelivered transaction 30073, process died.
+[  169.212517] binder: undelivered transaction 30081, process died.
+[  169.212599] binder: undelivered transaction 30104, process died.
+[  169.212665] binder: undelivered transaction 30108, process died.
+[  169.212730] binder: undelivered transaction 30126, process died.
+[  169.212794] binder: undelivered transaction 30130, process died.
+[  169.212857] binder: undelivered transaction 30133, process died.
+[  169.212920] binder: undelivered transaction 30156, process died.
+[  169.212983] binder: undelivered transaction 30227, process died.
+[  169.213047] binder: undelivered transaction 30231, process died.
+[  169.213110] binder: undelivered transaction 30234, process died.
+[  169.213174] binder: undelivered transaction 30253, process died.
+[  169.213237] binder: undelivered transaction 30256, process died.
+[  169.213300] binder: undelivered transaction 30260, process died.
+[  169.213363] binder: undelivered transaction 30278, process died.
+[  169.213461] binder: undelivered transaction 30282, process died.
+[  169.213526] binder: undelivered transaction 30285, process died.
+[  169.213661] binder: undelivered transaction 30330, process died.
+[  169.213757] binder: undelivered transaction 30333, process died.
+[  169.213849] binder: undelivered transaction 30355, process died.
+[  169.213935] binder: undelivered transaction 30387, process died.
+[  169.214034] binder: undelivered transaction 30391, process died.
+[  169.214120] binder: undelivered transaction 30428, process died.
+[  169.214209] binder: undelivered transaction 30493, process died.
+[  169.214301] binder: undelivered transaction 30496, process died.
+[  169.214377] binder: undelivered transaction 30500, process died.
+[  169.214471] binder: undelivered transaction 30552, process died.
+[  169.214558] binder: undelivered transaction 30556, process died.
+[  169.214628] binder: undelivered transaction 30559, process died.
+[  169.214718] binder: undelivered transaction 30594, process died.
+[  169.214807] binder: undelivered transaction 30597, process died.
+[  169.214905] binder: undelivered transaction 30601, process died.
+[  169.214998] binder: undelivered transaction 30637, process died.
+[  169.215085] binder: undelivered transaction 30641, process died.
+[  169.215172] binder: undelivered transaction 30644, process died.
+[  169.215255] binder: undelivered transaction 30689, process died.
+[  169.215360] binder: undelivered transaction 30692, process died.
+[  169.215451] binder: undelivered transaction 30714, process died.
+[  169.215540] binder: undelivered transaction 30790, process died.
+[  169.216262] binder: undelivered transaction 30068, process died.
+[  169.216350] binder: send failed reply for transaction 30070 to 3034:3153
+[  169.216429] binder: send failed reply for transaction 30099 to 3166:3166
+[  169.231441] binder: 139:268 transaction failed 29189/-22, size 60-0 line 2807
+[  169.329225] binder: 3034:3153 transaction failed 29189/-22, size 3016-4 line 2807
+[  169.362222] init: Service 'zygote' (pid 2762) killed by signal 9
+[  169.362342] init: Service 'zygote' (pid 2762) killing any children in process group
+[  169.362924] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  169.363156] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  169.363313] init: Service 'audioserver' is being killed...
+[  169.363577] init: Service 'cameraserver' is being killed...
+[  169.363803] init: Service 'media' is being killed...
+[  169.364020] init: Service 'netd' is being killed...
+[  169.364959] init: Untracked pid 3109 killed by signal 9
+[  169.365195] init: Untracked pid 3114 killed by signal 9
+[  169.530628] type=1400 audit(1520599650.742:905): avc: denied { map } for pid=3225 comm="app_process" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:zygote:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  169.531861] type=1400 audit(1520599650.742:906): avc: denied { map } for pid=3225 comm="app_process" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:zygote:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  169.532375] type=1400 audit(1520599650.752:907): avc: denied { map } for pid=3225 comm="app_process" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:zygote:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  169.532867] type=1400 audit(1520599650.762:908): avc: denied { map } for pid=3228 comm="mediaserver" path="/system/bin/mediaserver" dev="xvda" ino=355 scontext=u:r:mediaserver:s0 tcontext=u:object_r:mediaserver_exec:s0 tclass=file permissive=1
+[  169.533919] type=1400 audit(1520599650.762:909): avc: denied { map } for pid=3228 comm="mediaserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  169.534434] type=1400 audit(1520599650.762:910): avc: denied { map } for pid=3229 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[  169.535419] type=1400 audit(1520599650.762:911): avc: denied { map } for pid=3229 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[  169.980815] binder: release 3049:3122 transaction 31291 out, still active
+[  169.980934] binder: send failed reply for transaction 31309 to 139:751
+[  169.982043] binder: 139:751 transaction failed 29189/0, size 16-4 line 2739
+[  169.982152] binder: send failed reply for transaction 31291, target dead
+[  170.130825] type=1400 audit(1520599650.762:912): avc: denied { map } for pid=3229 comm="netd" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:netd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  175.280577] type=1400 audit(1520599656.642:951): avc: denied { map } for pid=3415 comm="sh" path="/system/bin/sh" dev="xvda" ino=431 scontext=u:r:netd:s0 tcontext=u:object_r:shell_exec:s0 tclass=file permissive=1
+[  175.400457] type=1400 audit(1520599656.762:952): avc: denied { map } for pid=3416 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  175.450599] type=1400 audit(1520599656.812:953): avc: denied { map } for pid=3416 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  175.694364] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  175.721662] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  175.812455] type=1400 audit(1520599657.182:954): avc: denied { map } for pid=3229 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  175.890587] type=1400 audit(1520599657.252:955): avc: denied { map } for pid=3416 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  175.986457] type=1400 audit(1520599657.342:956): avc: denied { map } for pid=3416 comm="system_server" path="/system/framework/framework-res.apk" dev="xvda" ino=902 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  177.440599] type=1400 audit(1520599658.802:957): avc: denied { map } for pid=3416 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  177.520566] type=1400 audit(1520599658.882:958): avc: denied { map } for pid=3416 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  177.633144] type=1400 audit(1520599658.972:959): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  178.190285] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  178.524333] type=1400 audit(1520599659.812:960): avc: denied { map } for pid=3416 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  178.530154] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  180.610573] type=1400 audit(1520599661.972:965): avc: denied { dac_read_search } for pid=3497 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  181.061116] type=1400 audit(1520599661.982:966): avc: denied { map } for pid=3416 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  181.061695] type=1400 audit(1520599661.982:967): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  181.062097] type=1400 audit(1520599662.032:968): avc: denied { map } for pid=3497 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  181.062661] type=1400 audit(1520599662.092:969): avc: denied { map } for pid=139 comm="Binder:139_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  181.063097] type=1400 audit(1520599662.132:970): avc: denied { map } for pid=3503 comm="WebViewLoader-" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:shared_relro:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  181.063735] type=1400 audit(1520599662.152:971): avc: denied { map } for pid=3497 comm="putmethod.latin" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  181.064222] type=1400 audit(1520599662.172:972): avc: denied { map } for pid=137 comm="Binder:137_1" path="/system/lib/libstagefright_soft_mp3dec.so" dev="xvda" ino=1208 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  181.064672] type=1400 audit(1520599662.202:973): avc: denied { map } for pid=3526 comm="iptables-restor" path="/system/bin/iptables" dev="xvda" ino=320 scontext=u:r:netd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  181.065470] type=1400 audit(1520599662.202:974): avc: denied { map } for pid=3526 comm="iptables-restor" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:netd:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  186.230564] type=1400 audit(1520599666.862:1015): avc: denied { map } for pid=137 comm="Binder:137_2" path="/system/lib/libstagefright_soft_avcdec.so" dev="xvda" ino=1202 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  186.540571] type=1400 audit(1520599667.852:1016): avc: denied { map } for pid=3664 comm="debuggerd" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  186.645487] binder_alloc: 3416: binder_alloc_buf, no vma
+[  186.645595] binder: 128:179 transaction failed 29189/-3, size 68-0 line 2928
+[  186.750737] binder_alloc: 3416: binder_alloc_buf, no vma
+[  186.750845] binder: 3571:3652 transaction failed 29189/-3, size 80-4 line 2928
+[  186.753496] binder_alloc: 3416: binder_alloc_buf, no vma
+[  186.753603] binder: 3571:3652 transaction failed 29189/-3, size 1756-4 line 2928
+[  186.841348] binder: release 3571:3571 transaction 35769 out, still active
+[  187.120642] binder_alloc: 3416: binder_alloc_buf, no vma
+[  187.120743] binder: 3228:3286 transaction failed 29189/-3, size 16-4 line 2928
+[  187.120819] binder: send failed reply for transaction 33321 to 3416:3505
+[  187.570615] type=1400 audit(1520599668.672:1017): avc: denied { map } for pid=137 comm="Binder:137_4" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  187.850953] type=1400 audit(1520599668.772:1018): avc: denied { map } for pid=3228 comm="Binder:3228_1" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  187.875644] binder: undelivered TRANSACTION_ERROR: 29189
+[  187.876066] binder: undelivered transaction 35855, process died.
+[  187.876164] binder: undelivered transaction 35869, process died.
+[  187.876234] binder: undelivered transaction 35873, process died.
+[  187.876336] binder: undelivered transaction 35876, process died.
+[  187.876422] binder: undelivered transaction 35880, process died.
+[  187.876510] binder: undelivered transaction 35883, process died.
+[  187.876595] binder: undelivered transaction 35902, process died.
+[  187.876688] binder: undelivered transaction 35905, process died.
+[  187.876774] binder: undelivered transaction 35909, process died.
+[  187.876871] binder: undelivered transaction 35912, process died.
+[  187.876956] binder: undelivered transaction 35916, process died.
+[  187.877044] binder: undelivered transaction 35934, process died.
+[  187.877129] binder: undelivered transaction 35938, process died.
+[  187.877217] binder: undelivered transaction 35941, process died.
+[  187.877303] binder: undelivered transaction 35945, process died.
+[  187.877390] binder: undelivered transaction 35948, process died.
+[  187.877513] binder: undelivered transaction 35993, process died.
+[  187.877601] binder: undelivered transaction 35996, process died.
+[  187.877688] binder: undelivered transaction 36000, process died.
+[  187.877775] binder: undelivered transaction 36003, process died.
+[  187.877860] binder: undelivered transaction 36007, process died.
+[  187.877945] binder: undelivered transaction 36010, process died.
+[  187.878034] binder: undelivered transaction 36061, process died.
+[  187.878119] binder: undelivered transaction 36064, process died.
+[  187.878203] binder: undelivered transaction 36068, process died.
+[  187.878343] binder: undelivered transaction 36071, process died.
+[  187.878417] binder: undelivered transaction 36075, process died.
+[  187.878511] binder: undelivered transaction 36173, process died.
+[  187.878596] binder: undelivered transaction 36177, process died.
+[  187.878664] binder: undelivered transaction 36180, process died.
+[  187.878729] binder: undelivered transaction 36184, process died.
+[  187.878792] binder: undelivered transaction 36187, process died.
+[  187.878855] binder: undelivered transaction 36191, process died.
+[  187.878918] binder: undelivered transaction 36194, process died.
+[  187.878981] binder: undelivered transaction 36247, process died.
+[  187.879044] binder: undelivered transaction 36250, process died.
+[  187.879107] binder: undelivered transaction 36254, process died.
+[  187.879172] binder: undelivered transaction 36288, process died.
+[  187.879234] binder: undelivered transaction 36292, process died.
+[  187.879297] binder: undelivered transaction 36295, process died.
+[  187.879359] binder: undelivered transaction 36332, process died.
+[  187.879420] binder: undelivered transaction 36335, process died.
+[  187.879483] binder: undelivered transaction 36339, process died.
+[  187.879545] binder: undelivered transaction 36383, process died.
+[  187.879606] binder: undelivered transaction 36387, process died.
+[  187.879669] binder: undelivered transaction 36410, process died.
+[  187.879731] binder: undelivered transaction 36485, process died.
+[  187.880486] binder: send failed reply for transaction 35769, target dead
+[  187.880565] binder: send failed reply for transaction 35774 to 3512:3512
+[  187.880641] binder: undelivered transaction 35794, process died.
+[  187.887263] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  187.981556] binder: release 3512:3577 transaction 37485 out, still active
+[  187.981638] binder: send failed reply for transaction 37542 to 139:268
+[  188.141729] init: Service 'zygote' (pid 3225) killed by signal 9
+[  188.141872] init: Service 'zygote' (pid 3225) killing any children in process group
+[  188.142585] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  188.142870] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  188.143051] init: Service 'audioserver' is being killed...
+[  188.143309] init: Service 'cameraserver' is being killed...
+[  188.143543] init: Service 'media' is being killed...
+[  188.143793] init: Service 'netd' is being killed...
+[  188.146550] init: Starting service 'zygote'...
+[  188.177382] init: Service 'netd' (pid 3229) killed by signal 9
+[  189.570587] type=1400 audit(1520599669.552:1019): avc: denied { map } for pid=3712 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[  189.621327] type=1400 audit(1520599669.552:1020): avc: denied { map } for pid=3712 comm="netd" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:netd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  189.621876] type=1400 audit(1520599669.562:1021): avc: denied { map } for pid=3711 comm="app_process" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:zygote:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  189.622937] type=1400 audit(1520599669.562:1022): avc: denied { map } for pid=3711 comm="app_process" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:zygote:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  189.623623] type=1400 audit(1520599669.562:1023): avc: denied { map } for pid=3712 comm="netd" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:netd:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  189.624168] type=1400 audit(1520599669.562:1024): avc: denied { map } for pid=3713 comm="cameraserver" path="/system/bin/cameraserver" dev="xvda" ino=239 scontext=u:r:cameraserver:s0 tcontext=u:object_r:cameraserver_exec:s0 tclass=file permissive=1
+[  193.280605] type=1400 audit(1520599674.642:1050): avc: denied { map } for pid=3711 comm="app_process" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:zygote:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  193.281191] type=1400 audit(1520599674.642:1051): avc: denied { map } for pid=3711 comm="app_process" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:zygote:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  193.390739] type=1400 audit(1520599674.752:1052): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:zygote:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[  193.391298] type=1400 audit(1520599674.752:1053): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=1752 scontext=u:r:zygote:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  193.391841] type=1400 audit(1520599674.752:1054): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:zygote:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  193.472861] type=1400 audit(1520599674.772:1055): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:dalvik_prop:s0" dev="tmpfs" ino=1741 scontext=u:r:zygote:s0 tcontext=u:object_r:dalvik_prop:s0 tclass=file permissive=1
+[  193.530751] type=1400 audit(1520599674.772:1056): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:config_prop:s0" dev="tmpfs" ino=1742 scontext=u:r:zygote:s0 tcontext=u:object_r:config_prop:s0 tclass=file permissive=1
+[  193.550751] type=1400 audit(1520599674.772:1057): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:vold_prop:s0" dev="tmpfs" ino=1745 scontext=u:r:zygote:s0 tcontext=u:object_r:vold_prop:s0 tclass=file permissive=1
+[  193.551273] type=1400 audit(1520599674.772:1058): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=1761 scontext=u:r:zygote:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  193.551858] type=1400 audit(1520599674.772:1059): avc: denied { map } for pid=3711 comm="zygote" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=1744 scontext=u:r:zygote:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[  194.362663] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  194.418797] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  198.810582] type=1400 audit(1520599680.172:1068): avc: denied { map } for pid=3921 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  199.460689] type=1400 audit(1520599680.822:1069): avc: denied { map } for pid=3921 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  199.590688] type=1400 audit(1520599680.952:1070): avc: denied { map } for pid=3921 comm="system_server" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  201.980592] type=1400 audit(1520599683.342:1071): avc: denied { map } for pid=3921 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  202.100607] type=1400 audit(1520599683.462:1072): avc: denied { map } for pid=3921 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  202.281302] type=1400 audit(1520599683.612:1073): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  203.010090] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  203.368876] type=1400 audit(1520599684.722:1074): avc: denied { map } for pid=3921 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  203.475252] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  205.029149] type=1400 audit(1520599686.392:1075): avc: denied { map } for pid=3921 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[  205.542827] type=1400 audit(1520599686.902:1076): avc: denied { map } for pid=128 comm="Binder:128_4" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  205.717300] type=1400 audit(1520599687.082:1077): avc: denied { map } for pid=3921 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  205.760841] type=1400 audit(1520599687.112:1078): avc: denied { map } for pid=3921 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+
+#### Android state
+
+generic:/ $ [  206.320591] type=1400 audit(1520599687.682:1079): avc: denied { write } for pid=130 comm="sh" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+[  206.321703] type=1400 audit(1520599687.682:1080): avc: denied { read } for pid=130 comm="sh" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+[  206.560598] type=1400 audit(1520599687.852:1081): avc: denied { dac_read_search } for pid=3985 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  206.561335] type=1400 audit(1520599687.862:1082): avc: denied { map } for pid=3921 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  206.561887] type=1400 audit(1520599687.862:1083): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  206.562353] type=1400 audit(1520599687.882:1084): avc: denied { map } for pid=3921 comm="system_server" path="/system/app/LatinIME/LatinIME.apk" dev="xvda" ino=116 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  211.260548] binder_alloc: 3921: binder_alloc_buf, no vma
+[  211.260650] binder: 128:178 transaction failed 29189/-3, size 68-0 line 2928
+[  211.840493] binder: release 3921:3933 transaction 41570 in, still active
+[  211.840605] binder: send failed reply for transaction 41570 to 4001:4001
+[  211.840712] binder: release 3921:3984 transaction 41501 in, still active
+[  211.840822] binder: send failed reply for transaction 41501 to 4060:4060
+[  211.840935] binder: release 3921:3997 transaction 40227 out, still active
+[  211.841033] binder: release 3921:4071 transaction 41494 in, still active
+[  211.841126] binder: send failed reply for transaction 41494 to 4065:4065
+[  211.841564] binder: undelivered transaction 41578, process died.
+[  211.841656] binder: undelivered transaction 41585, process died.
+[  211.841723] binder: undelivered transaction 41602, process died.
+[  211.841818] binder: undelivered transaction 41612, process died.
+[  211.841915] binder: undelivered transaction 41616, process died.
+[  211.842004] binder: undelivered transaction 41619, process died.
+[  211.842087] binder: undelivered transaction 41623, process died.
+[  211.842175] binder: undelivered transaction 41630, process died.
+[  211.842259] binder: undelivered transaction 41645, process died.
+[  211.842345] binder: undelivered transaction 41648, process died.
+[  211.842435] binder: undelivered transaction 41652, process died.
+[  211.842517] binder: undelivered transaction 41655, process died.
+[  211.842606] binder: undelivered transaction 41659, process died.
+[  211.842696] binder: undelivered transaction 41692, process died.
+[  211.842784] binder: undelivered transaction 41742, process died.
+[  211.842874] binder: undelivered transaction 41756, process died.
+[  211.842964] binder: undelivered transaction 41760, process died.
+[  211.843052] binder: undelivered transaction 41763, process died.
+[  211.843142] binder: undelivered transaction 41767, process died.
+[  211.843228] binder: undelivered transaction 41770, process died.
+[  211.843320] binder: undelivered transaction 41789, process died.
+[  211.843460] binder: undelivered transaction 41792, process died.
+[  211.843551] binder: undelivered transaction 41796, process died.
+[  211.843637] binder: undelivered transaction 41799, process died.
+[  211.843726] binder: undelivered transaction 41803, process died.
+[  211.843815] binder: undelivered transaction 41821, process died.
+[  211.843883] binder: undelivered transaction 41825, process died.
+[  211.843947] binder: undelivered transaction 41828, process died.
+[  211.844012] binder: undelivered transaction 41832, process died.
+[  211.844075] binder: undelivered transaction 41835, process died.
+[  211.844138] binder: undelivered transaction 41869, process died.
+[  211.844203] binder: undelivered transaction 41883, process died.
+[  211.844267] binder: undelivered transaction 41887, process died.
+[  211.844332] binder: undelivered transaction 41890, process died.
+[  211.844395] binder: undelivered transaction 41894, process died.
+[  211.844458] binder: undelivered transaction 41900, process died.
+[  211.844520] binder: undelivered transaction 41948, process died.
+[  211.844582] binder: undelivered transaction 41951, process died.
+[  211.844643] binder: undelivered transaction 41955, process died.
+[  211.844706] binder: undelivered transaction 41958, process died.
+[  211.845299] binder: undelivered transaction 41577, process died.
+[  211.845376] binder: send failed reply for transaction 41607 to 4118:4118
+[  211.862414] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  212.811757] init: Service 'zygote' (pid 3711) killed by signal 9
+[  212.811904] init: Service 'zygote' (pid 3711) killing any children in process group
+[  212.812513] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  212.812796] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  212.812974] init: Service 'audioserver' is being killed...
+[  212.813210] init: Service 'cameraserver' is being killed...
+[  212.813470] init: Service 'media' is being killed...
+[  212.813701] init: Service 'netd' is being killed...
+[  212.816480] init: Service 'netd' (pid 3712) killed by signal 9
+[  212.816627] init: Service 'netd' (pid 3712) killing any children in process group
+[  212.850211] binder: release 3715:3793 transaction 42439 out, still active
+[  212.850323] binder: release 3715:3793 transaction 40227 in, still active
+[  212.850479] binder: release 3715:4048 transaction 40983 in, still active
+[  212.850568] binder: send failed reply for transaction 40983 to 4001:4082
+[  213.260889] binder: 137:879 transaction failed 29189/0, size 8-0 line 2739
+[  213.260999] binder: send failed reply for transaction 42439, target dead
+[  213.261064] binder: send failed reply for transaction 40227, target dead
+[  214.250594] type=1400 audit(1520599694.202:1125): avc: denied { map } for pid=4171 comm="cameraserver" path="/system/bin/cameraserver" dev="xvda" ino=239 scontext=u:r:cameraserver:s0 tcontext=u:object_r:cameraserver_exec:s0 tclass=file permissive=1
+[  214.251592] type=1400 audit(1520599694.202:1126): avc: denied { map } for pid=4171 comm="cameraserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:cameraserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  214.252158] type=1400 audit(1520599694.202:1127): avc: denied { map } for pid=4171 comm="cameraserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:cameraserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  214.252666] type=1400 audit(1520599694.212:1128): avc: denied { map } for pid=4173 comm="audioserver" path="/system/bin/audioserver" dev="xvda" ino=225 scontext=u:r:audioserver:s0 tcontext=u:object_r:audioserver_exec:s0 tclass=file permissive=1
+[  214.253825] type=1400 audit(1520599694.212:1129): avc: denied { map } for pid=4173 comm="audioserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:audioserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  214.254334] type=1400 audit(1520599694.212:1130): avc: denied { map } for pid=4173 comm="audioserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:audioserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  214.254840] type=1400 audit(1520599694.222:1131): avc: denied { map } for pid=4170 comm="netd" path="/system/bin/netd" dev="xvda" ino=371 scontext=u:r:netd:s0 tcontext=u:object_r:netd_exec:s0 tclass=file permissive=1
+[  214.255283] type=1400 audit(1520599694.252:1132): avc: denied { map } for pid=4172 comm="mediaserver" path="/system/bin/mediaserver" dev="xvda" ino=355 scontext=u:r:mediaserver:s0 tcontext=u:object_r:mediaserver_exec:s0 tclass=file permissive=1
+[  214.256166] type=1400 audit(1520599694.252:1133): avc: denied { map } for pid=4172 comm="mediaserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  214.256630] type=1400 audit(1520599694.252:1134): avc: denied { map } for pid=4172 comm="mediaserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:mediaserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+getprop sys.boot_completed; getprop init.svc.zygote; getprop dev.boot_completed; getprop init.svc.zygote; getprop dev.b                         <ootcomplete
+
+running
+
+generic:/ $ [  215.580526] binder: undelivered TRANSACTION_ERROR: 29189
+[  215.592691] binder: 139:751 transaction failed 29189/-22, size 60-0 line 2807
+[  219.155494] x_tables: ip_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  219.197067] x_tables: ip6_tables: owner match: used from hooks INPUT, but only valid from OUTPUT/POSTROUTING
+[  219.286437] type=1400 audit(1520599700.652:1181): avc: denied { map } for pid=4170 comm="netd" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:netd:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  220.070575] type=1400 audit(1520599701.422:1182): avc: denied { map } for pid=4169 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=1758 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+ps | grep -E 'system_server|zygote|surfaceflinger|systemui|launche'system_server|zygote|surfaceflinger|systemui|launche                         <r' | grep -v grep
+[  222.410621] type=1400 audit(1520599703.772:1183): avc: denied { map } for pid=4383 comm="grep" path="/system/bin/grep" dev="xvda" ino=295 scontext=u:r:shell:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  222.411769] type=1400 audit(1520599703.772:1184): avc: denied { map } for pid=4383 comm="grep" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:shell:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+system    128   1     25976  9184           0 00000000 S /system/bin/surfaceflinger
+root      4169  1     382780 104388          0 00000000 R zygote
+generic:/ $ [  223.350542] type=1400 audit(1520599704.702:1185): avc: denied { map } for pid=4385 comm="system_server" path="/system/framework/oat/arm/services.odex" dev="xvda" ino=933 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  223.400793] type=1400 audit(1520599704.752:1186): avc: denied { map } for pid=4385 comm="system_server" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  223.990664] type=1400 audit(1520599705.352:1187): avc: denied { map } for pid=4385 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=1738 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+[  226.705873] type=1400 audit(1520599707.882:1188): avc: denied { map } for pid=4385 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  227.360663] type=1400 audit(1520599708.012:1189): avc: denied { map } for pid=4385 comm="system_server" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:system_server:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+[  227.361185] type=1400 audit(1520599708.172:1190): avc: denied { dac_read_search } for pid=135 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[  227.579986] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[  227.981085] type=1400 audit(1520599709.302:1191): avc: denied { map } for pid=4385 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=1753 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[  228.033519] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+[  229.580593] type=1400 audit(1520599710.942:1192): avc: denied { map } for pid=4385 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=1739 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+[  230.108255] type=1400 audit(1520599711.472:1193): avc: denied { map } for pid=128 comm="Binder:128_3" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  230.270587] type=1400 audit(1520599711.632:1194): avc: denied { map } for pid=4385 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=1749 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+[  230.300542] type=1400 audit(1520599711.652:1195): avc: denied { map } for pid=4385 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+logcat -d -b main -b[  230.382980] type=1400 audit(1520599711.752:1196): avc: denied { write } for pid=130 comm="sh" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+ sy[  230.383642] type=1400 audit(1520599711.752:1197): avc: denied { read } for pid=130 comm="sh" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+stem -b crash | grep -E ' F |FATAL EXCEPTIOmain -b system -b crash | grep -E ' F |FATAL EXCEPTIO                         <N' | tail -15
+[  232.701404] type=1400 audit(1520599712.432:1203): avc: denied { map } for pid=4169 comm="main" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  232.701969] type=1400 audit(1520599712.442:1204): avc: denied { dac_read_search } for pid=4452 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  232.702413] type=1400 audit(1520599712.452:1205): avc: denied { map } for pid=4385 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=1751 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[  232.702928] type=1400 audit(1520599712.452:1206): avc: denied { dac_read_search } for pid=111 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  232.703345] type=1400 audit(1520599712.522:1207): avc: denied { map } for pid=4452 comm="putmethod.lati" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  232.703838] type=1400 audit(1520599712.552:1208): avc: denied { map } for pid=4460 comm="WebViewLoader-" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:shared_relro:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  232.704548] type=1400 audit(1520599712.582:1209): avc: denied { map } for pid=139 comm="Binder:139_2" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  232.705036] type=1400 audit(1520599712.642:1210): avc: denied { map } for pid=137 comm="Binder:137_4" path="/system/lib/libstagefright_soft_mp3dec.so" dev="xvda" ino=1208 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  232.705498] type=1400 audit(1520599712.672:1211): avc: denied { map } for pid=4452 comm="putmethod.latin" path="/dev/binder" dev="tmpfs" ino=8336 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  232.705987] type=1400 audit(1520599712.702:1212): avc: denied { map } for pid=4481 comm="iptables-restor" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:netd:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  237.530762] binder_alloc: 4385: binder_alloc_buf, no vma
+[  237.530863] binder: 4522:4611 transaction failed 29189/-3, size 80-4 line 2928
+[  237.533454] binder_alloc: 4385: binder_alloc_buf, no vma
+[  237.533551] binder: 4522:4611 transaction failed 29189/-3, size 1756-4 line 2928
+[  237.550550] binder_alloc: 4385: binder_alloc_buf, no vma
+[  237.550653] binder: 128:178 transaction failed 29189/-3, size 68-0 line 2928
+[  237.631272] binder: release 4522:4522 transaction 46748 out, still active
+[  237.631384] binder: release 4522:4606 transaction 47453 out, still active
+[  237.631496] binder: release 4522:4609 transaction 47455 out, still active
+[  238.160655] binder_alloc: 4385: binder_alloc_buf, no vma
+[  238.160756] binder: 4172:4247 transaction failed 29189/-3, size 16-4 line 2928
+[  238.160833] binder: send failed reply for transaction 45104 to 4385:4459
+uptime
+[  238.830547] type=1400 audit(1520599719.712:1239): avc: denied { map } for pid=137 comm="mediacodec" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  238.831052] type=1400 audit(1520599719.832:1240): avc: denied { map } for pid=4172 comm="Binder:4172_1" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  238.831590] type=1400 audit(1520599719.852:1241): avc: denied { map } for pid=139 comm="mediaextractor" path="/dev/ashmem" dev="tmpfs" ino=8346 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  239.560847] binder: undelivered TRANSACTION_ERROR: 29189
+[  239.561269] binder: undelivered transaction 46758, process died.
+[  239.561359] binder: undelivered transaction 46762, process died.
+[  239.561504] binder: undelivered transaction 46766, process died.
+[  239.561577] binder: undelivered transaction 46769, process died.
+[  239.561646] binder: undelivered transaction 46788, process died.
+[  239.561713] binder: undelivered transaction 46790, process died.
+[  239.561798] binder: undelivered transaction 46795, process died.
+[  239.561881] binder: undelivered transaction 46799, process died.
+[  239.561951] binder: undelivered transaction 46803, process died.
+[  239.562014] binder: undelivered transaction 46806, process died.
+[  239.562077] binder: undelivered transaction 46840, process died.
+[  239.562141] binder: undelivered transaction 46889, process died.
+[  239.562223] binder: undelivered transaction 46904, process died.
+[  239.562307] binder: undelivered transaction 46907, process died.
+[  239.562375] binder: undelivered transaction 46911, process died.
+[  239.562437] binder: undelivered transaction 46914, process died.
+[  239.562501] binder: undelivered transaction 46918, process died.
+[  239.562583] binder: undelivered transaction 46936, process died.
+[  239.562668] binder: undelivered transaction 46940, process died.
+[  239.562736] binder: undelivered transaction 46943, process died.
+[  239.562800] binder: undelivered transaction 46947, process died.
+[  239.562864] binder: undelivered transaction 46950, process died.
+[  239.562943] binder: undelivered transaction 46969, process died.
+[  239.563028] binder: undelivered transaction 46972, process died.
+[  239.563097] binder: undelivered transaction 46976, process died.
+[  239.563161] binder: undelivered transaction 46978, process died.
+[  239.563226] binder: undelivered transaction 46983, process died.
+[  239.563290] binder: undelivered transaction 46986, process died.
+[  239.563372] binder: undelivered transaction 47031, process died.
+[  239.563498] binder: undelivered transaction 47034, process died.
+[  239.563566] binder: undelivered transaction 47038, process died.
+[  239.563629] binder: undelivered transaction 47041, process died.
+[  239.563713] binder: undelivered transaction 47045, process died.
+[  239.563795] binder: undelivered transaction 47095, process died.
+[  239.563864] binder: undelivered transaction 47099, process died.
+[  239.563928] binder: undelivered transaction 47102, process died.
+[  239.563991] binder: undelivered transaction 47106, process died.
+[  239.564055] binder: undelivered transaction 47109, process died.
+[  239.564141] binder: undelivered transaction 47191, process died.
+[  239.564232] binder: undelivered transaction 47211, process died.
+[  239.564299] binder: undelivered transaction 47215, process died.
+[  239.564362] binder: undelivered transaction 47218, process died.
+[  239.564427] binder: undelivered transaction 47222, process died.
+[  239.564509] binder: undelivered transaction 47225, process died.
+[  239.564599] binder: undelivered transaction 47229, process died.
+[  239.564665] binder: undelivered transaction 47270, process died.
+[  239.564728] binder: undelivered transaction 47285, process died.
+[  239.564793] binder: undelivered transaction 47288, process died.
+[  239.564856] binder: undelivered transaction 47292, process died.
+[  239.564948] binder: undelivered transaction 47295, process died.
+[  239.565035] binder: undelivered transaction 47299, process died.
+[  239.565102] binder: undelivered transaction 47333, process died.
+[  239.565167] binder: undelivered transaction 47337, process died.
+[  239.565231] binder: undelivered transaction 47340, process died.
+[  239.565316] binder: undelivered transaction 47344, process died.
+[  239.565400] binder: undelivered transaction 47346, process died.
+[  239.565468] binder: undelivered transaction 47373, process died.
+[  239.565531] binder: undelivered transaction 47387, process died.
+[  239.565596] binder: undelivered transaction 47391, process died.
+[  239.565677] binder: undelivered transaction 47394, process died.
+[  239.565762] binder: undelivered transaction 47398, process died.
+[  239.565831] binder: undelivered transaction 47401, process died.
+[  239.565895] binder: undelivered transaction 47446, process died.
+[  239.565958] binder: undelivered transaction 47448, process died.
+[  239.566022] binder: undelivered transaction 47454, process died.
+[  239.566108] binder: undelivered transaction 47458, process died.
+[  239.566756] binder: send failed reply for transaction 46748, target dead
+[  239.566853] binder: undelivered transaction 46753, process died.
+[  239.566924] binder: send failed reply for transaction 46757 to 4584:4584
+[  239.567056] binder: send failed reply for transaction 46759 to 4466:4466
+[  239.567141] binder: send failed reply for transaction 46796 to 4452:4568
+[  239.567220] binder: send failed reply for transaction 47453, target dead
+[  239.567289] binder: send failed reply for transaction 47455, target dead
+[  239.572205] binder: 139:4652 transaction failed 29189/-22, size 60-0 line 2807
+[  239.577254] binder: 4584:4584 transaction failed 29189/-22, size 1916-4 line 2807
+[  239.584460] binder: 4466:4466 transaction failed 29189/-22, size 4176-4 line 2807
+[  239.971670] init: Service 'zygote' (pid 4169) killed by signal 9
+[  239.971810] init: Service 'zygote' (pid 4169) killing any children in process group
+[  239.972510] init: write_file: Unable to open '/sys/android_power/request_state': No such file or directory
+[  239.972791] init: write_file: Unable to write to '/sys/power/state': Invalid argument
+[  239.972965] init: Service 'audioserver' is being killed...
+[  239.973202] init: Service 'cameraserver' is being killed...
+[  239.973510] init: Service 'media' is being killed...
+[  239.973753] init: Service 'netd' is being killed...
+[  239.976465] init: Starting service 'zygote'...
+[  239.982962] init: Service 'netd' (pid 4170) killed by signal 9
+[  240.450593] type=1400 audit(1520599721.362:1242): avc: denied { map } for pid=4665 comm="app_process" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:zygote:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  240.451805] type=1400 audit(1520599721.362:1243): avc: denied { map } for pid=4665 comm="app_process" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:zygote:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  240.452304] type=1400 audit(1520599721.362:1244): avc: denied { map } for pid=4668 comm="audioserver" path="/system/bin/audioserver" dev="xvda" ino=225 scontext=u:r:audioserver:s0 tcontext=u:object_r:audioserver_exec:s0 tclass=file permissive=1
+[  240.453263] type=1400 audit(1520599721.362:1245): avc: denied { map } for pid=4668 comm="audioserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:audioserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  240.453816] type=1400 audit(1520599721.362:1246): avc: denied { map } for pid=4668 comm="audioserver" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=1771 scontext=u:r:audioserver:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  240.454322] type=1400 audit(1520599721.362:1247): avc: denied { map } for pid=4669 comm="cameraserver" path="/system/bin/cameraserver" dev="xvda" ino=239 scontext=u:r:cameraserver:s0 tcontext=u:object_r:cameraserver_exec:s0 tclass=file permissive=1
+[  240.455239] type=1400 audit(1520599721.362:1248): avc: denied { map } for pid=4669 comm="cameraserver" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:cameraserver:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  244.141062] binder: 139:4652 transaction failed 29189/-22, size 60-0 line 2807
+03-09 12:48:10.621  3921  3921 E AndroidRuntime: *** FATAL EXCEPTION IN SYSTEM PROCESS: main
+03-09 12:48:13.222  4001  4001 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:13.226  4060  4060 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:13.229  4065  4065 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:13.239  4118  4118 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:35.790  4385  4385 E AndroidRuntime: *** FATAL EXCEPTION IN SYSTEM PROCESS: main
+03-09 12:48:38.906  4522  4611 E AndroidRuntime: FATAL EXCEPTION: CdmaServiceCategoryProgramHandler
+03-09 12:48:40.950  4584  4584 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:40.953  4466  4466 E AndroidRuntime: FATAL EXCEPTION: main
+03-09 12:48:41.006  4452  4568 E AndroidRuntime: FATAL EXCEPTION: AsyncTask #1
+[  244.539485] type=1400 audit(1520599725.902:1273): avc: denied { write } for pid=4447 comm="tail" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+generic:/ $ uptime
+[  244.560679] type=1400 audit(1520599725.912:1274): avc: denied { read } for pid=130 comm="sh" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+[  244.590646] type=1400 audit(1520599725.932:1275): avc: denied { map } for pid=4795 comm="uptime" path="/system/bin/toybox" dev="xvda" ino=461 scontext=u:r:shell:s0 tcontext=u:object_r:toolbox_exec:s0 tclass=file permissive=1
+[  244.591869] type=1400 audit(1520599725.932:1276): avc: denied { map } for pid=4795 comm="uptime" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:shell:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+ 12:48:46 up 4 min,  0 users,  load average: 5.84, 2.86, 1.14
+generic:/ $ [  244.660691] type=1400 audit(1520599725.982:1277): avc: denied { map } for pid=4795 comm="uptime" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:shell:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  244.661251] type=1400 audit(1520599726.022:1278): avc: denied { map } for pid=4795 comm="uptime" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=1767 scontext=u:r:shell:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  244.661807] type=1400 audit(1520599726.022:1279): avc: denied { getattr } for pid=4795 comm="uptime" path="/dev/hvc0" dev="tmpfs" ino=8662 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+[  244.662349] type=1400 audit(1520599726.022:1280): avc: denied { ioctl } for pid=4795 comm="uptime" path="/dev/hvc0" dev="tmpfs" ino=8662 ioctlcmd=0x5401 scontext=u:r:shell:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+[  244.860588] type=1400 audit(1520599726.222:1281): avc: denied { map } for pid=4665 comm="app_process" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=1746 scontext=u:r:zygote:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  244.970781] type=1400 audit(1520599726.332:1282): avc: denied { map } for pid=4665 comm="zygote" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=1757 scontext=u:r:zygote:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+root@tinker-board:~# 
+root@tinker-board:~# 
+#### adb from dom0
+adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+[  844.056385] usb 1-1: reset high-speed USB device number 2 using dwc2
+[  845.766345] usb 1-1: reset high-speed USB device number 2 using dwc2
+root@tinker-board:~# adb connect 192.168.100.3:5555
+connected to 192.168.100.3:5555
+root@tinker-board:~# adb devices
+List of devices attached 
+192.168.100.3:5555	device
+
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop ro.build.descriptio n
+sdk_phone_armv7-userdebug 7.0 NYC 3245079 test-keys
+root@tinker-board:~# [  847.476303] usb 1-1: reset high-speed USB device number 2 using dwc2
+adb -s 192.168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell dumpsys window | grep -m3 -EE 'mCurrentFocus|mFocusedApp|DisplayFrames'
+  mCurrentFocus=null
+  mFocusedApp=null
+root@tinker-board:~# adb kill-server; xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----     166.8
+android1                                     2   767     2     r-----     325.0
+root@tinker-board:~# 
+#### capture finished (Android left running)

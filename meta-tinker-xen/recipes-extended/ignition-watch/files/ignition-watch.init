@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          ignition-watch
+# Required-Start:    xen-guests
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Power off cleanly when the car's ignition (ACC) goes off
+### END INIT INFO
+#
+# Disabled until the ACC signal is wired: set ENABLED=1 in
+# /etc/default/ignition-watch (wiring: meta-tinker-xen README).
+
+ENABLED=0
+LOG=/var/log/ignition-watch.log
+[ -r /etc/default/ignition-watch ] && . /etc/default/ignition-watch
+
+case "$1" in
+start)
+    [ "$ENABLED" = 1 ] || exit 0
+    echo "Starting ignition-watch"
+    /usr/sbin/ignition-watch >>$LOG 2>&1 </dev/null &
+    echo $! > /var/run/ignition-watch.pid
+    ;;
+stop)
+    [ -f /var/run/ignition-watch.pid ] && kill "$(cat /var/run/ignition-watch.pid)" 2>/dev/null
+    rm -f /var/run/ignition-watch.pid
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit 0

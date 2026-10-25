@@ -1,0 +1,1686 @@
+
+#### 1) board after autoboot from the new card
+
+=> 
+#### at the U-Boot prompt: running the normal autoboot command
+boot
+MMC Device 0 not found
+no mmc device at slot 0
+switch to partitions #0, OK
+mmc1 is current device
+Scanning mmc 1:6...
+Found U-Boot script /boot.scr
+2318 bytes read in 3 ms (753.9 KiB/s)
+## Executing script at 00000000
+40844 bytes read in 5 ms (7.8 MiB/s)
+1048632 bytes read in 49 ms (20.4 MiB/s)
+10453504 bytes read in 456 ms (21.9 MiB/s)
+Kernel image @ 0x2000000 [ 0x000000 - 0x13e290 ]
+## Flattened Device Tree blob at 01f00000
+   Booting using the fdt blob at 0x1f00000
+dwc2_usb usb@ff540000: Error disabling vbus supply
+device_remove: Device 'usb@ff540000' failed to remove, but children are gone
+ERROR: reserving fdt memory region failed (addr=79e00000 size=6200000 flags=0)
+   Loading Device Tree to 0fff1000, end 0fffefff ... OK
+
+Starting kernel ...
+
+- UART enabled -
+- Boot CPU booting -
+- Setting up control registers -
+- Turning on paging -
+- Zero BSS -
+- Ready -
+(XEN) Checking for initrd in /chosen
+(XEN) RAM: 0000000000000000 - 000000007fffffff
+(XEN) 
+(XEN) MODULE[0]: 0000000002000000 - 000000000213e290 Xen         
+(XEN) MODULE[1]: 000000000fff1000 - 000000000fffc000 Device Tree 
+(XEN) MODULE[2]: 0000000004000000 - 00000000049f8200 Kernel      
+(XEN)  RESVD[0]: 0000000079e00000 - 0000000080000000
+(XEN)  RESVD[1]: 000000007bfd1000 - 000000007bfd4000
+(XEN)  RESVD[2]: 00000000fe000000 - 00000000feffffff
+(XEN) 
+(XEN) CMDLINE[0000000004000000]:chosen console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+(XEN) 
+(XEN) Command line: console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=credit2 loglvl=all guest_loglvl=all
+(XEN) Xen heap: 0000000074000000-0000000078000000 (16384 pages)
+(XEN) Dom heap: 507904 pages
+(XEN) Domain heap initialised
+(XEN) Booting using Device Tree
+(XEN) Platform: Rockchip RK3288
+(XEN) Looking for dtuart at "serial2", options ""
+(XEN) Automatic baud rate determination was requested, but a baud rate was not set up
+ Xen 4.16.1
+(XEN) Xen version 4.16.1 (arjune@) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0) debug=y Sat Oct 24 07:55:10 UTC 2026
+(XEN) Latest ChangeSet: Tue Apr 12 14:21:23 2022 +0200 git:f265444922-dirty
+(XEN) build-id: 6c3e66c87d4531ed2c12708f803656d9449fe4c7
+(XEN) Processor: 410fc0d1: "ARM Limited", variant: 0x0, part 0xc0d,rev 0x1
+(XEN) 32-bit Execution:
+(XEN)   Processor Features: 00001131:00011011
+(XEN)     Instruction Sets: AArch32 A32 Thumb Thumb-2 ThumbEE Jazelle
+(XEN)     Extensions: GenericTimer Security
+(XEN)   Debug Features: 02010555
+(XEN)   Auxiliary Features: 00000000
+(XEN)   Memory Model Features: 10101105 40000000
+(XEN)                          01240000 02102211
+(XEN)   ISA Features: 02101110 13112111 21232041
+(XEN)                 11112131 00011142 00000000
+(XEN) Using SMC Calling Convention v1.0
+(XEN) Using PSCI v1.0
+(XEN) SMP: Allowing 4 CPUs
+(XEN) Generic Timer IRQ: phys=30 hyp=26 virt=27 Freq: 24000 KHz
+(XEN) GICv2 initialization:
+(XEN)         gic_dist_addr=00000000ffc01000
+(XEN)         gic_cpu_addr=00000000ffc02000
+(XEN)         gic_hyp_addr=00000000ffc04000
+(XEN)         gic_vcpu_addr=00000000ffc06000
+(XEN)         gic_maintenance_irq=25
+(XEN) GICv2: 192 lines, 4 cpus, secure (IID 0200143b).
+(XEN) XSM Framework v1.0.1 initialized
+(XEN) Initialising XSM SILO mode
+(XEN) Using scheduler: SMP Credit Scheduler rev2 (credit2)
+(XEN) Initializing Credit2 scheduler
+(XEN)  load_precision_shift: 18
+(XEN)  load_window_shift: 30
+(XEN)  underload_balance_tolerance: 0
+(XEN)  overload_balance_tolerance: -3
+(XEN)  runqueues arrangement: socket
+(XEN)  cap enforcement granularity: 10ms
+(XEN) load tracking window length 1073741824 ns
+(XEN) Allocated console ring of 32 KiB.
+(XEN) VFP implementer 0x41 architecture 3 part 0x30 variant 0xd rev 0x0
+(XEN) CPU0: Guest atomics will try 1 times before pausing the domain
+(XEN) Bringing up CPU1
+- CPU 00000501 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU1: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 1 booted.
+(XEN) Bringing up CPU2
+- CPU 00000502 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU2: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 2 booted.
+(XEN) Bringing up CPU3
+- CPU 00000503 booting -
+- Setting up control registers -
+- Turning on paging -
+- Ready -
+(XEN) CPU3: Guest atomics will try 1 times before pausing the domain
+(XEN) CPU 3 booted.
+(XEN) Brought up 4 CPUs
+(XEN) I/O virtualisation disabled
+(XEN) P2M: 40-bit IPA
+(XEN) P2M: 3 levels with order-1 root, VTCR 0x80003558
+(XEN) Scheduling granularity: cpu, 1 CPU per sched-resource
+(XEN) Adding cpu 0 to runqueue 0
+(XEN)  First cpu on runqueue, activating
+(XEN) Adding cpu 1 to runqueue 0
+(XEN) Adding cpu 2 to runqueue 0
+(XEN) Adding cpu 3 to runqueue 0
+(XEN) alternatives: Patching with alt table 002d29f0 -> 002d2abc
+(XEN) CPU3 will execute BPIALL on guest exit
+(XEN) CPU0 will execute BPIALL on guest exit
+(XEN) CPU1 will execute BPIALL on guest exit
+(XEN) CPU2 will execute BPIALL on guest exit
+(XEN) *** LOADING DOMAIN 0 ***
+(XEN) Loading d0 kernel from boot module @ 0000000004000000
+(XEN) Allocating 1:1 mappings totalling 512MB for dom0:
+(XEN) BANK[0] 0x00000020000000-0x00000040000000 (512MB)
+(XEN) Grant table range: 0x00000002000000-0x00000002040000
+(XEN) Allocating PPI 16 for event channel interrupt
+(XEN) The extended regions are only supported for 64-bit guest currently
+(XEN) Loading zImage from 0000000004000000 to 0000000027600000-0000000027ff8200
+(XEN) Loading d0 DTB to 0x0000000028000000-0x0000000028009c95
+(XEN) Initial low memory virq threshold set at 0x4000 pages.
+(XEN) Scrubbing Free RAM in background
+(XEN) Std. Loglevel: All
+(XEN) Guest Loglevel: All
+(XEN) *** Serial input to DOM0 (type 'CTRL-a' three times to switch input)
+(XEN) Freed 344kB init memory.
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.201-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 SMP Mon Feb 23 04:44:11 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Rockchip RK3288 Asus Tinker Board
+[    0.000000] earlycon: xenboot0 at I/O port 0x0 (options '')
+[    0.000000] printk: bootconsole [xenboot0] enabled
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x3c000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  [mem 0x0000000040000000-0x00000000feffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   node   0: [mem 0x00000000fe000000-0x00000000feffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000020000000-0x00000000feffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+(XEN) d0v0 Unhandled SMC/HVC: 0x8600ff01
+[    0.000000] percpu: Embedded 16 pages/cpu s35468 r8192 d21876 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 134016
+[    0.000000] Kernel command line: console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 426996K/540672K available (15360K kernel code, 2246K rwdata, 5684K rodata, 2048K init, 412K bss, 48140K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=1.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER4
+(XEN) d0v0: vGICD: unhandled word write@0xffffffff to ICACTIVER8
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER12
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER20
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000001] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000060] Switching to timer-based delay loop, resolution 41ns
+[    0.007412] Console: colour dummy device 80x30
+[    0.007464] printk: console [hvc0] enabled
+[    0.007464] printk: console [hvc0] enabled
+[    0.007525] printk: bootconsole [xenboot0] disabled
+[    0.007525] printk: bootconsole [xenboot0] disabled
+[    0.007642] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.007750] CPU: Testing write buffer coherency: ok
+[    0.007842] CPU0: Spectre v2: using BPIALL workaround
+[    0.007899] pid_max: default: 32768 minimum: 301
+[    0.008147] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.008238] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.009571] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.011759] xen:grant_table: Grant tables using version 1 layout
+[    0.011880] Grant table initialized
+[    0.011995] xen:events: Using FIFO-based ABI
+[    0.012087] Xen: initializing cpu0
+[    0.012235] Setting up static identity map for 0x20300000 - 0x203000ac
+[    0.014432] rcu: Hierarchical SRCU implementation.
+[    0.019380] EFI services will not be available.
+[    0.019679] smp: Bringing up secondary CPUs ...
+[    0.019741] smp: Brought up 1 node, 1 CPU
+[    0.019828] SMP: Total of 1 processors activated (48.00 BogoMIPS).
+[    0.019902] CPU: All CPU(s) started in SVC mode.
+[    0.020401] devtmpfs: initialized
+[    0.030226] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.030544] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.030676] futex hash table entries: 256 (order: 2, 16384 bytes, linear)
+[    0.032817] pinctrl core: initialized pinctrl subsystem
+[    0.034560] DMI not present or invalid.
+[    0.035550] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.038304] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.041854] thermal_sys: Registered thermal governor 'step_wise'
+[    0.042080] OF: /thermal-zones/cpu-thermal/cooling-maps/map0: could not find phandle 2
+[    0.042246] thermal_sys: Add a cooling_device property with at least one device
+[    0.042320] thermal_sys: failed to build thermal zone cpu-thermal: -2
+[    0.042814] xen:swiotlb_xen: Warning: only able to allocate 8 MB for software IO TLB
+[    0.046024] software IO TLB: mapped [mem 0x23000000-0x23800000] (8MB)
+[    0.046650] No ATAGs?
+[    0.046799] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.046901] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.046987] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.050684] Serial: AMBA PL011 UART driver
+[    0.077793] platform ff980000.hdmi: Fixing up cyclic dependency with ff940000.vop
+[    0.077982] platform ff980000.hdmi: Fixing up cyclic dependency with ff930000.vop
+[    0.095231] rockchip-gpio ff750000.gpio0: probed /pinctrl/gpio0@ff750000
+[    0.096187] rockchip-gpio ff780000.gpio1: probed /pinctrl/gpio1@ff780000
+[    0.097087] rockchip-gpio ff790000.gpio2: probed /pinctrl/gpio2@ff790000
+[    0.097999] rockchip-gpio ff7a0000.gpio3: probed /pinctrl/gpio3@ff7a0000
+[    0.099011] rockchip-gpio ff7b0000.gpio4: probed /pinctrl/gpio4@ff7b0000
+[    0.099989] rockchip-gpio ff7c0000.gpio5: probed /pinctrl/gpio5@ff7c0000
+[    0.100941] rockchip-gpio ff7d0000.gpio6: probed /pinctrl/gpio6@ff7d0000
+[    0.101873] rockchip-gpio ff7e0000.gpio7: probed /pinctrl/gpio7@ff7e0000
+[    0.102782] rockchip-gpio ff7f0000.gpio8: probed /pinctrl/gpio8@ff7f0000
+[    0.128677] xen:balloon: Initialising balloon driver
+[    0.133385] iommu: Default domain type: Translated 
+[    0.133449] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.135663] vgaarb: loaded
+[    0.136694] SCSI subsystem initialized
+[    0.137256] usbcore: registered new interface driver usbfs
+[    0.137396] usbcore: registered new interface driver hub
+[    0.137504] usbcore: registered new device driver usb
+[    0.139914] pps_core: LinuxPPS API ver. 1 registered
+[    0.139978] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.140088] PTP clock support registered
+[    0.140429] EDAC MC: Ver: 3.0.0
+[    0.144443] clocksource: Switched to clocksource arch_sys_counter
+[    0.248537] NET: Registered PF_INET protocol family
+[    0.248827] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.249974] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.250087] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.250182] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    0.250303] TCP bind hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.250473] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.250628] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.250729] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.250981] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.276589] RPC: Registered named UNIX socket transport module.
+[    0.276666] RPC: Registered udp transport module.
+[    0.276721] RPC: Registered tcp transport module.
+[    0.276774] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.276842] PCI: CLS 0 bytes, default 64
+[    0.277487] armv7-pmu arm-pmu: hw perfevents: failed to parse interrupt-affinity[0]
+[    0.277580] armv7-pmu: probe of arm-pmu failed with error -22
+[    0.279113] Initialise system trusted keyrings
+[    0.279797] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    0.288349] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.289330] NFS: Registering the id_resolver key type
+[    0.289471] Key type id_resolver registered
+[    0.289524] Key type id_legacy registered
+[    0.289686] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.289760] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.289891] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.290566] Key type asymmetric registered
+[    0.290625] Asymmetric key parser 'x509' registered
+[    0.290772] bounce: pool size: 64 pages
+[    0.290888] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.290971] io scheduler mq-deadline registered
+[    0.291029] io scheduler kyber registered
+[    0.386692] dma-pl330 ff250000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.386789] dma-pl330 ff250000.dma-controller: 	DBUFF-128x8bytes Num_Chans-8 Num_Peri-20 Num_Events-16
+[    0.387838] dma-pl330 ff600000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.387929] dma-pl330 ff600000.dma-controller: 	DBUFF-64x8bytes Num_Chans-5 Num_Peri-6 Num_Events-10
+[    0.409031] xen:xen_evtchn: Event-channel device installed
+[    0.525368] Serial: 8250/16550 driver, 5 ports, IRQ sharing enabled
+[    0.528889] ff180000.serial: ttyS0 at MMIO 0xff180000 (irq = 38, base_baud = 1500000) is a 16550A
+[    0.542443] ff190000.serial: ttyS1 at MMIO 0xff190000 (irq = 39, base_baud = 1500000) is a 16550A
+[    0.543882] ff1b0000.serial: ttyS3 at MMIO 0xff1b0000 (irq = 40, base_baud = 1500000) is a 16550A
+[    0.545346] ff1c0000.serial: ttyS4 at MMIO 0xff1c0000 (irq = 41, base_baud = 1500000) is a 16550A
+[    0.548862] SuperH (H)SCI(F) driver initialized
+[    0.550677] msm_serial: driver initialized
+[    0.550731] STMicroelectronics ASC driver initialized
+[    0.551816] STM32 USART driver initialized
+[    0.610451] brd: module loaded
+[    0.633457] loop: module loaded
+[    0.633576] Invalid max_queues (4), will use default max: 1.
+[    0.651403] CAN device driver interface
+[    0.653065] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.655157] e1000e: Intel(R) PRO/1000 Network Driver
+[    0.655219] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.655355] igb: Intel(R) Gigabit Ethernet Network Driver
+[    0.655416] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.663165] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.663308] pegasus: Pegasus/Pegasus II USB Ethernet driver
+[    0.663422] usbcore: registered new interface driver pegasus
+[    0.663546] usbcore: registered new interface driver asix
+[    0.663655] usbcore: registered new interface driver ax88179_178a
+[    0.663774] usbcore: registered new interface driver cdc_ether
+[    0.663905] usbcore: registered new interface driver smsc75xx
+[    0.664051] usbcore: registered new interface driver smsc95xx
+[    0.664174] usbcore: registered new interface driver net1080
+[    0.664313] usbcore: registered new interface driver cdc_subset
+[    0.664479] usbcore: registered new interface driver zaurus
+[    0.664614] usbcore: registered new interface driver cdc_ncm
+[    0.668098] dwc2 ff540000.usb: supply vusb_d not found, using dummy regulator
+[    0.668332] dwc2 ff540000.usb: supply vusb_a not found, using dummy regulator
+[    0.799562] dwc2 ff540000.usb: DWC OTG Controller
+[    0.799655] dwc2 ff540000.usb: new USB bus registered, assigned bus number 1
+[    0.799763] dwc2 ff540000.usb: irq 48, io mem 0xff540000
+[    0.800673] hub 1-0:1.0: USB hub found
+[    0.800780] hub 1-0:1.0: 1 port detected
+[    0.801697] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
+[    0.801927] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
+[    0.955489] dwc2 ff580000.usb: EPs: 10, dedicated fifos, 972 entries in SPRAM
+[    0.969387] dwc2 ff580000.usb: DWC OTG Controller
+[    0.969553] dwc2 ff580000.usb: new USB bus registered, assigned bus number 2
+[    0.969664] dwc2 ff580000.usb: irq 49, io mem 0xff580000
+[    0.970488] hub 2-0:1.0: USB hub found
+[    0.970594] hub 2-0:1.0: 1 port detected
+[    0.972475] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.972552] ehci-pci: EHCI PCI platform driver
+[    0.972662] ehci-platform: EHCI generic platform driver
+[    0.973069] ehci-platform ff500000.usb: EHCI Host Controller
+[    0.973167] ehci-platform ff500000.usb: new USB bus registered, assigned bus number 3
+[    0.973751] ehci-platform ff500000.usb: irq 47, io mem 0xff500000
+[    1.171385] usb 1-1: new high-speed USB device number 2 using dwc2
+[    1.197348] ehci-platform ff500000.usb: USB 2.0 started, EHCI 1.00
+[    1.211275] hub 3-0:1.0: USB hub found
+[    1.211387] hub 3-0:1.0: 1 port detected
+[    1.212169] ehci-omap: OMAP-EHCI Host Controller driver
+[    1.212468] ehci-orion: EHCI orion driver
+[    1.212781] SPEAr-ehci: EHCI SPEAr driver
+[    1.213073] ehci-st: EHCI STMicroelectronics driver
+[    1.213353] ehci-atmel: EHCI Atmel driver
+[    1.213622] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.213712] ohci-pci: OHCI PCI platform driver
+[    1.213843] ohci-platform: OHCI generic platform driver
+[    1.214210] SPEAr-ohci: OHCI SPEAr driver
+[    1.214535] ohci-st: OHCI STMicroelectronics driver
+[    1.214818] ohci-atmel: OHCI Atmel driver
+[    1.215929] usbcore: registered new interface driver usb-storage
+[    1.224569] i2c_dev: i2c /dev entries driver
+[    1.280152] rk808 0-001b: chip id: 0x0
+[    1.523298] usb 3-1: new high-speed USB device number 2 using ehci-platform
+[    1.549998] vdd_arm: supplied by vcc_sys
+[    1.550425] hub 1-1:1.0: USB hub found
+[    1.550965] hub 1-1:1.0: 4 ports detected
+[    1.567935] vdd_gpu: supplied by vcc_sys
+[    1.568367] vcc_ddr: supplied by vcc_sys
+[    1.575312] vcc_io: supplied by vcc_sys
+[    1.578310] vcc18_ldo1: supplied by vcc_sys
+[    1.605762] vcc33_mipi: supplied by vcc_sys
+[    1.638348] vdd_10: supplied by vcc_sys
+[    1.649225] vcc18_codec: supplied by vcc_io
+[    1.666252] vccio_sd: supplied by vcc_io
+[    1.690328] vdd10_lcd: Bringing 800000uV into 1000000-1000000uV
+[    1.698950] vdd10_lcd: supplied by vcc_io
+[    1.710651] vcc_18: supplied by vcc_sys
+[    1.730514] vcc18_lcd: supplied by vcc_sys
+[    1.733055] vcc33_sd: supplied by vcc_io
+[    1.733460] vcc33_lan: supplied by vcc_io
+[    1.756390] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    1.756488] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    1.761680] dw_wdt ff800000.watchdog: No valid TOPs array specified
+[    1.781121] cpu cpu0: OPP table can't be empty
+[    1.784236] sdhci: Secure Digital Host Controller Interface driver
+[    1.784309] sdhci: Copyright(c) Pierre Ossman
+[    1.787755] Synopsys Designware Multimedia Card Interface Driver
+[    1.790912] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.797726] dwmmc_rockchip ff0c0000.mmc: IDMAC supports 32-bit address mode.
+[    1.797991] dwmmc_rockchip ff0c0000.mmc: Using internal DMA controller.
+[    1.798072] dwmmc_rockchip ff0c0000.mmc: Version ID is 270a
+[    1.798226] dwmmc_rockchip ff0c0000.mmc: DW MMC controller at irq 34,32 bit host data width,256 deep fifo
+[    1.798832] mmc_host mmc0: card is polling.
+[    1.800377] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    1.800617] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    1.800710] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    1.800849] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    1.812631] mmc_host mmc0: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    1.828048] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.830180] usbcore: registered new interface driver usbhid
+[    1.830248] usbhid: USB HID core driver
+[    1.838672] NET: Registered PF_INET6 protocol family
+[    1.849140] Segment Routing with IPv6
+[    1.849280] In-situ OAM (IOAM) with IPv6
+[    1.849484] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.850266] NET: Registered PF_PACKET protocol family
+[    1.850381] can: controller area network core
+[    1.850626] NET: Registered PF_CAN protocol family
+[    1.850691] can: raw protocol
+[    1.850742] can: broadcast manager protocol
+[    1.850799] can: netlink gateway - max_hops=1
+[    1.851258] Key type dns_resolver registered
+[    1.855546] NET: Registered PF_VSOCK protocol family
+[    1.855865] ThumbEE CPU extension supported.
+[    1.855936] Registering SWP/SWPB emulation handler
+[    1.856503] Loading compiled-in X.509 certificates
+[    1.882757] vcc_sd: supplied by vcc_io
+[    1.886697] rk_gmac-dwmac ff290000.ethernet: IRQ eth_lpi not found
+[    1.886831] rk_gmac-dwmac ff290000.ethernet: Deprecated MDIO bus assumption used
+[    1.886973] rk_gmac-dwmac ff290000.ethernet: PTP uses main clock
+[    1.887241] rk_gmac-dwmac ff290000.ethernet: clock input or output? (input).
+[    1.887330] rk_gmac-dwmac ff290000.ethernet: TX delay(0x30).
+[    1.887402] rk_gmac-dwmac ff290000.ethernet: RX delay(0x10).
+[    1.887476] rk_gmac-dwmac ff290000.ethernet: integrated PHY? (no).
+[    1.887603] rk_gmac-dwmac ff290000.ethernet: cannot get clock clk_mac_speed
+[    1.887675] rk_gmac-dwmac ff290000.ethernet: clock input from PHY
+[    1.892756] rk_gmac-dwmac ff290000.ethernet: init for RGMII
+[    1.914497] rk_gmac-dwmac ff290000.ethernet: User ID: 0x10, Synopsys ID: 0x35
+[    1.914591] rk_gmac-dwmac ff290000.ethernet: 	DWMAC1000
+[    1.914662] rk_gmac-dwmac ff290000.ethernet: DMA HW capability register supported
+[    1.914780] rk_gmac-dwmac ff290000.ethernet: RX Checksum Offload Engine supported
+[    1.914864] rk_gmac-dwmac ff290000.ethernet: COE Type 2
+[    1.914924] rk_gmac-dwmac ff290000.ethernet: TX Checksum insertion supported
+[    1.914999] rk_gmac-dwmac ff290000.ethernet: Wake-Up On Lan supported
+[    1.915154] rk_gmac-dwmac ff290000.ethernet: Normal descriptors
+[    1.915227] rk_gmac-dwmac ff290000.ethernet: Ring mode enabled
+[    1.915295] rk_gmac-dwmac ff290000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    1.964091] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ div = 0)
+[    1.964832] mmc0: new high speed SDHC card at address aaaa
+[    1.965860] mmcblk0: mmc0:aaaa SK32G 29.7 GiB 
+[    1.974790] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    1.974886] GPT:5422101 != 62333951
+[    1.974933] GPT:Alternate GPT header not at the end of the disk.
+[    1.974994] GPT:5422101 != 62333951
+[    1.975039] GPT: Use GNU Parted to correct GPT errors.
+[    1.975147]  mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9
+[    2.979715] RTL8211E Gigabit Ethernet stmmac-0:00: attached PHY driver (mii_bus:phy_addr=stmmac-0:00, irq=POLL)
+[    2.979840] RTL8211E Gigabit Ethernet stmmac-0:01: attached PHY driver (mii_bus:phy_addr=stmmac-0:01, irq=POLL)
+[    2.983455] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.983553] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    2.990385] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    2.990646] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    2.990728] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    2.990844] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    2.994282] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.994379] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.002215] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    3.003153] clk: Not disabling unused clocks
+[    3.006155] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.006261] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.008746] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.009024] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.009105] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.009221] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.013460] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.013558] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.021612] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.023140] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.023223] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.023378] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.042345] EXT4-fs (mmcblk0p7): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    3.042513] VFS: Mounted root (ext4 filesystem) on device 179:7.
+[    3.043360] devtmpfs: mounted
+[    3.049685] Freeing unused kernel image (initmem) memory: 2048K
+[    3.055736] Run /sbin/init as init process
+INIT: version 3.01 booting
+[    3.194558] input: Generic USB Audio Consumer Control as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input1
+[    3.264914] input: Generic USB Audio as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input2
+[    3.265524] hid-generic 0003:0BDA:49F6.0001: input: USB HID v1.11 Device [Generic USB Audio] on usb-ff500000.usb-1/input6
+[    3.268204] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.268302] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.275836] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.276123] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.276221] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.276341] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+Starting udev
+[    3.658845] udevd[98]: starting version 3.2.10
+[    3.670794] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.672444] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.672656] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.706586] udevd[99]: starting eudev-3.2.10
+[    5.212912] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Fri Mar  9 12:34:56 UTC 2018
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+[    6.411599] random: dd: uninitialized urandom read (512 bytes read)
+INIT: Entering runlevel: 5
+Configuring network interfaces... udhcpc: started, v1.35.0
+[    6.711932] rk_gmac-dwmac ff290000.ethernet eth0: PHY [stmmac-0:00] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+[    6.713003] rk_gmac-dwmac ff290000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    6.724655] rk_gmac-dwmac ff290000.ethernet eth0: No Safety Features support found
+[    6.724752] rk_gmac-dwmac ff290000.ethernet eth0: PTP not supported by HW
+[    6.725372] rk_gmac-dwmac ff290000.ethernet eth0: configuring for phy/rgmii link mode
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+Starting /usr/sbin/xenstored....
+Setting domain 0 name, domid and JSON config...
+Done setting up Dom0
+Starting xenconsoled...
+Starting QEMU as disk backend for dom0
+/etc/rc5.d/S80xencommons: line 73: /usr/bin/qemu-system-i386: No such file or directory
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: 
+#### seen: Found U-Boot script /boot.scr
+
+#### seen: sched=credit2
+
+#### seen: Brought up 4 CPUs
+
+#### not seen: Failed to bring up
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: root
+root@tinker-board:~# xl info | grep -E 'nr_cpus|xen_scheduler'; xl dmesg | grep  -E 'Brought up|Using PSCI'; cat /proc/cmdline
+nr_cpus                : 4
+xen_scheduler          : credit2
+(XEN) Using PSCI v1.0
+(XEN) Brought up 4 CPUs
+console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+root@tinker-board:~# 
+#### rtos1-start (creates the rt pool on CPU 3)
+rtos1-start
+(XEN) Removing cpu 3 from runqueue 0
+Using config file "command line"
+cpupool name:   rt
+scheduler:      rtds
+number of cpus: 1
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+(XEN) rt.c:745: RTDS: timer initialized on cpu 3
+Parsing config from /etc/xen/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[   35.101993] random: xl: uninitialized urandom read (128 bytes read)
+(d1) 
+(d1) [rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+(d1) [rtos] virtual timer 24000000 Hz, tick 1000 Hz
+(d1) [rtos] 4 tasks created, starting the scheduler
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0      1000       200        yes
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10049 us (report 1)
+(d1) [rtos] heartbeat 1, tick 1000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 2)
+(d1) [rtos] heartbeat 2, tick 2000
+(d1) [rtos] consumer received message 1 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10031 us (report 3)
+(d1) [rtos] heartbeat 3, tick 3000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10002 us (report 4)
+(d1) [rtos] heartbeat 4, tick 4000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10002 us (report 5)
+(d1) [rtos] heartbeat 5, tick 5000
+(d1) [rtos] consumer received message 2 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10002 us (report 6)
+(d1) [rtos] heartbeat 6, tick 6000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 7)
+(d1) [rtos] heartbeat 7, tick 7000
+(d1) [rtos] consumer received message 3 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 8)
+(d1) [rtos] heartbeat 8, tick 8000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 9)
+(d1) [rtos] heartbeat 9, tick 9000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 10)
+(d1) [rtos] heartbeat 10, tick 10000
+(d1) [rtos] consumer received message 4 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 11)
+(d1) [rtos] heartbeat 11, tick 11000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10002 us (report 12)
+(d1) [rtos] heartbeat 12, tick 12000
+(d1) [rtos] consumer received message 5 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10015 us (report 13)
+(d1) [rtos] heartbeat 13, tick 13000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 14)
+(d1) [rtos] heartbeat 14, tick 14000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10002 us (report 15)
+(d1) [rtos] heartbeat 15, tick 15000
+(d1) [rtos] consumer received message 6 from the queue
+xl cpupool-list; xl cpupool-list -c
+Name               CPUs   Sched     Active   Domain count
+Pool-0               3   credit2       y          1
+rt                   1      rtds       y          1
+Name               CPU list
+Pool-0             0,1,2
+rt                 3
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9972 us, max 10028 us (report 16)
+(d1) [rtos] heartbeat 16, tick 16000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10002 us (report 17)
+(d1) [rtos] heartbeat 17, tick 17000
+(d1) [rtos] consumer received message 7 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 18)
+(d1) [rtos] heartbeat 18, tick 18000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10001 us (report 19)
+(d1) [rtos] heartbeat 19, tick 19000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10002 us (report 20)
+(d1) [rtos] heartbeat 20, tick 20000
+(d1) [rtos] consumer received message 8 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 21)
+(d1) [rtos] heartbeat 21, tick 21000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 22)
+(d1) [rtos] heartbeat 22, tick 22000
+(d1) [rtos] consumer received message 9 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10019 us (report 23)
+(d1) [rtos] heartbeat 23, tick 23000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10002 us (report 24)
+(d1) [rtos] heartbeat 24, tick 24000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 25)
+(d1) [rtos] heartbeat 25, tick 25000
+(d1) [rtos] consumer received message 10 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10001 us (report 26)
+(d1) [rtos] heartbeat 26, tick 26000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10002 us (report 27)
+(d1) [rtos] heartbeat 27, tick 27000
+(d1) [rtos] consumer received message 11 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 28)
+(d1) [rtos] heartbeat 28, tick 28000
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10001 us (report 29)
+(d1) [rtos] heartbeat 29, tick 29000
+(d1) [rtos] 10 ms task: 100 periods, min 9997 us, max 10001 us (report 30)
+(d1) [rtos] heartbeat 30, tick 30000
+(d1) [rtos] consumer received message 12 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9998 us, max 10003 us (report 31)
+(d1) [rtos] heartbeat 31, tick 31000
+
+#### 2) starting the Android guest
+xl create /etc/xen/android1.cfg
+Parsing config from /etc/xen/android1.cfg
+(d1) [rtos] 10 ms task: 100 periods, min 9985 us, max 10013 us (report 32)
+(d1) [rtos] heartbeat 32, tick 32000
+(d1) [rtos] consumer received message 13 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9982 us, max 10024 us (report 33)
+(d1) [rtos] heartbeat 33, tick 33000
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10003 us (report 34)
+(d1) [rtos] heartbeat 34, tick 34000
+[   70.085315] random: xl: uninitialized urandom read (128 bytes read)
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10007 us (report 35)
+(d1) [rtos] heartbeat 35, tick 35000
+(d1) [rtos] consumer received message 14 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9975 us, max 10026 us (report 36)
+(d1) [rtos] heartbeat 36, tick 36000
+[   71.665450] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   71.665550] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   71.672297] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   71.672628] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   71.672708] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   71.672827] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   71.804302] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   71.804468] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   71.811167] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   71.811514] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   71.811595] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   71.811713] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+(d1) [rtos] 10 ms task: 100 periods, min 9959 us, max 10039 us (report 37)
+(d1) [rtos] heartbeat 37, tick 37000
+(d1) [rtos] consumer received message 15 from the queue
+[   72.907643] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   72.907743] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   72.914823] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   72.916153] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   72.916235] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   72.916354] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+(d1) [rtos] 10 ms task: 100 periods, min 9963 us, max 10034 us (report 38)
+(d1) [rtos] heartbeat 38, tick 38000
+[   73.236857] xenbr0: port 1(vif2.0) entered blocking state
+[   73.236946] xenbr0: port 1(vif2.0) entered disabled state
+[   73.237232] device vif2.0 entered promiscuous mode
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9986 us, max 10030 us (report 39)
+(d1) [rtos] heartbeat 39, tick 39000
+(XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d2v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[   75.163825] xen-blkback: backend/vbd/2/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10007 us (report 40)
+(d1) [rtos] heartbeat 40, tick 40000
+(d1) [rtos] consumer received message 16 from the queue
+[   75.333335] xen-blkback: backend/vbd/2/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+(XEN) grant_table.c:1871:d2v1 Expanding d2 grant table from 1 to 2 frames
+[   75.419456] vif vif-2-0 vif2.0: Guest Rx ready
+[   75.419585] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[   75.419846] xenbr0: port 1(vif2.0) entered blocking state
+[   75.419920] xenbr0: port 1(vif2.0) entered forwarding state
+(XEN) gnttab_mark_dirty not implemented yet
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10024 us (report 41)
+(d1) [rtos] heartbeat 41, tick 41000
+(d1) [rtos] 10 ms task: 100 periods, min 9986 us, max 10022 us (report 42)
+(d1) [rtos] heartbeat 42, tick 42000
+(d1) [rtos] consumer received message 17 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9957 us, max 10033 us (report 43)
+(d1) [rtos] heartbeat 43, tick 43000
+(d1) [rtos] 10 ms task: 100 periods, min 9967 us, max 10037 us (report 44)
+(d1) [rtos] heartbeat 44, tick 44000
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 2 to 3 frames
+(d1) [rtos] 10 ms task: 100 periods, min 9962 us, max 10038 us (report 45)
+(d1) [rtos] heartbeat 45, tick 45000
+(d1) [rtos] consumer received message 18 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9957 us, max 10047 us (report 46)
+(d1) [rtos] heartbeat 46, tick 46000
+(d1) [rtos] 10 ms task: 100 periods, min 9953 us, max 10049 us (report 47)
+(d1) [rtos] heartbeat 47, tick 47000
+(d1) [rtos] consumer received message 19 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9948 us, max 10059 us (report 48)
+(d1) [rtos] heartbeat 48, tick 48000
+(d1) [rtos] 10 ms task: 100 periods, min 9941 us, max 10057 us (report 49)
+(d1) [rtos] heartbeat 49, tick 49000
+(d1) [rtos] 10 ms task: 100 periods, min 9960 us, max 10037 us (report 50)
+(d1) [rtos] heartbeat 50, tick 50000
+(d1) [rtos] consumer received message 20 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9952 us, max 10047 us (report 51)
+(d1) [rtos] heartbeat 51, tick 51000
+(d1) [rtos] 10 ms task: 100 periods, min 9970 us, max 10028 us (report 52)
+(d1) [rtos] heartbeat 52, tick 52000
+(d1) [rtos] consumer received message 21 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9973 us, max 10026 us (report 53)
+(d1) [rtos] heartbeat 53, tick 53000
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10014 us (report 54)
+(d1) [rtos] heartbeat 54, tick 54000
+(d1) [rtos] 10 ms task: 100 periods, min 9980 us, max 10019 us (report 55)
+(d1) [rtos] heartbeat 55, tick 55000
+(d1) [rtos] consumer received message 22 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10007 us (report 56)
+(d1) [rtos] heartbeat 56, tick 56000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 57)
+(d1) [rtos] heartbeat 57, tick 57000
+(d1) [rtos] consumer received message 23 from the queue
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 3 to 4 frames
+(d1) [rtos] 10 ms task: 100 periods, min 9986 us, max 10012 us (report 58)
+(d1) [rtos] heartbeat 58, tick 58000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10005 us (report 59)
+(d1) [rtos] heartbeat 59, tick 59000
+(d1) [rtos] 10 ms task: 100 periods, min 9962 us, max 10039 us (report 60)
+(d1) [rtos] heartbeat 60, tick 60000
+(d1) [rtos] consumer received message 24 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 61)
+(d1) [rtos] heartbeat 61, tick 61000
+xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      26.9
+rtos1                                        1    16     1     -b----       2.0
+android1                                     2   767     2     r-----      19.4
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10010 us (report 62)
+(d1) [rtos] heartbeat 62, tick 62000
+(d1) [rtos] consumer received message 25 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9967 us, max 10034 us (report 63)
+(d1) [rtos] heartbeat 63, tick 63000
+(d1) [rtos] 10 ms task: 100 periods, min 9962 us, max 10037 us (report 64)
+(d1) [rtos] heartbeat 64, tick 64000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10006 us (report 65)
+(d1) [rtos] heartbeat 65, tick 65000
+(d1) [rtos] consumer received message 26 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 66)
+(d1) [rtos] heartbeat 66, tick 66000
+
+#### 3) Android console (kernel + init), 240 s
+xl console android1
+(d1) [rtos] 10 ms task: 100 periods, min 9962 us, max 10036 us (report 67)
+(d1) [rtos] heartbeat 67, tick 67000
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.14.336-android-xen (@arjune) (gcc version 11.5.0 (GCC)) #2 SMP Sat Oct 24 14:31:50 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=30c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: XENVM-4.16
+[    0.000000] random: crng init done
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x000000006c000000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 14 pages/cpu s36748 r0 d20596 u57344
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 194880
+[    0.000000] Kernel command line: console=hvc0 androidboot.hardware=xen androidboot.console=hvc0 androidboot.selinux=permissive video=vfb:640x480-16@60 vfb.videomemorysize=4194304
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 686604K/786432K available (14336K kernel code, 1963K rwdata, 5208K rodata, 2048K init, 518K bss, 34292K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0800000 - 0xff800000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xf0000000   ( 768 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc1200000   (16352 kB)
+[    0.000000]       .init : 0xc1800000 - 0xc1a00000   (2048 kB)
+[    0.000000]       .data : 0xc1a00000 - 0xc1beac70   (1964 kB)
+[    0.000000]        .bss : 0xc1bf6494 - 0xc1c77de8   ( 519 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU event tracing is enabled.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000007] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000023] Switching to timer-based delay loop, resolution 41ns
+[    0.000284] Console: colour dummy device 80x30
+[    0.002811] console [hvc0] enabled
+[    0.002881] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.002982] CPU: Testing write buffer coherency: ok
+[    0.003071] CPU0: Spectre v2: using BPIALL workaround
+[    0.003126] pid_max: default: 32768 minimum: 301
+[    0.003296] Security Framework initialized
+[    0.003346] SELinux:  Initializing.
+[    0.003504] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.003579] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.004613] /cpus/cpu@0 missing clock-frequency property
+[    0.004686] /cpus/cpu@1 missing clock-frequency property
+[    0.004744] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.006186] xen:grant_table: Grant tables using version 1 layout
+[    0.006299] Grant table initialized
+[    0.006431] xen:events: Using FIFO-based ABI
+[    0.006514] Xen: initializing cpu0
+[    0.006653] Setting up static identity map for 0x40400000 - 0x40400178
+[    0.008807] Hierarchical SRCU implementation.
+[    0.009276] EFI services will not be available.
+[    0.009493] smp: Bringing up secondary CPUs ...
+[    0.063468] Xen: initializing cpu1
+[    0.063567] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.063574] CPU1: Spectre v2: using BPIALL workaround
+[    0.064311] smp: Brought up 1 node, 2 CPUs
+[    0.064365] SMP: Total of 2 processors activated (96.00 BogoMIPS).
+[    0.064423] CPU: All CPU(s) started in SVC mode.
+[    0.065757] devtmpfs: initialized
+[    0.066819] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.067130] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.067236] futex hash table entries: 512 (order: 3, 32768 bytes)
+[    0.069364] pinctrl core: initialized pinctrl subsystem
+[    0.070486] DMI not present or invalid.
+[    0.070976] NET: Registered protocol family 16
+[    0.073893] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.075756] No ATAGs?
+[    0.075885] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.076006] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.076084] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.201929] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 1
+[    0.202052] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 1
+[    0.203658] Serial: AMBA PL011 UART driver
+[    0.221547] xen:balloon: Initialising balloon driver
+[    0.223400] vgaarb: loaded
+[    0.224236] SCSI subsystem initialized
+[    0.224969] usbcore: registered new interface driver usbfs
+[    0.225091] usbcore: registered new interface driver hub
+[    0.225214] usbcore: registered new device driver usb
+[    0.225923] media: Linux media interface: v0.10
+[    0.226046] Linux video capture interface: v2.00
+[    0.226161] pps_core: LinuxPPS API ver. 1 registered
+[    0.226225] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.226331] PTP clock support registered
+[    0.226555] EDAC MC: Ver: 3.0.0
+[    0.227000] dmi: Firmware registration failed.
+[    0.227868] Advanced Linux Sound Architecture Driver Initialized.
+[    0.228497] Bluetooth: Core ver 2.22
+[    0.228607] NET: Registered protocol family 31
+[    0.228668] Bluetooth: HCI device and connection manager initialized
+[    0.228739] Bluetooth: HCI socket layer initialized
+[    0.228805] Bluetooth: L2CAP socket layer initialized
+[    0.228890] Bluetooth: SCO socket layer initialized
+[    0.230518] clocksource: Switched to clocksource arch_sys_counter
+[    0.327017] NET: Registered protocol family 2
+[    0.327290] IP idents hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.328397] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.328547] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.328792] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.328943] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.329053] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.329280] NET: Registered protocol family 1
+[    0.329932] RPC: Registered named UNIX socket transport module.
+[    0.330003] RPC: Registered udp transport module.
+[    0.330054] RPC: Registered tcp transport module.
+[    0.330105] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.330569] Trying to unpack rootfs image as initramfs...
+[    0.429843] Freeing initrd memory: 1240K
+[    0.432905] audit: initializing netlink subsys (disabled)
+[    0.433364] audit: type=2000 audit(0.300:1): state=initialized audit_enabled=0 res=1
+[    0.433918] workingset: timestamp_bits=14 max_order=18 bucket_order=4
+[    0.441074] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.441923] NFS: Registering the id_resolver key type
+[    0.442030] Key type id_resolver registered
+[    0.442081] Key type id_legacy registered
+[    0.442171] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.442779] fuse init (API version 7.26)
+[    0.453513] NET: Registered protocol family 38
+[    0.453823] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.453923] io scheduler noop registered
+[    0.453971] io scheduler deadline registered
+[    0.454178] io scheduler cfq registered (default)
+[    0.454254] io scheduler mq-deadline registered
+[    0.454311] io scheduler kyber registered
+[    0.467293] Console: switching to colour frame buffer device 80x30
+[    0.470284] fb0: Virtual frame buffer device, using 4096K of video memory
+[    0.492382] xen:xen_evtchn: Event-channel device installed
+[    0.637407] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.639931] SuperH (H)SCI(F) driver initialized
+[    0.640516] msm_serial: driver initialized
+[    0.640725] STMicroelectronics ASC driver initialized
+[    0.653505] brd: module loaded
+[    0.660683] loop: module loaded
+[    0.660832] Invalid max_queues (4), will use default max: 2.
+[    0.678174] tun: Universal TUN/TAP device driver, 1.6
+[    0.678745] CAN device driver interface
+[    0.679793] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.680761] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    0.680851] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.680962] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    0.681033] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.683072] usbcore: registered new interface driver rt2800usb
+[    0.683169] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.692116] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    0.692251] usbcore: registered new interface driver pegasus
+[    0.692356] usbcore: registered new interface driver r8152
+[    0.692458] usbcore: registered new interface driver asix
+[    0.692552] usbcore: registered new interface driver ax88179_178a
+[    0.692656] usbcore: registered new interface driver cdc_ether
+[    0.692777] usbcore: registered new interface driver smsc75xx
+[    0.692881] usbcore: registered new interface driver smsc95xx
+[    0.692988] usbcore: registered new interface driver net1080
+[    0.693102] usbcore: registered new interface driver cdc_subset
+[    0.693287] usbcore: registered new interface driver zaurus
+[    0.693398] usbcore: registered new interface driver cdc_ncm
+[    0.694739] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.694812] ehci-pci: EHCI PCI platform driver
+[    0.694906] ehci-platform: EHCI generic platform driver
+[    0.695069] ehci-orion: EHCI orion driver
+[    0.695220] SPEAr-ehci: EHCI SPEAr driver
+[    0.695372] ehci-st: EHCI STMicroelectronics driver
+[    0.695541] ehci-exynos: EHCI EXYNOS driver
+[    0.695694] ehci-atmel: EHCI Atmel driver
+[    0.695845] ehci-msm: Qualcomm On-Chip EHCI Host Controller
+[    0.696004] tegra-ehci: Tegra EHCI driver
+[    0.696158] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.696247] ohci-pci: OHCI PCI platform driver
+[    0.696354] ohci-platform: OHCI generic platform driver
+[    0.696521] ohci-exynos: OHCI EXYNOS driver
+[    0.696672] SPEAr-ohci: OHCI SPEAr driver
+[    0.696825] ohci-st: OHCI STMicroelectronics driver
+[    0.696985] ohci-atmel: OHCI Atmel driver
+[    0.697581] usbcore: registered new interface driver usb-storage
+[    0.698923] udc-core: couldn't find an available UDC - added [g_ether] to list of pending drivers
+[    0.704028] i2c /dev entries driver
+[    0.706411] IR NEC protocol handler initialized
+[    0.706476] IR RC5(x/sz) protocol handler initialized
+[    0.706530] IR RC6 protocol handler initialized
+[    0.706583] IR JVC protocol handler initialized
+[    0.706634] IR Sony protocol handler initialized
+[    0.706689] IR SANYO protocol handler initialized
+[    0.706742] IR Sharp protocol handler initialized
+[    0.706794] IR MCE Keyboard/mouse protocol handler initialized
+[    0.706855] IR XMP protocol handler initialized
+[    0.707537] vivid-000: using single planar format API
+[    0.712043] vivid-000: V4L2 capture device registered as video0
+[    0.712422] vivid-000: V4L2 output device registered as video1
+[    0.712810] vivid-000: V4L2 capture device registered as vbi0, supports raw and sliced VBI
+[    0.839192] vivid-000: V4L2 output device registered as vbi1, supports raw and sliced VBI
+[    0.839602] vivid-000: V4L2 capture device registered as swradio0
+[    0.840001] vivid-000: V4L2 receiver device registered as radio0
+[    0.840394] vivid-000: V4L2 transmitter device registered as radio1
+[    0.842590] usbcore: registered new interface driver uvcvideo
+[    0.842681] USB Video Class driver (1.1.1)
+[    0.842728] gspca_main: v2.14.0 registered
+[    0.849494] sdhci: Secure Digital Host Controller Interface driver
+[    0.849585] sdhci: Copyright(c) Pierre Ossman
+[    0.850574] Synopsys Designware Multimedia Card Interface Driver
+[    0.851598] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.854116] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.855571] usbcore: registered new interface driver usbhid
+[    0.855642] usbhid: USB HID core driver
+[    0.856692] ashmem: initialized
+[    0.861168] usbcore: registered new interface driver snd-usb-audio
+[    0.868634] nf_conntrack version 0.5.0 (12288 buckets, 49152 max)
+[    0.869378] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    0.870416] NET: Registered protocol family 10
+[    0.871960] Segment Routing with IPv6
+[    0.872118] mip6: Mobile IPv6
+[    0.872186] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[    0.872684] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    0.874169] NET: Registered protocol family 17
+[    0.874643] can: controller area network core (rev 20170425 abi 9)
+[    0.874778] NET: Registered protocol family 29
+[    0.874840] can: raw protocol (rev 20170425)
+[    0.874897] can: broadcast manager protocol (rev 20170425 t)
+[    0.874971] can: netlink gateway (rev 20170425) max_hops=1
+[    0.875375] Key type dns_resolver registered
+[    0.875662] ThumbEE CPU extension supported.
+[    0.875732] Registering SWP/SWPB emulation handler
+[    0.945880] blkfront: xvda: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.972223] blkfront: xvdb: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    0.981204] hctosys: unable to open rtc device (rtc0)
+[    0.981326] ALSA device list:
+[    0.981372]   No soundcards found.
+[    0.988493] Freeing unused kernel memory: 2048K
+[    1.019125] init: init first stage started!
+[    1.033376] SELinux:  Permission validate_trans in class security not defined in policy.
+[    1.033491] SELinux:  Permission getrlimit in class process not defined in policy.
+[    1.033563] SELinux:  Class process2 not defined in policy.
+[    1.033671] SELinux:  Permission map in class file not defined in policy.
+[    1.033752] SELinux:  Permission map in class dir not defined in policy.
+[    1.033838] SELinux:  Permission map in class lnk_file not defined in policy.
+[    1.033922] SELinux:  Permission map in class chr_file not defined in policy.
+[    1.034006] SELinux:  Permission map in class blk_file not defined in policy.
+[    1.034091] SELinux:  Permission map in class sock_file not defined in policy.
+[    1.034175] SELinux:  Permission map in class fifo_file not defined in policy.
+[    1.034263] SELinux:  Permission map in class socket not defined in policy.
+[    1.039210] SELinux:  Permission map in class tcp_socket not defined in policy.
+[    1.039303] SELinux:  Permission map in class udp_socket not defined in policy.
+[    1.039397] SELinux:  Permission map in class rawip_socket not defined in policy.
+[    1.039501] SELinux:  Permission map in class netlink_socket not defined in policy.
+[    1.039588] SELinux:  Permission map in class packet_socket not defined in policy.
+[    1.039679] SELinux:  Permission map in class key_socket not defined in policy.(d1) [rtos] 10 ms task: 100 periods, min 9986 us, max 10013 us (report 68)
+(d1) [rtos] heartbeat 68, tick 68000
+(d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10012 us (report 69)
+(d1) [rtos] heartbeat 69, tick 69000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 70)
+(d1) [rtos] heartbeat 70, tick 70000
+(d1) [rtos] consumer received message 28 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10029 us (report 71)
+(d1) [rtos] heartbeat 71, tick 71000
+(d1) [rtos] 10 ms task: 100 periods, min 9984 us, max 10012 us (report 72)
+(d1) [rtos] heartbeat 72, tick 72000
+(d1) [rtos] consumer received message 29 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10014 us (report 73)
+(d1) [rtos] heartbeat 73, tick 73000
+(d1) [rtos] 10 ms task: 100 periods, min 9977 us, max 10019 us (report 74)
+(d1) [rtos] heartbeat 74, tick 74000
+[   35.049371] type=1400 audit(1520598997.500:286): avc: denied { map } for pid=132 comm="main" path="/dev/__properties__/u:object_r:log_prop:s0" dev="tmpfs" ino=8294 scontext=u:r:zygote:s0 tcontext=u:object_r:log_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9985 us, max 10014 us (report 75)
+(d1) [rtos] heartbeat 75, tick 75000
+(d1) [rtos] consumer received message 30 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10025 us (report 76)
+(d1) [rtos] heartbeat 76, tick 76000
+[   37.004742] capability: warning: `main' uses 32-bit capabilities (legacy support in use)
+(d1) [rtos] 10 ms task: 100 periods, min 9982 us, max 10017 us (report 77)
+(d1) [rtos] heartbeat 77, tick 77000
+(d1) [rtos] consumer received message 31 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10011 us (report 78)
+(d1) [rtos] heartbeat 78, tick 78000
+(d1) [rtos] 10 ms task: 100 periods, min 9982 us, max 10018 us (report 79)
+(d1) [rtos] heartbeat 79, tick 79000
+[   40.428398] type=1400 audit(1520599002.880:287): avc: denied { map } for pid=372 comm="main" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[   40.470426] type=1400 audit(1520599002.920:288): avc: denied { map } for pid=372 comm="system_server" path="/system/framework/oat/arm/services.odex" dev="xvda" ino=933 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   40.739611] type=1400 audit(1520599003.190:289): avc: denied { map } for pid=372 comm="system_server" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:system_server:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10028 us (report 80)
+(d1) [rtos] heartbeat 80, tick 80000
+(d1) [rtos] consumer received message 32 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10010 us (report 81)
+(d1) [rtos] heartbeat 81, tick 81000
+[  116.434623] random: crng init done
+[  116.434694] random: 1 urandom warning(s) missed due to ratelimiting
+(d1) [rtos] 10 ms task: 100 periods, min 9984 us, max 10013 us (report 82)
+(d1) [rtos] heartbeat 82, tick 82000
+(d1) [rtos] consumer received message 33 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10014 us (report 83)
+(d1) [rtos] heartbeat 83, tick 83000
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+[   44.391164] type=1400 audit(1520599006.850:290): avc: denied { map } for pid=372 comm="system_server" path="/dev/__properties__/u:object_r:opengles_prop:s0" dev="tmpfs" ino=8274 scontext=u:r:system_server:s0 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9980 us, max 10022 us (report 84)
+(d1) [rtos] heartbeat 84, tick 84000
+(d1) [rtos] 10 ms task: 100 periods, min 9971 us, max 10027 us (report 85)
+(d1) [rtos] heartbeat 85, tick 85000
+(d1) [rtos] consumer received message 34 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10006 us (report 86)
+(d1) [rtos] heartbeat 86, tick 86000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 87)
+(d1) [rtos] heartbeat 87, tick 87000
+(d1) [rtos] consumer received message 35 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10004 us (report 88)
+(d1) [rtos] heartbeat 88, tick 88000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 89)
+(d1) [rtos] heartbeat 89, tick 89000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10007 us (report 90)
+(d1) [rtos] heartbeat 90, tick 90000
+(d1) [rtos] consumer received message 36 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 91)
+(d1) [rtos] heartbeat 91, tick 91000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 92)
+(d1) [rtos] heartbeat 92, tick 92000
+(d1) [rtos] consumer received message 37 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9990 us, max 10009 us (report 93)
+(d1) [rtos] heartbeat 93, tick 93000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10003 us (report 94)
+(d1) [rtos] heartbeat 94, tick 94000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10004 us (report 95)
+(d1) [rtos] heartbeat 95, tick 95000
+(d1) [rtos] consumer received message 38 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 96)
+(d1) [rtos] heartbeat 96, tick 96000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 97)
+(d1) [rtos] heartbeat 97, tick 97000
+(d1) [rtos] consumer received message 39 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10007 us (report 98)
+(d1) [rtos] heartbeat 98, tick 98000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 99)
+(d1) [rtos] heartbeat 99, tick 99000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10008 us (report 100)
+(d1) [rtos] heartbeat 100, tick 100000
+(d1) [rtos] consumer received message 40 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10008 us (report 101)
+(d1) [rtos] heartbeat 101, tick 101000
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10034 us (report 102)
+(d1) [rtos] heartbeat 102, tick 102000
+(d1) [rtos] consumer received message 41 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10004 us (report 103)
+(d1) [rtos] heartbeat 103, tick 103000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10004 us (report 104)
+(d1) [rtos] heartbeat 104, tick 104000
+[   65.620658] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+[   65.621068] type=1400 audit(1520599028.080:291): avc: denied { wake_alarm } for pid=126 comm="healthd" capability=35 scontext=u:r:healthd:s0 tcontext=u:r:healthd:s0 tclass=capability2 permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 105)
+(d1) [rtos] heartbeat 105, tick 105000
+(d1) [rtos] consumer received message 42 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 106)
+(d1) [rtos] heartbeat 106, tick 106000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10004 us (report 107)
+(d1) [rtos] heartbeat 107, tick 107000
+(d1) [rtos] consumer received message 43 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10010 us (report 108)
+(d1) [rtos] heartbeat 108, tick 108000
+(d1) [rtos] 10 ms task: 100 periods, min 9996 us, max 10005 us (report 109)
+(d1) [rtos] heartbeat 109, tick 109000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 110)
+(d1) [rtos] heartbeat 110, tick 110000
+(d1) [rtos] consumer received message 44 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 111)
+(d1) [rtos] heartbeat 111, tick 111000
+(d1) [rtos] 10 ms task: 100 periods, min 9990 us, max 10008 us (report 112)
+(d1) [rtos] heartbeat 112, tick 112000
+(d1) [rtos] consumer received message 45 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 113)
+(d1) [rtos] heartbeat 113, tick 113000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 114)
+(d1) [rtos] heartbeat 114, tick 114000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 115)
+(d1) [rtos] heartbeat 115, tick 115000
+(d1) [rtos] consumer received message 46 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9996 us, max 10005 us (report 116)
+(d1) [rtos] heartbeat 116, tick 116000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10007 us (report 117)
+(d1) [rtos] heartbeat 117, tick 117000
+(d1) [rtos] consumer received message 47 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10004 us (report 118)
+(d1) [rtos] heartbeat 118, tick 118000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 119)
+(d1) [rtos] heartbeat 119, tick 119000
+(d1) [rtos] 10 ms task: 100 periods, min 9996 us, max 10005 us (report 120)
+(d1) [rtos] heartbeat 120, tick 120000
+(d1) [rtos] consumer received message 48 from the queue
+[   81.124184] type=1400 audit(1520599043.580:292): avc: denied { map } for pid=372 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 121)
+(d1) [rtos] heartbeat 121, tick 121000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10004 us (report 122)
+(d1) [rtos] heartbeat 122, tick 122000
+[   83.232200] type=1400 audit(1520599045.680:293): avc: denied { map } for pid=136 comm="installd" path="/dev/__properties__/u:object_r:dalvik_prop:s0" dev="tmpfs" ino=8277 scontext=u:r:installd:s0 tcontext=u:object_r:dalvik_prop:s0 tclass=file permissive=1
+[   83.232674] type=1400 audit(1520599045.680:294): avc: denied { dac_read_search } for pid=136 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+[   83.233036] type=1400 audit(1520599045.680:295): avc: denied { map } for pid=136 comm="installd" path="/file_contexts.bin" dev="rootfs" ino=7874 scontext=u:r:installd:s0 tcontext=u:object_r:rootfs:s0 tclass=file permissive=1
+(d1) [rtos] consumer received message 49 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 123)
+(d1) [rtos] heartbeat 123, tick 123000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10004 us (report 124)
+(d1) [rtos] heartbeat 124, tick 124000
+[   85.288411] type=1400 audit(1520599047.740:296): avc: denied { map } for pid=127 comm="lmkd" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=8293 scontext=u:r:lmkd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   85.288847] type=1400 audit(1520599047.740:297): avc: denied { map } for pid=127 comm="lmkd" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:lmkd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   85.345800] healthd: battery l=100 v=0 t=42.4 h=2 st=2 chg=a
+(d1) [rtos] 10 ms task: 100 periods, min 9990 us, max 10007 us (report 125)
+(d1) [rtos] heartbeat 125, tick 125000
+(d1) [rtos] consumer received message 50 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9984 us, max 10012 us (report 126)
+(d1) [rtos] heartbeat 126, tick 126000
+[   86.966065] type=1400 audit(1520599049.420:298): avc: denied { map } for pid=372 comm="android.ui" path="/dev/__properties__/u:object_r:persist_debug_prop:s0" dev="tmpfs" ino=8289 scontext=u:r:system_server:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1
+[   87.103604] init: write_file: Unable to open '/proc/sys/vm/extra_free_kbytes': No such file or directory
+(d1) [rtos] 10 ms task: 100 periods, min 9977 us, max 10021 us (report 127)
+(d1) [rtos] heartbeat 127, tick 127000
+(d1) [rtos] consumer received message 51 from the queue
+[   88.265110] type=1400 audit(1520599050.720:299): avc: denied { map } for pid=415 comm="installd" path="/dev/__properties__/u:object_r:vold_prop:s0" dev="tmpfs" ino=8281 scontext=u:r:installd:s0 tcontext=u:object_r:vold_prop:s0 tclass=file permissive=1
+[   88.266222] type=1400 audit(1520599050.720:300): avc: denied { map } for pid=415 comm="installd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=8297 scontext=u:r:installd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[   88.271830] type=1400 audit(1520599050.730:301): avc: denied { map } for pid=415 comm="dex2oat" path="/system/bin/dex2oat" dev="xvda" ino=260 scontext=u:r:dex2oat:s0 tcontext=u:object_r:dex2oat_exec:s0 tclass=file permissive=1
+[   88.272430] type=1400 audit(1520599050.730:302): avc: denied { map } for pid=415 comm="dex2oat" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:dex2oat:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[   88.274278] type=1400 audit(1520599050.730:303): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=8307 scontext=u:r:dex2oat:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[   88.422375] type=1400 audit(1520599050.880:304): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:dex2oat:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[   88.429304] type=1400 audit(1520599050.880:305): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=8293 scontext=u:r:dex2oat:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[   88.429949] type=1400 audit(1520599050.880:306): avc: denied { map } for pid=415 comm="dex2oat" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:dex2oat:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[   88.476921] type=1400 audit(1520599050.930:307): avc: denied { map } for pid=415 comm="dex2oat" path="/data/app/SmokeTestApp/SmokeTestApp.apk" dev="xvdb" ino=22 scontext=u:r:dex2oat:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10017 us (report 128)
+(d1) [rtos] heartbeat 128, tick 128000
+(d1) [rtos] 10 ms task: 100 periods, min 9970 us, max 10028 us (report 129)
+(d1) [rtos] heartbeat 129, tick 129000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10031 us (report 130)
+(d1) [rtos] heartbeat 130, tick 130000
+(d1) [rtos] consumer received message 52 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10007 us (report 131)
+(d1) [rtos] heartbeat 131, tick 131000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10007 us (report 132)
+(d1) [rtos] heartbeat 132, tick 132000
+(d1) [rtos] consumer received message 53 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 133)
+(d1) [rtos] heartbeat 133, tick 133000
+(d1) [rtos] 10 ms task: 100 periods, min 9986 us, max 10018 us (report 134)
+(d1) [rtos] heartbeat 134, tick 134000
+(d1) [rtos] 10 ms task: 100 periods, min 9950 us, max 10038 us (report 135)
+(d1) [rtos] heartbeat 135, tick 135000
+(d1) [rtos] consumer received message 54 from the queue
+[   96.183689] type=1400 audit(1520599058.630:311): avc: denied { dac_read_search } for pid=112 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10023 us (report 136)
+(d1) [rtos] heartbeat 136, tick 136000
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10012 us (report 137)
+(d1) [rtos] heartbeat 137, tick 137000
+[   97.796684] type=1400 audit(1520599060.250:312): avc: denied { map } for pid=372 comm="system_server" path="/dev/__properties__/u:object_r:radio_noril_prop:s0" dev="tmpfs" ino=8275 scontext=u:r:system_server:s0 tcontext=u:object_r:radio_noril_prop:s0 tclass=file permissive=1
+(d1) [rtos] consumer received message 55 from the queue
+[   98.717519] type=1400 audit(1520599061.170:313): avc: denied { map } for pid=372 comm="system_server" path="/dev/__properties__/u:object_r:safemode_prop:s0" dev="tmpfs" ino=8285 scontext=u:r:system_server:s0 tcontext=u:object_r:safemode_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9976 us, max 10028 us (report 138)
+(d1) [rtos] heartbeat 138, tick 138000
+[   98.794667] type=1400 audit(1520599061.250:314): avc: denied { map } for pid=372 comm="system_server" path="/data/system/locksettings.db-shm" dev="xvdb" ino=14198 scontext=u:r:system_server:s0 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+[   99.543356] type=1400 audit(1520599062.000:315): avc: denied { map } for pid=372 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[   99.732676] type=1400 audit(1520599062.190:316): avc: denied { map } for pid=132 comm="main" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9970 us, max 10027 us (report 139)
+(d1) [rtos] heartbeat 139, tick 139000
+[   99.818721] type=1400 audit(1520599062.190:317): avc: denied { map } for pid=372 comm="system_server" path="/dev/__properties__/u:object_r:device_logging_prop:s0" dev="tmpfs" ino=8287 scontext=u:r:system_server:s0 tcontext=u:object_r:device_logging_prop:s0 tclass=file permissive=1
+[   99.819194] type=1400 audit(1520599062.220:318): avc: denied { dac_read_search } for pid=463 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[   99.949111] type=1400 audit(1520599062.250:319): avc: denied { map } for pid=468 comm="sdcard" path="/system/bin/sdcard" dev="xvda" ino=418 scontext=u:r:sdcardd:s0 tcontext=u:object_r:sdcardd_exec:s0 tclass=file permissive=1
+[   99.949972] type=1400 audit(1520599062.250:320): avc: denied { map } for pid=468 comm="sdcard" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:sdcardd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9954 us, max 10043 us (report 140)
+(d1) [rtos] heartbeat 140, tick 140000
+(d1) [rtos] consumer received message 56 from the queue
+[  100.918548] audit_log_lost: 66 callbacks suppressed
+[  100.918555] audit: audit_lost=98 audit_rate_limit=20 audit_backlog_limit=64
+[  100.918686] audit: rate limit exceeded
+(d1) [rtos] 10 ms task: 100 periods, min 9951 us, max 10047 us (report 141)
+(d1) [rtos] heartbeat 141, tick 141000
+(d1) [rtos] 10 ms task: 100 periods, min 9955 us, max 10042 us (report 142)
+(d1) [rtos] heartbeat 142, tick 142000
+(d1) [rtos] consumer received message 57 from the queue
+[  103.262846] type=1400 audit(1520599065.700:354): avc: denied { dac_read_search } for pid=590 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9966 us, max 10028 us (report 143)
+(d1) [rtos] heartbeat 143, tick 143000
+[  103.733147] type=1400 audit(1520599066.080:355): avc: denied { map } for pid=372 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9967 us, max 10034 us (report 144)
+(d1) [rtos] heartbeat 144, tick 144000
+[  105.008653] type=1400 audit(1520599066.860:356): avc: denied { map } for pid=590 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:system_app:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  105.630724] type=1400 audit(1520599066.860:357): avc: denied { map } for pid=590 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:system_app:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  105.631254] type=1400 audit(1520599066.860:358): avc: denied { map } for pid=111 comm="debuggerd" path="/dev/__properties__/u:object_r:debug_prop:s0" dev="tmpfs" ino=8297 scontext=u:r:debuggerd:s0 tcontext=u:object_r:debug_prop:s0 tclass=file permissive=1
+[  105.631739] type=1400 audit(1520599066.870:359): avc: denied { map } for pid=129 comm="Binder:129_3" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  105.632210] type=1400 audit(1520599066.900:360): avc: denied { map } for pid=635 comm="debuggerd" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:debuggerd:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+[  105.632695] type=1400 audit(1520599066.900:361): avc: denied { map } for pid=635 comm="debuggerd" path="/system/framework/arm/boot.oat" dev="xvda" ino=886 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  105.633159] type=1400 audit(1520599067.050:362): avc: denied { map } for pid=635 comm="debuggerd" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=8280 scontext=u:r:debuggerd:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[  105.633634] type=1400 audit(1520599067.130:363): avc: denied { map } for pid=140 comm="Binder:140_2" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9965 us, max 10037 us (report 145)
+(d1) [rtos] heartbeat 145, tick 145000
+(d1) [rtos] consumer received message 58 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9976 us, max 10019 us (report 146)
+(d1) [rtos] heartbeat 146, tick 146000
+(d1) [rtos] 10 ms task: 100 periods, min 9970 us, max 10031 us (report 147)
+(d1) [rtos] heartbeat 147, tick 147000
+(d1) [rtos] consumer received message 59 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10014 us (report 148)
+(d1) [rtos] heartbeat 148, tick 148000
+(d1) [rtos] 10 ms task: 100 periods, min 9984 us, max 10014 us (report 149)
+(d1) [rtos] heartbeat 149, tick 149000
+[  110.130649] type=1400 audit(1520599072.560:367): avc: denied { map } for pid=489 comm="ndroid.systemui" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  110.194215] type=1400 audit(1520599072.650:368): avc: denied { map } for pid=138 comm="mediacodec" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  110.420380] type=1400 audit(1520599072.830:369): avc: denied { map } for pid=141 comm="Binder:141_4" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=8303 scontext=u:r:mediaserver:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10012 us (report 150)
+(d1) [rtos] heartbeat 150, tick 150000
+(d1) [rtos] consumer received message 60 from the queue
+[  111.156830] type=1400 audit(1520599073.460:370): avc: denied { map } for pid=536 comm="Binder:536_3" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:system_app:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10010 us (report 151)
+(d1) [rtos] heartbeat 151, tick 151000
+[  112.401554] type=1400 audit(1520599074.810:371): avc: denied { map } for pid=129 comm="Binder:129_5" path="/system/etc/event-log-tags" dev="xvda" ino=498 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  112.448607] init: Service 'bootanim' (pid 188) exited with status 0
+(d1) [rtos] 10 ms task: 100 periods, min 9957 us, max 10040 us (report 152)
+(d1) [rtos] heartbeat 152, tick 152000
+[  112.791923] type=1400 audit(1520599075.160:372): avc: denied { map } for pid=132 comm="main" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  112.792432] type=1400 audit(1520599075.170:373): avc: denied { dac_read_search } for pid=112 comm="vold" capability=2 scontext=u:r:vold:s0 tcontext=u:r:vold:s0 tclass=capability permissive=1
+[  112.792872] type=1400 audit(1520599075.210:374): avc: denied { dac_read_search } for pid=136 comm="installd" capability=2 scontext=u:r:installd:s0 tcontext=u:r:installd:s0 tclass=capability permissive=1
+(d1) [rtos] consumer received message 61 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9956 us, max 10044 us (report 153)
+(d1) [rtos] heartbeat 153, tick 153000
+[  114.210016] type=1400 audit(1520599075.340:375): avc: denied { map } for pid=749 comm="id.ext.services" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  114.285413] type=1400 audit(1520599075.800:376): avc: denied { map } for pid=767 comm="d.process.acor" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  114.521595] binder: undelivered transaction 10601, process died.
+[  114.521702] binder: undelivered transaction 18271, process died.
+[  114.521768] binder: undelivered transaction 18303, process died.
+[  114.522053] binder: undelivered transaction 12988, process died.
+[  114.522135] binder: undelivered transaction 16695, process died.
+[  114.726215] init: Service 'debuggerd' (pid 111) exited with status 1
+[  114.726347] init: Service 'debuggerd' (pid 111) killing any children in process group
+[  114.727417] init: Starting service 'debuggerd'...
+(d1) [rtos] 10 ms task: 100 periods, min 9960 us, max 10042 us (report 154)
+(d1) [rtos] heartbeat 154, tick 154000
+[  115.550784] binder: undelivered transaction 18865, process died.
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10038 us (report 155)
+(d1) [rtos] heartbeat 155, tick 155000
+(d1) [rtos] consumer received message 62 from the queue
+[  115.942518] type=1400 audit(1520599077.190:386): avc: denied { map } for pid=803 comm="debuggerd" path="/system/bin/linker" dev="xvda" ino=330 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  115.942977] type=1400 audit(1520599077.190:387): avc: denied { map } for pid=803 comm="debuggerd" path="/dev/__properties__/properties_serial" dev="tmpfs" ino=8307 scontext=u:r:debuggerd:s0 tcontext=u:object_r:properties_serial:s0 tclass=file permissive=1
+[  115.943452] type=1400 audit(1520599077.350:388): avc: denied { dac_read_search } for pid=810 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+[  115.944385] type=1400 audit(1520599077.390:389): avc: denied { map } for pid=531 comm="m.android.phone" path="/system/app/messaging/messaging.apk" dev="xvda" ino=207 scontext=u:r:radio:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  115.944864] type=1400 audit(1520599077.440:390): avc: denied { map } for pid=810 comm="id.printspoole" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  115.945325] type=1400 audit(1520599077.480:391): avc: denied { map } for pid=803 comm="debuggerd" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:debuggerd:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  115.945764] type=1400 audit(1520599077.530:392): avc: denied { map } for pid=531 comm="Binder:531_4" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  115.946138] type=1400 audit(1520599077.580:393): avc: denied { map } for pid=803 comm="debuggerd" path="/dev/__properties__/u:object_r:log_tag_prop:s0" dev="tmpfs" ino=8293 scontext=u:r:debuggerd:s0 tcontext=u:object_r:log_tag_prop:s0 tclass=file permissive=1
+[  115.946529] type=1400 audit(1520599077.580:394): avc: denied { map } for pid=803 comm="debuggerd" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:debuggerd:s0 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  115.946969] type=1400 audit(1520599077.610:395): avc: denied { map } for pid=810 comm="id.printspooler" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  116.342318] binder: undelivered transaction 18507, process died.
+[  116.342428] binder: undelivered transaction 18405, process died.
+[  116.342497] binder: undelivered transaction 18694, process died.
+[  116.342753] binder: undelivered transaction 18546, process died.
+[  116.342821] binder: undelivered transaction 18866, process died.
+[  116.342884] binder: undelivered transaction 18867, process died.
+[  116.342947] binder: undelivered transaction 18893, process died.
+[  116.343010] binder: undelivered transaction 18909, process died.
+[  116.343073] binder: undelivered transaction 18935, process died.
+[  116.343136] binder: undelivered transaction 18936, process died.
+[  116.343197] binder: undelivered transaction 19171, process died.
+[  116.343379] binder: undelivered transaction 18572, process died.
+[  116.343447] binder: undelivered transaction 18624, process died.
+[  116.343510] binder: undelivered transaction 18625, process died.
+[  116.343573] binder: undelivered transaction 18626, process died.
+[  116.343635] binder: undelivered transaction 18937, process died.
+[  116.343697] binder: undelivered transaction 18938, process died.
+[  116.344027] binder: undelivered transaction 18530, process died.
+[  116.344100] binder: undelivered transaction 18571, process died.
+[  116.344164] binder: undelivered transaction 18716, process died.
+[  116.355897] binder: 140:721 transaction failed 29189/-22, size 60-0 line 2807
+[  116.357293] binder: 372:446 transaction failed 29189/-22, size 320-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9948 us, max 10048 us (report 156)
+(d1) [rtos] heartbeat 156, tick 156000
+(d1) [rtos] 10 ms task: 100 periods, min 9951 us, max 10052 us (report 157)
+(d1) [rtos] heartbeat 157, tick 157000
+[  117.833434] binder: 372:372 transaction failed 29189/-22, size 96-0 line 2807
+[  117.943665] binder: 372:372 transaction failed 29189/-22, size 84-0 line 2807
+(d1) [rtos] consumer received message 63 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9956 us, max 10047 us (report 158)
+(d1) [rtos] heartbeat 158, tick 158000
+[  118.777354] binder: 372:384 transaction failed 29189/-22, size 0-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9983 us, max 10017 us (report 159)
+(d1) [rtos] heartbeat 159, tick 159000
+(d1) [rtos] 10 ms task: 100 periods, min 9985 us, max 10014 us (report 160)
+(d1) [rtos] heartbeat 160, tick 160000
+(d1) [rtos] consumer received message 64 from the queue
+[  121.216060] type=1400 audit(1520599083.670:416): avc: denied { map } for pid=986 comm="debuggerd" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=8303 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+[  121.250850] type=1400 audit(1520599083.700:417): avc: denied { map } for pid=986 comm="debuggerd" path="/system/lib/libicuuc.so" dev="xvda" ino=1092 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10023 us (report 161)
+(d1) [rtos] heartbeat 161, tick 161000
+(d1) [rtos] 10 ms task: 100 periods, min 9990 us, max 10012 us (report 162)
+(d1) [rtos] heartbeat 162, tick 162000
+(d1) [rtos] consumer received message 65 from the queue
+[  123.432288] binder: undelivered transaction 22825, process died.
+[  123.432395] binder: undelivered transaction 22932, process died.
+[  123.656993] type=1400 audit(1520599086.050:418): avc: denied { map } for pid=1005 comm="droid.launcher3" path="/system/priv-app/Launcher3/oat/arm/Launcher3.odex" dev="xvda" ino=1558 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9964 us, max 10030 us (report 163)
+(d1) [rtos] heartbeat 163, tick 163000
+(d1) [rtos] 10 ms task: 100 periods, min 9981 us, max 10019 us (report 164)
+(d1) [rtos] heartbeat 164, tick 164000
+[  124.772378] type=1400 audit(1520599087.220:419): avc: denied { map } for pid=1027 comm="gedprovisioning" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  125.323221] type=1400 audit(1520599087.570:420): avc: denied { map } for pid=1046 comm=".quicksearchbox" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  125.383485] type=1400 audit(1520599087.670:421): avc: denied { map } for pid=1046 comm=".quicksearchbox" path="/system/app/QuickSearchBox/oat/arm/QuickSearchBox.odex" dev="xvda" ino=195 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9959 us, max 10040 us (report 165)
+(d1) [rtos] heartbeat 165, tick 165000
+(d1) [rtos] consumer received message 66 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9955 us, max 10044 us (report 166)
+(d1) [rtos] heartbeat 166, tick 166000
+(d1) [rtos] 10 ms task: 100 periods, min 9973 us, max 10025 us (report 167)
+(d1) [rtos] heartbeat 167, tick 167000
+[  127.853397] binder: undelivered transaction 23797, process died.
+[  127.853536] binder: undelivered transaction 24429, process died.
+(d1) [rtos] consumer received message 67 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9976 us, max 10020 us (report 168)
+(d1) [rtos] heartbeat 168, tick 168000
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10018 us (report 169)
+(d1) [rtos] heartbeat 169, tick 169000
+(d1) [rtos] 10 ms task: 100 periods, min 9978 us, max 10022 us (report 170)
+(d1) [rtos] heartbeat 170, tick 170000
+(d1) [rtos] consumer received message 68 from the queue
+[  131.592023] binder: undelivered transaction 25459, process died.
+(d1) [rtos] 10 ms task: 100 periods, min 9981 us, max 10018 us (report 171)
+(d1) [rtos] heartbeat 171, tick 171000
+(d1) [rtos] 10 ms task: 100 periods, min 9957 us, max 10042 us (report 172)
+(d1) [rtos] heartbeat 172, tick 172000
+[  132.959160] type=1400 audit(1520599095.390:422): avc: denied { map } for pid=906 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  132.959710] type=1400 audit(1520599095.390:423): avc: denied { map } for pid=906 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+(d1) [rtos] consumer received message 69 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10009 us (report 173)
+(d1) [rtos] heartbeat 173, tick 173000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10009 us (report 174)
+(d1) [rtos] heartbeat 174, tick 174000
+[  135.732062] binder: undelivered transaction 26138, process died.
+[  135.732325] binder: undelivered transaction 25960, process died.
+[  135.732398] binder: undelivered transaction 26777, process died.
+(d1) [rtos] 10 ms task: 100 periods, min 9988 us, max 10010 us (report 175)
+(d1) [rtos] heartbeat 175, tick 175000
+(d1) [rtos] consumer received message 70 from the queue
+[  135.817038] type=1400 audit(1520599098.250:424): avc: denied { dac_read_search } for pid=1143 comm="main" capability=2 scontext=u:r:zygote:s0 tcontext=u:r:zygote:s0 tclass=capability permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10030 us (report 176)
+(d1) [rtos] heartbeat 176, tick 176000
+(d1) [rtos] 10 ms task: 100 periods, min 9962 us, max 10038 us (report 177)
+(d1) [rtos] heartbeat 177, tick 177000
+(d1) [rtos] consumer received message 71 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9949 us, max 10050 us (report 178)
+(d1) [rtos] heartbeat 178, tick 178000
+[  138.879986] type=1400 audit(1520599101.300:425): avc: denied { map } for pid=1192 comm="ndroid.settings" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:system_app:s0 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+[  139.420667] type=1400 audit(1520599101.680:426): avc: denied { map } for pid=1192 comm="ndroid.settings" path="/system/priv-app/Settings/oat/arm/Settings.odex" dev="xvda" ino=1601 scontext=u:r:system_app:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9954 us, max 10046 us (report 179)
+(d1) [rtos] heartbeat 179, tick 179000
+[  140.492716] binder: release 906:994 transaction 22886 out, still active
+[  140.493037] binder: undelivered transaction 26854, process died.
+[  140.493317] binder: undelivered transaction 26805, process died.
+[  140.493411] binder: undelivered transaction 26811, process died.
+[  140.493495] binder: undelivered transaction 26814, process died.
+[  140.493584] binder: undelivered transaction 26897, process died.
+[  140.493666] binder: undelivered transaction 26898, process died.
+[  140.493755] binder: undelivered transaction 26902, process died.
+[  140.493837] binder: undelivered transaction 26907, process died.
+[  140.493925] binder: undelivered transaction 26908, process died.
+[  140.494013] binder: undelivered transaction 26995, process died.
+[  140.494098] binder: undelivered transaction 26997, process died.
+[  140.494188] binder: undelivered transaction 27000, process died.
+[  140.494271] binder: undelivered transaction 27268, process died.
+[  140.494359] binder: undelivered transaction 27269, process died.
+[  140.494482] binder: undelivered transaction 27271, process died.
+[  140.494570] binder: undelivered transaction 27276, process died.
+[  140.494975] binder: undelivered transaction 26776, process died.
+[  140.495057] binder: undelivered transaction 26851, process died.
+[  140.507097] binder: 140:721 transaction failed 29189/-22, size 60-0 line 2807
+[  140.508354] binder: 372:446 transaction failed 29189/-22, size 320-0 line 2807
+[  140.574474] binder: 372:372 transaction failed 29189/-22, size 96-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9975 us, max 10026 us (report 180)
+(d1) [rtos] heartbeat 180, tick 180000
+(d1) [rtos] consumer received message 72 from the queue
+[  140.932014] binder: 372:372 transaction failed 29189/-22, size 84-0 line 2807
+[  141.092837] type=1400 audit(1520599103.500:427): avc: denied { map } for pid=138 comm="Binder:138_4" path="/system/lib/libstagefright_soft_vorbisdec.so" dev="xvda" ino=1214 scontext=u:r:mediacodec:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10025 us (report 181)
+(d1) [rtos] heartbeat 181, tick 181000
+[  142.257786] binder: 372:1085 transaction failed 29189/-22, size 0-0 line 2807
+[  142.530637] type=1400 audit(1520599104.790:428): avc: denied { map } for pid=372 comm="system_server" path="/data/app/ApiDemos/ApiDemos.apk" dev="xvdb" ino=14 scontext=u:r:system_server:s0 tcontext=u:object_r:apk_data_file:s0 tclass=file permissive=1
+[  142.684198] type=1400 audit(1520599105.140:429): avc: denied { map } for pid=1210 comm="debuggerd" path="/dev/__properties__/u:object_r:system_prop:s0" dev="tmpfs" ino=8303 scontext=u:r:debuggerd:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9968 us, max 10030 us (report 182)
+(d1) [rtos] heartbeat 182, tick 182000
+(d1) [rtos] consumer received message 73 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9976 us, max 10022 us (report 183)
+(d1) [rtos] heartbeat 183, tick 183000
+[  144.610707] type=1400 audit(1520599106.830:430): avc: denied { map } for pid=1212 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  144.611278] type=1400 audit(1520599106.830:431): avc: denied { map } for pid=1212 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+[  144.611787] type=1400 audit(1520599106.840:432): avc: denied { map } for pid=129 comm="Binder:129_2" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9984 us, max 10013 us (report 184)
+(d1) [rtos] heartbeat 184, tick 184000
+[  145.681466] type=1400 audit(1520599108.100:433): avc: denied { map } for pid=1210 comm="debuggerd" path="/system/bin/app_process32" dev="xvda" ino=220 scontext=u:r:debuggerd:s0 tcontext=u:object_r:zygote_exec:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9977 us, max 10024 us (report 185)
+(d1) [rtos] heartbeat 185, tick 185000
+(d1) [rtos] consumer received message 74 from the queue
+[  146.522293] binder: undelivered transaction 27843, process died.
+[  146.522400] binder: undelivered transaction 30525, process died.
+[  146.522467] binder: undelivered transaction 30591, process died.
+[  146.522561] binder: undelivered transaction 30813, process died.
+[  146.522672] binder: undelivered transaction 29904, process died.
+[  146.522762] binder: undelivered transaction 30997, process died.
+[  146.523054] binder: undelivered transaction 27779, process died.
+[  146.523136] binder: undelivered transaction 29893, process died.
+[  146.634917] type=1400 audit(1520599109.030:434): avc: denied { map } for pid=132 comm="main" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:zygote:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9975 us, max 10024 us (report 186)
+(d1) [rtos] heartbeat 186, tick 186000
+(d1) [rtos] 10 ms task: 100 periods, min 9969 us, max 10025 us (report 187)
+(d1) [rtos] heartbeat 187, tick 187000
+[  148.101223] type=1400 audit(1520599110.330:435): avc: denied { map } for pid=1270 comm="RenderThread" path="/dev/__properties__/u:object_r:default_prop:s0" dev="tmpfs" ino=8282 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:default_prop:s0 tclass=file permissive=1
+[  148.101746] type=1400 audit(1520599110.330:436): avc: denied { map } for pid=1270 comm="RenderThread" path="/dev/__properties__/u:object_r:logd_prop:s0" dev="tmpfs" ino=8288 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:logd_prop:s0 tclass=file permissive=1
+(d1) [rtos] consumer received message 75 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9996 us, max 10003 us (report 188)
+(d1) [rtos] heartbeat 188, tick 188000
+[  149.213926] binder: 767:786 transaction failed 29189/0, size 4-0 line 2739
+[  149.214037] binder: send failed reply for transaction 22886, target dead
+(d1) [rtos] 10 ms task: 100 periods, min 9961 us, max 10038 us (report 189)
+(d1) [rtos] heartbeat 189, tick 189000
+[  150.681559] binder: undelivered transaction 31725, process died.
+[  150.681862] binder: undelivered transaction 31077, process died.
+[  150.682138] binder: undelivered transaction 31041, process died.
+[  150.682219] binder: undelivered transaction 31056, process died.
+[  150.682331] binder: undelivered transaction 31059, process died.
+[  150.682422] binder: undelivered transaction 31140, process died.
+[  150.682520] binder: undelivered transaction 31141, process died.
+[  150.682605] binder: undelivered transaction 31148, process died.
+[  150.682689] binder: undelivered transaction 31161, process died.
+[  150.682771] binder: undelivered transaction 31162, process died.
+[  150.682857] binder: undelivered transaction 31253, process died.
+[  150.682941] binder: undelivered transaction 31255, process died.
+[  150.683028] binder: undelivered transaction 31263, process died.
+[  150.683110] binder: undelivered transaction 31593, process died.
+[  150.683193] binder: undelivered transaction 31594, process died.
+[  150.683279] binder: undelivered transaction 31596, process died.
+[  150.683360] binder: undelivered transaction 31603, process died.
+[  150.683550] binder: undelivered transaction 31746, process died.
+[  150.683633] binder: undelivered transaction 31750, process died.
+[  150.683698] binder: undelivered transaction 31754, process died.
+[  150.683763] binder: undelivered transaction 31758, process died.
+[  150.684124] binder: undelivered transaction 30996, process died.
+[  150.684210] binder: undelivered transaction 31001, process died.
+[  150.684276] binder: undelivered transaction 31039, process died.
+[  150.684342] binder: undelivered transaction 31740, process died.
+[  150.696905] binder: 140:284 transaction failed 29189/-22, size 60-0 line 2807
+[  150.698427] binder: 372:446 transaction failed 29189/-22, size 320-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9972 us, max 10025 us (report 190)
+(d1) [rtos] heartbeat 190, tick 190000
+(d1) [rtos] consumer received message 76 from the queue
+[  150.826132] binder: 372:372 transaction failed 29189/-22, size 96-0 line 2807
+[  151.150627] type=1400 audit(1520599113.290:437): avc: denied { map } for pid=372 comm="android.display" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:system_server:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  151.277873] binder: 372:372 transaction failed 29189/-22, size 84-0 line 2807
+[  151.615932] type=1400 audit(1520599113.840:438): avc: denied { map } for pid=140 comm="Binder:140_3" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:mediaextractor:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9967 us, max 10034 us (report 191)
+(d1) [rtos] heartbeat 191, tick 191000
+[  151.763822] type=1400 audit(1520599114.150:439): avc: denied { map } for pid=138 comm="Binder:138_5" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:mediacodec:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10012 us (report 192)
+(d1) [rtos] heartbeat 192, tick 192000
+(d1) [rtos] consumer received message 77 from the queue
+[  153.383875] type=1400 audit(1520599115.110:440): avc: denied { map } for pid=531 comm="m.android.phone" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  153.600358] binder: 372:1114 transaction failed 29189/-22, size 0-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9971 us, max 10028 us (report 193)
+(d1) [rtos] heartbeat 193, tick 193000
+[  154.070819] type=1400 audit(1520599115.110:441): avc: denied { map } for pid=531 comm="m.android.phone" path="/system/priv-app/TeleService/TeleService.apk" dev="xvda" ino=1628 scontext=u:r:radio:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  154.071260] type=1400 audit(1520599115.330:442): avc: denied { map } for pid=1354 comm="m.android.emai" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  154.071670] type=1400 audit(1520599115.610:443): avc: denied { map } for pid=1299 comm=4E444B204D65646961436F6465635F path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  154.397647] type=1400 audit(1520599116.790:444): avc: denied { map } for pid=1062 comm="Binder:1062_4" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9955 us, max 10044 us (report 194)
+(d1) [rtos] heartbeat 194, tick 194000
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10025 us (report 195)
+(d1) [rtos] heartbeat 195, tick 195000
+(d1) [rtos] consumer received message 78 from the queue
+[  156.420797] type=1400 audit(1520599118.860:445): avc: denied { map } for pid=1389 comm="droid.gallery3d" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9969 us, max 10034 us (report 196)
+(d1) [rtos] heartbeat 196, tick 196000
+[  157.392119] binder: undelivered transaction 34361, process died.
+[  157.392212] binder: undelivered transaction 35714, process died.
+[  157.392351] binder: undelivered transaction 31840, process died.
+[  157.392418] binder: undelivered transaction 35020, process died.
+[  157.392481] binder: undelivered transaction 35090, process died.
+[  157.392542] binder: undelivered transaction 35342, process died.
+[  157.392756] binder: undelivered transaction 31771, process died.
+[  157.392827] binder: undelivered transaction 32858, process died.
+[  157.392892] binder: undelivered transaction 34350, process died.
+[  157.547916] type=1400 audit(1520599119.900:446): avc: denied { map } for pid=372 comm="android.display" path="/system/framework/framework-res.apk" dev="xvda" ino=902 scontext=u:r:system_server:s0 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+[  157.710832] type=1400 audit(1520599119.920:447): avc: denied { map } for pid=1409 comm="debuggerd" path="/dev/__properties__/u:object_r:fingerprint_prop:s0" dev="tmpfs" ino=8280 scontext=u:r:debuggerd:s0 tcontext=u:object_r:fingerprint_prop:s0 tclass=file permissive=1
+[  157.711890] type=1400 audit(1520599120.060:448): avc: denied { map } for pid=1412 comm="droid.launcher3" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10029 us (report 197)
+(d1) [rtos] heartbeat 197, tick 197000
+(d1) [rtos] consumer received message 79 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10022 us (report 198)
+(d1) [rtos] heartbeat 198, tick 198000
+[  158.920687] type=1400 audit(1520599121.340:449): avc: denied { map } for pid=1434 comm="droid.messaging" path="/dev/binder" dev="tmpfs" ino=1800 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:binder_device:s0 tclass=chr_file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9969 us, max 10030 us (report 199)
+(d1) [rtos] heartbeat 199, tick 199000
+[  160.713886] type=1400 audit(1520599123.170:450): avc: denied { map } for pid=372 comm="BackgroundDexOp" path="/data/app/SmokeTestApp/oat/arm/SmokeTestApp.odex" dev="xvdb" ino=66 scontext=u:r:system_server:s0 tcontext=u:object_r:dalvikcache_data_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10011 us (report 200)
+(d1) [rtos] heartbeat 200, tick 200000
+(d1) [rtos] consumer received message 80 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9987 us, max 10012 us (report 201)
+(d1) [rtos] heartbeat 201, tick 201000
+[  161.822932] type=1400 audit(1520599124.140:451): avc: denied { map } for pid=531 comm="Binder:531_4" path="/dev/ashmem" dev="tmpfs" ino=1810 scontext=u:r:radio:s0 tcontext=u:object_r:ashmem_device:s0 tclass=chr_file permissive=1
+[  162.608756] type=1400 audit(1520599124.970:452): avc: denied { map } for pid=952 comm="MediaScannerSer" path="/data/data/com.android.providers.media/databases/internal.db-shm" dev="xvdb" ino=7364 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:app_data_file:s0:c512,c768 tclass=file permissive=1
+[  162.727800] binder_alloc: 1299: binder_alloc_buf failed to map pages in userspace, no vma
+[  162.727924] binder: 372:386 transaction failed 29189/-3, size 1652-4 line 2928
+(d1) [rtos] 10 ms task: 100 periods, min 9978 us, max 10022 us (report 202)
+(d1) [rtos] heartbeat 202, tick 202000
+(d1) [rtos] consumer received message 81 from the queue
+[  163.426276] binder: undelivered transaction 35702, process died.
+[  163.426587] binder: undelivered transaction 35781, process died.
+[  163.426789] binder: undelivered transaction 35742, process died.
+[  163.426878] binder: undelivered transaction 35757, process died.
+[  163.426963] binder: undelivered transaction 35760, process died.
+[  163.427033] binder: undelivered transaction 35896, process died.
+[  163.427120] binder: undelivered transaction 35897, process died.
+[  163.427213] binder: undelivered transaction 35904, process died.
+[  163.427318] binder: undelivered transaction 35909, process died.
+[  163.427387] binder: undelivered transaction 35910, process died.
+[  163.427520] binder: undelivered transaction 36021, process died.
+[  163.427591] binder: undelivered transaction 36023, process died.
+[  163.427656] binder: undelivered transaction 36024, process died.
+[  163.427721] binder: undelivered transaction 36368, process died.
+[  163.427806] binder: undelivered transaction 36369, process died.
+[  163.427998] binder: undelivered transaction 36372, process died.
+[  163.428089] binder: undelivered transaction 36382, process died.
+[  163.428204] binder: undelivered transaction 37260, process died.
+[  163.428292] binder: undelivered transaction 37306, process died.
+[  163.428419] binder: undelivered transaction 37307, process died.
+[  163.428504] binder: undelivered transaction 37310, process died.
+[  163.428603] binder: undelivered transaction 37311, process died.
+[  163.428677] binder: undelivered transaction 37314, process died.
+[  163.428771] binder: undelivered transaction 37315, process died.
+[  163.429241] binder: undelivered transaction 35713, process died.
+[  163.429328] binder: undelivered transaction 35718, process died.
+[  163.429393] binder: undelivered transaction 37259, process died.
+[  163.441647] binder: 140:284 transaction failed 29189/-22, size 60-0 line 2807
+[  163.442908] binder: 372:446 transaction failed 29189/-22, size 320-0 line 2807
+[  163.502030] binder: 372:372 transaction failed 29189/-22, size 96-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9955 us, max 10037 us (report 203)
+(d1) [rtos] heartbeat 203, tick 203000
+[  163.859260] binder: 372:372 transaction failed 29189/-22, size 84-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9950 us, max 10051 us (report 204)
+(d1) [rtos] heartbeat 204, tick 204000
+[  165.513490] binder: 372:1297 transaction failed 29189/-22, size 0-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9975 us, max 10022 us (report 205)
+(d1) [rtos] heartbeat 205, tick 205000
+(d1) [rtos] consumer received message 82 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9980 us, max 10020 us (report 206)
+(d1) [rtos] heartbeat 206, tick 206000
+(d1) [rtos] 10 ms task: 100 periods, min 9983 us, max 10016 us (report 207)
+(d1) [rtos] heartbeat 207, tick 207000
+(d1) [rtos] consumer received message 83 from the queue
+[  168.562038] binder: undelivered transaction 39768, process died.
+[  168.562190] binder: undelivered transaction 40845, process died.
+[  168.562307] binder: undelivered transaction 37646, process died.
+[  168.562399] binder: undelivered transaction 37648, process died.
+[  168.562486] binder: undelivered transaction 37650, process died.
+[  168.562569] binder: undelivered transaction 37652, process died.
+[  168.562684] binder: undelivered transaction 37616, process died.
+[  168.562756] binder: undelivered transaction 37617, process died.
+[  168.562844] binder: undelivered transaction 37644, process died.
+[  168.563005] binder: undelivered transaction 37729, process died.
+[  168.563094] binder: undelivered transaction 40394, process died.
+[  168.563182] binder: undelivered transaction 40460, process died.
+[  168.563265] binder: undelivered transaction 40730, process died.
+[  168.563540] binder: undelivered transaction 37615, process died.
+[  168.563623] binder: undelivered transaction 37643, process died.
+[  168.563689] binder: undelivered transaction 37662, process died.
+[  168.563753] binder: undelivered transaction 39755, process died.
+(d1) [rtos] 10 ms task: 100 periods, min 9974 us, max 10022 us (report 208)
+(d1) [rtos] heartbeat 208, tick 208000
+[  169.046959] type=1400 audit(1520599131.300:453): avc: denied { map } for pid=1524 comm="droid.launcher3" path="/system/priv-app/Launcher3/oat/arm/Launcher3.odex" dev="xvda" ino=1558 scontext=u:r:priv_app:s0:c512,c768 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] 10 ms task: 100 periods, min 9961 us, max 10050 us (report 209)
+(d1) [rtos] heartbeat 209, tick 209000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10006 us (report 210)
+(d1) [rtos] heartbeat 210, tick 210000
+(d1) [rtos] consumer received message 84 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9973 us, max 10028 us (report 211)
+(d1) [rtos] heartbeat 211, tick 211000
+[  172.352054] binder: undelivered transaction 40843, process died.
+[  172.352460] binder: undelivered transaction 40912, process died.
+[  172.352732] binder: undelivered transaction 40874, process died.
+[  172.352812] binder: undelivered transaction 40891, process died.
+[  172.352878] binder: undelivered transaction 40962, process died.
+[  172.352949] binder: undelivered transaction 40963, process died.
+[  172.353050] binder: undelivered transaction 40967, process died.
+[  172.353119] binder: undelivered transaction 40971, process died.
+[  172.353203] binder: undelivered transaction 40975, process died.
+[  172.353288] binder: undelivered transaction 41075, process died.
+[  172.353378] binder: undelivered transaction 41077, process died.
+[  172.353462] binder: undelivered transaction 41080, process died.
+[  172.353551] binder: undelivered transaction 41373, process died.
+[  172.353636] binder: undelivered transaction 41374, process died.
+[  172.353720] binder: undelivered transaction 41376, process died.
+[  172.353805] binder: undelivered transaction 41380, process died.
+[  172.354256] binder: undelivered transaction 40849, process died.
+[  172.354343] binder: undelivered transaction 40870, process died.
+[  172.366502] binder: 140:284 transaction failed 29189/-22, size 60-0 line 2807
+[  172.367950] binder: 372:446 transaction failed 29189/-22, size 320-0 line 2807
+[  172.443860] binder: 372:372 transaction failed 29189/-22, size 96-0 line 2807
+(d1) [rtos] 10 ms task: 100 periods, min 9978 us, max 10031 us (report 212)
+(d1) [rtos] heartbeat 212, tick 212000
+[  172.832316] binder: 372:372 transaction failed 29189/-22, size 84-0 line 2807
+[  172.870639] type=1400 audit(1520599135.080:454): avc: denied { map } for pid=1549 comm="ndroid.systemui" path="/system/priv-app/SystemUI/oat/arm/SystemUI.odex" dev="xvda" ino=1626 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:system_file:s0 tclass=file permissive=1
+(d1) [rtos] consumer received message 85 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9975 us, max 10021 us (report 213)
+(d1) [rtos] heartbeat 213, tick 213000
+[  174.213544] binder: 372:384 transaction failed 29189/-22, size 0-0 line 2807

@@ -1,0 +1,116 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] xen/arm: add Rockchip RK3288 platform with reset support
+
+The RK3288 has no PSCI firmware, so "reboot" in dom0 ended in an endless
+"Xen: Platform reset did not work properly!" loop. Reset the chip through
+the CRU first global soft reset register (offset 0x1b0, value 0xfdb9), as
+Linux (drivers/clk/rockchip) and U-Boot do. The CRU address comes from the
+device tree; U-Boot renames the node to "rockchip,rk3288w-cru" on the
+RK3288W, so accept both compatibles.
+
+Upstream-Status: Pending
+---
+diff -ruN a/xen/arch/arm/platforms/Makefile b/xen/arch/arm/platforms/Makefile
+--- a/xen/arch/arm/platforms/Makefile	2026-10-24 13:16:47.993160736 +0530
++++ b/xen/arch/arm/platforms/Makefile	2026-10-24 13:16:47.996160752 +0530
+@@ -4,6 +4,7 @@
+ obj-$(CONFIG_ALL32_PLAT) += midway.o
+ obj-$(CONFIG_ALL32_PLAT) += omap5.o
+ obj-$(CONFIG_ALL32_PLAT) += rcar2.o
++obj-$(CONFIG_ALL32_PLAT) += rockchip.o
+ obj-$(CONFIG_ALL64_PLAT) += seattle.o
+ obj-$(CONFIG_ALL_PLAT)   += sunxi.o
+ obj-$(CONFIG_ALL64_PLAT) += thunderx.o
+diff -ruN a/xen/arch/arm/platforms/rockchip.c b/xen/arch/arm/platforms/rockchip.c
+--- a/xen/arch/arm/platforms/rockchip.c	1970-01-01 05:30:00.000000000 +0530
++++ b/xen/arch/arm/platforms/rockchip.c	2026-10-24 13:24:42.498432338 +0530
+@@ -0,0 +1,89 @@
++/*
++ * xen/arch/arm/platforms/rockchip.c
++ *
++ * Rockchip RK3288 specific settings
++ *
++ * The RK3288 has no PSCI firmware, so Xen cannot reset it through
++ * SYSTEM_RESET. Use the CRU global soft reset instead, like Linux
++ * (drivers/clk/rockchip) and U-Boot do.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ */
++
++#include <xen/mm.h>
++#include <xen/vmap.h>
++#include <asm/platform.h>
++#include <asm/io.h>
++
++/* CRU first global soft reset: writing the magic value resets the chip */
++#define RK3288_GLB_SRST_FST         0x1b0
++#define RK3288_GLB_SRST_FST_VALUE   0xfdb9
++
++/* U-Boot renames the CRU to "rockchip,rk3288w-cru" on the RK3288W revision */
++static const struct dt_device_match rk3288_cru_match[] =
++{
++    DT_MATCH_COMPATIBLE("rockchip,rk3288-cru"),
++    DT_MATCH_COMPATIBLE("rockchip,rk3288w-cru"),
++    { /* sentinel */ },
++};
++
++static void rk3288_reset(void)
++{
++    struct dt_device_node *node;
++    paddr_t cru_start, cru_len;
++    void __iomem *cru;
++
++    node = dt_find_matching_node(NULL, rk3288_cru_match);
++    if ( !node )
++    {
++        dprintk(XENLOG_ERR, "Cannot find the RK3288 CRU node in DT\n");
++        return;
++    }
++
++    if ( dt_device_get_address(node, 0, &cru_start, &cru_len) )
++    {
++        dprintk(XENLOG_ERR, "Cannot read the RK3288 CRU register address\n");
++        return;
++    }
++
++    cru = ioremap_nocache(cru_start & PAGE_MASK, PAGE_SIZE);
++    if ( !cru )
++    {
++        dprintk(XENLOG_ERR, "Unable to map the RK3288 CRU\n");
++        return;
++    }
++
++    writel(RK3288_GLB_SRST_FST_VALUE,
++           cru + (cru_start & ~PAGE_MASK) + RK3288_GLB_SRST_FST);
++    dsb(sy);
++
++    iounmap(cru);
++}
++
++static const char * const rk3288_dt_compat[] __initconst =
++{
++    "rockchip,rk3288",
++    NULL
++};
++
++PLATFORM_START(rk3288, "Rockchip RK3288")
++    .compatible = rk3288_dt_compat,
++    .reset = rk3288_reset,
++PLATFORM_END
++
++/*
++ * Local variables:
++ * mode: C
++ * c-file-style: "BSD"
++ * c-basic-offset: 4
++ * indent-tabs-mode: nil
++ * End:
++ */

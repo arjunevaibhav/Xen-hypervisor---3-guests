@@ -1,0 +1,40 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] ARM: rockchip: rk3288: keep timer7 running if already started
+
+timer7 drives the architected counter on RK3288. rockchip_timer_init()
+always stops and reloads it, which resets the counter. Under Xen this
+makes Xen's system time jump backwards, its timers never fire and dom0
+hangs at its first sleep (~2 s into boot, gmac PHY reset).
+
+U-Boot's TPL/SPL already start timer7 and skip re-initialisation when it
+is enabled; do the same here.
+
+Upstream-Status: Pending
+---
+diff -ruN a/arch/arm/mach-rockchip/rockchip.c b/arch/arm/mach-rockchip/rockchip.c
+--- a/arch/arm/mach-rockchip/rockchip.c	2026-10-23 21:29:09.890365868 +0530
++++ b/arch/arm/mach-rockchip/rockchip.c	2026-10-23 21:29:09.910365909 +0530
+@@ -35,11 +35,18 @@
+ 		 */
+ 		reg_base = ioremap(RK3288_TIMER6_7_PHYS, SZ_16K);
+ 		if (reg_base) {
+-			writel(0, reg_base + 0x30);
+-			writel(0xffffffff, reg_base + 0x20);
+-			writel(0xffffffff, reg_base + 0x24);
+-			writel(1, reg_base + 0x30);
+-			dsb();
++			/*
++			 * Leave timer7 alone if the bootloader already started
++			 * it: reloading it resets the architected counter,
++			 * which breaks a hypervisor (Xen) running below us.
++			 */
++			if (!(readl(reg_base + 0x30) & 1)) {
++				writel(0, reg_base + 0x30);
++				writel(0xffffffff, reg_base + 0x20);
++				writel(0xffffffff, reg_base + 0x24);
++				writel(1, reg_base + 0x30);
++				dsb();
++			}
+ 			iounmap(reg_base);
+ 		} else {
+ 			pr_err("rockchip: could not map timer7 registers\n");

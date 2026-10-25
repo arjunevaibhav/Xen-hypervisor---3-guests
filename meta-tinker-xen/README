@@ -1,0 +1,215 @@
+meta-tinker-xen
+===============
+
+Yocto (kirkstone) layer that turns an ASUS Tinker Board R2.0 (Rockchip RK3288,
+4 x Cortex-A17, 2 GB) into a Xen mixed-criticality system:
+
+  CPU 0-2  Pool-0, credit2   Domain-0  Yocto Linux 5.15 (control OS, xl, adb)
+                             android1  Android 7.0 AOSP, headless (Linux 4.14)
+  CPU 3    pool "rt", RTDS   rtos1     FreeRTOS 11.1 (200 us every 1 ms)
+
+Everything boots from one SD card. U-Boot starts Xen by itself, dom0 starts
+the guests, a hardware watchdog resets the board if the system hangs.
+Plain Linux without Xen stays available as a fallback.
+
+Status and test evidence: diagnostics/REPORT.md in the project directory
+(sections A-Z) and the UART logs next to it.
+
+
+Dependencies
+============
+
+  poky                 kirkstone
+  meta-openembedded    kirkstone (meta-oe, meta-networking, meta-python, meta-filesystems)
+  meta-virtualization  kirkstone (Xen 4.16)
+  meta-arm             kirkstone
+  meta-rockchip        kirkstone (MACHINE = "tinker-board")
+
+local.conf needs DISTRO_FEATURES:append = " virtualization xen".
+
+
+Build and flash
+===============
+
+  source poky/oe-init-build-env build
+  bitbake tinker-xen-test-image
+
+  # on the PC; check the card's device name with lsblk first (here /dev/sda)
+  sudo umount /dev/sda?*
+  sudo bmaptool copy tmp/deploy/images/tinker-board/tinker-xen-test-image-tinker-board.wic /dev/sda
+
+Debug Xen (asserts, early printk on the UART, guest CONSOLEIO output):
+XEN_TINKER_DEBUG = "1" in local.conf, then rebuild the image.
+
+
+SD card layout (tinker-xen.wks)
+===============================
+
+  p1 loader1         TPL/SPL (idbloader)
+  p4 loader2         U-Boot with NONSEC/HYP and PSCI (0001, 0002 patches)
+  p6 boot     (FAT)  xen, zImage, rk3288-tinker.dtb, boot.scr = xen-boot.scr,
+                     native/extlinux.conf
+  p7 root     (ext4) dom0 root filesystem
+  p8 android-system  Android system.img (xvda of android1)
+  p9 android-data    Android userdata.img (xvdb of android1)
+
+
+Using it (console: picocom -b 115200 /dev/ttyUSB0, pins 32 TX / 33 RX / 34 GND)
+=========
+
+  Power on, wait: U-Boot -> boot.scr -> Xen -> dom0 login "root" (no password).
+  The guests start by themselves (/etc/init.d/xen-guests).
+
+  xl list                         Domain-0, rtos1, android1
+  xl cpupool-list -c              Pool-0 = 0,1,2   rt = 3
+  xl console rtos1                FreeRTOS output, one line every 10 s (Ctrl-] leaves)
+  xl console android1             Android shell "generic:/ $" (Ctrl-] leaves)
+  adb connect 192.168.100.3:5555  then adb shell, adb logcat, ...
+  /etc/init.d/xen-guests stop|start   stop/start both guests
+  /etc/default/xen-guests             which guests start at boot
+  reboot / poweroff               whole board
+
+Network: dom0 192.168.100.1 on xenbr0, Android 192.168.100.3. Dom0 NATs the
+guests out of its default route (eth0 gets DHCP if a LAN cable is plugged in
+at boot).
+
+Temperatures: cat /sys/class/thermal/thermal_zone{1,2}/temp (CPU, GPU, m°C).
+The CPUs run at the clock U-Boot sets (500 MHz); Xen 4.16 has no cpufreq.
+
+Screen, touch, keyboard (EXPERIMENTAL, disabled by default):
+  Android is headless by default (RAM-only framebuffer). Built and tested but
+  switched off: a Xen PV framebuffer (800x600, RGB565) and PV keyboard/pointer
+  for Android, served by QEMU in dom0 as a VNC server on 127.0.0.1:5900, and
+  android-hdmi, which shows that screen centred on an HDMI monitor and
+  forwards a USB touchscreen, mouse (drawn cursor) and keyboard from dom0.
+  To enable: see the comment at the vfb line in /etc/xen/android1.cfg and set
+  ENABLED=1 in /etc/default/android-hdmi. Known problem: apps then have to
+  draw in software (ro.kernel.qemu=0) and the guest freezes 1-2 minutes after
+  boot (diagnostics/REPORT.md section Y). Log: /var/log/android-hdmi.log.
+    android-hdmi -t 400,300       one tap on the Android screen (scripts, tests)
+    adb shell input tap X Y       same through Android's input service
+    adb shell screencap -p /sdcard/s.png
+  Without a monitor: modprobe vfb vfb_enable=1 videomemorysize=4194304 \
+  mode_option=1024x768-32@60 gives a RAM /dev/fb0 for testing.
+
+Automotive bench (vehicle-bench, cluster-hdmi), on by default:
+  vehicle-sim sends a 60 s test drive cycle on the virtual CAN bus vcan0
+  (0x0C0 speed, 0x0C1 rpm, every 10 ms). can2rtos reads the bus (receive
+  only) and writes "V <seq> <speed> <rpm>" lines into rtos1's console;
+  FreeRTOS's vehicle task checks every frame in real time: overspeed
+  (> 120 km/h), engine over redline (> 6000 rpm), signal lost (no frame for
+  100 ms), plus a report every 10 s (frames, lost, max gap, alerts).
+    xl console rtos1                 the [vehicle] lines
+    candump vcan0                    the raw CAN frames
+    /etc/init.d/vehicle-bench pause  stop/resume the frames (signal-loss test)
+    tail /var/log/vehicle-bench.log  gateway report every 10 s (max gap)
+  cluster-hdmi draws a dashboard on the HDMI monitor (/dev/fb0): speed, rpm,
+  lamps OVERSPEED / REDLINE / SIGNAL / RTOS from the FreeRTOS verdicts.
+  Without a monitor: cluster-hdmi -g 1280x720 -S /tmp/c.ppm (snapshot).
+  Real vehicle (read-only): a USB CAN adapter (gs_usb/candleLight, PEAK,
+  slcan), then IFACE=can0 SIM=0 BITRATE=500000 in /etc/default/vehicle-bench.
+  The interface is put in LISTEN-ONLY mode, the board never transmits or
+  acknowledges frames. The CAN IDs and scaling are the bench's own; a real
+  car uses other (manufacturer-specific) IDs, so can2rtos must be adapted to
+  them. Never connect vehicle-sim to a real vehicle bus.
+
+Ignition (ignition-watch), disabled by default:
+  Powers the board off cleanly (guests stopped first) when the car's ACC
+  signal has been off for OFF_DELAY (10) seconds; ACC back on cancels it.
+  Nothing happens until ACC was seen on once after boot.
+  Wiring: ACC (12-14.4 V, spikes) must NOT reach the 3.3 V pin. Use an
+  optocoupler (or a divider 10k/2k7 + 3.3 V zener) to header pin 7
+  (GPIO0_C1 = gpiochip0 line 17) with an external 10k pull-down, so a broken
+  wire reads "off". Then ENABLED=1 in /etc/default/ignition-watch (also
+  CHIP, LINE, ACC_ON_LEVEL=0 for an inverting optocoupler).
+    gpioget gpiochip0 17             read the pin by hand first
+    tail /var/log/ignition-watch.log
+  The board must be supplied from permanent 12 V through a 5 V / 3 A
+  automotive DC-DC converter; poweroff halts the board but does not cut its
+  5 V, so a car install also needs a power-hold/timer relay that cuts the
+  supply a minute after ACC off.
+
+Sound (dom0): the onboard USB audio codec is ALSA card 0.
+    speaker-test -c 2 -t sine     aplay file.wav     amixer -c 0
+
+
+Recipes
+=======
+
+  recipes-bsp/u-boot           0001 non-secure HYP boot for Xen (SGRF/TZPC opened
+                               to non-secure, HSCTLR init), 0002 PSCI for RK3288
+                               (CPU_ON via the boot ROM mailbox, SYSTEM_RESET)
+  recipes-bsp/xen-boot-script  boot.scr: loads Xen + dom0, DT fixes for dom0
+                               (non-secure DMAC, reserved U-Boot area, thermal)
+  recipes-extended/xen         Xen 4.16: Cortex-A12/A17 proc info, L2CTLR emulation,
+                               RK3288 platform (reset), release/debug config
+  recipes-extended/xenbr0      guest bridge 192.168.100.1/24 + NAT
+  recipes-extended/xen-guests  guest autostart, hardware watchdog keep-alive,
+                               udev rule for the onboard USB hub
+  recipes-extended/android-hdmi  VNC client: Android's PV screen on HDMI, dom0
+                               touchscreen/mouse/keyboard into Android
+  recipes-extended/vehicle-bench  vehicle-sim (test vehicle on vcan0), can2rtos
+                               (read-only CAN -> FreeRTOS gateway), listen-only setup
+  recipes-extended/cluster-hdmi  instrument-cluster dashboard on the HDMI framebuffer
+  recipes-extended/ignition-watch  clean power-off on ACC off (GPIO, disabled)
+  recipes-devtools/qemu        QEMU as Xen device model only (i386 target, xen)
+  recipes-kernel/linux         dom0 kernel: keep timer7 running, bridge support
+  recipes-rtos/freertos-xen-guest  FreeRTOS guest (PV console, RTDS pool setup,
+                               vehicle task: real-time checks of the CAN data)
+  recipes-android/linux-android-guest  Linux 4.14 for Android 7 (32-bit binder,
+                               timerfd alarm clocks for system_server, Xen
+                               pointer as touchscreen, 16 bpp PV framebuffer)
+  recipes-android/android-guest  AOSP 7.0 SDK image adapted to Xen (ramdisk overlay,
+                               software GLES, network), android1.cfg
+  recipes-core/images          tinker-xen-test-image
+  recipes-core/sysvinit        no getty on the hypervisor's UART under Xen
+  wic/tinker-xen.wks           card layout above
+
+
+Known limitations
+=================
+
+  - Android: headless; no GPU, display or sound (Xen 4.16 has no RK3288
+    IOMMU support, so no device passthrough; there is no PV sound backend for
+    Android 7). The only GLES is the 1.x software renderer, but Android's UI
+    toolkit needs GLES 2.0: Launcher3 and SystemUI keep crashing in their
+    RenderThread and restarting (system_server, services and adb are not
+    affected). The PV screen/touch path is experimental (see above).
+    Android 7.0 is the newest prebuilt ARM32 image; SELinux runs permissive.
+  - Power: under full load (4 CPUs, Android, QEMU) the board went silent
+    twice until power-cycled; use a solid 5 V / 3 A supply with a short cable. The SDK system image is under the
+    Android SDK License Agreement: development use only, do not redistribute.
+  - Bring-up security: U-Boot opens the whole DDR and all peripherals to the
+    non-secure world, and the PSCI monitor lives in reserved (not
+    TrustZone-protected) RAM.
+  - RTDS is only used on one CPU: on all four CPUs it hit an assertion in
+    Xen 4.16 (rt.c:587). RTOS jitter: about +-2 us idle, up to +-60 us while
+    Android is busy (shared L2 cache and memory).
+  - No CPU frequency scaling under Xen; the CPUs stay at 500 MHz.
+  - Automotive: a bench and listen-only monitoring system, not a certified
+    (ISO 26262) one. It must not control anything in a car. CAN reaches
+    FreeRTOS through dom0 (Linux), so the frame path has dom0's latency
+    (gaps up to ~35 ms measured); only FreeRTOS's checks are real time.
+
+
+Recovery plan
+=============
+
+  The board's own eMMC and bootloaders are never written: everything is on the
+  SD card, so every failure below is fixed from the PC.
+
+  1. Guest misbehaves:      xl destroy <name>; /etc/init.d/xen-guests start
+                            Do not start guests at boot: XEN_GUESTS="" in
+                            /etc/default/xen-guests.
+  2. Xen or dom0 hangs:     the hardware watchdog resets the board after
+                            ~45 s. Otherwise power-cycle.
+  3. Xen does not boot:     press a key at "Hit any key to stop autoboot", then
+                              sysboot mmc 1:6 any ${scriptaddr} /native/extlinux.conf
+                            (plain Linux, no Xen). boot.scr also falls back to it
+                            when Xen cannot be loaded.
+  4. Debug a Xen boot:      at the U-Boot prompt load a debug Xen into RAM
+                            (loady ${xen_addr}) and run the xen-boot.cmd commands
+                            by hand; nothing is written to the card.
+  5. Android data broken:   reflash the card (or dd android-userdata.img to p9).
+  6. Card does not boot:    reflash it from the PC (bmaptool, above). A known-good
+                            original image is in diagnostics/baseline/.

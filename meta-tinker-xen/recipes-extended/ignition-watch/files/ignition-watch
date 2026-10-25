@@ -1,0 +1,38 @@
+#!/bin/sh
+# ignition-watch: power the board off cleanly when the car's ignition (ACC)
+# goes off. Reads one GPIO line (libgpiod gpioget) twice a second; ACC off for
+# OFF_DELAY seconds -> poweroff (which stops the guests first). ACC back on
+# within the delay cancels it (engine cranking dips, short contact losses).
+# Nothing happens until ACC has been seen ON once after boot, so a board on
+# the bench with nothing wired cannot power itself off in a loop.
+
+CHIP=gpiochip0
+LINE=17
+ACC_ON_LEVEL=1
+OFF_DELAY=10
+[ -r /etc/default/ignition-watch ] && . /etc/default/ignition-watch
+
+seen_on=0
+off_since=0
+now() { cut -d. -f1 /proc/uptime; }
+
+echo "ignition-watch: $CHIP line $LINE, ACC on = $ACC_ON_LEVEL, off delay ${OFF_DELAY}s"
+while :; do
+    v=$(gpioget $CHIP $LINE 2>/dev/null)
+    if [ -z "$v" ]; then
+        echo "ignition-watch: cannot read $CHIP line $LINE"; sleep 5; continue
+    fi
+    if [ "$v" = "$ACC_ON_LEVEL" ]; then
+        [ $seen_on = 0 ] && echo "ignition-watch: ACC on"
+        [ $off_since != 0 ] && echo "ignition-watch: ACC back on, power-off cancelled"
+        seen_on=1; off_since=0
+    elif [ $seen_on = 1 ]; then
+        if [ $off_since = 0 ]; then
+            off_since=$(now); echo "ignition-watch: ACC off, power-off in ${OFF_DELAY}s"
+        elif [ $(( $(now) - off_since )) -ge "$OFF_DELAY" ]; then
+            echo "ignition-watch: ACC off for ${OFF_DELAY}s, powering off"
+            sync; poweroff; exit 0
+        fi
+    fi
+    usleep 500000
+done

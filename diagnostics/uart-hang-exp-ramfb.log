@@ -1,0 +1,62 @@
+
+root@tinker-board:~# 
+#### experiment ramfb: xl create /tmp/android1-ramfb.cfg
+xl destroy android1 2>/dev/null; sleep 2; xl create /tmp/an droid1-ramfb.cfg
+Parsing config from /tmp/android1-ramfb.cfg
+[ 3294.709110] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 3294.711582] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 3294.711656] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 3294.711785] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 3294.886734] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 3294.887585] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 3294.887657] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 3294.887784] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 3296.251507] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 3296.252647] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 3296.252742] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 3296.252949] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 3296.638893] xenbr0: port 1(vif6.0) entered blocking state
+[ 3296.638994] xenbr0: port 1(vif6.0) entered disabled state
+[ 3296.639332] device vif6.0 entered promiscuous mode
+root@tinker-board:~# adb kill-server; adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+(XEN) d6v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d6v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[ 3298.622342] xen-blkback: backend/vbd/6/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 3298.775436] xen-blkback: backend/vbd/6/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 3298.890240] vif vif-6-0 vif6.0: Guest Rx ready
+[ 3298.890398] IPv6: ADDRCONF(NETDEV_CHANGE): vif6.0: link becomes ready
+[ 3298.890647] xenbr0: port 1(vif6.0) entered blocking state
+[ 3298.890765] xenbr0: port 1(vif6.0) entered forwarding state
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+1
+root@tinker-board:~# 
+#### boot_completed: True after 62 s
+ping -c 1 -W 2 192.168.100.3 >/dev/null && echo ALIVE-$((1+ 1)) || echo DEAD-$((1+1)); xl list android1 | tail -n 1
+ALIVE-2
+android1                                     6   767     2     -b----      71.9
+root@tinker-board:~# 
+#### t+30s after boot: alive -b---- cpu 71.9
+ping -c 1 -W 2 192.168.100.3 >/dev/null && echo ALIVE-$((1+ 1)) || echo DEAD-$((1+1)); xl list android1 | tail -n 1
+ALIVE-2
+android1                                     6   767     2     -b----      73.0
+root@tinker-board:~# 
+#### t+60s after boot: alive -b---- cpu 73.0
+ping -c 1 -W 2 192.168.100.3 >/dev/null && echo ALIVE-$((1+ 1)) || echo DEAD-$((1+1)); xl list android1 | tail -n 1
+DEAD-2
+android1                                     6   767     2     -b----      73.8
+root@tinker-board:~# 
+#### t+90s after boot: DEAD -b---- cpu 73.8
+adb -s 192.168.100.3:5555 shell 'dumpsys activity activitiess | grep -m1 mResumedActivity; logcat -d | grep -c "name: RenderThread"'
+
+#### android: s | grep -m1 mResumedActivity; logcat -d | grep -c "name: RenderThread"' 
+adb kill-server
+
+#### done

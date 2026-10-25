@@ -1,0 +1,63 @@
+
+root@tinker-board:~# /etc/init.d/xen-guests stop; /etc/init.d/xen-guests start; xxl list
+Stopping Xen guest android1
+[  633.759442] xenbr0: port 1(vif2.0) entered disabled state
+[  633.771575] xenbr0: port 1(vif2.0) entered disabled state
+[  633.771963] device vif2.0 left promiscuous mode
+[  633.772045] xenbr0: port 1(vif2.0) entered disabled state
+Stopping Xen guest rtos1
+Starting Xen guest rtos1
+Parsing config from /etc/xen/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+Starting Xen guest android1
+Parsing config from /etc/xen/android1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+[  637.444796] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  637.445416] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  637.445505] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  637.445630] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  637.605013] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  637.605412] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  637.605502] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  637.605624] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  638.952002] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  638.953093] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  638.953188] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  638.953310] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  639.335925] xenbr0: port 1(vif4.0) entered blocking state
+[  639.336024] xenbr0: port 1(vif4.0) entered disabled state
+[  639.336347] device vif4.0 entered promiscuous mode
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----     306.5
+rtos1                                        3    16     1     -b----       0.1
+android1                                     4   768     1     r-----       0.1
+root@tinker-board:~# adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+(XEN) d4v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d4v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[  641.304199] xen-blkback: backend/vbd/4/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  641.452787] xen-blkback: backend/vbd/4/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  641.569457] vif vif-4-0 vif4.0: Guest Rx ready
+[  641.569650] IPv6: ADDRCONF(NETDEV_CHANGE): vif4.0: link becomes ready
+[  641.569896] xenbr0: port 1(vif4.0) entered blocking state
+[  641.569961] xenbr0: port 1(vif4.0) entered forwarding state
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+1
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell getprop init.svc.xen-net
+stopped
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell 'ip route; ping -c 1 -W 2 1 92.168.100.1 >/dev/null && echo GW-$((1+1))OK'
+default via 192.168.100.1 dev eth0 
+192.168.100.0/24 dev eth0  proto kernel  scope link  src 192.168.100.3 
+GW-2OK
+root@tinker-board:~# adb -s 192.168.100.3:5555 shell dumpsys activity activities  | grep -m1 mResumedActivity
+    mResumedActivity: ActivityRecord{704d36a u0 com.android.launcher3/.Launcher t0}
+root@tinker-board:~# adb kill-server; echo RESETS=$(dmesg | grep -c 'reset high- speed')
+RESETS=1
+root@tinker-board:~# 

@@ -1,0 +1,16 @@
+#!/bin/sh
+# Start the FreeRTOS guest on its own CPU with a real-time reservation:
+# CPU 3 is moved into the cpupool "rt" with the RTDS scheduler (dom0 and the
+# other guests keep CPUs 0-2 with credit2), then rtos1 gets 200 us of CPU
+# every 1 ms. xl.cfg in Xen 4.16 cannot set an RTDS budget, so it is set here.
+CPU=${CPU:-3}
+PERIOD=${PERIOD:-1000}
+BUDGET=${BUDGET:-200}
+
+if ! xl cpupool-list | grep -q '^rt '; then
+    xl cpupool-cpu-remove Pool-0 "$CPU" || exit 1
+    xl cpupool-create 'name="rt"' 'sched="rtds"' "cpus=\"$CPU\"" || exit 1
+fi
+xl create /etc/xen/rtos1.cfg || exit 1
+xl sched-rtds -d rtos1 -v all -p "$PERIOD" -b "$BUDGET" -e 1 || exit 1
+xl sched-rtds -d rtos1 -v all

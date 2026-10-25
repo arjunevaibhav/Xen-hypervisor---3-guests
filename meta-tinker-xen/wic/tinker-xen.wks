@@ -1,0 +1,19 @@
+# Tinker Board (RK3288) card layout for the Xen image: the same partitions as
+# meta-rockchip's rockchip.wks, but the boot partition has no generated
+# /extlinux/extlinux.conf. U-Boot's distro boot then finds /boot.scr and
+# starts Xen (see xen-boot-script). Linux without Xen stays available through
+# /native/extlinux.conf.
+# The last two partitions are the Android guest's disks (xvda, xvdb in
+# android1.cfg), found by partition name.
+
+part loader1    --offset 32     --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
+part reserved1  --offset 4032   --fixed-size 64K
+part reserved2  --offset 4096   --fixed-size 4096K
+part loader2    --offset 8192   --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+part atf        --offset 12288  --fixed-size 4096K
+part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid
+part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
+part --source rawcopy --sourceparams="file=android-system.img" --part-name android-system
+part --source rawcopy --sourceparams="file=android-userdata.img" --part-name android-data
+
+bootloader --ptable gpt

@@ -1,0 +1,1253 @@
+[    0.000000] Booting Linux on physical CPU 0x500
+[    0.000000] Linux version 5.15.201-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 SMP Mon Feb 23 04:44:11 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Rockchip RK3288 Asus Tinker Board
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x7c000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x000000002fffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  [mem 0x0000000030000000-0x000000007fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000007fffffff]
+[    0.000000] percpu: Embedded 16 pages/cpu s35468 r8192 d21876 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 522560
+[    0.000000] Kernel command line: root=PARTUUID=f6aab2c1-c682-47d3-b8be-7af99975b358 rootwait console=tty1 console=ttyS2,115200n8 rw rootfstype=ext4 init=/sbin/init
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 1985724K/2097152K available (15360K kernel code, 2246K rwdata, 5684K rodata, 2048K init, 412K bss, 45892K reserved, 65536K cma-reserved, 1245184K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=4.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000000] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000025] Switching to timer-based delay loop, resolution 41ns
+[    0.007390] Console: colour dummy device 80x30
+[    0.007856] printk: console [tty1] enabled
+[    0.007929] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.007970] CPU: Testing write buffer coherency: ok
+[    0.008028] CPU0: Spectre v2: using BPIALL workaround
+[    0.008050] pid_max: default: 32768 minimum: 301
+[    0.008271] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.008315] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.009531] CPU0: thread -1, cpu 0, socket 5, mpidr 80000500
+[    0.010790] Setting up static identity map for 0x300000 - 0x3000ac
+[    0.012870] rcu: Hierarchical SRCU implementation.
+[    0.017776] EFI services will not be available.
+[    0.018120] smp: Bringing up secondary CPUs ...
+[    0.019966] CPU1: thread -1, cpu 1, socket 5, mpidr 80000501
+[    0.019984] CPU1: Spectre v2: using BPIALL workaround
+[    0.021977] CPU2: thread -1, cpu 2, socket 5, mpidr 80000502
+[    0.021995] CPU2: Spectre v2: using BPIALL workaround
+[    0.023958] CPU3: thread -1, cpu 3, socket 5, mpidr 80000503
+[    0.023977] CPU3: Spectre v2: using BPIALL workaround
+[    0.024146] smp: Brought up 1 node, 4 CPUs
+[    0.024180] SMP: Total of 4 processors activated (192.00 BogoMIPS).
+[    0.024206] CPU: All CPU(s) started in SVC mode.
+[    0.024854] devtmpfs: initialized
+[    0.034388] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.034642] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.034692] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.036794] pinctrl core: initialized pinctrl subsystem
+[    0.038480] DMI not present or invalid.
+[    0.039444] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.042361] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.045142] thermal_sys: Registered thermal governor 'step_wise'
+[    0.045683] cpuidle: using governor menu
+[    0.046346] No ATAGs?
+[    0.046517] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.046554] hw-breakpoint: maximum watchpoint size is 4 bytes.
+[    0.050019] Serial: AMBA PL011 UART driver
+[    0.076556] platform ff980000.hdmi: Fixing up cyclic dependency with ff940000.vop
+[    0.076668] platform ff980000.hdmi: Fixing up cyclic dependency with ff930000.vop
+[    0.093146] rockchip-gpio ff750000.gpio0: probed /pinctrl/gpio0@ff750000
+[    0.093938] rockchip-gpio ff780000.gpio1: probed /pinctrl/gpio1@ff780000
+[    0.094714] rockchip-gpio ff790000.gpio2: probed /pinctrl/gpio2@ff790000
+[    0.095490] rockchip-gpio ff7a0000.gpio3: probed /pinctrl/gpio3@ff7a0000
+[    0.096327] rockchip-gpio ff7b0000.gpio4: probed /pinctrl/gpio4@ff7b0000
+[    0.097103] rockchip-gpio ff7c0000.gpio5: probed /pinctrl/gpio5@ff7c0000
+[    0.097868] rockchip-gpio ff7d0000.gpio6: probed /pinctrl/gpio6@ff7d0000
+[    0.098629] rockchip-gpio ff7e0000.gpio7: probed /pinctrl/gpio7@ff7e0000
+[    0.099391] rockchip-gpio ff7f0000.gpio8: probed /pinctrl/gpio8@ff7f0000
+[    0.127701] iommu: Default domain type: Translated 
+[    0.127736] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.129287] vgaarb: loaded
+[    0.130331] SCSI subsystem initialized
+[    0.130857] usbcore: registered new interface driver usbfs
+[    0.130937] usbcore: registered new interface driver hub
+[    0.131003] usbcore: registered new device driver usb
+[    0.133230] pps_core: LinuxPPS API ver. 1 registered
+[    0.133258] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.133304] PTP clock support registered
+[    0.133582] EDAC MC: Ver: 3.0.0
+[    0.137115] clocksource: Switched to clocksource arch_sys_counter
+[    0.190088] NET: Registered PF_INET protocol family
+[    0.190368] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.191804] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.191865] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.191906] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    0.192008] TCP bind hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.192215] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.192329] UDP hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.192401] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.192634] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.194184] RPC: Registered named UNIX socket transport module.
+[    0.194217] RPC: Registered udp transport module.
+[    0.194237] RPC: Registered tcp transport module.
+[    0.194254] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.194278] PCI: CLS 0 bytes, default 64
+[    0.195872] hw perfevents: enabled with armv7_cortex_a12 PMU driver, 7 counters available
+[    0.197868] Initialise system trusted keyrings
+[    0.198230] workingset: timestamp_bits=14 max_order=19 bucket_order=5
+[    0.206747] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.207799] NFS: Registering the id_resolver key type
+[    0.207884] Key type id_resolver registered
+[    0.207907] Key type id_legacy registered
+[    0.208046] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.208075] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.208136] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.208746] Key type asymmetric registered
+[    0.208776] Asymmetric key parser 'x509' registered
+[    0.208894] bounce: pool size: 64 pages
+[    0.208979] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.209012] io scheduler mq-deadline registered
+[    0.209033] io scheduler kyber registered
+[    0.277376] dma-pl330 ff250000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.277426] dma-pl330 ff250000.dma-controller: 	DBUFF-128x8bytes Num_Chans-8 Num_Peri-20 Num_Events-16
+[    0.287981] dma-pl330 ffb20000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.288023] dma-pl330 ffb20000.dma-controller: 	DBUFF-64x8bytes Num_Chans-5 Num_Peri-6 Num_Events-10
+[    0.361393] Serial: 8250/16550 driver, 5 ports, IRQ sharing enabled
+[    0.364734] ff180000.serial: ttyS0 at MMIO 0xff180000 (irq = 38, base_baud = 1500000) is a 16550A
+[    0.366008] ff190000.serial: ttyS1 at MMIO 0xff190000 (irq = 39, base_baud = 1500000) is a 16550A
+[    0.367335] ff690000.serial: ttyS2 at MMIO 0xff690000 (irq = 40, base_baud = 1500000) is a 16550A
+[    1.290279] printk: console [ttyS2] enabled
+[    1.296263] ff1b0000.serial: ttyS3 at MMIO 0xff1b0000 (irq = 41, base_baud = 1500000) is a 16550A
+[    1.307493] ff1c0000.serial: ttyS4 at MMIO 0xff1c0000 (irq = 42, base_baud = 1500000) is a 16550A
+[    1.320783] SuperH (H)SCI(F) driver initialized
+[    1.327515] msm_serial: driver initialized
+[    1.332111] STMicroelectronics ASC driver initialized
+[    1.338779] STM32 USART driver initialized
+[    1.365473] brd: module loaded
+[    1.376122] loop: module loaded
+[    1.396567] CAN device driver interface
+[    1.402466] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    1.410677] e1000e: Intel(R) PRO/1000 Network Driver
+[    1.416242] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    1.422959] igb: Intel(R) Gigabit Ethernet Network Driver
+[    1.429024] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    1.442695] pegasus: Pegasus/Pegasus II USB Ethernet driver
+[    1.449041] usbcore: registered new interface driver pegasus
+[    1.455429] usbcore: registered new interface driver asix
+[    1.461546] usbcore: registered new interface driver ax88179_178a
+[    1.468432] usbcore: registered new interface driver cdc_ether
+[    1.475018] usbcore: registered new interface driver smsc75xx
+[    1.481524] usbcore: registered new interface driver smsc95xx
+[    1.488020] usbcore: registered new interface driver net1080
+[    1.494400] usbcore: registered new interface driver cdc_subset
+[    1.501089] usbcore: registered new interface driver zaurus
+[    1.507417] usbcore: registered new interface driver cdc_ncm
+[    1.517114] dwc2 ff540000.usb: supply vusb_d not found, using dummy regulator
+[    1.525266] dwc2 ff540000.usb: supply vusb_a not found, using dummy regulator
+[    1.597514] dwc2 ff540000.usb: DWC OTG Controller
+[    1.602820] dwc2 ff540000.usb: new USB bus registered, assigned bus number 1
+[    1.610781] dwc2 ff540000.usb: irq 49, io mem 0xff540000
+[    1.617608] hub 1-0:1.0: USB hub found
+[    1.621854] hub 1-0:1.0: 1 port detected
+[    1.627031] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
+[    1.635213] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
+[    1.777176] dwc2 ff580000.usb: EPs: 10, dedicated fifos, 972 entries in SPRAM
+[    1.785908] dwc2 ff580000.usb: DWC OTG Controller
+[    1.791246] dwc2 ff580000.usb: new USB bus registered, assigned bus number 2
+[    1.799203] dwc2 ff580000.usb: irq 50, io mem 0xff580000
+[    1.805932] hub 2-0:1.0: USB hub found
+[    1.810211] hub 2-0:1.0: 1 port detected
+[    1.816323] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.823679] ehci-pci: EHCI PCI platform driver
+[    1.828736] ehci-platform: EHCI generic platform driver
+[    1.834946] ehci-platform ff500000.usb: EHCI Host Controller
+[    1.841339] ehci-platform ff500000.usb: new USB bus registered, assigned bus number 3
+[    1.850706] ehci-platform ff500000.usb: irq 48, io mem 0xff500000
+[    1.997135] usb 1-1: new high-speed USB device number 2 using dwc2
+[    2.027136] ehci-platform ff500000.usb: USB 2.0 started, EHCI 1.00
+[    2.034862] hub 3-0:1.0: USB hub found
+[    2.039142] hub 3-0:1.0: 1 port detected
+[    2.044207] ehci-omap: OMAP-EHCI Host Controller driver
+[    2.050313] ehci-orion: EHCI orion driver
+[    2.055050] SPEAr-ehci: EHCI SPEAr driver
+[    2.059780] ehci-st: EHCI STMicroelectronics driver
+[    2.065455] ehci-atmel: EHCI Atmel driver
+[    2.070186] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.077154] ohci-pci: OHCI PCI platform driver
+[    2.082191] ohci-platform: OHCI generic platform driver
+[    2.088353] SPEAr-ohci: OHCI SPEAr driver
+[    2.093051] ohci-st: OHCI STMicroelectronics driver
+[    2.098749] ohci-atmel: OHCI Atmel driver
+[    2.104256] usbcore: registered new interface driver usb-storage
+[    2.119177] i2c_dev: i2c /dev entries driver
+[    2.129654] rk808 0-001b: chip id: 0x0
+[    2.138516] vdd_arm: supplied by vcc_sys
+[    2.143837] vdd_gpu: supplied by vcc_sys
+[    2.148595] vcc_ddr: supplied by vcc_sys
+[    2.153561] vcc_io: supplied by vcc_sys
+[    2.158673] vcc18_ldo1: supplied by vcc_sys
+[    2.164493] vcc33_mipi: supplied by vcc_sys
+[    2.170381] vdd_10: supplied by vcc_sys
+[    2.175828] vcc18_codec: supplied by vcc_io
+[    2.181832] vccio_sd: supplied by vcc_io
+[    2.187232] vdd10_lcd: Bringing 800000uV into 1000000-1000000uV
+[    2.194159] vdd10_lcd: supplied by vcc_io
+[    2.199859] vcc_18: supplied by vcc_sys
+[    2.205323] vcc18_lcd: supplied by vcc_sys
+[    2.210824] vcc33_sd: supplied by vcc_io
+[    2.215517] vcc33_lan: supplied by vcc_io
+[    2.236328] dw_wdt ff800000.watchdog: No valid TOPs array specified
+[    2.250308] cpufreq: cpufreq_online: CPU0: Running at unlisted initial frequency: 500000 KHz, changing to: 600000 KHz
+[    2.264639] sdhci: Secure Digital Host Controller Interface driver
+[    2.271592] sdhci: Copyright(c) Pierre Ossman
+[    2.279004] Synopsys Designware Multimedia Card Interface Driver
+[    2.279196] hub 1-1:1.0: USB hub found
+[    2.286927] dwmmc_rockchip ff0c0000.mmc: IDMAC supports 32-bit address mode.
+[    2.287104] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    2.288074] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.305819] hub 1-1:1.0: 4 ports detected
+[    2.312176] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    2.324013] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    2.330267] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    2.341197] ledtrig-cpu: registered to indicate activity on CPUs
+[    2.341213] dwmmc_rockchip ff0c0000.mmc: Using internal DMA controller.
+[    2.355322] dwmmc_rockchip ff0c0000.mmc: Version ID is 270a
+[    2.361572] dwmmc_rockchip ff0c0000.mmc: DW MMC controller at irq 34,32 bit host data width,256 deep fifo
+[    2.372469] mmc_host mmc0: card is polling.
+[    2.377921] usbcore: registered new interface driver usbhid
+[    2.384151] usbhid: USB HID core driver
+[    2.389811] mmc_host mmc0: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    2.390649] NET: Registered PF_INET6 protocol family
+[    2.406101] Segment Routing with IPv6
+[    2.407104] usb 3-1: new high-speed USB device number 2 using ehci-platform
+[    2.410222] In-situ OAM (IOAM) with IPv6
+[    2.422382] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    2.429232] NET: Registered PF_PACKET protocol family
+[    2.434893] can: controller area network core
+[    2.439820] NET: Registered PF_CAN protocol family
+[    2.445172] can: raw protocol
+[    2.448488] can: broadcast manager protocol
+[    2.453160] can: netlink gateway - max_hops=1
+[    2.458226] Key type dns_resolver registered
+[    2.463121] NET: Registered PF_VSOCK protocol family
+[    2.468743] ThumbEE CPU extension supported.
+[    2.473505] Registering SWP/SWPB emulation handler
+[    2.477136] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ div = 0)
+[    2.479075] Loading compiled-in X.509 certificates
+[    2.490167] mmc0: new high speed SDHC card at address aaaa
+[    2.501670] mmcblk0: mmc0:aaaa SK32G 29.7 GiB 
+[    2.510806] vcc_sd: supplied by vcc_io
+[    2.516516] rk_gmac-dwmac ff290000.ethernet: IRQ eth_lpi not found
+[    2.523478] rk_gmac-dwmac ff290000.ethernet: Deprecated MDIO bus assumption used
+[    2.531782] rk_gmac-dwmac ff290000.ethernet: PTP uses main clock
+[    2.538570] rk_gmac-dwmac ff290000.ethernet: clock input or output? (input).
+[    2.546449] rk_gmac-dwmac ff290000.ethernet: TX delay(0x30).
+[    2.552783] rk_gmac-dwmac ff290000.ethernet: RX delay(0x10).
+[    2.559111] rk_gmac-dwmac ff290000.ethernet: integrated PHY? (no).
+[    2.566026] rk_gmac-dwmac ff290000.ethernet: cannot get clock clk_mac_speed
+[    2.573810] rk_gmac-dwmac ff290000.ethernet: clock input from PHY
+[    2.585625] rk_gmac-dwmac ff290000.ethernet: init for RGMII
+[    2.592589] rk_gmac-dwmac ff290000.ethernet: User ID: 0x10, Synopsys ID: 0x35
+[    2.600587] rk_gmac-dwmac ff290000.ethernet: 	DWMAC1000
+[    2.606424] rk_gmac-dwmac ff290000.ethernet: DMA HW capability register supported
+[    2.614794] rk_gmac-dwmac ff290000.ethernet: RX Checksum Offload Engine supported
+[    2.623163] rk_gmac-dwmac ff290000.ethernet: COE Type 2
+[    2.629005] rk_gmac-dwmac ff290000.ethernet: TX Checksum insertion supported
+[    2.636880] rk_gmac-dwmac ff290000.ethernet: Wake-Up On Lan supported
+[    2.644112] rk_gmac-dwmac ff290000.ethernet: Normal descriptors
+[    2.650730] rk_gmac-dwmac ff290000.ethernet: Ring mode enabled
+[    2.657251] rk_gmac-dwmac ff290000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    2.670921] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    2.679203] GPT:616479 != 62333951
+[    2.682998] GPT:Alternate GPT header not at the end of the disk.
+[    2.689714] GPT:616479 != 62333951
+[    2.693509] GPT: Use GNU Parted to correct GPT errors.
+[    2.699265]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
+[    3.772390] RTL8211E Gigabit Ethernet stmmac-0:00: attached PHY driver (mii_bus:phy_addr=stmmac-0:00, irq=POLL)
+[    3.783987] RTL8211E Gigabit Ethernet stmmac-0:01: attached PHY driver (mii_bus:phy_addr=stmmac-0:01, irq=POLL)
+[    3.825875] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.834188] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    3.841762] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.841981] clk: Disabling unused clocks
+[    3.849170] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.859792] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.870531] dw-apb-uart ff690000.serial: forbid DMA for kernel console
+[    3.873627] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.885898] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.893302] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.899542] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.920812] EXT4-fs (mmcblk0p7): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    3.932146] VFS: Mounted root (ext4 filesystem) on device 179:7.
+[    3.939655] devtmpfs: mounted
+[    3.944410] Freeing unused kernel image (initmem) memory: 2048K
+[    3.951222] Run /sbin/init as init process
+INIT: version 3.01 booting
+[    4.088570] input: Generic USB Audio Consumer Control as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input1
+[    4.167613] input: Generic USB Audio as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input2
+[    4.180303] hid-generic 0003:0BDA:49F6.0001: input: USB HID v1.11 Device [Generic USB Audio] on usb-ff500000.usb-1/input6
+[    4.195531] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    4.203543] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    4.210961] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    4.217211] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+Starting udev
+[    4.445866] udevd[123]: starting version 3.2.10
+[    4.460401] random: udevd: uninitialized urandom read (16 bytes read)
+[    4.468670] random: udevd: uninitialized urandom read (16 bytes read)
+[    4.475911] random: udevd: uninitialized urandom read (16 bytes read)
+[    4.498714] udevd[124]: starting eudev-3.2.10
+[    4.810856] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Fri Mar  9 12:46:06 UTC 2018
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+INIT: Entering runlevel: 5
+Configuring network interfaces... udhcpc: started, v1.35.0
+[    5.352056] rk_gmac-dwmac ff290000.ethernet eth0: PHY [stmmac-0:00] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+[    5.364246] rk_gmac-dwmac ff290000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    5.377114] rk_gmac-dwmac ff290000.ethernet eth0: No Safety Features support found
+[    5.385588] rk_gmac-dwmac ff290000.ethernet eth0: PTP not supported by HW
+[    5.394529] rk_gmac-dwmac ff290000.ethernet eth0: configuring for phy/rgmii link mode
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/ttyS2
+
+tinker-board login: 
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/ttyS2
+
+tinker-board login: root
+7[r[999;999H[6n8root@tinker-board:~# 
+#### rebooting from the shell
+reboot
+
+Broadcast message from root@tinker-board (ttyS2) (Fri Mar  9 12:46:23 2018):
+
+TÐINIT: Switching to runlevel: 6
+root@tinker-board:~# hwclock: can't open '/dev/misc/rtc': No such file or directory
+Stopping syslogd/klogd: stopped syslogd (pid 283)
+stopped klogd (pid 286)
+done
+Unmounting remote filesystems...
+Deconfiguring network interfaces... done.
+Sending all processes the TERM signal...
+Sending all processes the KILL signal...
+[   27.385176] random: dd: uninitialized urandom read (512 bytes read)
+Deactivating swap...
+Unmounting local filesystems...
+[   27.425663] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+Rebooting... [   27.585283] reboot: Restarting system
+
+U-Boot TPL 2022.01 (Jan 10 2022 - 18:46:34)
+Returning to boot ROM...
+
+U-Boot SPL 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+
+U-Boot 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+SoC: Rockchip rk3288
+Reset cause: RST
+Model: Tinker-RK3288
+DRAM:  2 GiB
+PMIC:  RK808 
+MMC:   dwmmc@ff0c0000: 1
+Loading Environment from MMC... *** Warning - bad CRC, using default environment
+
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+In:    serial
+Out:   serial
+Err:   serial
+Model: Tinker-RK3288
+Net:   eth0: ethernet@ff290000
+starting USB...
+Bus usb@ff540000: USB DWC2
+Bus usb@ff580000: USB DWC2
+scanning bus usb@ff540000 for devices... 2 USB Device(s) found
+scanning bus usb@ff580000 for devices... 1 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+Hit any key to stop autoboot:  2  0 
+=> 
+=> 
+#### booting Xen with sched=rtds
+setenv bootm_boot_mode nonsec
+=> setenv xen_addr 0x02000000
+=> setenv dom0_addr 0x04000000
+=> load mmc 1:6 ${fdt_addr_r} /rk3288-tinker.dtb
+40844 bytes read in 6 ms (6.5 MiB/s)
+=> load mmc 1:6 ${xen_addr} /xen
+1048632 bytes read in 50 ms (20 MiB/s)
+=> load mmc 1:6 ${dom0_addr} /zImage
+10453504 bytes read in 456 ms (21.9 MiB/s)
+=> setenv dom0_size ${filesize}
+=> fdt addr ${fdt_addr_r}
+=> fdt resize 1024
+=> fdt set /dma-controller@ffb20000 reg <0x0 0xff600000 0x0 0x4000>
+=> fdt rsvmem add 0x79e00000 0x06200000
+=> fdt set /chosen \#address-cells <1>
+=> fdt set /chosen \#size-cells <1>
+=> fdt set /chosen xen,xen-bootargs "console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=rtds loglvl=all guest_loglvl=all"
+=> fdt mknod /chosen module@4000000
+=> fdt set /chosen/module@4000000 compatible "xen,linux-zimage" "xen,multiboot-module"
+=> fdt set /chosen/module@4000000 reg <${dom0_addr} 0x${dom0_size}>
+=> fdt set /chosen/module@4000000 bootargs "console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused"
+=> bootz ${xen_addr} - ${fdt_addr_r}
+Kernel image @ 0x2000000 [ 0x000000 - 0x13e290 ]
+## Flattened Device Tree blob at 01f00000
+   Booting using the fdt blob at 0x1f00000
+dwc2_usb usb@ff540000: Error disabling vbus supply
+device_remove: Device 'usb@ff540000' failed to remove, but children are gone
+ERROR: reserving fdt memory region failed (addr=79e00000 size=6200000 flags=0)
+   Loading Device Tree to 0fff1000, end 0fffefff ... OK
+
+Starting kernel ...
+
+- UART enabled -
+- Boot CPU booting -
+- Setting up control registers -
+- Turning on paging -
+- Zero BSS -
+- Ready -
+(XEN) Checking for initrd in /chosen
+(XEN) RAM: 0000000000000000 - 000000007fffffff
+(XEN) 
+(XEN) MODULE[0]: 0000000002000000 - 000000000213e290 Xen         
+(XEN) MODULE[1]: 000000000fff1000 - 000000000fffc000 Device Tree 
+(XEN) MODULE[2]: 0000000004000000 - 00000000049f8200 Kernel      
+(XEN)  RESVD[0]: 0000000079e00000 - 0000000080000000
+(XEN)  RESVD[1]: 000000007bfd4000 - 000000007bfd4150
+(XEN)  RESVD[2]: 00000000fe000000 - 00000000feffffff
+(XEN) 
+(XEN) CMDLINE[0000000004000000]:chosen console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+(XEN) 
+(XEN) Command line: console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=rtds loglvl=all guest_loglvl=all
+(XEN) Xen heap: 0000000074000000-0000000078000000 (16384 pages)
+(XEN) Dom heap: 507904 pages
+(XEN) Domain heap initialised
+(XEN) Booting using Device Tree
+(XEN) Platform: Generic System
+(XEN) Looking for dtuart at "serial2", options ""
+ Xen 4.16.1
+(XEN) Xen version 4.16.1 (arjune@) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0) debug=y Fri Oct 23 12:02:52 UTC 2026
+(XEN) Latest ChangeSet: Tue Apr 12 14:21:23 2022 +0200 git:f265444922-dirty
+(XEN) build-id: 921d37675c75aeacc36b43beb743761bf1d14de6
+(XEN) Processor: 410fc0d1: "ARM Limited", variant: 0x0, part 0xc0d,rev 0x1
+(XEN) 32-bit Execution:
+(XEN)   Processor Features: 00001131:00011011
+(XEN)     Instruction Sets: AArch32 A32 Thumb Thumb-2 ThumbEE Jazelle
+(XEN)     Extensions: GenericTimer Security
+(XEN)   Debug Features: 02010555
+(XEN)   Auxiliary Features: 00000000
+(XEN)   Memory Model Features: 10101105 40000000
+(XEN)                          01240000 02102211
+(XEN)   ISA Features: 02101110 13112111 21232041
+(XEN)                 11112131 00011142 00000000
+(XEN) SMP: Allowing 4 CPUs
+(XEN) Generic Timer IRQ: phys=30 hyp=26 virt=27 Freq: 24000 KHz
+(XEN) GICv2 initialization:
+(XEN)         gic_dist_addr=00000000ffc01000
+(XEN)         gic_cpu_addr=00000000ffc02000
+(XEN)         gic_hyp_addr=00000000ffc04000
+(XEN)         gic_vcpu_addr=00000000ffc06000
+(XEN)         gic_maintenance_irq=25
+(XEN) GICv2: 192 lines, 4 cpus, secure (IID 0200143b).
+(XEN) XSM Framework v1.0.1 initialized
+(XEN) Initialising XSM SILO mode
+(XEN) Using scheduler: SMP RTDS Scheduler (rtds)
+(XEN) Initializing RTDS scheduler
+(XEN) WARNING: This is experimental software in development.
+(XEN) Use at your own risk.
+(XEN) Allocated console ring of 32 KiB.
+(XEN) VFP implementer 0x41 architecture 3 part 0x30 variant 0xd rev 0x0
+(XEN) CPU0: Guest atomics will try 1 times before pausing the domain
+(XEN) Bringing up CPU1
+(XEN) Failed to bring up CPU1
+(XEN) Failed to bring up CPU 1 (error -19)
+(XEN) Bringing up CPU2
+(XEN) Failed to bring up CPU2
+(XEN) Failed to bring up CPU 2 (error -19)
+(XEN) Bringing up CPU3
+(XEN) Failed to bring up CPU3
+(XEN) Failed to bring up CPU 3 (error -19)
+(XEN) Brought up 1 CPUs
+(XEN) I/O virtualisation disabled
+(XEN) P2M: 40-bit IPA
+(XEN) P2M: 3 levels with order-1 root, VTCR 0x80003558
+(XEN) Scheduling granularity: cpu, 1 CPU per sched-resource
+(XEN) rt.c:745: RTDS: timer initialized on cpu 0
+(XEN) alternatives: Patching with alt table 002d29e8 -> 002d2ab4
+(XEN) CPU0 will execute BPIALL on guest exit
+(XEN) *** LOADING DOMAIN 0 ***
+(XEN) Loading d0 kernel from boot module @ 0000000004000000
+(XEN) Allocating 1:1 mappings totalling 512MB for dom0:
+(XEN) BANK[0] 0x00000020000000-0x00000040000000 (512MB)
+(XEN) Grant table range: 0x00000002000000-0x00000002040000
+(XEN) Allocating PPI 16 for event channel interrupt
+(XEN) The extended regions are only supported for 64-bit guest currently
+(XEN) Loading zImage from 0000000004000000 to 0000000027600000-0000000027ff8200
+(XEN) Loading d0 DTB to 0x0000000028000000-0x0000000028009c95
+(XEN) Initial low memory virq threshold set at 0x4000 pages.
+(XEN) Scrubbing Free RAM in background
+(XEN) Std. Loglevel: All
+(XEN) Guest Loglevel: All
+(XEN) *** Serial input to DOM0 (type 'CTRL-a' three times to switch input)
+(XEN) Freed 344kB init memory.
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.201-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 SMP Mon Feb 23 04:44:11 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Rockchip RK3288 Asus Tinker Board
+[    0.000000] earlycon: xenboot0 at I/O port 0x0 (options '')
+[    0.000000] printk: bootconsole [xenboot0] enabled
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x3c000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  [mem 0x0000000040000000-0x00000000feffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000020000000-0x000000003fffffff]
+[    0.000000]   node   0: [mem 0x00000000fe000000-0x00000000feffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000020000000-0x00000000feffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+(XEN) d0v0 Unhandled SMC/HVC: 0x8600ff01
+[    0.000000] percpu: Embedded 16 pages/cpu s35468 r8192 d21876 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 134016
+[    0.000000] Kernel command line: console=hvc0 earlycon=xenboot root=PARTLABEL=root rootwait rw rootfstype=ext4 clk_ignore_unused
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 426996K/540672K available (15360K kernel code, 2246K rwdata, 5684K rodata, 2048K init, 412K bss, 48140K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=1.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER4
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACÔ%YIá
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER12
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER16
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER20
+(XEN) d0v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000001] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000045] Switching to timer-based delay loop, resolution 41ns
+[    0.007393] Console: colour dummy device 80x30
+[    0.007445] printk: console [hvc0] enabled
+[    0.007445] printk: console [hvc0] enabled
+[    0.007505] printk: bootconsole [xenboot0] disabled
+[    0.007505] printk: bootconsole [xenboot0] disabled
+[    0.007622] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.007727] CPU: Testing write buffer coherency: ok
+[    0.007818] CPU0: Spectre v2: using BPIALL workaround
+[    0.007875] pid_max: default: 32768 minimum: 301
+[    0.008143] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.008235] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.009518] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.011767] xen:grant_table: Grant tables using version 1 layout
+[    0.011887] Grant table initialized
+[    0.012003] xen:events: Using FIFO-based ABI
+[    0.012095] Xen: initializing cpu0
+[    0.012254] Setting up static identity map for 0x20300000 - 0x203000ac
+[    0.014474] rcu: Hierarchical SRCU implementation.
+[    0.019495] EFI services will not be available.
+[    0.019819] smp: Bringing up secondary CPUs ...
+[    0.019881] smp: Brought up 1 node, 1 CPU
+[    0.019931] SMP: Total of 1 processors activated (48.00 BogoMIPS).
+[    0.019997] CPU: All CPU(s) started in SVC mode.
+[    0.020492] devtmpfs: initialized
+[    0.030446] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.030760] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.030872] futex hash table entries: 256 (order: 2, 16384 bytes, linear)
+[    0.033068] pinctrl core: initialized pinctrl subsystem
+[    0.034862] DMI not present or invalid.
+[    0.035904] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.038663] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.042186] thermal_sys: Registered thermal governor 'step_wise'
+[    0.042413] OF: /thermal-zones/cpu-thermal/cooling-maps/map0: could not find phandle 2
+[    0.042578] thermal_sys: Add a cooling_device property with at least one device
+[    0.042650] thermal_sys: failed to build thermal zone cpu-thermal: -2
+[    0.043157] xen:swiotlb_xen: Warning: only able to allocate 8 MB for software IO TLB
+[    0.046417] software IO TLB: mapped [mem 0x23000000-0x23800000] (8MB)
+[    0.047075] No ATAGs?
+[    0.047223] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.047322] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.047407] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.051085] Serial: AMBA PL011 UART driver
+[    0.078670] platform ff980000.hdmi: Fixing up cyclic dependency with ff940000.vop
+[    0.078877] platform ff980000.hdmi: Fixing up cyclic dependency with ff930000.vop
+[    0.096382] rockchip-gpio ff750000.gpio0: probed /pinctrl/gpio0@ff750000
+[    0.097339] rockchip-gpio ff780000.gpio1: probed /pinctrl/gpio1@ff780000
+[    0.098258] rockchip-gpio ff790000.gpio2: probed /pinctrl/gpio2@ff790000
+[    0.099159] rockchip-gpio ff7a0000.gpio3: probed /pinctrl/gpio3@ff7a0000
+[    0.100261] rockchip-gpio ff7b0000.gpio4: probed /pinctrl/gpio4@ff7b0000
+[    0.101187] rockchip-gpio ff7c0000.gpio5: probed /pinctrl/gpio5@ff7c0000
+[    0.102122] rockchip-gpio ff7d0000.gpio6: probed /pinctrl/gpio6@ff7d0000
+[    0.103050] rockchip-gpio ff7e0000.gpio7: probed /pinctrl/gpio7@ff7e0000
+[    0.103998] rockchip-gpio ff7f0000.gpio8: probed /pinctrl/gpio8@ff7f0000
+[    0.130459] xen:balloon: Initialising balloon driver
+[    0.135106] iommu: Default domain type: Translated 
+[    0.135170] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.137286] vgaarb: loaded
+[    0.138280] SCSI subsystem initialized
+[    0.138866] usbcore: registered new interface driver usbfs
+[    0.138990] usbcore: registered new interface driver hub
+[    0.139098] usbcore: registered new device driver usb
+[    0.141606] pps_core: LinuxPPS API ver. 1 registered
+[    0.141691] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.141804] PTP clock support registered
+[    0.142129] EDAC MC: Ver: 3.0.0
+[    0.146241] clocksource: Switched to clocksource arch_sys_counter
+[    0.256006] NET: Registered PF_INET protocol family
+[    0.256378] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.257448] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.257560] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.257668] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    0.257788] TCP bind hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.257958] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.258111] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.258212] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.258464] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.279646] RPC: Registered named UNIX socket transport module.
+[    0.279752] RPC: Registered udp transport module.
+[    0.279822] RPC: Registered tcp transport module.
+[    0.279875] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.279943] PCI: CLS 0 bytes, default 64
+[    0.280566] armv7-pmu arm-pmu: hw perfevents: failed to parse interrupt-affinity[0]
+[    0.280660] armv7-pmu: probe of arm-pmu failed with error -22
+[    0.282223] Initialise system trusted keyrings
+[    0.282901] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    0.291614] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.292648] NFS: Registering the id_resolver key type
+[    0.292748] Key type id_resolver registered
+[    0.292798] Key type id_legacy registered
+[    0.292958] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.293031] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.293142] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.293873] Key type asymmetric registered
+[    0.293933] Asymmetric key parser 'x509' registered
+[    0.294081] bounce: pool size: 64 pages
+[    0.294195] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.294277] io scheduler mq-deadline registered
+[    0.294334] io scheduler kyber registered
+[    0.403040] dma-pl330 ff250000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.403135] dma-pl330 ff250000.dma-controller: 	DBUFF-128x8bytes Num_Chans-8 Num_Peri-20 Num_Events-16
+[    0.404207] dma-pl330 ff600000.dma-controller: Loaded driver for PL330 DMAC-241330
+[    0.404298] dma-pl330 ff600000.dma-controller: 	DBUFF-64x8bytes Num_Chans-5 Num_Peri-6 Num_Events-10
+[    0.425549] xen:xen_evtchn: Event-channel device installed
+[    0.562015] Serial: 8250/16550 driver, 5 ports, IRQ sharing enabled
+[    0.565615] ff180000.serial: ttyS0 at MMIO 0xff180000 (irq = 38, base_baud = 1500000) is a 16550A
+[    0.567192] ff190000.serial: ttyS1 at MMIO 0xff190000 (irq = 39, base_baud = 1500000) is a 16550A
+[    0.568641] ff1b0000.serial: ttyS3 at MMIO 0xff1b0000 (irq = 40, base_baud = 1500000) is a 16550A
+[    0.570072] ff1c0000.serial: ttyS4 at MMIO 0xff1c0000 (irq = 41, base_baud = 1500000) is a 16550A
+[    0.573624] SuperH (H)SCI(F) driver initialized
+[    0.575420] msm_serial: driver initialized
+[    0.575475] STMicroelectronics ASC driver initialized
+[    0.576716] STM32 USART driver initialized
+[    0.633308] brd: module loaded
+[    0.639956] loop: module loaded
+[    0.640073] Invalid max_queues (4), will use default max: 1.
+[    0.658092] CAN device driver interface
+[    0.659838] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    0.661872] e1000e: Intel(R) PRO/1000 Network Driver
+[    0.661933] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.662067] igb: Intel(R) Gigabit Ethernet Network Driver
+[    0.662127] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.670003] xen_netfront: Initialising Xen virtual ethernet driver
+[    0.670145] pegasus: Pegasus/Pegasus II USB Ethernet driver
+[    0.670259] usbcore: registered new interface driver pegasus
+[    0.670383] usbcore: registered new interface driver asix
+[    0.670492] usbcore: registered new interface driver ax88179_178a
+[    0.670609] usbcore: registered new interface driver cdc_ether
+[    0.670738] usbcore: registered new interface driver smsc75xx
+[    0.670904] usbcore: registered new interface driver smsc95xx
+[    0.671027] usbcore: registered new interface driver net1080
+[    0.671146] usbcore: registered new interface driver cdc_subset
+[    0.671260] usbcore: registered new interface driver zaurus
+[    0.671386] usbcore: registered new interface driver cdc_ncm
+[    0.674945] dwc2 ff540000.usb: supply vusb_d not found, using dummy regulator
+[    0.675189] dwc2 ff540000.usb: supply vusb_a not found, using dummy regulator
+[    0.786911] dwc2 ff540000.usb: DWC OTG Controller
+[    0.787003] dwc2 ff540000.usb: new USB bus registered, assigned bus number 1
+[    0.787110] dwc2 ff540000.usb: irq 48, io mem 0xff540000
+[    0.788024] hub 1-0:1.0: USB hub found
+[    0.788132] hub 1-0:1.0: 1 port detected
+[    0.789047] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
+[    0.789273] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
+[    0.951745] dwc2 ff580000.usb: EPs: 10, dedicated fifos, 972 entries in SPRAM
+[    0.965769] dwc2 ff580000.usb: DWC OTG Controller
+[    0.965877] dwc2 ff580000.usb: new USB bus registered, assigned bus number 2
+[    0.965999] dwc2 ff580000.usb: irq 49, io mem 0xff580000
+[    0.966885] hub 2-0:1.0: USB hub found
+[    0.966994] hub 2-0:1.0: 1 port detected
+[    0.968880] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.968958] ehci-pci: EHCI PCI platform driver
+[    0.969066] ehci-platform: EHCI generic platform driver
+[    0.969467] ehci-platform ff500000.usb: EHCI Host Controller
+[    0.969566] ehci-platform ff500000.usb: new USB bus registered, assigned bus number 3
+[    0.970189] ehci-platform ff500000.usb: irq 47, io mem 0xff500000
+[    1.156856] usb 1-1: new high-speed USB device number 2 using dwc2
+[    1.196175] ehci-platform ff500000.usb: USB 2.0 started, EHCI 1.00
+[    1.210255] hub 3-0:1.0: USB hub found
+[    1.210365] hub 3-0:1.0: 1 port detected
+[    1.211148] ehci-omap: OMAP-EHCI Host Controller driver
+[    1.211448] ehci-orion: EHCI orion driver
+[    1.211807] SPEAr-ehci: EHCI SPEAr driver
+[    1.212079] ehci-st: EHCI STMicroelectronics driver
+[    1.212357] ehci-atmel: EHCI Atmel driver
+[    1.212623] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.212712] ohci-pci: OHCI PCI platform driver
+[    1.212842] ohci-platform: OHCI generic platform driver
+[    1.213217] SPEAr-ohci: OHCI SPEAr driver
+[    1.213488] ohci-st: OHCI STMicroelectronics driver
+[    1.213810] ohci-atmel: OHCI Atmel driver
+[    1.214918] usbcore: registered new interface driver usb-storage
+[    1.223657] i2c_dev: i2c /dev entries driver
+[    1.292758] rk808 0-001b: chip id: 0x0
+[    1.493060] vdd_arm: supplied by vcc_sys
+[    1.525602] usb 3-1: new high-speed USB device number 2 using ehci-platform
+[    1.552468] vdd_gpu: supplied by vcc_sys
+[    1.552887] vcc_ddr: supplied by vcc_sys
+[    1.553530] hub 1-1:1.0: USB hub found
+[    1.567020] vcc_io: supplied by vcc_sys
+[    1.567496] hub 1-1:1.0: 4 ports detected
+[    1.581211] vcc18_ldo1: supplied by vcc_sys
+[    1.588276] vcc33_mipi: supplied by vcc_sys
+[    1.599396] vdd_10: supplied by vcc_sys
+[    1.636054] vcc18_codec: supplied by vcc_io
+[    1.656107] vccio_sd: supplied by vcc_io
+[    1.682681] vdd10_lcd: supplied by vcc_io
+[    1.699048] vcc_18: supplied by vcc_sys
+[    1.709239] vcc18_lcd: supplied by vcc_sys
+[    1.718814] vcc33_sd: supplied by vcc_io
+[    1.719320] vcc33_lan: supplied by vcc_io
+[    1.736977] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    1.737077] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    1.743793] dw_wdt ff800000.watchdog: No valid TOPs array specified
+[    1.757744] cpu cpu0: OPP table can't be empty
+[    1.760921] sdhci: Secure Digital Host Controller Interface driver
+[    1.760993] sdhci: Copyright(c) Pierre Ossman
+[    1.764461] Synopsys Designware Multimedia Card Interface Driver
+[    1.767721] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.774578] dwmmc_rockchip ff0c0000.mmc: IDMAC supports 32-bit address mode.
+[    1.774816] dwmmc_rockchip ff0c0000.mmc: Using internal DMA controller.
+[    1.774896] dwmmc_rockchip ff0c0000.mmc: Version ID is 270a
+[    1.775051] dwmmc_rockchip ff0c0000.mmc: DW MMC controller at irq 34,32 bit host data width,256 deep fifo
+[    1.775661] mmc_host mmc0: card is polling.
+[    1.793241] mmc_host mmc0: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    1.796029] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    1.796335] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    1.796416] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    1.796555] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    1.809421] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.811492] usbcore: registered new interface driver usbhid
+[    1.811558] usbhid: USB HID core driver
+[    1.820202] NET: Registered PF_INET6 protocol family
+[    1.848040] Segment Routing with IPv6
+[    1.848183] In-situ OAM (IOAM) with IPv6
+[    1.848337] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.849135] NET: Registered PF_PACKET protocol family
+[    1.849252] can: controller area network core
+[    1.849499] NET: Registered PF_CAN protocol family
+[    1.849565] can: raw protocol
+[    1.849615] can: broadcast manager protocol
+[    1.849671] can: netlink gateway - max_hops=1
+[    1.850184] Key type dns_resolver registered
+[    1.850626] NET: Registered PF_VSOCK protocol family
+[    1.850966] ThumbEE CPU extension supported.
+[    1.851037] Registering SWP/SWPB emulation handler
+[    1.851563] Loading compiled-in X.509 certificates
+[    1.878320] vcc_sd: supplied by vcc_io
+[    1.882305] rk_gmac-dwmac ff290000.ethernet: IRQ eth_lpi not found
+[    1.882437] rk_gmac-dwmac ff290000.ethernet: Deprecated MDIO bus assumption used
+[    1.882586] rk_gmac-dwmac ff290000.ethernet: PTP uses main clock
+[    1.882874] rk_gmac-dwmac ff290000.ethernet: clock input or output? (input).
+[    1.882962] rk_gmac-dwmac ff290000.ethernet: TX delay(0x30).
+[    1.883032] rk_gmac-dwmac ff290000.ethernet: RX delay(0x10).
+[    1.883107] rk_gmac-dwmac ff290000.ethernet: integrated PHY? (no).
+[    1.883230] rk_gmac-dwmac ff290000.ethernet: cannot get clock clk_mac_speed
+[    1.883302] rk_gmac-dwmac ff290000.ethernet: clock input from PHY
+[    1.888385] rk_gmac-dwmac ff290000.ethernet: init for RGMII
+[    1.909990] rk_gmac-dwmac ff290000.ethernet: User ID: 0x10, Synopsys ID: 0x35
+[    1.910084] rk_gmac-dwmac ff290000.ethernet: 	DWMAC1000
+[    1.910153] rk_gmac-dwmac ff290000.ethernet: DMA HW capability register supported
+[    1.910267] rk_gmac-dwmac ff290000.ethernet: RX Checksum Offload Engine supported
+[    1.910349] rk_gmac-dwmac ff290000.ethernet: COE Type 2
+[    1.910409] rk_gmac-dwmac ff290000.ethernet: TX Checksum insertion supported
+[    1.910496] rk_gmac-dwmac ff290000.ethernet: Wake-Up On Lan supported
+[    1.910650] rk_gmac-dwmac ff290000.ethernet: Normal descriptors
+[    1.910724] rk_gmac-dwmac ff290000.ethernet: Ring mode enabled
+[    1.910791] rk_gmac-dwmac ff290000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    1.969793] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ div = 0)
+[    1.970823] mmc0: new high speed SDHC card at address aaaa
+[    1.977441] mmcblk0: mmc0:aaaa SK32G 29.7 GiB 
+[    1.988411] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    1.988503] GPT:616479 != 62333951
+[    1.988548] GPT:Alternate GPT header not at the end of the disk.
+[    1.988608] GPT:616479 != 62333951
+[    1.988651] GPT: Use GNU Parted to correct GPT errors.
+[    1.988749]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
+[    2.417026] input: Generic USB Audio Consumer Control as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input0
+[    2.486808] input: Generic USB Audio as /devices/platform/ff500000.usb/usb3/3-1/3-1:1.6/0003:0BDA:49F6.0001/input/input1
+[    2.487129] hid-generic 0003:0BDA:49F6.0001: input: USB HID v1.11 Device [Generic USB Audio] on usb-ff500000.usb-1/input6
+[    2.981757] RTL8211E Gigabit Ethernet stmmac-0:00: attached PHY driver (mii_bus:phy_addr=stmmac-0:00, irq=POLL)
+[    2.981887] RTL8211E Gigabit Ethernet stmmac-0:01: attached PHY driver (mii_bus:phy_addr=stmmac-0:01, irq=POLL)
+[    2.985671] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.985805] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    2.992681] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    2.992940] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    2.993033] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    2.993149] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    2.996810] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    2.996907] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.004711] input: gpio-keys as /devices/platform/gpio-keys/input/input2
+[    3.005629] clk: Not disabling unused clocks
+[    3.008682] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.008775] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.011249] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.011513] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.011594] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.011735] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.016091] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[    3.016292] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[    3.024745] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[    3.025326] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[    3.025409] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[    3.025524] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[    3.033045] EXT4-fs (mmcblk0p7): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    3.033246] VFS: Mounted root (ext4 filesystem) on device 179:7.
+[    3.034170] devtmpfs: mounted
+[    3.040487] Freeing unused kernel image (initmem) memory: 2048K
+[    3.046666] Run /sbin/init as init process
+INIT: version 3.01 booting
+Starting udev
+[    3.618224] udevd[99]: starting version 3.2.10
+[    3.630125] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.631855] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.632057] random: udevd: uninitialized urandom read (16 bytes read)
+[    3.666417] udevd[100]: starting eudev-3.2.10
+[    5.134444] EXT4-fs (mmcblk0p7): re-mounted. Opts: (null). Quota mode: disabled.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Fri Mar  9 12:46:28 UTC 2018
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+[    5.889246] random: dd: uninitialized urandom read (512 bytes read)
+INIT: Entering runlevel: 5
+Configuring network interfaces... udhcpc: started, v1.35.0
+[    6.189393] rk_gmac-dwmac ff290000.ethernet eth0: PHY [stmmac-0:00] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+[    6.190329] rk_gmac-dwmac ff290000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    6.196411] rk_gmac-dwmac ff290000.ethernet eth0: No Safety Features support found
+[    6.196526] rk_gmac-dwmac ff290000.ethernet eth0: PTP not supported by HW
+[    6.197147] rk_gmac-dwmac ff290000.ethernet eth0: configuring for phy/rgmii link mode
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: broadcasting discover
+udhcpc: no lease, failing
+ifup: failed to bring up eth0
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Setting up bridge xenbr0 (192.168.100.1/24)
+Starting /usr/sbin/xenstored....
+Setting domain 0 name, domid and JSON config...
+Done setting up Dom0
+Starting xenconsoled...
+Starting QEMU as disk backend for dom0
+/etc/rc5.d/S80xencommons: line 73: /usr/bin/qemu-system-i386: No such file or directory
+
+Poky (Yocto Project Reference Distro) 4.0.35 tinker-board /dev/hvc0
+
+tinker-board login: root
+root@tinker-board:~# 
+#### scheduler check
+xl info | grep -E 'xen_scheduler|xen_commandline'
+xen_scheduler          : rtds
+xen_commandline        : console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=rtds loglvl=all guest_loglvl=all
+root@tinker-board:~# xl sched-rtds
+Cpupool Pool-0: sched=RTDS
+Name                                ID    Period    Budget  Extratime
+Domain-0                             0     10000      4000        yes
+root@tinker-board:~# 
+#### sending FreeRTOS (15832 bytes)
+: > /tmp/rtos.bin
+root@tinker-board:~# printf '\000\000\240\341\000\000\240\341\000\000\240\341\0000\000\240\341\000\000\240\341\000\000\240\341\000\000\240\341\000\000\240\341\0033\000\000\352\030\050\157\001\000\200\000\100\030\155\002\100\001\002\003\004\3000\000\014\361\320\000\237\345\020\017\014\356\020\017\021\356\002\012\300\343\0011\001\300\343\020\017\001\356\157\360\177\365\022\000\002\361\264\320\237\345\0277\000\002\361\260\320\237\345\033\000\002\361\254\320\237\345\037\000\002\361\2500\320\237\345\023\000\002\361\244\320\237\345\120\017\021\356\017\006\200\343\1200\017\001\356\157\360\177\365\001\001\240\343\020\012\350\356\214\000\237\345\2144\020\237\345\000\040\240\343\001\000\120\341\004\040\200\064\374\377\377\072\2266\001\000\353\003\360\040\343\375\377\377\352\000\360\040\343\000\360\040\343\1500\360\237\345\150\360\237\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\150\360\237\345\150\360\237\345\150\360\237\345\0000\360\040\343\144\360\237\345\144\360\237\345\001\000\240\343\004\020\116\342\1055\001\000\352\003\000\240\343\004\020\116\342\102\001\000\352\004\000\240\343\0100\020\116\342\077\001\000\352\007\000\240\343\004\020\116\342\074\001\000\352\3000\200\000\100\030\121\002\100\030\125\002\100\030\131\002\100\030\135\002\100\0300\155\002\100\000\300\000\100\030\101\002\100\064\200\000\100\340\200\000\100\3000\270\000\100\354\200\000\100\370\200\000\100\340\271\000\100\004\201\000\100\0044\340\055\345\000\100\014\343\000\100\104\343\014\320\115\342\000\060\240\343\0044\060\215\345\304\011\000\343\242\004\000\353\004\300\235\345\000\000\224\345\0000\060\240\343\004\020\215\342\000\040\340\343\001\300\214\342\004\300\215\345\2433\011\000\353\364\377\377\352' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\360\100\055\351\000\340\240\343\024\320\115\342\0044\100\215\342\004\140\240\341\000\000\000\352\007\340\240\341\022\363\065\347\0011\160\216\342\223\045\154\340\011\000\134\343\174\300\357\346\060\300\214\222\1277\300\214\202\003\000\122\341\005\040\240\341\174\300\357\346\001\300\306\344\3622\377\377\052\016\060\204\340\000\000\000\352\001\300\163\345\000\040\221\345\2366\000\122\343\001\340\202\342\000\340\201\225\002\300\300\227\004\000\123\341\3677\377\377\032\024\320\215\342\360\200\275\350\017\000\055\351\000\040\240\343\0200\100\055\351\250\320\115\342\264\060\215\342\260\100\235\345\360\040\315\341\0000\020\324\345\002\000\121\341\020\000\000\012\004\060\240\341\045\000\121\343\0011\040\363\345\024\000\000\012\000\000\235\345\236\000\120\343\165\000\000\212\2500\300\200\342\003\100\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\014\300\215\340\001\000\200\342\000\000\215\345\2400\020\114\345\002\020\240\341\000\000\121\343\357\377\377\032\000\020\235\345\0000\000\240\343\010\040\215\342\022\300\240\343\161\352\100\341\250\320\215\342\0200\100\275\350\020\320\215\342\036\377\057\341\045\000\122\343\144\000\000\012\1433\020\102\342\161\000\357\346\025\000\120\343\135\000\000\212\025\000\121\343\0011\361\237\227\025\000\000\352\344\203\000\100\264\203\000\100\024\203\000\100\0244\203\000\100\024\203\000\100\024\203\000\100\024\203\000\100\024\203\000\100\0244\203\000\100\024\203\000\100\024\203\000\100\024\203\000\100\024\203\000\100\0244\203\000\100\024\203\000\100\024\203\000\100\124\203\000\100\024\203\000\100\1100\203\000\100\024\203\000\100\024\203\000\100\040\203\000\100\003\100\240\341\0022\020\240\341\304\377\377\352' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\040\235\345\020\060\240\343\004\020\202\342\0100\000\215\342\004\020\215\345\015\020\240\341\000\040\222\345\223\377\377\353\0022\020\364\345\310\377\377\352\004\040\235\345\012\060\240\343\364\377\377\352\0044\060\235\345\002\340\204\342\004\040\203\342\004\040\215\345\000\020\223\345\0000\040\321\345\000\000\122\343\000\300\240\023\000\060\235\025\012\000\000\012\2500\000\203\342\236\000\123\343\000\000\215\340\001\060\203\222\001\300\240\223\2400\040\100\225\001\040\361\345\000\000\122\343\366\377\377\032\000\000\134\343\0000\060\215\025\002\020\324\345\016\100\240\341\255\377\377\352\004\060\235\345\0044\040\203\342\004\040\215\345\000\040\223\345\000\000\122\343\044\000\000\272\0155\020\240\341\012\060\240\343\010\000\215\342\154\377\377\353\002\020\364\345\2411\377\377\352\000\060\235\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\002\000\204\342\004\040\235\345\236\000\123\343\0044\020\202\342\004\020\215\345\000\300\222\225\250\040\203\222\002\040\215\220\0022\020\324\205\002\020\324\225\001\060\203\222\000\100\240\201\000\100\240\221\2400\300\102\225\000\060\215\225\220\377\377\352\003\100\240\341\002\020\240\341\2155\377\377\352\000\060\235\345\002\040\204\342\236\000\123\343\250\000\203\222\0011\060\203\222\000\000\215\220\000\060\215\225\240\020\100\225\002\020\324\345\0022\100\240\341\202\377\377\352\000\060\235\345\236\000\123\343\005\000\000\212\0011\020\203\342\250\060\203\342\003\060\215\340\000\020\215\345\055\020\240\343\2400\020\103\345\000\040\142\342\317\377\377\352\004\340\055\345\000\100\014\343\0000\100\104\343\260\133\013\343\000\120\104\343\014\320\115\342\000\000\224\345\0044\020\215\342\000\040\340\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\247\011\000\353\001\000\120\343\371\377\377\032\0044\020\235\345\005\000\240\341\120\377\377\353\365\377\377\352\060\100\055\351\3444\133\013\343\000\120\104\343\014\320\115\342\000\100\240\343\325\003\000\353\0044\000\215\345\372\037\240\343\004\000\215\342\001\100\204\342\232\003\000\353\3177\003\000\353\004\020\240\341\000\040\240\341\005\000\240\341\077\377\377\353\3655\377\377\352\360\117\055\351\014\320\115\342\020\217\036\356\203\076\015\343\0333\063\104\343\223\070\210\340\303\003\000\353\004\000\215\345\050\211\240\341\1577\360\177\365\036\277\123\354\000\220\240\343\004\254\013\343\000\240\104\343\0111\140\240\341\011\100\240\341\000\120\340\343\000\000\000\352\007\260\240\341\0122\020\240\343\004\000\215\342\176\003\000\353\157\360\177\365\036\177\123\354\0133\060\107\340\001\140\206\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\023\370\063\347\003\000\125\341\003\120\240\041\0033\000\124\341\003\100\240\061\144\000\126\343\360\377\377\032\001\220\211\342\0044\040\240\341\005\020\240\341\000\100\240\343\011\060\240\341\012\000\240\341\0044\140\240\341\000\120\340\343\024\377\377\353\346\377\377\352\000\000\122\343\0366\377\057\001\161\020\357\346\002\040\200\340\000\060\240\341\001\020\303\344\0022\000\123\341\374\377\377\032\036\377\057\341\000\000\122\343\036\377\057\001\0011\060\100\342\002\040\201\340\001\300\321\344\001\300\343\345\002\000\121\341\3733\377\377\032\036\377\057\341\007\300\000\342\230\075\013\343\000\060\104\343\0011\040\240\341\110\014\013\343\000\000\104\343\020\100\055\351\014\021\223\347\3700\376\377\353\003\360\040\343\375\377\377\352\004\340\055\345\020\077\036\356\3233\055\004\343\142\040\101\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\005\313\240\343\000\303\100\343\001\012\240\343\0000\003\100\343\222\043\203\340\000\020\014\343\000\020\104\343\002\043\240\343\0177\340\340\343\043\063\240\341\004\060\201\345\033\340\314\345\000\041\200\345\1577\360\177\365\036\057\120\354\003\040\222\340\010\040\201\345\000\060\240\342\0144\060\201\345\076\057\103\354\001\060\240\343\063\077\016\356\157\360\177\365\0044\360\235\344\000\060\014\343\000\060\104\343\010\000\223\345\004\040\223\345\0144\020\223\345\000\040\222\340\010\040\203\345\000\020\241\342\014\020\203\345\0766\057\101\354\001\060\240\343\063\077\016\356\157\360\177\365\036\377\057\341\1177\360\177\365\003\360\040\343\036\377\057\341\120\000\351\347\033\000\120\343\0055\000\000\012\000\060\014\343\000\060\104\343\020\040\223\345\001\040\202\342\0200\040\203\345\036\377\057\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\046\014\000\352\004\062\237\345\000\040\240\343\0044\340\055\345\026\014\000\343\001\311\203\342\014\320\115\342\004\340\203\342\0000\020\202\341\004\020\243\345\001\046\202\342\014\000\123\341\372\377\377\032\0011\012\216\342\324\041\237\345\016\314\001\343\001\300\100\343\074\000\200\342\0011\061\240\343\014\020\203\341\004\020\242\345\001\066\203\342\000\000\122\341\3722\377\377\032\060\077\020\356\004\020\240\343\123\070\343\347\000\000\010\343\0000\000\104\343\021\023\240\341\030\055\006\343\002\040\104\343\000\060\141\342\0000\060\003\340\002\000\123\341\003\000\000\052\066\077\007\356\001\060\203\340\0022\000\123\341\373\377\377\072\117\360\177\365\000\100\240\343\120\117\002\356\1255\065\005\343\125\065\105\343\020\077\003\356\112\340\216\343\020\357\002\356\0277\117\010\356\025\117\007\356' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\325\117\007\356\117\360\177\365\157\360\177\365\0200\077\021\356\002\060\303\343\006\073\203\343\005\060\203\343\020\077\001\356\1577\360\177\365\150\034\013\343\000\020\104\343\160\014\013\343\000\000\104\343\2000\376\377\353\020\037\036\356\372\057\240\343\260\014\013\343\000\000\104\343\0022\120\240\343\172\376\377\353\001\052\240\343\000\043\100\343\002\072\240\343\0000\063\100\343\004\020\240\343\001\000\240\343\000\000\202\345\377\040\240\343\0044\040\203\345\004\040\240\341\010\100\203\345\000\000\203\345\001\000\240\341\3244\007\000\353\000\020\014\343\000\020\104\343\004\300\240\343\004\060\240\341\0000\300\215\345\002\054\240\343\004\100\215\345\000\000\201\345\330\034\013\343\0000\020\104\343\020\005\010\343\000\000\104\343\335\000\000\353\004\060\240\341\0022\054\240\343\003\020\240\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\314\004\010\343\000\000\104\343\022\000\215\350\3400\034\013\343\000\020\104\343\324\000\000\353\004\060\240\341\002\054\240\343\0044\100\215\345\000\120\215\345\354\034\013\343\000\020\104\343\114\001\010\343\0000\000\104\343\313\000\000\353\004\060\240\341\002\054\240\343\004\100\215\345\0000\120\215\345\370\034\013\343\000\020\104\343\214\004\010\343\000\000\104\343\3022\000\000\353\004\015\013\343\000\000\104\343\101\376\377\353\365\001\000\353\0644\015\013\343\000\000\104\343\075\376\377\353\376\377\377\352\374\377\000\100\3744\017\001\100\360\107\055\351\000\100\004\343\001\100\104\343\000\120\240\341\0011\140\240\341\000\160\224\345\004\200\224\345\010\220\224\345\014\000\224\345\0044\000\200\342\355\006\000\353\000\000\120\343\005\000\000\032\014\060\224\345\0011\020\240\343\054\040\223\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\020\060\224\345\021\062\303\341\020\060\204\345\0011\000\165\343\000\060\240\023\001\060\240\003\003\000\026\341\023\000\000\012\0300\060\224\345\014\000\224\345\014\040\224\345\010\020\223\345\010\060\200\345\0144\020\202\345\014\020\224\345\010\300\223\345\014\040\224\345\004\020\201\342\0144\000\224\345\004\020\214\345\004\040\202\342\024\020\224\345\120\300\237\345\0011\020\201\342\010\040\203\345\024\020\204\345\024\300\200\345\360\207\275\350\0144\060\224\345\005\160\227\340\014\020\224\345\004\160\203\345\003\000\000\072\0111\000\240\341\004\020\201\342\360\107\275\350\255\006\000\352\010\000\240\341\0044\020\201\342\252\006\000\353\050\060\224\345\007\000\123\341\050\160\204\205\3600\207\275\350\024\100\001\100\020\100\055\351\000\100\004\343\001\100\104\343\0544\060\224\345\001\000\123\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\000\000\232\000\000\000\357\050\377\377\353\3711\377\377\352\000\040\004\343\001\040\104\343\360\117\055\351\000\160\222\345\0011\160\207\342\000\160\202\345\000\000\127\343\131\000\000\012\050\060\222\345\0033\000\127\341\000\000\240\063\107\000\000\072\004\060\222\345\000\000\223\345\0000\000\120\343\116\000\000\012\000\000\240\343\001\240\240\343\000\200\240\341\0244\260\240\343\065\000\000\352\024\300\223\345\010\100\223\345\014\020\223\345\0100\020\204\345\004\100\201\345\004\100\234\345\016\000\124\341\000\100\234\345\0044\020\214\005\050\020\223\345\001\100\104\342\024\200\203\345\000\000\121\343\0000\100\214\345\013\000\000\012\034\300\223\345\040\100\223\345\010\100\214\345\0044\100\221\345\005\000\124\341\040\100\223\345\004\300\204\345\000\300\221\345\0044\100\201\005\001\300\114\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\050\200\203\345\000\300\201\345\054\100\223\345\0200\020\222\345\370\300\237\345\032\024\201\341\020\020\202\345\233\004\001\340\0011\120\202\340\001\020\214\340\060\300\225\345\010\300\203\345\010\140\234\345\0144\140\203\345\054\140\225\345\010\220\234\345\001\140\206\342\004\340\211\345\0100\340\214\345\024\020\203\345\014\020\222\345\004\060\222\345\054\140\205\345\0544\020\221\345\000\060\223\345\001\000\124\341\001\000\240\203\000\000\123\343\0233\000\000\012\004\060\222\345\014\060\223\345\014\060\223\345\004\340\203\342\0300\120\203\342\004\020\223\345\001\000\127\341\301\377\377\052\050\020\202\345\0144\020\222\345\024\300\240\343\224\060\222\345\054\020\221\345\234\041\042\340\0544\040\222\345\002\000\122\343\001\000\240\043\000\000\123\343\001\000\240\023\3600\217\275\350\000\060\340\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\050\060\202\345\361\377\377\352\004\060\222\345\0100\020\222\345\004\020\202\345\010\060\202\345\220\060\222\345\001\060\203\342\2200\060\202\345\004\060\222\345\000\060\223\345\000\000\123\343\000\060\340\003\0044\060\222\025\014\060\223\025\000\060\223\025\050\060\202\345\225\377\377\352\0544\100\001\100\370\117\055\351\002\221\240\341\000\160\240\341\011\000\240\341\0500\140\235\345\001\240\240\341\003\200\240\341\200\011\000\353\000\260\120\342\1366\000\000\012\124\000\240\343\174\011\000\353\000\100\120\342\134\000\000\012\0000\020\240\343\124\040\240\343\004\220\111\342\133\376\377\353\011\220\213\340\0000\000\132\343\007\220\311\343\001\300\112\022\017\020\212\022\063\120\204\022\0600\260\204\345\007\000\000\012\001\340\374\345\001\340\345\345\000\000\136\343\0011\000\000\012\001\000\134\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\371\377\377\032\000\060\240\343\103\060\304\345\0044\000\126\343\004\240\204\342\004\140\240\043\012\000\240\341\054\140\204\345\0000\120\004\343\001\120\104\343\104\140\204\345\360\005\000\353\030\000\204\342\3566\005\000\353\005\140\146\342\010\040\240\341\007\020\240\341\011\000\240\341\0300\140\204\345\020\100\204\345\044\100\204\345\060\012\000\353\054\060\235\345\0000\000\204\345\000\000\123\343\000\100\203\025\200\012\000\353\230\060\225\345\0011\060\203\342\230\060\205\345\014\060\225\345\000\000\123\343\064\000\000\012\3300\060\225\345\054\340\224\345\000\000\123\343\054\140\205\022\051\000\000\012\0244\060\240\343\334\040\225\345\020\300\225\345\001\040\202\342\334\040\205\345\2233\016\003\340\003\020\206\340\003\060\205\340\060\040\223\345\054\000\223\345\0100\040\204\345\010\140\222\345' >> /tmp/rtos.bin
+root@tinker-board:~# [   34.236359] random: crng init done
+[   34.236505] random: 1 urandom warning(s) missed due to ratelimiting
+printf '\001\000\200\342\014\140\204\345\001\140\240\343\0266\316\214\341\020\300\205\345\010\300\222\345\004\240\214\345\010\240\202\345\0244\020\204\345\054\000\203\345\164\012\000\353\330\060\225\345\000\000\123\343\0077\000\000\012\014\040\225\345\054\060\224\345\054\040\222\345\003\000\122\341\0022\000\000\052\000\000\000\357\006\000\240\341\370\217\275\350\006\000\240\341\3700\217\275\350\000\000\340\343\370\217\275\350\013\000\240\341\172\011\000\353\0000\000\340\343\370\217\275\350\014\060\225\345\054\140\205\342\054\060\223\345\0166\000\123\341\014\100\205\225\317\377\377\352\014\100\205\345\230\060\225\345\0011\000\123\343\054\340\224\025\054\140\205\022\311\377\377\032\054\140\205\342\2200\200\205\342\006\160\240\341\007\000\240\341\024\160\207\342\221\005\000\353\0077\000\130\341\372\377\377\032' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\060\160\237\345\007\000\240\341\024\200\207\342\2133\005\000\353\010\000\240\341\211\005\000\353\050\000\207\342\207\005\000\353\2100\000\107\342\205\005\000\353\004\160\205\345\054\340\224\345\010\200\205\345\2633\377\377\352\234\100\001\100\020\100\055\351\000\100\240\341\045\012\000\353\0000\000\124\343\000\060\004\003\001\060\104\003\014\100\223\005\054\100\224\345\0655\012\000\353\004\000\240\341\020\200\275\350\020\100\055\351\000\100\240\341\1700\012\000\353\000\000\124\343\000\060\004\003\001\060\104\003\014\100\223\005\0544\100\224\345\143\012\000\353\004\000\240\341\020\200\275\350\020\100\055\351\0000\100\240\341\017\012\000\353\000\000\124\343\000\060\004\003\001\060\104\003\0144\100\223\005\104\100\224\345\037\012\000\353\004\000\240\341\020\200\275\350\0200\100\055\351\000\100\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\142\012\000\353\000\000\124\343\000\060\004\003\0011\060\104\003\014\100\223\005\104\100\224\345\115\012\000\353\004\000\240\341\0200\200\275\350\160\100\055\351\000\120\004\343\001\120\104\343\014\060\225\345\0000\000\123\341\000\000\120\023\160\200\275\010\000\100\240\341\363\011\000\353\0244\060\205\342\024\040\224\345\003\000\122\341\001\000\000\012\160\100\275\350\0033\012\000\352\050\060\224\345\304\020\205\342\023\057\157\341\001\000\123\341\2422\042\240\341\000\040\240\003\000\000\122\343\365\377\377\012\120\060\324\345\0011\000\123\343\362\377\377\012\004\140\204\342\006\000\240\341\144\005\000\353\0544\020\224\345\020\040\225\345\024\060\240\343\001\000\240\343\223\001\003\340\0200\041\202\341\020\040\205\345\054\000\205\342\003\040\205\340\003\000\200\340\0144\060\225\345\054\060\223\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\003\000\121\341\060\060\222\345\054\020\222\345\0100\060\204\345\010\300\223\345\001\020\201\342\014\300\204\345\010\300\223\345\0044\140\214\345\010\140\203\345\024\000\204\345\054\020\202\345\326\377\377\232\0000\000\000\357\324\377\377\352\360\101\055\351\000\100\240\341\000\120\004\343\0011\120\104\343\035\012\000\353\024\040\224\345\024\060\205\342\000\160\240\341\0033\000\122\341\004\000\000\012\000\140\240\343\007\000\240\341\006\012\000\353\0066\000\240\341\360\201\275\350\050\060\224\345\304\000\205\342\023\157\157\341\0000\000\123\341\246\142\240\341\000\140\240\003\000\000\126\343\363\377\377\012\1200\060\324\345\001\000\123\343\357\377\377\012\340\140\225\345\000\000\126\343\0366\000\000\032\014\060\225\345\004\200\204\342\054\040\224\345\010\000\240\341\0544\060\223\345\003\000\122\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\140\240\203\224\140\205\205\043\005\000\353\0544\020\224\345\024\060\240\343\130\000\237\345\020\040\225\345\001\300\240\343\2233\001\003\340\034\041\202\341\020\040\205\345\003\000\200\340\003\060\205\340\0600\040\223\345\054\020\223\345\010\040\204\345\014\020\201\340\010\300\222\345\0144\300\204\345\010\300\222\345\004\200\214\345\010\200\202\345\024\000\204\345\0544\020\203\345\316\377\377\352\030\020\204\342\000\140\240\343\351\004\000\353\3122\377\377\352\054\100\001\100\160\100\055\351\270\075\013\343\000\060\104\343\0300\320\115\342\111\020\240\343\010\040\215\342\010\020\315\345\001\100\363\345\0011\100\342\345\000\000\124\343\373\377\377\032\000\140\004\343\001\140\104\343\3444\040\206\342\004\060\240\341\004\040\215\345\010\020\215\342\001\054\240\343\0000\100\215\345\024\012\010\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\000\104\343\262\376\377\353\000\120\120\342\0011\000\000\012\001\000\125\343\004\000\000\012\320\075\013\343\000\060\104\343\0000\060\223\345\030\320\215\342\160\200\275\350\301\011\000\353\000\060\340\343\0500\060\206\345\330\120\206\345\000\100\206\345\111\011\000\353\363\377\377\352\0200\100\055\351\271\011\000\353\000\060\004\343\001\060\104\343\000\040\240\343\0200\100\275\350\330\040\203\345\124\011\000\352\000\060\004\343\001\060\104\343\3400\040\223\345\001\040\202\342\340\040\203\345\036\377\057\341\360\101\055\351\0000\100\004\343\001\100\104\343\113\011\000\353\340\060\224\345\001\060\103\342\3400\060\204\345\340\340\224\345\000\000\136\343\132\000\000\032\230\060\224\345\0000\000\123\343\127\000\000\012\304\060\224\345\000\000\123\343\076\000\000\012\0544\160\204\342\001\120\240\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\024\140\240\343\320\060\224\345\014\060\223\345\0300\300\203\342\050\040\223\345\040\020\223\345\034\000\223\345\004\200\222\345\0100\020\200\345\014\000\130\341\004\000\201\345\004\020\202\005\000\020\222\345\0500\340\203\345\001\020\101\342\000\020\202\345\024\020\223\345\004\200\203\342\0100\000\223\345\014\040\223\345\004\300\221\345\010\040\200\345\010\000\134\341\0044\000\202\345\054\000\223\345\004\040\201\005\020\040\224\345\000\300\221\345\0255\040\202\341\020\040\204\345\001\300\114\342\000\300\201\345\014\020\224\345\2266\000\002\340\054\020\221\345\001\000\120\341\002\000\204\340\002\040\207\340\2244\120\204\205\060\020\220\345\010\020\203\345\010\300\221\345\014\300\203\345\0100\300\221\345\004\200\214\345\054\300\220\345\010\200\201\345\024\040\203\345\0011\060\214\342\054\060\200\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\304\060\224\345\000\000\123\343\313\377\377\032\0044\060\224\345\000\060\223\345\000\000\123\343\000\060\340\003\004\060\224\025\0144\060\223\025\000\060\223\025\050\060\204\345\350\120\224\345\000\000\125\343\0177\000\000\012\001\140\240\343\004\000\000\352\314\375\377\353\000\000\120\343\2244\140\204\025\001\120\125\342\007\000\000\012\340\060\224\345\000\000\123\343\3677\377\377\012\350\060\224\345\001\120\125\342\001\060\203\342\350\060\204\345\3677\377\377\032\350\120\204\345\224\060\224\345\000\000\123\343\003\000\000\032\0000\100\240\343\376\010\000\353\004\000\240\341\360\201\275\350\014\060\224\345\0000\000\000\357\001\100\240\343\370\377\377\352\000\060\004\343\001\060\104\343\0200\100\055\351\000\300\240\341\340\040\223\345\001\040\202\342\340\040\203\345\0000\340\220\345\000\000\223\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\060\236\340\001\040\240\043\000\040\240\063\0000\000\136\341\011\000\000\232\000\000\122\343\021\000\000\032\000\100\240\343\0000\060\214\345\177\377\377\353\000\000\120\343\000\000\000\032\000\000\000\357\0044\000\240\341\020\200\275\350\003\000\120\341\001\040\202\063\000\000\122\343\3633\377\377\012\000\020\240\343\000\000\103\340\000\060\214\345\001\100\240\343\1155\375\377\353\357\377\377\352\003\000\120\341\367\377\377\072\352\377\377\352\0000\000\120\343\001\000\000\032\000\000\000\357\036\377\057\341\000\060\004\343\0011\060\104\343\020\100\055\351\340\040\223\345\001\040\202\342\340\040\203\345\0000\020\240\343\075\375\377\353\140\377\377\353\000\000\120\343\020\200\275\030\0000\000\000\357\020\200\275\350\000\060\004\343\001\060\104\343\000\000\223\345\0366\377\057\341\000\060\004\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\060\104\343\000\000\223\345\036\377\057\341\0000\060\004\343\001\060\104\343\230\000\223\345\036\377\057\341\000\000\120\343\0000\060\004\003\001\060\104\003\014\000\223\005\064\000\200\342\036\377\057\341\1600\100\055\351\000\100\004\343\001\100\104\343\000\120\240\341\340\060\224\345\0011\060\203\342\340\060\204\345\222\010\000\353\350\060\224\345\005\000\203\340\3500\000\204\345\244\010\000\353\160\100\275\350\074\377\377\352\000\060\004\343\0011\060\104\343\340\040\223\345\000\000\122\343\000\000\000\032\130\375\377\352\3500\040\223\345\000\000\240\343\001\040\202\342\350\040\203\345\036\377\057\341\0000\060\004\343\001\060\104\343\340\040\223\345\000\000\122\343\002\000\000\012\0011\040\240\343\224\040\203\345\036\377\057\341\224\040\203\345\024\020\240\343\0200\040\223\345\022\057\157\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\037\040\142\342\221\002\002\340\002\000\203\340\0644\040\200\342\060\020\220\345\004\020\221\345\060\020\200\345\002\000\121\341\0700\020\220\005\060\020\200\005\014\040\221\345\014\040\203\345\014\060\223\345\0366\377\057\341\160\100\055\351\000\100\240\341\000\120\004\343\001\120\104\343\1422\010\000\353\000\000\124\343\014\100\225\005\004\140\204\342\006\000\240\341\3422\003\000\353\000\000\120\343\010\000\000\032\054\040\224\345\024\060\240\343\2233\122\043\340\054\060\223\345\000\000\123\343\001\020\240\003\020\060\225\005\0211\062\303\001\020\060\205\005\050\060\224\345\000\000\123\343\001\000\000\012\0300\000\204\342\322\003\000\353\220\000\237\345\006\020\240\341\256\003\000\353\1200\060\324\345\001\000\123\343\000\060\240\003\120\060\304\005\133\010\000\353\3300\060\225\345\000\000\123\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\013\000\000\032\014\060\225\345\004\000\123\341\1600\200\275\030\330\060\225\345\000\000\123\343\020\000\000\032\230\020\225\345\0244\040\225\345\002\000\121\341\016\000\000\032\014\060\205\345\160\200\275\350\0655\010\000\353\004\060\225\345\000\060\223\345\000\000\123\343\000\060\340\003\0044\060\225\025\014\060\223\025\000\060\223\025\050\060\205\345\102\010\000\353\3500\377\377\352\000\000\000\357\160\200\275\350\160\100\275\350\245\377\377\352\0244\100\001\100\000\060\004\343\001\060\104\343\020\100\055\351\001\100\240\341\0144\020\223\345\030\020\201\342\216\003\000\353\004\000\240\341\001\020\240\343\0200\100\275\350\247\374\377\352\000\060\004\343\001\060\104\343\000\300\240\341\0022\000\240\341\004\340\055\345\002\021\201\343\014\040\223\345\030\020\202\345\0144\020\223\345\004\040\234\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\034\040\201\345\014\020\223\345\010\340\222\345\0400\340\201\345\014\020\223\345\010\340\222\345\030\020\201\342\004\020\216\345\0144\020\223\345\014\340\223\345\030\060\201\342\010\060\202\345\000\060\234\345\0011\020\240\343\050\300\216\345\001\060\203\340\004\340\235\344\000\060\214\345\2122\374\377\352\014\060\220\345\360\100\055\351\000\340\240\343\014\060\223\345\0300\300\203\342\050\020\223\345\034\000\223\345\040\040\223\345\010\040\200\345\0044\000\202\345\004\000\221\345\014\000\120\341\004\040\201\005\000\040\004\343\0011\040\104\343\000\000\221\345\050\340\203\345\001\000\100\342\000\000\201\345\3400\000\222\345\054\020\223\345\016\000\120\341\047\000\000\032\024\300\223\345\0044\120\203\342\010\000\223\345\014\340\223\345\274\100\237\345\010\340\200\345\0044\340\234\345\020\140\222\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\005\000\136\341\014\340\223\345\004\000\216\345\0244\000\240\343\004\340\214\005\000\340\234\345\220\001\000\340\001\340\116\342\0000\340\214\345\000\300\202\340\000\100\204\340\060\000\234\345\054\340\234\345\0100\000\203\345\010\160\220\345\001\340\216\342\014\160\203\345\001\160\240\343\0277\141\206\341\020\140\202\345\010\140\220\345\004\120\206\345\010\120\200\345\0244\100\203\345\054\340\214\345\014\060\222\345\054\060\223\345\001\000\123\341\0011\000\240\063\224\000\202\065\000\000\240\043\360\200\275\350\310\000\222\345\3044\340\222\345\034\000\203\345\001\340\216\342\304\340\202\345\010\340\220\345\0400\340\203\345\304\340\202\342\010\100\220\345\004\300\204\345\010\300\200\345\0500\340\203\345\353\377\377\352\054\100\001\100\160\100\055\351\002\021\201\343\0144\060\220\345\000\120\220\351' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\020\200\345\020\040\220\345\004\100\203\342\0100\340\214\345\000\340\240\343\001\120\240\343\010\020\220\345\004\300\201\345\0044\300\222\345\000\000\134\341\010\300\223\345\004\020\202\005\000\020\222\345\0200\340\200\345\014\340\223\345\001\000\101\342\024\020\223\345\000\000\202\345\0100\340\214\345\004\000\221\345\014\040\223\345\004\000\120\341\000\000\221\345\0044\300\202\345\001\000\100\342\004\040\201\005\000\040\004\343\001\040\104\343\0544\300\223\345\000\000\201\345\024\020\240\343\054\340\202\342\020\000\222\345\2211\014\001\340\025\014\200\341\020\000\202\345\001\340\216\340\001\000\202\340\0144\020\222\345\054\020\221\345\001\000\134\341\060\020\220\345\054\300\220\345\0100\020\203\345\010\140\221\345\005\300\214\340\014\140\203\345\224\120\202\205\0100\140\221\345\004\100\206\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\100\201\345\024\340\203\345\054\300\200\345\1600\200\275\350\020\100\055\351\000\100\240\341\164\007\000\353\000\060\004\343\0011\060\104\343\220\040\223\345\000\060\223\345\014\000\204\350\020\100\275\350\2033\007\000\352\000\060\004\343\001\060\104\343\220\040\223\345\000\060\223\345\0144\000\200\350\036\377\057\341\160\100\055\351\001\140\240\341\000\120\240\341\1433\007\000\353\000\060\004\343\001\060\104\343\000\040\226\345\001\000\162\343\0000\000\223\345\000\100\240\003\021\000\000\012\220\300\223\345\000\100\225\345\0044\020\225\345\014\100\124\340\001\100\240\023\000\000\121\341\000\100\240\203\0000\000\124\343\013\000\000\032\001\300\100\340\014\000\122\341\010\000\000\232\0000\040\102\340\001\040\202\340\000\040\206\345\220\040\223\345\000\060\223\345\0144\000\205\350\137\007\000\353' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\000\240\341\160\200\275\350\000\060\240\343\0011\100\240\343\000\060\206\345\370\377\377\352\000\060\004\343\001\060\104\343\0011\040\240\343\224\040\203\345\036\377\057\341\000\060\004\343\001\060\104\343\0144\000\223\345\036\377\057\341\000\000\120\343\000\060\004\003\001\060\104\003\0144\000\223\005\000\000\240\023\036\377\057\341\000\060\004\343\001\060\104\343\3300\040\223\345\000\000\122\343\340\000\223\025\020\017\157\021\240\002\240\021\2000\000\240\021\001\000\240\003\036\377\057\341\360\101\055\351\000\100\120\342\0366\000\000\012\000\120\004\343\001\120\104\343\054\060\224\345\014\040\225\345\0544\040\222\345\002\000\123\341\020\000\000\052\030\040\224\345\334\140\237\345\0000\000\122\343\014\040\225\245\054\040\222\245\005\040\142\242\030\040\204\245\0244\040\240\343\222\143\043\340' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\024\040\224\345\003\000\122\341\015\000\000\012\0144\060\225\345\001\000\240\343\054\060\223\345\054\060\204\345\360\201\275\350\0144\060\225\345\104\000\224\345\054\060\223\345\003\000\120\341\000\000\240\043\0011\000\240\063\360\201\275\350\004\000\240\341\360\201\275\350\004\160\204\342\0077\000\240\341\210\002\000\353\000\000\120\343\001\020\240\003\001\000\240\343\0544\040\224\005\020\060\225\005\021\062\303\001\020\060\205\005\014\060\225\345\0200\040\225\345\054\020\223\345\024\060\240\343\054\020\204\345\020\041\202\341\0200\040\205\345\223\001\003\340\003\140\206\340\003\060\205\340\060\040\223\345\0544\020\223\345\010\040\204\345\010\300\222\345\000\020\201\340\014\300\204\345\0100\300\222\345\004\160\214\345\010\160\202\345\024\140\204\345\054\020\203\345\3600\201\275\350\054\100\001\100' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\160\100\055\351\000\100\120\342\012\000\000\012\1100\060\224\345\054\040\224\345\104\020\224\345\001\060\103\342\110\060\204\345\0011\040\122\340\001\040\240\023\000\000\123\343\000\040\240\023\000\000\122\343\0011\000\000\032\000\000\240\343\160\200\275\350\004\120\204\342\005\000\240\341\1277\002\000\353\000\060\004\343\001\060\104\343\000\000\120\343\001\000\240\003\0544\020\224\005\020\040\223\005\020\041\302\001\104\020\224\345\020\040\203\005\0011\000\240\343\005\040\141\342\030\040\204\345\024\040\240\343\020\300\223\345\0544\020\204\345\222\001\002\340\020\021\214\341\020\020\203\345\002\060\203\340\0600\300\237\345\002\300\214\340\060\040\223\345\054\020\223\345\010\040\204\345\0100\340\222\345\000\020\201\340\014\340\204\345\010\340\222\345\004\120\216\345\0100\120\202\345\024\300\204\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\054\020\203\345\160\200\275\350\054\100\001\100\3600\101\055\351\000\100\120\342\360\201\275\010\104\060\224\345\054\040\224\345\0033\000\121\341\003\020\240\061\001\000\122\341\360\201\275\010\110\060\224\345\0011\000\123\343\360\201\275\030\030\060\224\345\000\120\004\343\001\120\104\343\0544\020\204\345\000\000\123\343\054\140\205\342\024\060\240\343\005\020\141\242\0300\020\204\245\223\142\042\340\024\060\224\345\002\000\123\341\360\201\275\030\0044\160\204\342\007\000\240\341\031\002\000\353\000\000\120\343\054\060\224\345\0011\040\240\343\020\020\225\005\022\043\240\341\002\020\301\001\020\020\205\005\0244\020\240\343\221\003\003\340\020\020\225\345\003\140\206\340\003\060\205\340\0022\040\201\341\020\040\205\345\060\040\223\345\054\020\223\345\010\040\204\345\0100\000\222\345\001\020\201\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\014\000\204\345\010\000\222\345\004\160\200\345\0100\160\202\345\024\140\204\345\054\020\203\345\360\201\275\350\000\060\004\343\0011\060\104\343\014\000\223\345\014\020\223\345\014\040\223\345\030\000\220\345\0544\060\221\345\005\060\143\342\030\060\202\345\036\377\057\341\000\060\004\343\0011\060\104\343\014\000\223\345\000\000\120\343\110\060\220\025\001\060\203\022\1100\060\200\025\036\377\057\341\360\107\055\351\000\100\004\343\001\100\104\343\0000\120\240\341\001\200\240\341\002\160\240\341\340\060\224\345\001\060\203\342\3400\060\204\345\136\006\000\353\014\060\224\345\022\140\205\342\006\061\203\340\0044\060\223\345\000\000\123\343\005\000\000\032\014\060\224\345\001\220\240\343\0000\000\127\343\005\060\203\340\120\220\303\345\025\000\000\032\147\006\000\353\0000\375\377\353\117\006\000\353' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\014\060\224\345\006\141\240\341\006\060\203\340\0044\160\223\345\000\000\127\343\005\000\000\012\014\060\224\345\000\000\130\343\0000\040\240\023\001\040\107\002\006\060\203\340\004\040\203\345\014\060\224\345\0000\040\240\343\005\060\203\340\120\040\303\345\124\006\000\353\007\000\240\341\3600\207\275\350\121\006\000\353\011\020\240\341\007\000\240\341\304\372\377\353\3477\374\377\353\000\000\120\343\344\377\377\032\000\000\000\357\342\377\377\352\3600\107\055\351\000\100\004\343\001\100\104\343\003\140\240\341\040\220\235\345\0000\120\240\341\001\200\240\341\340\060\224\345\002\160\240\341\001\060\203\342\3400\060\204\345\047\006\000\353\014\060\224\345\005\060\203\340\120\060\323\345\0022\000\123\343\023\000\000\012\014\060\224\345\001\240\240\343\000\000\131\343\0055\061\203\340\114\040\223\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\040\302\341\114\040\203\345\014\060\224\345\0055\060\203\340\120\240\303\345\010\000\000\012\054\006\000\353\012\020\240\341\0111\000\240\341\237\372\377\353\302\374\377\353\000\000\120\343\003\000\000\032\0000\000\000\357\001\000\000\352\043\006\000\353\274\374\377\353\013\006\000\353\0000\000\126\343\022\040\205\022\014\060\224\025\002\061\203\020\004\060\223\025\0000\060\206\025\014\060\224\345\005\060\203\340\120\060\323\345\002\000\123\343\0011\140\240\003\000\140\240\023\014\060\224\005\005\061\203\000\114\040\223\005\0077\040\302\001\114\040\203\005\000\040\240\343\014\060\224\345\005\060\203\340\1200\040\303\345\013\006\000\353\006\000\240\341\360\207\275\350\360\101\055\351\0033\140\240\341\030\200\235\345\000\100\240\341\001\120\240\341\002\160\240\341\3544\005\000\353\000\000\130\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\005\020\204\340\022\060\205\022\002\000\240\343\0033\061\204\020\004\060\223\025\000\060\210\025\001\060\106\342\120\040\321\345\1200\000\301\345\162\040\357\346\003\000\123\343\003\361\237\227\011\000\000\352\1644\240\000\100\264\237\000\100\220\237\000\100\204\237\000\100\002\000\122\343\0000\100\240\003\005\000\000\012\022\120\205\342\005\121\204\340\004\160\205\345\0011\000\122\343\011\000\000\012\001\100\240\343\346\005\000\353\004\000\240\341\3600\201\275\350\005\121\204\340\001\000\122\343\114\060\225\345\001\060\203\342\1144\060\205\345\365\377\377\032\024\040\224\345\004\340\204\342\010\020\224\345\0011\000\240\343\014\060\224\345\054\120\224\345\010\060\201\345\004\020\203\345\0044\020\222\345\016\000\121\341\004\060\202\005\000\060\004\343\001\060\104\343\0000\020\222\345\054\300\203\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\020\101\342\000\020\202\345\020\020\223\345\0244\040\240\343\020\025\201\341\222\005\002\340\020\020\203\345\002\020\203\340\0022\300\214\340\014\060\223\345\054\040\221\345\054\060\223\345\000\040\202\340\0033\000\125\341\060\060\221\345\010\060\204\345\010\120\223\345\014\120\204\345\0100\120\223\345\004\340\205\345\010\340\203\345\024\300\204\345\054\040\201\345\3166\377\377\232\000\000\000\357\000\100\240\341\314\377\377\352\005\121\204\340\1144\060\225\345\007\060\203\341\114\060\205\345\304\377\377\352\360\101\055\351\0033\120\240\341\030\200\235\345\000\160\240\341\001\100\240\341\002\140\240\341\3600\005\000\353\000\000\130\343\004\020\207\340\022\060\204\022\002\300\240\343\0033\061\207\020\004\060\223\025\000\060\210\025\001\060\105\342\120\040\321\345\1200\300\301\345\162\020\357\346' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\003\000\123\343\003\361\237\227\011\000\000\352\2600\241\000\100\034\241\000\100\370\240\000\100\354\240\000\100\002\000\121\343\0000\100\240\003\005\000\000\012\022\100\204\342\004\101\207\340\004\140\204\345\0011\000\121\343\011\000\000\012\001\100\240\343\305\005\000\353\004\000\240\341\3600\201\275\350\004\101\207\340\001\000\121\343\114\060\224\345\001\060\203\342\1144\060\204\345\365\377\377\032\000\060\004\343\001\060\104\343\054\040\227\345\3400\020\223\345\000\000\121\343\035\000\000\012\310\020\223\345\304\340\203\342\3044\300\223\345\034\020\207\345\001\300\214\342\304\300\203\345\010\300\221\345\0400\300\207\345\030\300\207\342\010\100\221\345\004\300\204\345\010\300\201\345\0500\340\207\345\014\020\223\345\054\020\221\345\002\000\121\341\336\377\377\052\0344\040\235\345\001\100\240\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\000\122\343\001\040\240\023\034\020\235\025\0000\040\201\025\224\100\203\345\327\377\377\352\004\101\207\340\114\060\224\345\0066\060\203\341\114\060\204\345\317\377\377\352\024\300\227\345\004\120\207\342\0100\340\227\345\014\020\227\345\154\100\237\345\010\020\216\345\004\340\201\345\0044\340\234\345\020\140\223\345\005\000\136\341\004\020\214\005\024\020\240\343\0000\340\234\345\001\340\116\342\000\340\214\345\221\002\001\340\001\300\203\340\0011\100\204\340\060\020\234\345\054\340\234\345\010\020\207\345\010\200\221\345\0011\340\216\342\014\200\207\345\001\200\240\343\030\142\206\341\020\140\203\345\0100\140\221\345\004\120\206\345\010\120\201\345\024\100\207\345\054\340\214\345\3155\377\377\352\054\100\001\100\360\107\055\351\001\100\240\341\000\120\240\341\0022\140\240\341\201\005\000\353' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\060\205\340\004\101\205\340\002\020\240\343\1200\040\323\345\120\020\303\345\001\000\122\343\114\060\224\345\001\060\203\342\1144\060\204\345\001\000\000\012\360\107\275\350\146\005\000\352\000\060\004\343\0011\060\104\343\340\040\223\345\000\000\122\343\054\040\225\345\027\000\000\012\3100\020\223\345\304\340\203\342\304\300\223\345\034\020\205\345\001\300\214\342\3044\300\203\345\010\300\221\345\040\300\205\345\030\300\205\342\010\100\221\345\0044\300\204\345\010\300\201\345\050\340\205\345\014\020\223\345\054\020\221\345\0022\000\121\341\346\377\377\052\000\000\126\343\001\040\240\023\000\040\206\025\0011\040\240\343\224\040\203\345\360\107\275\350\110\005\000\352\024\300\225\345\0044\160\205\342\010\340\225\345\014\020\225\345\154\100\237\345\010\020\216\345\0044\340\201\345\004\340\234\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\020\200\223\345\007\000\136\341\004\020\214\005\0244\020\240\343\000\340\234\345\001\340\116\342\000\340\214\345\221\002\001\340\0011\300\203\340\001\100\204\340\060\020\234\345\054\340\234\345\010\020\205\345\0100\220\221\345\001\340\216\342\014\220\205\345\001\220\240\343\031\202\210\341\0200\200\203\345\010\200\221\345\004\160\210\345\010\160\201\345\024\100\205\345\0544\340\214\345\323\377\377\352\054\100\001\100\160\100\055\351\000\100\120\342\0011\120\240\341\000\060\004\003\001\060\104\003\014\100\223\005\320\004\000\353\0055\020\204\340\120\060\321\345\002\000\123\343\000\060\240\003\001\100\240\003\0000\100\240\023\120\060\301\005\336\004\000\353\004\000\240\341\160\200\275\350\1600\100\055\351\000\100\120\342\001\140\240\341\000\060\004\003\001\060\104\003\0022\120\240\341\014\100\223\005' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\276\004\000\353\006\021\204\340\114\100\221\345\1144\060\221\345\005\040\303\341\114\040\201\345\316\004\000\353\004\000\240\341\1600\200\275\350\000\060\004\343\001\060\104\343\000\040\240\343\014\040\203\345\3344\040\203\345\230\040\203\345\000\040\203\345\020\040\203\345\330\040\203\345\3500\040\203\345\224\040\203\345\220\040\203\345\050\040\203\345\340\040\203\345\0366\377\057\341\010\060\200\342\000\040\240\343\000\020\340\343\004\060\200\345\0100\020\200\345\014\060\200\345\020\060\200\345\000\040\200\345\036\377\057\341\0000\060\240\343\020\060\200\345\036\377\057\341\014\000\220\350\004\060\201\345\0011\040\202\342\010\300\223\345\010\300\201\345\010\300\223\345\004\020\214\345\0100\020\203\345\020\000\201\345\000\040\200\345\036\377\057\341\004\340\055\345\0000\340\221\345\001\000\176\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\060\200\022\015\000\000\012\003\300\240\341\0044\060\223\345\000\040\223\345\016\000\122\341\372\377\377\232\000\040\220\345\0044\060\201\345\010\020\203\345\001\060\202\342\010\300\201\345\004\020\214\345\0200\000\201\345\000\060\200\345\004\360\235\344\020\300\220\345\004\060\234\345\3633\377\377\352\020\040\220\345\012\000\220\351\004\300\222\345\010\060\201\345\0000\000\134\341\004\020\203\345\004\060\202\005\000\020\240\343\000\060\222\345\0200\020\200\345\001\000\103\342\000\000\202\345\036\377\057\341\160\100\055\351\0022\140\240\341\100\040\220\345\070\120\220\345\000\100\240\341\000\000\122\343\0066\000\000\032\000\140\220\345\001\120\205\342\000\000\126\343\044\000\000\012\0000\000\240\343\070\120\204\345\160\200\275\350\000\000\126\343\017\000\000\032\0044\000\220\345\001\120\205\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\026\370\377\353\004\060\224\345\100\040\224\345\0022\060\203\340\010\040\224\345\004\060\204\345\002\000\123\341\006\000\240\061\3600\377\377\072\000\060\224\345\006\000\240\341\004\060\204\345\070\120\204\345\1600\200\275\350\014\000\220\345\007\370\377\353\100\040\224\345\014\060\224\345\0000\020\142\342\002\060\103\340\000\040\224\345\014\060\204\345\002\000\123\341\0100\060\224\065\001\060\203\060\014\060\204\065\002\000\126\343\005\000\000\012\0011\120\205\342\332\377\377\352\010\000\220\345\125\375\377\353\010\140\204\345\3277\377\377\352\001\000\125\343\000\000\240\343\001\120\240\063\323\377\377\352\1600\100\055\351\000\120\240\341\062\004\000\353\105\060\325\345\163\100\257\346\0000\000\124\343\017\000\000\332\044\140\205\342\004\000\000\352\001\060\104\342\1633\040\357\346\163\100\257\346' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\000\122\343\010\000\000\012\044\060\225\345\0066\000\240\341\000\000\123\343\004\000\000\012\043\374\377\353\000\000\120\343\3633\377\377\012\333\374\377\353\361\377\377\352\000\060\340\343\105\060\305\345\0611\004\000\353\032\004\000\353\104\060\325\345\163\100\257\346\000\000\124\343\0177\000\000\332\020\140\205\342\004\000\000\352\001\060\104\342\163\040\357\346\1633\100\257\346\000\000\122\343\010\000\000\012\020\060\225\345\006\000\240\341\0000\000\123\343\004\000\000\012\013\374\377\353\000\000\120\343\363\377\377\012\3033\374\377\353\361\377\377\352\000\060\340\343\104\060\305\345\160\100\275\350\0300\004\000\352\160\100\055\351\000\100\120\342\037\000\000\012\074\000\224\345\0000\000\120\343\160\200\275\010\100\060\224\345\000\040\240\343\223\060\205\340\0022\000\125\341\044\000\000\032' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\140\240\341\365\003\000\353\100\020\224\345\0000\000\126\343\074\060\224\345\000\040\224\345\070\120\204\345\004\040\204\345\2233\001\003\340\001\020\103\340\003\060\202\340\001\040\202\340\010\060\204\345\0144\040\204\345\000\060\340\343\104\060\304\345\105\060\304\345\015\000\000\032\0200\060\224\345\000\000\123\343\004\000\000\032\367\003\000\353\001\000\240\343\1600\200\275\350\004\000\240\341\160\200\275\350\020\000\204\342\334\373\377\353\0000\000\120\343\366\377\377\012\000\000\000\357\364\377\377\352\020\000\204\342\0555\377\377\353\044\000\204\342\053\377\377\353\357\377\377\352\002\000\240\341\1600\200\275\350\160\100\055\351\000\100\120\342\025\000\000\012\224\041\203\340\0011\120\240\341\000\000\123\343\021\000\000\032\221\004\000\340\111\000\160\343\0166\000\000\212\110\000\200\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\222\002\000\353\000\140\120\342\012\000\000\012\0000\000\125\343\001\020\240\343\110\060\206\022\006\060\240\001\006\000\240\341\0000\060\206\345\074\100\206\345\100\120\206\345\266\377\377\353\006\000\240\341\1600\200\275\350\000\140\240\343\006\000\240\341\160\200\275\350\360\107\055\351\0022\160\103\342\027\177\157\341\020\320\115\342\000\140\240\343\003\220\240\341\0000\100\240\341\001\240\240\341\247\162\240\341\006\200\240\341\004\040\215\345\0044\000\000\352\275\003\000\353\004\000\240\341\157\377\377\353\124\372\377\353\0011\140\240\343\242\003\000\353\070\040\224\345\074\060\224\345\003\000\122\341\0077\000\240\041\001\000\207\063\000\000\120\343\046\000\000\032\004\120\235\345\0000\000\125\343\066\000\000\012\000\000\126\343\036\000\000\012\253\003\000\353\0766\372\377\353\223\003\000\353' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\104\060\324\345\377\000\123\343\104\200\304\005\1055\060\324\345\377\000\123\343\105\200\304\005\242\003\000\353\004\020\215\342\0100\000\215\342\041\374\377\353\000\000\120\343\051\000\000\032\206\003\000\353\0700\040\224\345\074\060\224\345\003\000\122\341\331\377\377\032\227\003\000\353\0044\020\235\345\020\000\204\342\127\373\377\353\004\000\240\341\106\377\377\353\0533\372\377\353\000\000\120\343\324\377\377\032\000\000\000\357\322\377\377\352\0100\000\215\342\007\374\377\353\335\377\377\352\011\040\240\341\012\020\240\341\0044\000\240\341\002\377\377\353\044\060\224\345\000\000\123\343\005\000\000\032\0000\000\120\343\007\000\000\032\200\003\000\353\001\000\240\343\020\320\215\342\3600\207\275\350\044\000\204\342\146\373\377\353\000\000\120\343\367\377\377\012\0000\000\000\357\365\377\377\352' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\166\003\000\353\005\000\240\341\020\320\215\342\3600\207\275\350\004\000\240\341\045\377\377\353\012\372\377\353\000\000\240\343\0200\320\215\342\360\207\275\350\160\100\055\351\110\000\240\343\042\002\000\353\0000\100\120\342\015\000\000\012\000\120\240\343\001\020\240\343\000\100\204\345\0744\020\204\345\100\120\204\345\111\377\377\353\005\060\240\341\005\040\240\341\0055\020\240\341\004\000\240\341\010\120\204\345\000\120\204\345\014\120\204\345\2177\377\377\353\004\000\240\341\160\200\275\350\360\101\055\351\003\120\240\341\0000\100\240\341\002\200\240\341\001\160\240\341\232\003\000\353\002\300\105\342\0344\317\157\341\070\040\224\345\074\060\224\345\000\140\240\341\254\302\240\341\0033\000\122\341\001\300\214\063\000\000\134\343\014\120\240\001\014\000\000\012\0055\040\240\341\105\120\324\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\007\020\240\341\004\000\240\341\070\060\224\345\2755\376\377\353\165\120\257\346\001\000\165\343\007\000\000\032\044\060\224\345\0000\000\123\343\014\000\000\032\001\120\240\343\006\000\240\341\161\003\000\353\0055\000\240\341\360\201\275\350\172\372\377\353\000\000\125\341\367\377\377\052\0011\060\205\342\001\120\240\343\163\060\257\346\105\060\304\345\363\377\377\352\0444\000\204\342\027\373\377\353\000\000\130\343\000\000\120\023\001\300\240\023\0000\300\210\025\014\120\240\021\352\377\377\012\352\377\377\352\360\101\055\351\0000\100\240\341\001\140\240\341\151\003\000\353\000\120\240\341\070\060\224\345\0744\040\224\345\003\000\122\341\000\140\240\223\011\000\000\232\105\040\324\345\0011\060\203\342\070\060\204\345\377\000\122\343\162\160\257\346\007\000\000\032\0444\060\224\345\000\000\123\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\014\000\000\032\001\140\240\343\005\000\240\341\1100\003\000\353\006\000\240\341\360\201\275\350\121\372\377\353\000\000\127\341\3677\377\377\052\001\040\207\342\001\140\240\343\162\040\257\346\105\040\304\345\3633\377\377\352\044\000\204\342\356\372\377\353\000\000\126\343\000\000\120\023\0011\060\240\023\000\060\206\025\003\140\240\021\352\377\377\012\352\377\377\352\3600\101\055\351\000\100\240\341\001\160\240\341\020\320\115\342\004\040\215\345\3400\002\000\353\070\120\224\345\000\000\125\343\076\000\000\032\004\060\235\345\0000\000\123\343\046\000\000\012\010\000\215\342\005\140\240\341\044\200\204\342\1500\373\377\353\353\002\000\353\176\371\377\353\323\002\000\353\104\060\324\345\3777\000\123\343\104\140\304\005\105\060\324\345\377\000\123\343\105\140\304\005\3422\002\000\353\004\020\215\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\000\215\342\141\373\377\353\000\000\120\343\0277\000\000\032\306\002\000\353\070\060\224\345\000\000\123\343\034\000\000\032\3300\002\000\353\004\020\235\345\010\000\240\341\230\372\377\353\004\000\240\341\2077\376\377\353\154\371\377\353\000\000\120\343\060\000\000\012\271\002\000\353\0700\120\224\345\000\000\125\343\027\000\000\032\004\060\235\345\000\000\123\343\3344\377\377\032\310\002\000\353\000\000\240\343\020\320\215\342\360\201\275\350\0044\000\240\341\167\376\377\353\134\371\377\353\253\002\000\353\070\060\224\345\0000\000\123\343\364\377\377\012\275\002\000\353\353\377\377\352\273\002\000\353\0044\000\240\341\155\376\377\353\122\371\377\353\241\002\000\353\070\120\224\345\0000\000\125\343\347\377\377\012\100\040\224\345\000\000\122\343\010\000\000\012\0144\020\224\345\007\000\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\060\224\345\002\020\201\340\014\020\204\345\0033\000\121\341\000\020\224\045\014\020\204\045\116\366\377\353\020\060\224\345\0011\120\105\342\070\120\204\345\000\000\123\343\005\000\000\032\242\002\000\353\0011\000\240\343\020\320\215\342\360\201\275\350\000\000\000\357\314\377\377\352\0200\000\204\342\206\372\377\353\000\000\120\343\365\377\377\012\000\000\000\357\3633\377\377\352\360\100\055\351\000\100\240\341\000\140\240\343\024\320\115\342\0066\120\240\341\006\160\240\341\004\020\215\345\171\002\000\353\070\060\224\345\0000\000\123\343\051\000\000\032\004\060\235\345\000\000\123\343\137\000\000\012\0000\000\125\343\073\000\000\012\206\002\000\353\031\371\377\353\156\002\000\353\1044\060\324\345\377\000\123\343\104\160\304\005\105\060\324\345\377\000\123\343\1055\160\304\005\175\002\000\353' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\020\215\342\010\000\215\342\374\372\377\353\0000\000\120\343\042\000\000\032\141\002\000\353\070\060\224\345\000\000\123\343\0533\000\000\032\163\002\000\353\000\060\224\345\000\000\123\343\100\000\000\012\0044\020\235\345\044\000\204\342\060\372\377\353\004\000\240\341\037\376\377\353\0044\371\377\353\000\000\120\343\000\000\000\032\000\000\000\357\001\120\240\343\1177\002\000\353\070\060\224\345\000\000\123\343\325\377\377\012\000\040\224\345\0011\060\103\342\070\060\204\345\000\000\122\343\076\000\000\012\020\060\224\345\0000\000\123\343\065\000\000\032\001\140\240\343\130\002\000\353\006\000\240\341\0244\320\215\342\360\200\275\350\004\000\240\341\007\376\377\353\354\370\377\353\0733\002\000\353\070\060\224\345\000\000\123\343\013\000\000\012\001\120\240\343\1144\002\000\353\344\377\377\352' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\010\000\215\342\305\372\377\353\300\377\377\352\1077\002\000\353\004\000\240\341\371\375\377\353\001\120\240\343\335\370\377\353\3333\377\377\352\101\002\000\353\000\000\126\343\002\000\000\032\006\000\240\341\0244\320\215\342\360\200\275\350\045\002\000\353\044\020\224\345\010\000\224\345\0000\140\240\343\000\000\121\343\060\060\224\025\000\020\223\025\005\020\141\022\1544\373\377\353\062\002\000\353\006\000\240\341\024\320\215\342\360\200\275\350\0300\002\000\353\010\000\224\345\353\372\377\353\000\140\240\341\052\002\000\353\2700\377\377\352\003\140\240\341\047\002\000\353\006\000\240\341\024\320\215\342\3600\200\275\350\020\000\204\342\015\372\377\353\000\000\120\343\305\377\377\012\0000\000\000\357\303\377\377\352\226\373\377\353\010\000\204\345\275\377\377\352\3600\100\055\351\000\100\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\001\140\240\341\024\320\115\342\004\040\215\345\3777\001\000\353\070\120\224\345\000\000\125\343\075\000\000\032\004\060\235\345\0000\000\123\343\045\000\000\012\010\000\215\342\044\160\204\342\210\372\377\353\0133\002\000\353\236\370\377\353\363\001\000\353\104\060\324\345\377\000\123\343\1044\120\304\005\105\060\324\345\377\000\123\343\105\120\304\005\002\002\000\353\0044\020\215\342\010\000\215\342\201\372\377\353\000\000\120\343\027\000\000\032\3466\001\000\353\070\060\224\345\000\000\123\343\034\000\000\032\370\001\000\353\0044\020\235\345\007\000\240\341\270\371\377\353\004\000\240\341\247\375\377\353\2144\370\377\353\000\000\120\343\057\000\000\012\331\001\000\353\070\060\224\345\0000\000\123\343\027\000\000\032\004\060\235\345\000\000\123\343\334\377\377\032\3500\001\000\353\000\000\240\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\024\320\215\342\360\200\275\350\004\000\240\341\2277\375\377\353\174\370\377\353\313\001\000\353\070\060\224\345\000\000\123\343\3644\377\377\012\335\001\000\353\353\377\377\352\333\001\000\353\004\000\240\341\2155\375\377\353\162\370\377\353\301\001\000\353\070\060\224\345\000\000\123\343\3477\377\377\012\100\040\224\345\014\120\224\345\000\000\122\343\007\000\000\012\0100\060\224\345\002\020\205\340\014\020\204\345\006\000\240\341\003\000\121\341\0000\020\224\045\014\020\204\045\156\365\377\353\044\060\224\345\014\120\204\345\0000\000\123\343\005\000\000\032\303\001\000\353\001\000\240\343\024\320\215\342\3600\200\275\350\000\000\000\357\315\377\377\352\044\000\204\342\247\371\377\353\0000\000\120\343\365\377\377\012\000\000\000\357\363\377\377\352\360\107\055\351\0000\100\240\341\001\200\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\002\160\240\341\373\001\000\353\070\120\224\345\0000\140\240\341\000\000\125\343\003\000\000\032\006\000\240\341\346\001\000\353\0055\000\240\341\360\207\275\350\104\220\324\345\100\040\224\345\171\220\257\346\0000\000\122\343\010\000\000\012\014\020\224\345\010\000\240\341\010\060\224\345\0022\020\201\340\014\020\204\345\003\000\121\341\000\020\224\045\014\020\204\045\1033\365\377\353\001\120\105\342\001\000\171\343\070\120\204\345\004\000\000\032\0200\060\224\345\000\000\123\343\011\000\000\032\001\120\240\343\344\377\377\352\3300\370\377\353\000\000\131\341\372\377\377\052\001\220\211\342\001\120\240\343\1711\220\257\346\104\220\304\345\334\377\377\352\020\000\204\342\165\371\377\353\0000\000\127\343\000\000\120\023\001\120\240\023\000\120\207\025\356\377\377\012\3244\377\377\352\360\101\055\351' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\100\240\341\001\120\240\341\310\001\000\353\0000\140\240\341\070\060\224\345\000\000\123\343\003\120\240\001\003\000\000\032\0066\000\240\341\262\001\000\353\005\000\240\341\360\201\275\350\100\040\224\345\0144\160\224\345\000\000\122\343\007\000\000\012\010\060\224\345\002\020\207\340\0144\020\204\345\005\000\240\341\003\000\121\341\000\020\224\045\014\020\204\045\0211\365\377\353\001\120\240\343\014\160\204\345\354\377\377\352\020\100\055\351\0000\100\240\341\117\001\000\353\070\100\224\345\143\001\000\353\004\000\240\341\0200\200\275\350\020\100\055\351\000\100\240\341\110\001\000\353\070\060\224\345\0744\100\224\345\003\100\104\340\132\001\000\353\004\000\240\341\020\200\275\350\0700\000\220\345\036\377\057\341\154\000\000\352\100\000\220\345\036\377\057\341\0744\000\220\345\036\377\057\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\070\000\220\345\020\017\157\341\240\002\240\341\0366\377\057\341\070\060\220\345\074\000\220\345\003\000\100\340\020\017\157\341\2400\002\240\341\036\377\057\341\001\060\100\342\160\100\055\351\012\000\163\343\0111\000\000\232\326\367\377\353\354\300\004\343\001\300\104\343\010\060\234\345\0000\000\123\343\077\000\000\012\000\120\240\343\325\367\377\353\005\000\240\341\1600\200\275\350\010\100\200\342\007\060\020\342\062\000\000\032\311\367\377\353\3544\300\004\343\001\300\104\343\004\060\240\341\010\040\234\345\000\000\122\343\0622\000\000\012\000\000\123\343\357\377\377\332\020\000\234\345\004\000\120\341\3544\377\377\072\354\340\004\343\001\340\104\343\000\060\234\345\004\000\000\352\0000\040\223\345\000\000\122\343\004\000\000\012\003\340\240\341\002\060\240\341\0044\020\223\345\004\000\121\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\367\377\377\072\010\040\234\345\003\000\122\341\3355\377\377\012\004\140\101\340\000\040\223\345\020\000\126\343\000\120\236\345\0044\020\203\200\000\040\216\345\010\120\205\342\004\140\201\205\004\040\203\207\0000\020\216\205\004\020\240\201\014\040\234\345\001\000\100\340\002\021\201\343\0200\000\214\345\002\000\120\341\024\040\234\345\014\000\214\065\000\000\240\343\0011\040\202\342\000\000\203\345\004\020\203\345\024\040\214\345\306\377\377\352\0111\040\103\342\004\000\122\341\274\377\377\072\020\000\200\342\003\100\100\340\3066\377\377\352\003\100\240\341\010\041\004\343\001\040\104\343\007\000\022\343\0700\020\237\345\007\040\202\022\000\000\240\343\007\040\302\023\007\020\301\343\0022\340\240\341\000\040\214\345\004\000\214\345\002\040\101\340\004\000\201\345\0000\000\201\345\010\020\214\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\014\040\214\345\020\040\214\345\006\000\216\350\2711\377\377\352\000\101\002\100\020\100\055\351\000\100\120\342\020\200\275\010\0044\060\024\345\000\000\123\343\020\200\275\250\010\040\024\345\000\000\122\343\0200\200\275\030\002\061\303\343\004\060\004\345\160\367\377\353\354\020\004\343\0011\020\104\343\004\300\024\345\010\000\104\342\001\060\240\341\020\040\221\345\0144\040\202\340\020\040\201\345\003\040\240\341\000\060\223\345\003\000\120\341\3733\377\377\212\004\340\222\345\016\100\202\340\004\000\120\341\012\000\000\012\0144\340\200\340\016\000\123\341\016\000\000\012\000\000\122\341\000\060\200\345\0000\000\202\025\030\060\221\345\020\100\275\350\001\060\203\342\030\060\201\345\1333\367\377\352\016\300\214\340\004\300\202\345\014\000\202\340\000\000\123\341\0000\060\202\025\364\377\377\032' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\002\000\240\341\010\340\221\345\016\000\123\341\0044\340\223\025\000\060\223\025\014\300\216\020\004\300\200\025\351\377\377\352\3544\060\004\343\001\060\104\343\020\000\223\345\036\377\057\341\354\060\004\343\0011\060\104\343\014\000\223\345\036\377\057\341\036\377\057\341\000\000\120\343\1600\100\055\351\003\000\000\012\220\041\203\340\000\000\123\343\000\120\240\023\0077\000\000\032\221\000\004\340\004\000\240\341\130\377\377\353\000\120\120\342\0022\000\000\012\004\040\240\341\000\020\240\343\070\364\377\353\005\000\240\341\1600\200\275\350\360\101\055\351\354\200\004\343\001\200\104\343\000\160\240\341\0500\367\377\353\000\040\230\345\000\000\122\343\031\000\000\012\010\020\230\345\0011\000\122\341\026\000\000\012\000\100\240\343\000\120\340\343\004\140\240\341\0144\000\222\350\001\140\206\342' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\003\000\124\341\003\100\240\061\003\000\125\341\0033\120\240\041\001\000\122\341\367\377\377\032\034\367\377\353\160\000\207\351\1522\000\000\353\020\000\210\342\014\060\230\345\020\060\207\345\007\000\220\350\0000\000\207\345\024\020\207\345\030\040\207\345\360\101\275\350\167\000\000\352\0000\100\240\343\000\120\340\343\004\140\240\341\357\377\377\352\354\060\004\343\0011\060\104\343\000\040\240\343\010\040\203\345\020\040\203\345\014\040\203\345\0244\040\203\345\030\040\203\345\036\377\057\341\020\100\055\351\000\100\240\341\0011\060\240\341\001\000\023\343\000\020\240\343\002\000\240\341\020\060\004\345\0377\040\240\003\077\040\240\023\110\000\004\345\260\070\013\343\000\060\104\343\0144\040\004\345\024\060\004\345\101\057\240\343\000\020\204\345\022\062\001\343\0222\062\101\343\004\020\004\345' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\030\060\004\345\021\001\001\343\021\001\101\343\0100\020\004\345\034\000\004\345\020\060\001\343\020\060\101\343\025\016\104\342\0400\060\004\345\011\071\000\343\011\071\100\343\114\020\004\345\044\060\004\345\0100\070\000\343\010\070\100\343\050\060\004\345\007\067\000\343\007\067\100\343\0544\060\004\345\006\066\000\343\006\066\100\343\060\060\004\345\005\065\000\343\0055\065\100\343\064\060\004\345\004\064\000\343\004\064\100\343\070\060\004\345\0033\063\000\343\003\063\100\343\074\060\004\345\002\062\000\343\002\062\100\343\1000\060\004\345\001\061\000\343\001\061\100\343\104\060\004\345\316\363\377\353\0044\000\240\341\010\061\004\343\002\060\104\343\001\040\240\343\124\041\040\345\0000\040\203\345\020\200\275\350\000\060\017\341\037\060\003\342\020\000\123\343\0055\000\000\012\002\072\240\343' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\063\100\343\010\060\223\345\003\060\003\342\0033\000\123\343\001\000\000\032\000\000\240\343\036\377\057\341\020\100\055\351\2000\000\014\361\117\360\177\365\157\360\177\365\323\363\377\353\243\000\000\353\0000\000\240\343\020\200\275\350\036\377\057\341\200\000\014\361\117\360\177\365\1577\360\177\365\002\072\240\343\000\063\100\343\004\040\223\345\220\000\122\343\0033\000\000\012\220\040\240\343\004\040\203\345\117\360\177\365\157\360\177\365\2000\000\010\361\117\360\177\365\157\360\177\365\324\075\013\343\000\060\104\343\0000\040\223\345\001\040\202\342\000\040\203\345\000\060\223\345\036\377\057\341\3244\075\013\343\000\060\104\343\000\040\223\345\000\000\122\343\036\377\057\001\0000\040\223\345\001\040\102\342\000\040\203\345\000\060\223\345\000\000\123\343\0366\377\057\021\200\000\014\361' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\117\360\177\365\157\360\177\365\002\072\240\343\0000\063\100\343\377\040\240\343\004\040\203\345\117\360\177\365\157\360\177\365\2000\000\010\361\117\360\177\365\157\360\177\365\036\377\057\341\020\100\055\351\2000\000\014\361\117\360\177\365\157\360\177\365\002\072\240\343\000\063\100\343\2200\040\240\343\004\040\203\345\117\360\177\365\157\360\177\365\200\000\010\361\1177\360\177\365\157\360\177\365\066\367\377\353\000\000\120\343\001\040\240\023\0100\061\004\023\002\060\104\023\004\040\203\025\200\000\014\361\117\360\177\365\1577\360\177\365\002\072\240\343\000\063\100\343\377\040\240\343\004\040\203\345\1177\360\177\365\157\360\177\365\200\000\010\361\117\360\177\365\157\360\177\365\0200\100\275\350\234\363\377\352\000\000\120\343\036\377\057\021\200\000\014\361\1177\360\177\365\157\360\177\365' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\002\072\240\343\000\063\100\343\377\040\240\343\0044\040\203\345\117\360\177\365\157\360\177\365\200\000\010\361\117\360\177\365\1577\360\177\365\036\377\057\341\200\000\014\361\117\360\177\365\157\360\177\365\0022\072\240\343\000\063\100\343\004\040\223\345\220\000\122\343\001\000\240\003\0044\000\000\012\220\040\240\343\004\040\203\345\117\360\177\365\157\360\177\365\0000\000\240\343\200\000\010\361\117\360\177\365\157\360\177\365\036\377\057\341\0200\100\055\351\353\377\377\353\376\377\377\352\036\377\057\341\037\005\155\371\0377\000\002\361\377\137\055\351\274\042\237\345\000\020\222\345\004\020\055\345\2644\042\237\345\000\060\222\345\000\000\123\343\020\032\361\036\004\020\055\025\0400\013\055\035\040\013\155\035\004\060\055\345\214\002\237\345\000\020\220\345\0000\320\201\345\015\040\240\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\040\002\342\002\320\115\340\204\002\237\345\0600\377\057\341\154\002\237\345\000\020\220\345\000\320\221\345\150\002\237\345\0044\020\235\344\000\020\200\345\000\000\121\343\040\013\375\034\040\013\275\034\0044\000\235\024\020\012\341\036\104\002\237\345\004\020\235\344\000\020\200\345\0600\042\237\345\000\040\222\345\000\000\121\343\377\100\240\003\060\102\237\025\0000\100\224\025\000\100\202\345\377\137\275\350\000\012\275\370\037\000\002\361\0144\002\237\345\000\020\220\345\000\320\221\345\010\002\237\345\004\020\235\344\0000\020\200\345\000\000\121\343\040\013\375\034\040\013\275\034\004\000\235\024\0200\012\341\036\344\001\237\345\004\020\235\344\000\020\200\345\320\041\237\345\0000\040\222\345\000\000\121\343\377\100\240\003\320\101\237\025\000\100\224\025\0000\100\202\345\377\137\275\350' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\000\012\275\370\000\360\040\343\000\360\040\343\0000\360\040\343\004\340\116\342\004\340\055\345\000\340\117\341\004\340\055\345\0233\000\002\361\037\020\055\351\244\061\237\345\000\020\223\345\001\100\201\342\0000\100\203\345\160\041\237\345\000\040\222\345\000\000\222\345\015\040\240\341\0044\040\002\342\002\320\115\340\037\100\055\351\164\021\237\345\061\377\057\341\0377\100\275\350\002\320\215\340\200\000\014\361\117\360\177\365\157\360\177\365\0744\101\237\345\000\100\224\345\000\000\204\345\000\020\203\345\000\000\121\343\0033\000\000\032\114\021\237\345\000\000\221\345\000\000\120\343\005\000\000\032\0377\020\275\350\022\000\002\361\004\340\235\344\016\360\157\341\004\340\235\344\0166\360\260\341\000\000\240\343\000\000\201\345\037\020\275\350\022\000\002\361\0044\340\235\344\016\360\157\341' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\340\235\344\037\005\155\371\037\000\002\361\3777\137\055\351\340\040\237\345\000\020\222\345\004\020\055\345\330\040\237\345\0000\060\222\345\000\000\123\343\020\032\361\036\004\020\055\025\040\013\055\035\0400\013\155\035\004\060\055\345\260\000\237\345\000\020\220\345\000\320\201\345\0155\040\240\341\004\040\002\342\002\320\115\340\250\000\237\345\060\377\057\341\2200\000\237\345\000\020\220\345\000\320\221\345\214\000\237\345\004\020\235\344\0000\020\200\345\000\000\121\343\040\013\375\034\040\013\275\034\004\000\235\024\0200\012\341\036\150\000\237\345\004\020\235\344\000\020\200\345\124\040\237\345\0000\040\222\345\000\000\121\343\377\100\240\003\124\100\237\025\000\100\224\025\0000\100\202\345\377\137\275\350\000\012\275\370\004\340\055\345\020\032\361\356\0400\013\055\355\040\013\155\355' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\004\020\055\345\074\020\237\345\061\377\057\341\0044\000\235\344\040\013\375\354\040\013\275\354\020\012\341\356\004\360\235\344\3144\275\000\100\310\275\000\100\304\275\000\100\014\100\001\100\324\275\000\100\0100\101\002\100\300\275\000\100\350\224\000\100\120\273\000\100\020\101\002\100\3444\206\000\100\014\101\002\100\133\162\164\157\163\135\040\143\157\156\163\165\1555\145\162\040\162\145\143\145\151\166\145\144\040\155\145\163\163\141\147\145\0400\045\165\040\146\162\157\155\040\164\150\145\040\161\165\145\165\145\012\000\1333\162\164\157\163\135\040\150\145\141\162\164\142\145\141\164\040\045\165\054\0400\164\151\143\153\040\045\165\012\000\000\000\133\162\164\157\163\135\040\061\0600\040\155\163\040\164\141\163\153\072\040\061\060\060\040\160\145\162\151\157\1444\163\054\040\155\151\156\040' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\045\165\040\165\163\054\040\155\141\170\040\045\1655\040\165\163\040\050\162\145\160\157\162\164\040\045\165\051\012\000\000\000\1333\162\164\157\163\135\040\106\101\124\101\114\072\040\045\163\040\141\164\040\1600\143\075\060\170\045\170\012\000\000\000\000\126\061\061\056\061\056\060\000\0122\133\162\164\157\163\135\040\106\162\145\145\122\124\117\123\040\045\163\040\1633\164\141\162\164\151\156\147\040\141\163\040\141\040\130\145\156\040\147\165\1455\163\164\040\050\101\122\115\166\067\055\101\054\040\122\113\063\062\070\070\0511\012\000\000\133\162\164\157\163\135\040\166\151\162\164\165\141\154\040\164\1511\155\145\162\040\045\165\040\110\172\054\040\164\151\143\153\040\045\165\040\1100\172\012\000\162\164\061\060\155\163\000\000\150\145\141\162\164\142\145\141\1644\000\000\000\160\162\157\144' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\165\143\145\162\000\000\000\000\143\157\156\163\1655\155\145\162\000\000\000\000\133\162\164\157\163\135\040\064\040\164\141\163\1533\163\040\143\162\145\141\164\145\144\054\040\163\164\141\162\164\151\156\147\0400\164\150\145\040\163\143\150\145\144\165\154\145\162\012\000\133\162\164\157\1633\135\040\106\101\124\101\114\072\040\163\143\150\145\144\165\154\145\162\040\1444\151\144\040\156\157\164\040\163\164\141\162\164\012\000\000\077\000\000\000\1655\156\144\145\146\151\156\145\144\040\151\156\163\164\162\165\143\164\151\157\1566\000\000\000\160\162\145\146\145\164\143\150\040\141\142\157\162\164\000\000\1444\141\164\141\040\141\142\157\162\164\000\000\106\111\121\000\134\275\000\100\1400\275\000\100\134\275\000\100\170\275\000\100\210\275\000\100\134\275\000\100\1344\275\000\100\224\275\000\100' >> /tmp/rtos.bin
+root@tinker-board:~# printf '\111\104\114\105\000\000\000\000\220\000\000\000\0044\040\000\003\020\040\000\003\014\040\000\003\004\000\000\000\017\047\000\000' > > /tmp/rtos.bin
+root@tinker-board:~# sha256sum /tmp/rtos.bin
+f0adea2a0620c61c0e68162f00364614a1819d3cc7a9be8fb5c3f05d8db0d703  /tmp/rtos.bin
+root@tinker-board:~# printf 'name = "rtos1"\nkernel = "/tmp/rtos.bin"\nmemory =  16\nvcpus = 1\n' > /tmp/rtos1.cfg
+root@tinker-board:~# 
+#### start rtos1 and reserve 200 us every 1 ms
+xl create /tmp/rtos1.cfg; xl sched-rtds -d rtos1 -v all -p  1000 -b 200
+Parsing config from /tmp/rtos1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+(d1) 
+(d1) [rtos] FreeRTOS V11.1.0 starting as a Xen guest (ARMv7-A, RK3288)
+(d1) [rtos] virtual timer 24000000 Hz, tick 1000 Hz
+(d1) [rtos] 4 tasks created, starting the scheduler
+Incorrect number of period, budget and extratime
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9965 us, max 10077 us (report 1)
+(d1) [rtos] heartbeat 1, tick 1000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10006 us (report 2)
+(d1) [rtos] heartbeat 2, tick 2000
+(d1) [rtos] consumer received message 1 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9982 us, max 10017 us (report 3)
+(d1) [rtos] heartbeat 3, tick 3000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 4)
+(d1) [rtos] heartbeat 4, tick 4000
+(d1) [rtos] 10 ms task: 100 periods, min 9866 us, max 10123 us (report 5)
+(d1) [rtos] heartbeat 5, tick 5000
+(d1) [rtos] consumer received message 2 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 6)
+(d1) [rtos] heartbeat 6, tick 6000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 7)
+(d1) [rtos] heartbeat 7, tick 7000
+(d1) [rtos] consumer received message 3 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 8)
+(d1) [rtos] heartbeat 8, tick 8000
+(d1) [rtos] 10 ms task: 100 periods, min 9964 us, max 10043 us (report 9)
+(d1) [rtos] heartbeat 9, tick 9000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 10)
+(d1) [rtos] heartbeat 10, tick 10000
+(d1) [rtos] consumer received message 4 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 11)
+(d1) [rtos] heartbeat 11, tick 11000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 12)
+(d1) [rtos] heartbeat 12, tick 12000
+(d1) [rtos] consumer received message 5 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 13)
+(d1) [rtos] heartbeat 13, tick 13000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 14)
+(d1) [rtos] heartbeat 14, tick 14000
+xl sched-rtds -d rtos1 -v all
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0     10000      4000        yes
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9398 us, max 10640 us (report 15)
+(d1) [rtos] heartbeat 15, tick 15000
+(d1) [rtos] consumer received message 6 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10005 us (report 16)
+(d1) [rtos] heartbeat 16, tick 16000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 17)
+(d1) [rtos] heartbeat 17, tick 17000
+(d1) [rtos] consumer received message 7 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 18)
+(d1) [rtos] heartbeat 18, tick 18000
+
+#### baseline 10 s
+(d1) [rtos] 10 ms task: 100 periods, min 9917 us, max 10082 us (report 19)
+(d1) [rtos] heartbeat 19, tick 19000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 20)
+(d1) [rtos] heartbeat 20, tick 20000
+(d1) [rtos] consumer received message 8 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 21)
+(d1) [rtos] heartbeat 21, tick 21000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 22)
+(d1) [rtos] heartbeat 22, tick 22000
+(d1) [rtos] consumer received message 9 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 23)
+(d1) [rtos] heartbeat 23, tick 23000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10007 us (report 24)
+(d1) [rtos] heartbeat 24, tick 24000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 25)
+(d1) [rtos] heartbeat 25, tick 25000
+(d1) [rtos] consumer received message 10 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 26)
+(d1) [rtos] heartbeat 26, tick 26000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10010 us (report 27)
+(d1) [rtos] heartbeat 27, tick 27000
+(d1) [rtos] consumer received message 11 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 28)
+(d1) [rtos] heartbeat 28, tick 28000
+
+#### stress 1: Linux guest1 boots next to the RTOS
+xl create /etc/xen/guest1.cfg
+Parsing config from /etc/xen/guest1.cfg
+libxl: info: libxl_create.c:121:libxl__domain_build_info_setdefault: qemu-xen is unavailable, using qemu-xen-traditional instead: No such file or directory
+(d1) [rtos] 10 ms task: 100 periods, min 6170 us, max 13870 us (report 29)
+(d1) [rtos] heartbeat 29, tick 29000
+(d1) [rtos] 10 ms task: 100 periods, min 4107 us, max 18615 us (report 30)
+(d1) [rtos] heartbeat 30, tick 30000
+(d1) [rtos] consumer received message 12 from the queue
+[   88.767079] rockchip-thermal ff280000.tsadc: failed to register sensor 1: -517
+[   88.767182] rockchip-thermal ff280000.tsadc: failed to register sensor[0] : error = -517
+[   88.775268] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[   88.775578] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[   88.775659] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[   88.775896] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[   89.149117] xenbr0: port 1(vif2.0) entered blocking state
+[   89.149206] xenbr0: port 1(vif2.0) entered disabled state
+[   89.149499] device vif2.0 entered promiscuous mode
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9179 us, max 11877 us (report 31)
+(d1) [rtos] heartbeat 31, tick 31000
+(XEN) d2v0 Unhandled SMC/HVC: 0x8600ff01
+(XEN) d2v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(d1) [rtos] 10 ms task: 100 periods, min 9465 us, max 10509 us (report 32)
+(d1) [rtos] heartbeat 32, tick 32000
+(d1) [rtos] consumer received message 13 from the queue
+(XEN) grant_table.c:1871:d2v0 Expanding d2 grant table from 1 to 2 frames
+[   91.636851] vif vif-2-0 vif2.0: Guest Rx ready
+[   91.636975] IPv6: ADDRCONF(NETDEV_CHANGE): vif2.0: link becomes ready
+[   91.637200] xenbr0: port 1(vif2.0) entered blocking state
+[   91.637272] xenbr0: port 1(vif2.0) entered forwarding state
+(XEN) gnttab_mark_dirty not implemented yet
+(d1) [rtos] 10 ms task: 100 periods, min 8877 us, max 12126 us (report 33)
+(d1) [rtos] heartbeat 33, tick 33000
+(d1) [rtos] 10 ms task: 100 periods, min 9632 us, max 10367 us (report 34)
+(d1) [rtos] heartbeat 34, tick 34000
+(d1) [rtos] 10 ms task: 100 periods, min 9916 us, max 10084 us (report 35)
+(d1) [rtos] heartbeat 35, tick 35000
+(d1) [rtos] consumer received message 14 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10007 us (report 36)
+(d1) [rtos] heartbeat 36, tick 36000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 37)
+(d1) [rtos] heartbeat 37, tick 37000
+(d1) [rtos] consumer received message 15 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10005 us (report 38)
+(d1) [rtos] heartbeat 38, tick 38000
+(d1) [rtos] 10 ms task: 100 periods, min 8659 us, max 11379 us (report 39)
+(d1) [rtos] heartbeat 39, tick 39000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10006 us (report 40)
+(d1) [rtos] heartbeat 40, tick 40000
+(d1) [rtos] consumer received message 16 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 41)
+(d1) [rtos] heartbeat 41, tick 41000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10011 us (report 42)
+(d1) [rtos] heartbeat 42, tick 42000
+(d1) [rtos] consumer received message 17 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 43)
+(d1) [rtos] heartbeat 43, tick 43000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 44)
+(d1) [rtos] heartbeat 44, tick 44000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 45)
+(d1) [rtos] heartbeat 45, tick 45000
+(d1) [rtos] consumer received message 18 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 46)
+(d1) [rtos] heartbeat 46, tick 46000
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 47)
+(d1) [rtos] heartbeat 47, tick 47000
+(d1) [rtos] consumer received message 19 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9972 us, max 10026 us (report 48)
+(d1) [rtos] heartbeat 48, tick 48000
+(d1) [rtos] 10 ms task: 100 periods, min 9964 us, max 10040 us (report 49)
+(d1) [rtos] heartbeat 49, tick 49000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 50)
+(d1) [rtos] heartbeat 50, tick 50000
+(d1) [rtos] consumer received message 20 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10006 us (report 51)
+(d1) [rtos] heartbeat 51, tick 51000
+(d1) [rtos] 10 ms task: 100 periods, min 9991 us, max 10008 us (report 52)
+(d1) [rtos] heartbeat 52, tick 52000
+(d1) [rtos] consumer received message 21 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 53)
+(d1) [rtos] heartbeat 53, tick 53000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 54)
+(d1) [rtos] heartbeat 54, tick 54000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 55)
+(d1) [rtos] heartbeat 55, tick 55000
+(d1) [rtos] consumer received message 22 from the queue
+xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      16.5
+rtos1                                        1    16     1     -b----       1.7
+guest1                                       2   127     1     -b----       3.2
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 6250 us, max 13787 us (report 56)
+(d1) [rtos] heartbeat 56, tick 56000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 57)
+(d1) [rtos] heartbeat 57, tick 57000
+(d1) [rtos] consumer received message 23 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 58)
+(d1) [rtos] heartbeat 58, tick 58000
+INIT: Id "S2" respawning too fast: disabled for 5 minutes
+(d1) [rtos] 10 ms task: 100 periods, min 9959 us, max 10040 us (report 59)
+(d1) [rtos] heartbeat 59, tick 59000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 60)
+(d1) [rtos] heartbeat 60, tick 60000
+(d1) [rtos] consumer received message 24 from the queue
+
+#### stress 2: dom0 100% busy for 8 s
+md5sum /dev/zero & HOG=$!; sleep 8; kill $HOG
+[1] 406
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10032 us (report 61)
+(d1) [rtos] heartbeat 61, tick 61000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10007 us (report 62)
+(d1) [rtos] heartbeat 62, tick 62000
+(d1) [rtos] consumer received message 25 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10007 us (report 63)
+(d1) [rtos] heartbeat 63, tick 63000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10004 us (report 64)
+(d1) [rtos] heartbeat 64, tick 64000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 65)
+(d1) [rtos] heartbeat 65, tick 65000
+(d1) [rtos] consumer received message 26 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9992 us, max 10007 us (report 66)
+(d1) [rtos] heartbeat 66, tick 66000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 67)
+(d1) [rtos] heartbeat 67, tick 67000
+(d1) [rtos] consumer received message 27 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 68)
+(d1) [rtos] heartbeat 68, tick 68000
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9977 us, max 10007 us (report 69)
+(d1) [rtos] heartbeat 69, tick 69000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 70)
+(d1) [rtos] heartbeat 70, tick 70000
+(d1) [rtos] consumer received message 28 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9979 us, max 10020 us (report 71)
+(d1) [rtos] heartbeat 71, tick 71000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 72)
+(d1) [rtos] heartbeat 72, tick 72000
+(d1) [rtos] consumer received message 29 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 73)
+(d1) [rtos] heartbeat 73, tick 73000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10005 us (report 74)
+(d1) [rtos] heartbeat 74, tick 74000
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 75)
+(d1) [rtos] heartbeat 75, tick 75000
+(d1) [rtos] consumer received message 30 from the queue
+
+#### stopping guests
+xl destroy guest1
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10043 us (report 76)
+(d1) [rtos] heartbeat 76, tick 76000
+[  134.729916] xenbr0: port 1(vif2.0) entered disabled state
+[  134.742202] xenbr0: port 1(vif2.0) entered disabled state
+[  134.742546] device vif2.0 left promiscuous mode
+[  134.742616] xenbr0: port 1(vif2.0) entered disabled state
+[1]+  Terminated              md5sum /dev/zero
+root@tinker-board:~# (d1) [rtos] 10 ms task: 100 periods, min 9971 us, max 10028 us (report 77)
+(d1) [rtos] heartbeat 77, tick 77000
+(d1) [rtos] consumer received message 31 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 78)
+(d1) [rtos] heartbeat 78, tick 78000
+(d1) [rtos] 10 ms task: 100 periods, min 9995 us, max 10005 us (report 79)
+(d1) [rtos] heartbeat 79, tick 79000
+(d1) [rtos] 10 ms task: 100 periods, min 9989 us, max 10006 us (report 80)
+(d1) [rtos] heartbeat 80, tick 80000
+(d1) [rtos] consumer received message 32 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9994 us, max 10006 us (report 81)
+(d1) [rtos] heartbeat 81, tick 81000
+(d1) [rtos] 10 ms task: 100 periods, min 9822 us, max 10178 us (report 82)
+(d1) [rtos] heartbeat 82, tick 82000
+(d1) [rtos] consumer received message 33 from the queue
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10005 us (report 83)
+(d1) [rtos] heartbeat 83, tick 83000
+(d1) [rtos] 10 ms task: 100 periods, min 9939 us, max 10061 us (report 84)
+(d1) [rtos] heartbeat 84, tick 84000
+(d1) [rtos] 10 ms task: 100 periods, min 9993 us, max 10006 us (report 85)
+(d1) [rtos] heartbeat 85, tick 85000
+(d1) [rtos] consumer received message 34 from the queue
+xl destroy rtos1
+root@tinker-board:~# xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   512     1     r-----      25.0
+root@tinker-board:~# 
+#### capture finished

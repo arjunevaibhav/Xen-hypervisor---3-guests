@@ -1,0 +1,65 @@
+
+root@tinker-board:~# 
+#### experiment noanim: xl create /etc/xen/android1.cfg
+xl destroy android1 2>/dev/null; sleep 2; xl create /etc/xe n/android1.cfg
+[  447.229023] xenbr0: port 1(vif2.0) entered disabled state
+[  447.241300] xenbr0: port 1(vif2.0) entered disabled state
+[  447.241699] device vif2.0 left promiscuous mode
+[  447.241779] xenbr0: port 1(vif2.0) entered disabled state
+Parsing config from /etc/xen/android1.cfg
+[  453.270972] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  453.271751] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  453.271826] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  453.271954] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  453.445893] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  453.446310] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  453.446399] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  453.446524] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  455.268854] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[  455.269533] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[  455.269606] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[  455.269732] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[  455.651084] xenbr0: port 1(vif3.0) entered blocking state
+[  455.651184] xenbr0: port 1(vif3.0) entered disabled state
+[  455.651536] device vif3.0 entered promiscuous mode
+root@tinker-board:~# adb kill-server; adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+(XEN) d3v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+(XEN) d3v1: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[  457.671471] xen-blkback: backend/vbd/3/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  457.749825] xen-blkback: backend/vbd/3/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[  457.882055] vif vif-3-0 vif3.0: Guest Rx ready
+[  457.882208] IPv6: ADDRCONF(NETDEV_CHANGE): vif3.0: link becomes ready
+[  457.882524] xenbr0: port 1(vif3.0) entered blocking state
+[  457.882596] xenbr0: port 1(vif3.0) entered forwarding state
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+1
+root@tinker-board:~# 
+#### boot_completed: True after 61 s
+adb -s 192.168.100.3:5555 shell 'settings put global window__animation_scale 0; settings put global transition_animation_scale 0; settings puut global animator_duration_scale 0; settings get global animator_duration_scale '
+0
+root@tinker-board:~# 
+#### animations off: _animation_scale 0; settings put global transition_animation_scale 0; settings pu
+ping -c 1 -W 2 192.168.100.3 >/dev/null && echo ALIVE-$((1+ 1)) || echo DEAD-$((1+1)); xl list android1 | tail -n 1
+ALIVE-2
+android1                                     3   767     2     -b----      78.3
+root@tinker-board:~# 
+#### t+30s after boot: alive -b---- cpu 78.3
+ping -c 1 -W 2 192.168.100.3 >/dev/null && echo ALIVE-$((1+ 1)) || echo DEAD-$((1+1)); xl list android1 | tail -n 1
+DEAD-2
+android1                                     3   767     2     -b----      79.4
+root@tinker-board:~# 
+#### t+60s after boot: DEAD -b---- cpu 79.4
+adb -s 192.168.100.3:5555 shell 'dumpsys activity activitiess | grep -m1 mResumedActivity; logcat -d | grep -c "name: RenderThread"'
+
+#### android: s | grep -m1 mResumedActivity; logcat -d | grep -c "name: RenderThread"' 
+adb kill-server
+
+#### done

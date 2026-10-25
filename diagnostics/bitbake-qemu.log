@@ -1,0 +1,73 @@
+Loading cache...done.
+Loaded 4099 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 6 Local 0 Mirrors 0 Missed 6 Current 706 (0% match, 99% complete)
+Removing 1 stale sstate objects for arch tinker_board...done.
+Removing 4 stale sstate objects for arch cortexa17t2hf-neon...done.
+NOTE: Executing Tasks
+NOTE: Running task 2126 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_prepare_recipe_sysroot)
+NOTE: recipe qemu-6.2.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe qemu-6.2.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 2393 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_configure)
+NOTE: recipe qemu-6.2.0-r0: task do_configure: Started
+NOTE: recipe qemu-6.2.0-r0: task do_configure: Succeeded
+NOTE: Running task 2394 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_configure_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_configure_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_configure_ptest_base: Succeeded
+NOTE: Running task 2395 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_compile)
+NOTE: recipe qemu-6.2.0-r0: task do_compile: Started
+NOTE: recipe qemu-6.2.0-r0: task do_compile: Succeeded
+NOTE: Running task 2396 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_compile_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_compile_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_compile_ptest_base: Succeeded
+NOTE: Running task 2397 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_install)
+NOTE: recipe qemu-6.2.0-r0: task do_install: Started
+NOTE: recipe qemu-6.2.0-r0: task do_install: Succeeded
+NOTE: Running task 2398 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_install_ptest_base)
+NOTE: recipe qemu-6.2.0-r0: task do_install_ptest_base: Started
+NOTE: recipe qemu-6.2.0-r0: task do_install_ptest_base: Succeeded
+NOTE: Running task 2399 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package)
+NOTE: Running task 2400 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_populate_sysroot)
+NOTE: recipe qemu-6.2.0-r0: task do_package: Started
+NOTE: recipe qemu-6.2.0-r0: task do_populate_sysroot: Started
+NOTE: recipe qemu-6.2.0-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package: Succeeded
+NOTE: Running task 2401 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_packagedata)
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata: Started
+NOTE: recipe qemu-6.2.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 2402 of 2405 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen-tools_4.16.bb:do_package_write_rpm)
+NOTE: Running task 2403 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_write_rpm)
+NOTE: Running task 2404 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_package_qa)
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Started
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-tools-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package_qa: Succeeded
+NOTE: recipe qemu-6.2.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running noexec task 2405 of 2405 (/home/arjune/yocto-rk3288/poky/meta/recipes-devtools/qemu/qemu_6.2.0.bb:do_build)
+NOTE: Tasks Summary: Attempted 2405 tasks of which 2391 didn't need to be rerun and all succeeded.

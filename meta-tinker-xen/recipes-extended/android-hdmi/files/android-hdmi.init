@@ -1,0 +1,46 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          android-hdmi
+# Required-Start:    xen-guests
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Show the Android guest on the HDMI monitor (touch/mouse/keys)
+### END INIT INFO
+#
+# Runs android-hdmi when dom0 has a framebuffer (HDMI). It waits for the
+# guest's VNC server (QEMU, 127.0.0.1:5900) and reconnects when the guest
+# restarts. Off by default, like the experimental PV screen it shows (vfb in
+# /etc/xen/android1.cfg): enable with ENABLED=1 in /etc/default/android-hdmi.
+
+ENABLED=0
+FBDEV=/dev/fb0
+PIDFILE=/var/run/android-hdmi.pid
+LOG=/var/log/android-hdmi.log
+[ -r /etc/default/android-hdmi ] && . /etc/default/android-hdmi
+
+case "$1" in
+start)
+    [ "$ENABLED" = 1 ] || exit 0
+    # $FBDEV appears once a monitor is connected (the HDMI driver creates
+    # it on the first hotplug), so wait for it in the background
+    echo "Starting android-hdmi (waits for $FBDEV, i.e. an HDMI monitor)"
+    ( while [ ! -c $FBDEV ]; do sleep 2; done
+      while :; do android-hdmi -f $FBDEV; sleep 2; done ) >>$LOG 2>&1 </dev/null &
+    echo $! > $PIDFILE
+    ;;
+stop)
+    if [ -f $PIDFILE ]; then
+        kill "$(cat $PIDFILE)" 2>/dev/null
+        killall android-hdmi 2>/dev/null
+        rm -f $PIDFILE
+    fi
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit 0

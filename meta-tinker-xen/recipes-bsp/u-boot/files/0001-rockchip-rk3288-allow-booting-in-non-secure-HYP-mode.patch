@@ -1,0 +1,146 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] rockchip: rk3288: allow booting in non-secure HYP mode
+
+Xen on 32-bit ARM must be entered in non-secure HYP mode. Let RK3288
+use U-Boot's generic ARMv7 NONSEC/VIRT switch (CONFIG_ARMV7_NONSEC,
+CONFIG_ARMV7_VIRT):
+
+- select CPU_V7_HAS_NONSEC / CPU_V7_HAS_VIRT (Cortex-A17 has both)
+- pin the GIC-400 base (0xffc00000) instead of relying on CBAR
+- psci_board_init(): before the switch, open the SoC to the non-secure
+  world like the RK3288 TF-A port does (GIC access, bus masters,
+  peripherals, DMA) and bypass the DDR security regions
+- armv7: give HSCTLR a defined value before the exception return to
+  HYP. Its reset value is UNKNOWN; on RK3288 it read 0x70cd087f (MMU
+  and Thumb exceptions on), so the CPU faulted on its first HYP fetch.
+- provide the SMP hooks: secondary cores stay parked in the boot ROM,
+  only the boot CPU switches (no PSCI for RK3288)
+- keep secure boot as the default; "setenv bootm_boot_mode nonsec"
+  selects HYP mode, so plain Linux boots exactly as before
+
+Upstream-Status: Inappropriate [board bring-up, no secondary CPU/PSCI support]
+---
+diff -ruN a/arch/arm/cpu/armv7/nonsec_virt.S b/arch/arm/cpu/armv7/nonsec_virt.S
+--- a/arch/arm/cpu/armv7/nonsec_virt.S	2026-10-23 17:20:48.881195251 +0530
++++ b/arch/arm/cpu/armv7/nonsec_virt.S	2026-10-23 17:20:55.576261362 +0530
+@@ -87,6 +87,15 @@
+ 	mcr	p15, 0, r5, c1, c1, 0		@ write SCR (with NS bit set)
+ 	isb
+ 
++#ifdef CONFIG_ARMV7_VIRT
++	@ HSCTLR resets to an UNKNOWN value; on RK3288 it has the MMU and
++	@ Thumb exceptions enabled. Enter HYP with MMU and caches off.
++	cmp	r6, #HYP_MODE			@ eq: entering HYP (as above)
++	ldreq	r4, =0x30c50830			@ HSCTLR RES1 bits only
++	mcreq	p15, 4, r4, c1, c0, 0		@ write HSCTLR
++	isb
++#endif
++
+ 	bne	1f
+ 
+ 	@ Reset CNTVOFF to 0 before leaving monitor mode
+diff -ruN a/arch/arm/mach-rockchip/Kconfig b/arch/arm/mach-rockchip/Kconfig
+--- a/arch/arm/mach-rockchip/Kconfig	2026-10-23 16:38:15.479131023 +0530
++++ b/arch/arm/mach-rockchip/Kconfig	2026-10-23 16:38:26.539408934 +0530
+@@ -99,6 +99,8 @@
+ config ROCKCHIP_RK3288
+ 	bool "Support Rockchip RK3288"
+ 	select CPU_V7A
++	select CPU_V7_HAS_NONSEC
++	select CPU_V7_HAS_VIRT
+ 	select OF_BOARD_SETUP
+ 	select SKIP_LOWLEVEL_INIT_ONLY
+ 	select SUPPORT_SPL
+diff -ruN a/arch/arm/mach-rockchip/rk3288/rk3288.c b/arch/arm/mach-rockchip/rk3288/rk3288.c
+--- a/arch/arm/mach-rockchip/rk3288/rk3288.c	2026-10-23 16:38:15.488131250 +0530
++++ b/arch/arm/mach-rockchip/rk3288/rk3288.c	2026-10-23 17:04:37.653723701 +0530
+@@ -138,6 +138,76 @@
+ 	return ret;
+ }
+ 
++#ifdef CONFIG_ARMV7_NONSEC
++/*
++ * Keep booting in secure SVC mode unless "bootm_boot_mode=nonsec" is set,
++ * e.g. by a Xen boot script, so plain Linux boots exactly as before.
++ */
++bool armv7_boot_nonsec_default(void)
++{
++	return false;
++}
++
++#define SGRF_BASE			0xff740000
++#define SGRF_SOC_CON(n)			((((n) < 6) ? 0x0 : 0x38) + (n) * 4)
++#define SGRF_BUSDMAC_CON(n)		(0x20 + (n) * 4)
++#define TZPC_BASE			0xffb00000
++#define TZPC_DECPROT1SET		0x810
++#define TZPC_DECPROT2SET		0x81c
++#define CORE_AXI_SECURITY0		0xffd00008
++#define CRU_SOFTRST_CON(n)		(0xff760000 + 0x1b8 + (n) * 4)
++#define RST_DMA1			BIT(2)	/* in CRU_SOFTRST_CON(1) */
++#define RST_DMA2			BIT(0)	/* in CRU_SOFTRST_CON(4) */
++
++/*
++ * Called by armv7_init_nonsec() while still in secure state, only when
++ * booting non-secure. Open the SoC to the non-secure world the same way
++ * the RK3288 TF-A port does (plat/rockchip/rk3288/drivers/secure/secure.c),
++ * except that the whole DDR is made non-secure since nothing stays secure.
++ */
++void psci_board_init(void)
++{
++	/* non-secure access to the GIC */
++	writel(1, CORE_AXI_SECURITY0);
++
++	/* all bus masters and configurable peripherals non-secure */
++	writel(0xffe0ffe0, SGRF_BASE + SGRF_SOC_CON(2));
++	writel(0x003f003f, SGRF_BASE + SGRF_SOC_CON(3));
++	writel(0xffff0000, SGRF_BASE + SGRF_SOC_CON(4));
++	writel(0x00ff0000, SGRF_BASE + SGRF_SOC_CON(5));
++
++	/* bypass the DDR security regions: whole DDR non-secure */
++	writel(BIT(15) | BIT(31), SGRF_BASE + SGRF_SOC_CON(21));
++
++	/* DMA controllers non-secure, reset them to apply it */
++	writel(0xff, TZPC_BASE + TZPC_DECPROT1SET);
++	writel(0xff, TZPC_BASE + TZPC_DECPROT2SET);
++	writel(0x3800, SGRF_BASE + SGRF_BUSDMAC_CON(1));
++	dsb();
++	writel(RST_DMA1 | RST_DMA1 << 16, CRU_SOFTRST_CON(1));
++	writel(RST_DMA2 | RST_DMA2 << 16, CRU_SOFTRST_CON(4));
++	dsb();
++	writel(RST_DMA1 << 16, CRU_SOFTRST_CON(1));
++	writel(RST_DMA2 << 16, CRU_SOFTRST_CON(4));
++}
++
++/*
++ * Only the boot CPU is switched to non-secure HYP mode. The secondary
++ * cores stay parked in the boot ROM; there is no PSCI for RK3288 yet.
++ */
++void smp_set_core_boot_addr(unsigned long addr, int corenr)
++{
++}
++
++void smp_kick_all_cpus(void)
++{
++}
++
++void smp_waitloop(unsigned previous_address)
++{
++}
++#endif
++
+ int ft_board_setup(void *blob, struct bd_info *bd)
+ {
+ 	if (soc_is_rk3288w())
+diff -ruN a/include/configs/rk3288_common.h b/include/configs/rk3288_common.h
+--- a/include/configs/rk3288_common.h	2026-10-23 16:38:15.498131502 +0530
++++ b/include/configs/rk3288_common.h	2026-10-23 16:38:28.898467969 +0530
+@@ -26,6 +26,9 @@
+ 
+ #define CONFIG_IRAM_BASE		0xff700000
+ 
++/* GIC-400 base (distributor at +0x1000, CPU interface at +0x2000) */
++#define CONFIG_ARM_GIC_BASE_ADDRESS	0xffc00000
++
+ /* RAW SD card / eMMC locations. */
+ 
+ /* FAT sd card locations. */

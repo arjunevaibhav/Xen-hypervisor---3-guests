@@ -1,0 +1,31 @@
+
+root@tinker-board:~# dmesg -c >/dev/null; (exec 3>/dev/watchdog; printf k >&3);  dmesg | tail -n 3; date
+[  588.175310] watchdog: watchdog0: watchdog did not stop!
+[  588.175310] watchdog: watchdog0: watchdog did not stop!
+Fri Mar  9 12:48:37 UTC 2018
+root@tinker-board:~# 
+U-Boot TPL 2022.01 (Jan 10 2022 - 18:46:34)
+Returning to boot ROM...
+
+U-Boot SPL 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+
+U-Boot 2022.01 (Jan 10 2022 - 18:46:34 +0000)
+
+SoC: Rockchip rk3288
+Reset cause: unknown reset
+Model: Tinker-RK3288
+DRAM:  2 GiB
+PMIC:  RK808 
+MMC:   dwmmc@ff0c0000: 1
+Loading Environment from MMC... *** Warning - bad CRC, using default environment
+
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+rockchip_rk3288_vop vop@ff930000: failed to get ahb reset (ret=-524)
+In:    serial
+Out:   serial
+Err:   serial
+Model: Tinker-RK3288
+Net:   eth0: ethernet@ff290000
+starting USB...
+Bus usb@ff540000: 

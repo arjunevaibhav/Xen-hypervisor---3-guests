@@ -1,0 +1,70 @@
+
+root@tinker-board:~# 
+#### restart Android with the new ramdisk
+xl destroy android1; sleep 2; xl create /etc/xen/android1.c fg
+[ 2727.172266] xenbr0: port 1(vif4.0) entered disabled state
+[ 2727.184974] xenbr0: port 1(vif4.0) entered disabled state
+[ 2727.185358] device vif4.0 left promiscuous mode
+[ 2727.185438] xenbr0: port 1(vif4.0) entered disabled state
+Parsing config from /etc/xen/android1.cfg
+[ 2733.191396] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 2733.192533] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 2733.192627] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 2733.192750] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 2733.368092] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 2733.369602] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 2733.369694] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 2733.369819] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 2735.284071] dwmmc_rockchip ff0d0000.mmc: IDMAC supports 32-bit address mode.
+[ 2735.286486] dwmmc_rockchip ff0d0000.mmc: Using internal DMA controller.
+[ 2735.286580] dwmmc_rockchip ff0d0000.mmc: Version ID is 270a
+[ 2735.286700] dwmmc_rockchip ff0d0000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+[ 2735.669344] xenbr0: port 1(vif5.0) entered blocking state
+[ 2735.669442] xenbr0: port 1(vif5.0) entered disabled state
+[ 2735.669763] device vif5.0 entered promiscuous mode
+root@tinker-board:~# adb kill-server; adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+(XEN) d5v0: vGICD: unhandled word write 0xffffffff to ICACTIVER0
+[ 2737.593386] xen-blkback: backend/vbd/5/51712: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 2737.742441] xen-blkback: backend/vbd/5/51728: using 1 queues, protocol 1 (arm-abi) persistent grants
+[ 2737.898022] vif vif-5-0 vif5.0: Guest Rx ready
+[ 2737.898196] IPv6: ADDRCONF(NETDEV_CHANGE): vif5.0: link becomes ready
+[ 2737.898478] xenbr0: port 1(vif5.0) entered blocking state
+[ 2737.898570] xenbr0: port 1(vif5.0) entered forwarding state
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+error: device offline
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192. 168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+
+root@tinker-board:~# adb connect 192.168.100.3:5555 >/dev/null 2>&1; adb -s 192.1168.100.3:5555 shell getprop sys.boot_completed
+1
+root@tinker-board:~# 
+#### PASS Android boot_completed with the PV screen - 62 s
+adb -s 192.168.100.3:5555 shell 'getprop ro.config.low_ram;  cat /sys/class/graphics/fb0/name /sys/class/graphics/fb0/bits_per_pixel'
+
+xen
+16
+root@tinker-board:~# 
+#### low_ram / fb: xen 16 root@tinker-board:~# 
+adb -s 192.168.100.3:5555 shell dumpsys activity activities  | grep -m1 mResumedActivity
+    mResumedActivity: ActivityRecord{9cafd82 u0 com.android.settings/.FallbackHome t0}
+root@tinker-board:~# 
+#### FAIL launcher shown
+adb -s 192.168.100.3:5555 shell 'logcat -d | grep -c "Failedd to choose config"; logcat -d | grep -c "name: RenderThread"'
+
+#### FAIL no HWUI / RenderThread crashes (60 s after boot)
+adb -s 192.168.100.3:5555 shell dumpsys activity activities | grep -m1 mResumedActivity
+
+#### FAIL launcher still shown
+adb -s 192.168.100.3:5555 shell dumpsys input | grep -B2 -A40 'Xen Virtual Pointer' | grep -E 'Classes|DeviceType' | head -n 2
+
+#### FAIL Xen pointer is a touchscreen
+
+#### viewer path without a monitor: RAM framebuffer as /dev/fb0
+[ -c /dev/fb0 ] || modprobe vfb vfb_enable=1 videomemorysize=4194304 mode_option=1024x768-32@60; cat /sys/class/graphics/fb0/name /sys/class/graphics/fb0/virtual_size /sys/class/graphics/fb0/bits_per_pixel
+tail -n 3 /var/log/android-hdmi.log
+
+#### FAIL android-hdmi attached
+dd if=/dev/fb0 bs=4096 count=768 2>/dev/null | od -An -v -tx1 | tr -s ' ' '\n' | grep -vc '^00$'

@@ -1,0 +1,65 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] timerfd: allow alarm clocks for the Android system group
+
+Android 7.0's AlarmManagerService opens /dev/alarm and, if that is
+missing, timerfds on CLOCK_REALTIME_ALARM/CLOCK_BOOTTIME_ALARM. Those
+need CAP_WAKE_ALARM, which system_server only got in Android 8. Linux
+4.14 has no /dev/alarm, so both fail and AlarmManagerService falls back
+to a handler that crashes system_server with a NullPointerException
+(AlarmHandler.handleMessage, PendingIntent.send) on the first alarm.
+
+Also accept the Android system group (gid 1000) for the alarm clocks.
+Only meant for the Android 7 Xen guest kernel; there is no suspend in
+the guest, so wake-up alarms have no extra effect.
+
+Upstream-Status: Inappropriate [Android 7 user space on a newer kernel]
+---
+--- a/fs/timerfd.c	2026-10-24 20:01:20.249969694 +0530
++++ b/fs/timerfd.c	2026-10-24 20:01:20.264969934 +0530
+@@ -10,6 +10,7 @@
+  */
+ 
+ #include <linux/alarmtimer.h>
++#include <linux/cred.h>
+ #include <linux/file.h>
+ #include <linux/poll.h>
+ #include <linux/init.h>
+@@ -384,6 +385,20 @@
+ 	return 0;
+ }
+ 
++/*
++ * Android 7 arms its alarm timerfds in system_server, which only got
++ * CAP_WAKE_ALARM in Android 8 (before that it used /dev/alarm, which this
++ * kernel does not have). Also accept Android's "system" group (AID_SYSTEM),
++ * or AlarmManagerService falls back to a code path that crashes.
++ */
++#define ANDROID_AID_SYSTEM	1000
++
++static bool timerfd_may_use_alarm(void)
++{
++	return capable(CAP_WAKE_ALARM) ||
++	       in_egroup_p(KGIDT_INIT(ANDROID_AID_SYSTEM));
++}
++
+ SYSCALL_DEFINE2(timerfd_create, int, clockid, int, flags)
+ {
+ 	int ufd;
+@@ -403,7 +418,7 @@
+ 
+ 	if ((clockid == CLOCK_REALTIME_ALARM ||
+ 	     clockid == CLOCK_BOOTTIME_ALARM) &&
+-	    !capable(CAP_WAKE_ALARM))
++	    !timerfd_may_use_alarm())
+ 		return -EPERM;
+ 
+ 	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL);
+@@ -449,7 +464,7 @@
+ 		return ret;
+ 	ctx = f.file->private_data;
+ 
+-	if (isalarm(ctx) && !capable(CAP_WAKE_ALARM)) {
++	if (isalarm(ctx) && !timerfd_may_use_alarm()) {
+ 		fdput(f);
+ 		return -EPERM;
+ 	}

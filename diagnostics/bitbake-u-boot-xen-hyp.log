@@ -1,0 +1,139 @@
+Loading cache...done.
+Loaded 4092 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 2633 .bb files complete (2631 cached, 2 parsed). 4092 targets, 203 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "tinker-board"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.35"
+TUNE_FEATURES        = "arm vfp cortexa17 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:445a6223929b9a7a62b575093659e3d9e1aba982"
+meta-oe              = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-arm-toolchain   
+meta-arm             = "kirkstone:c3e9fb12aa31d25e33d8392c4a233ed1275a3278"
+meta-rockchip        = "kirkstone:1e27f83cc4105739ff354d92bce82c20fae77da1"
+meta-filesystems     
+meta-python          
+meta-networking      = "kirkstone:ce8539c941f6fcbecaca4d16640ac105c0595589"
+meta-virtualization  = "kirkstone:92b6abcdfb6f12c4931247f0f29aaf5331984525"
+meta-tinker-xen      = "<unknown>:<unknown>"
+
+Initialising tasks...done.
+Sstate summary: Wanted 16 Local 0 Mirrors 0 Missed 16 Current 674 (0% match, 97% complete)
+Removing 6 stale sstate objects for arch cortexa17t2hf-neon...done.
+Removing 10 stale sstate objects for arch tinker_board...done.
+NOTE: Executing Tasks
+NOTE: Running task 1797 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_fetch)
+NOTE: Running task 1897 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_fetch)
+NOTE: recipe u-boot-1_2022.01-r0: task do_fetch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_fetch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_fetch: Succeeded
+NOTE: Running task 2289 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_unpack)
+NOTE: Running task 2290 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_prepare_recipe_sysroot)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_unpack: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_fetch: Succeeded
+NOTE: Running task 2291 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_unpack)
+NOTE: Running task 2292 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_prepare_recipe_sysroot)
+NOTE: recipe u-boot-1_2022.01-r0: task do_unpack: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_unpack: Succeeded
+NOTE: Running task 2293 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_patch)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_patch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_patch: Succeeded
+NOTE: Running task 2294 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_deploy_source_date_epoch)
+NOTE: Running task 2295 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_post_patch)
+NOTE: Running task 2296 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_populate_lic)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_post_patch: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_post_patch: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_lic: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2297 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_configure)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_configure: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_unpack: Succeeded
+NOTE: Running task 2298 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_patch)
+NOTE: recipe u-boot-1_2022.01-r0: task do_patch: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_patch: Succeeded
+NOTE: Running task 2299 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_deploy_source_date_epoch)
+NOTE: Running task 2300 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_populate_lic)
+NOTE: recipe u-boot-1_2022.01-r0: task do_deploy_source_date_epoch: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_populate_lic: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_populate_lic: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_deploy_source_date_epoch: Succeeded
+NOTE: Running task 2301 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_configure)
+NOTE: recipe u-boot-1_2022.01-r0: task do_configure: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_configure: Succeeded
+NOTE: Running task 2302 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_compile)
+NOTE: recipe u-boot-1_2022.01-r0: task do_compile: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_configure: Succeeded
+NOTE: Running task 2303 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_compile)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_compile: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_compile: Succeeded
+NOTE: Running task 2304 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_install)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_install: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_compile: Succeeded
+NOTE: Running task 2305 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_create_extlinux_config)
+NOTE: Running task 2306 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_uboot_generate_rsa_keys)
+NOTE: recipe u-boot-1_2022.01-r0: task do_create_extlinux_config: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_create_extlinux_config: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_uboot_generate_rsa_keys: Started
+NOTE: Running task 2307 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_install)
+NOTE: recipe u-boot-1_2022.01-r0: task do_uboot_generate_rsa_keys: Succeeded
+NOTE: Running task 2308 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_uboot_assemble_fitimage)
+NOTE: recipe u-boot-1_2022.01-r0: task do_install: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_uboot_assemble_fitimage: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_uboot_assemble_fitimage: Succeeded
+NOTE: Running task 2309 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_deploy)
+NOTE: recipe u-boot-1_2022.01-r0: task do_install: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_deploy: Started
+NOTE: Running task 2310 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_package)
+NOTE: Running task 2311 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_populate_sysroot)
+NOTE: recipe u-boot-1_2022.01-r0: task do_populate_sysroot: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_package: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_deploy: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_package: Succeeded
+NOTE: Running task 2312 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_packagedata)
+NOTE: recipe u-boot-1_2022.01-r0: task do_packagedata: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_packagedata: Succeeded
+NOTE: Running task 2313 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_package_write_rpm)
+NOTE: Running task 2314 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_package_qa)
+NOTE: recipe u-boot-1_2022.01-r0: task do_package_write_rpm: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_package_qa: Started
+NOTE: recipe u-boot-1_2022.01-r0: task do_package_qa: Succeeded
+NOTE: recipe u-boot-1_2022.01-r0: task do_package_write_rpm: Succeeded
+NOTE: Running noexec task 2315 of 2322 (/home/arjune/yocto-rk3288/poky/meta/recipes-bsp/u-boot/u-boot_2022.01.bb:do_build)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_install: Succeeded
+NOTE: Running task 2316 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_package)
+NOTE: Running task 2317 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_populate_sysroot)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 2318 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_deploy)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_deploy: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package: Succeeded
+NOTE: Running task 2319 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_packagedata)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_packagedata: Succeeded
+NOTE: Running task 2320 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_package_write_rpm)
+NOTE: Running task 2321 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_package_qa)
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Started
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package_qa: Succeeded
+NOTE: recipe xen-4.16+stableAUTOINC+f265444922-r0: task do_package_write_rpm: Succeeded
+NOTE: Running noexec task 2322 of 2322 (/home/arjune/yocto-rk3288/meta-virtualization/recipes-extended/xen/xen_4.16.bb:do_build)
+NOTE: Tasks Summary: Attempted 2322 tasks of which 2286 didn't need to be rerun and all succeeded.

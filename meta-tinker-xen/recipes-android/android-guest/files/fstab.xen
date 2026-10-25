@@ -1,0 +1,5 @@
+# Android fstab for the Xen guest (Tinker Board). Disks come from dom0's
+# android1.cfg: xvda = SD partition "android-system", xvdb = "android-data".
+#<src>             <mnt_point>  <type>  <mnt_flags and options>                    <fs_mgr_flags>
+/dev/block/xvda    /system      ext4    ro                                         wait
+/dev/block/xvdb    /data        ext4    noatime,nosuid,nodev,errors=panic          wait,check
