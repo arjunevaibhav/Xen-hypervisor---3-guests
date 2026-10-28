@@ -3,14 +3,18 @@
  * vehicle-sim: a test vehicle on a CAN bus, for the automotive bench setup.
  *
  * Sends a repeating drive cycle (accelerate through the gears to 135 km/h,
- * cruise, brake to a stop, idle) as two CAN frames every 10 ms:
+ * cruise, brake to a stop, back up a few metres, park) as three CAN frames
+ * every 10 ms:
  *   0x0C0  speed  uint16 big endian, 0.01 km/h
  *   0x0C1  engine uint16 big endian, rpm
+ *   0x0C2  gear   byte 0 selector 'P', 'R', 'N' or 'D', byte 1 gear (1-6, 0)
  * Only for a virtual bus (vcan0) or an isolated bench bus: never connect it
  * to a real vehicle.
  *
  *   vehicle-sim [-i vcan0] [-p period_ms]
  *   SIGUSR1 pauses/resumes sending (to test signal-loss detection).
+ *   SIGUSR2 holds reverse at walking pace (or releases it), to test the
+ *   rear camera.
  */
 
 #include <linux/can.h>
@@ -27,8 +31,9 @@
 
 #define ID_SPEED	0x0C0
 #define ID_ENGINE	0x0C1
+#define ID_GEAR		0x0C2
 
-static volatile sig_atomic_t paused;
+static volatile sig_atomic_t paused, hold_reverse;
 
 static void on_usr1(int sig)
 {
@@ -36,17 +41,31 @@ static void on_usr1(int sig)
 	paused = !paused;
 }
 
-/* speed in km/h at time t (seconds) of a 60 s cycle */
-static double profile(double t)
+static void on_usr2(int sig)
+{
+	(void)sig;
+	hold_reverse = !hold_reverse;
+}
+
+/* speed in km/h and gear selector at time t (seconds) of a 60 s cycle */
+static double profile(double t, char *sel)
 {
 	t = t - 60.0 * (int)(t / 60.0);
+	*sel = 'D';
 	if (t < 20.0)
 		return 135.0 * t / 20.0;		/* accelerate */
 	if (t < 35.0)
 		return 135.0;				/* cruise above the limit */
 	if (t < 50.0)
 		return 135.0 * (50.0 - t) / 15.0;	/* brake */
-	return 0.0;					/* stand still */
+	if (t < 52.0)
+		return 0.0;				/* stand still */
+	if (t < 58.0) {
+		*sel = 'R';				/* back up at up to 4 km/h */
+		return t < 55.0 ? 4.0 * (t - 52.0) / 3.0 : 4.0 * (58.0 - t) / 3.0;
+	}
+	*sel = 'P';
+	return 0.0;					/* parked */
 }
 
 /* rpm from speed with a simple 6-speed gearbox; shifts late in 2nd gear */
@@ -63,6 +82,19 @@ static unsigned int engine_rpm(double kmh)
 		g++;
 	r = kmh * ratio[g];
 	return r < 800 ? 800 : (unsigned int)r;
+}
+
+/* forward gear number (1-6) the gearbox above is in, 0 when standing */
+static unsigned int gear_of(double kmh)
+{
+	static const double top[] = { 25, 70, 95, 115, 130, 1e9 };
+	unsigned int g = 0;
+
+	if (kmh < 1.0)
+		return 0;
+	while (kmh > top[g])
+		g++;
+	return g + 1;
 }
 
 static int send_u16(int s, unsigned int id, unsigned int v)
@@ -99,13 +131,17 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	signal(SIGUSR1, on_usr1);
+	signal(SIGUSR2, on_usr2);
 	setvbuf(stdout, NULL, _IOLBF, 0);
-	printf("vehicle-sim: %s, frames every %d ms (SIGUSR1 = pause)\n", ifname, period_ms);
+	printf("vehicle-sim: %s, frames every %d ms (SIGUSR1 = pause, SIGUSR2 = reverse)\n",
+	       ifname, period_ms);
 
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	next = start;
 	for (;;) {
+		struct can_frame g = { .can_id = ID_GEAR, .can_dlc = 2 };
 		double t, kmh;
+		char sel;
 
 		next.tv_nsec += period_ms * 1000000L;
 		while (next.tv_nsec >= 1000000000L) {
@@ -117,8 +153,16 @@ int main(int argc, char **argv)
 			continue;
 
 		t = (next.tv_sec - start.tv_sec) + (next.tv_nsec - start.tv_nsec) / 1e9;
-		kmh = profile(t);
-		send_u16(s, ID_ENGINE, engine_rpm(kmh));
+		kmh = profile(t, &sel);
+		if (hold_reverse) {
+			sel = 'R';
+			kmh = 3.0;
+		}
+		g.data[0] = sel;
+		g.data[1] = sel == 'D' ? gear_of(kmh) : 0;
+		if (write(s, &g, sizeof(g)) != sizeof(g))
+			continue;	/* bus down: try again next period */
+		send_u16(s, ID_ENGINE, sel == 'R' ? 800 + (unsigned int)(kmh * 160.0) : engine_rpm(kmh));
 		send_u16(s, ID_SPEED, (unsigned int)(kmh * 100.0 + 0.5));
 	}
 }

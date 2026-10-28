@@ -1,5 +1,5 @@
 # Xen guests started at boot by /etc/init.d/xen-guests, in this order
 # (stopped in reverse order). Empty: start none.
-XEN_GUESTS="rtos1 android1"
+XEN_GUESTS="rtos1 android1 media1"
 # Seconds a Linux/Android guest gets to shut down before it is destroyed
 SHUTDOWN_TIMEOUT=30

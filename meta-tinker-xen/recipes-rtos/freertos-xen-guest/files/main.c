@@ -327,7 +327,7 @@ static void rtos_printf( const char * fmt, ... )
  * its cache, so Xen would see stale data.
  */
 #define GUEST_RAM_BASE      0x40000000UL
-#define GUEST_RAM_MB        16
+#define GUEST_RAM_MB        4   /* memory in rtos1.cfg */
 #define SECTION_DEVICE      0x00c16UL   /* AP=RW, XN, shareable device (TEX 0, C 0, B 1) */
 #define SECTION_NORMAL      0x11c0eUL   /* AP=RW, S, write-back write-allocate (TEX 1, C 1, B 1) */
 
@@ -540,6 +540,7 @@ static QueueHandle_t xQueue;
 
 static volatile uint32_t ulHeartbeats;
 static volatile uint32_t ulMessages;
+static volatile uint32_t ulLastMinUs, ulLastMaxUs, ulReports;   /* last summary, for the shell */
 
 /* Highest priority: 10 ms period, measure the real period with CNTVCT */
 static void vRealTimeTask( void * pv )
@@ -571,6 +572,9 @@ static void vRealTimeTask( void * pv )
 
         if( ++cycles == REPORT_PERIODS )
         {
+            ulLastMinUs = min_us;
+            ulLastMaxUs = max_us;
+            ulReports = reports + 1;
             rtos_printf( "[rtos] 10 ms task: %u periods, min %u us, max %u us; "
                          "heartbeats %u, queue messages %u (report %u)\n",
                          REPORT_PERIODS, min_us, max_us, ulHeartbeats, ulMessages,
@@ -629,7 +633,11 @@ static void vConsumerTask( void * pv )
 /*
  * dom0's can2rtos gateway decodes the vehicle CAN bus (read-only) and sends
  * one line per speed frame over this guest's console:
- *     "V <seq> <speed in 0.01 km/h> <rpm>\n"
+ *     "\036V <seq> <speed in 0.01 km/h> <rpm>\n"
+ * The console's input also carries what a person types in "xl console
+ * rtos1". can2rtos writes each frame with one write() to the pty, so a frame
+ * arrives in one piece; the leading RS byte (036) marks it. Everything
+ * outside a frame goes to the shell task.
  * This task checks the signals in real time and reports alerts. It only
  * watches and warns; nothing is sent back to the vehicle.
  */
@@ -638,6 +646,15 @@ static void vConsumerTask( void * pv )
 #define VEHICLE_REPORT_S        10
 #define OVERSPEED_KMH100        12000   /* 120.00 km/h */
 #define REDLINE_RPM             6000
+#define FRAME_START             '\036'
+
+/* alert limits (the shell can change them) and the latest state for the shell */
+static volatile uint32_t ulOverspeedLimit = OVERSPEED_KMH100;
+static volatile uint32_t ulRedlineLimit = REDLINE_RPM;
+static volatile uint32_t ulSpeed, ulRpm, ulHaveSignal, ulSeen, ulFramesTotal, ulLostTotal;
+static volatile uint32_t ulOverspeedAlerts, ulRedlineAlerts, ulSignalLosses;
+
+static QueueHandle_t xShellQueue;
 
 static int parse_uint( const char ** p, uint32_t * v )
 {
@@ -673,7 +690,7 @@ static void vVehicleTask( void * pv )
     uint32_t speed = 0, rpm = 0, last_seq = 0, frames = 0, lost = 0, bad = 0;
     uint32_t max_gap_us = 0, signal_losses = 0, overspeed_alerts = 0, redline_alerts = 0;
     uint64_t last_rx = 0;
-    int have_signal = 0, seen = 0, overspeed = 0, redline = 0;
+    int have_signal = 0, seen = 0, overspeed = 0, redline = 0, in_frame = 0;
 
     ( void ) pv;
 
@@ -690,6 +707,20 @@ static void vVehicleTask( void * pv )
         {
             char c = buf[ i ];
 
+            if( c == FRAME_START )
+            {
+                in_frame = 1;
+                len = 0;
+                continue;
+            }
+
+            if( !in_frame )
+            {
+                /* typed input: never wait, the shell drops keys it cannot take */
+                ( void ) xQueueSend( xShellQueue, &c, 0 );
+                continue;
+            }
+
             if( c != '\n' && c != '\r' )
             {
                 if( len < sizeof( line ) - 1 )
@@ -701,6 +732,7 @@ static void vVehicleTask( void * pv )
             }
 
             line[ len ] = '\0';
+            in_frame = 0;
 
             if( len > 2 && line[ 0 ] == 'V' && line[ 1 ] == ' ' )
             {
@@ -712,6 +744,7 @@ static void vVehicleTask( void * pv )
                     if( seen && seq != last_seq + 1 && seq > last_seq )
                     {
                         lost += seq - last_seq - 1;
+                        ulLostTotal += seq - last_seq - 1;
                     }
 
                     if( have_signal )
@@ -739,28 +772,29 @@ static void vVehicleTask( void * pv )
                     have_signal = 1;
                     seen = 1;
                     frames++;
+                    ulFramesTotal++;
 
-                    if( !overspeed && speed > OVERSPEED_KMH100 )
+                    if( !overspeed && speed > ulOverspeedLimit )
                     {
                         overspeed = 1;
                         overspeed_alerts++;
                         rtos_printf( "[vehicle] ALERT overspeed: %u km/h (limit %u)\n",
-                                     speed / 100, OVERSPEED_KMH100 / 100 );
+                                     speed / 100, ulOverspeedLimit / 100 );
                     }
-                    else if( overspeed && speed < OVERSPEED_KMH100 - 500 )
+                    else if( overspeed && speed < ulOverspeedLimit - 500 )
                     {
                         overspeed = 0;
                         rtos_printf( "[vehicle] overspeed cleared: %u km/h\n", speed / 100 );
                     }
 
-                    if( !redline && rpm > REDLINE_RPM )
+                    if( !redline && rpm > ulRedlineLimit )
                     {
                         redline = 1;
                         redline_alerts++;
                         rtos_printf( "[vehicle] ALERT engine over redline: %u rpm (limit %u)\n",
-                                     rpm, REDLINE_RPM );
+                                     rpm, ulRedlineLimit );
                     }
-                    else if( redline && rpm < REDLINE_RPM - 300 )
+                    else if( redline && rpm < ulRedlineLimit - 300 )
                     {
                         redline = 0;
                         rtos_printf( "[vehicle] redline cleared: %u rpm\n", rpm );
@@ -785,6 +819,14 @@ static void vVehicleTask( void * pv )
                          VEHICLE_TIMEOUT_MS );
         }
 
+        ulSpeed = speed;
+        ulRpm = rpm;
+        ulHaveSignal = have_signal;
+        ulSeen = seen;
+        ulOverspeedAlerts = overspeed_alerts;
+        ulRedlineAlerts = redline_alerts;
+        ulSignalLosses = signal_losses;
+
         if( ++iter == VEHICLE_REPORT_S * 1000 / VEHICLE_PERIOD_MS )
         {
             iter = 0;
@@ -804,6 +846,237 @@ static void vVehicleTask( void * pv )
     }
 }
 
+/* ---- shell (xl console rtos1) ------------------------------------------ */
+
+/*
+ * A few commands for the person at "xl console rtos1". Lowest priority: it
+ * only runs when the real-time tasks have nothing to do. Echo is batched
+ * (one console write per burst of keys): xenconsoled throttles a guest
+ * that notifies too often, and that would delay the vehicle frames.
+ */
+#define SHELL_PROMPT    "rtos> "
+
+static int str_eq( const char * a, const char * b )
+{
+    while( *a != '\0' && *a == *b )
+    {
+        a++;
+        b++;
+    }
+
+    return *a == *b;
+}
+
+/* next space-separated word of *p, made into its own string */
+static char * next_word( char ** p )
+{
+    char * s = *p, * w;
+
+    while( *s == ' ' )
+    {
+        s++;
+    }
+
+    w = s;
+
+    while( *s != '\0' && *s != ' ' )
+    {
+        s++;
+    }
+
+    if( *s != '\0' )
+    {
+        *s++ = '\0';
+    }
+
+    *p = s;
+    return w;
+}
+
+static void shell_limits( void )
+{
+    rtos_printf( "limits: overspeed above %u km/h, redline above %u rpm\n",
+                 ulOverspeedLimit / 100, ulRedlineLimit );
+}
+
+static void shell_command( char * line )
+{
+    char * p = line, * cmd = next_word( &p );
+
+    if( *cmd == '\0' )
+    {
+        return;
+    }
+
+    if( str_eq( cmd, "help" ) )
+    {
+        static const char help[] =
+            "commands:\n"
+            "  status              vehicle signal, speed, rpm, alerts\n"
+            "  rt                  10 ms real-time task timing\n"
+            "  tasks               tasks and free memory\n"
+            "  uptime              time since FreeRTOS started\n"
+            "  limits              alert limits\n"
+            "  limit speed <km/h>  set the overspeed limit (10-300)\n"
+            "  limit rpm <rpm>     set the redline (1000-10000)\n"
+            "  clear               clear the screen\n"
+            "leave the console with Ctrl-]\n";
+
+        console_write( help, sizeof( help ) - 1 );
+    }
+    else if( str_eq( cmd, "status" ) )
+    {
+        if( !ulSeen )
+        {
+            rtos_printf( "vehicle: no frame received yet\n" );
+        }
+        else
+        {
+            rtos_printf( "vehicle: %s, speed %u km/h, rpm %u\n",
+                         ulHaveSignal ? "signal OK" : "NO SIGNAL (values are old)",
+                         ulSpeed / 100, ulRpm );
+        }
+
+        rtos_printf( "frames: %u received, %u lost; alerts: overspeed %u, redline %u, "
+                     "signal lost %u\n", ulFramesTotal, ulLostTotal, ulOverspeedAlerts,
+                     ulRedlineAlerts, ulSignalLosses );
+        shell_limits();
+    }
+    else if( str_eq( cmd, "rt" ) )
+    {
+        if( ulReports == 0 )
+        {
+            rtos_printf( "rt: first report after 10 s\n" );
+        }
+        else
+        {
+            rtos_printf( "rt: 10 ms task, last %u periods: min %u us, max %u us "
+                         "(report %u)\n", REPORT_PERIODS, ulLastMinUs, ulLastMaxUs,
+                         ulReports );
+        }
+    }
+    else if( str_eq( cmd, "tasks" ) )
+    {
+        rtos_printf( "tasks: %u (rt10ms 4, heartbeat 3, vehicle 3, producer 2, consumer 2, "
+                     "shell 1, idle 0)\n", ( uint32_t ) uxTaskGetNumberOfTasks() );
+        rtos_printf( "heap: %u bytes free, lowest ever %u, of %u\n",
+                     ( uint32_t ) xPortGetFreeHeapSize(),
+                     ( uint32_t ) xPortGetMinimumEverFreeHeapSize(),
+                     ( uint32_t ) configTOTAL_HEAP_SIZE );
+    }
+    else if( str_eq( cmd, "uptime" ) )
+    {
+        uint32_t s = xTaskGetTickCount() / configTICK_RATE_HZ;
+
+        rtos_printf( "up %u h %u min %u s\n", s / 3600, s / 60 % 60, s % 60 );
+    }
+    else if( str_eq( cmd, "limits" ) )
+    {
+        shell_limits();
+    }
+    else if( str_eq( cmd, "limit" ) )
+    {
+        char * what = next_word( &p ), * num = next_word( &p );
+        const char * q = num;
+        uint32_t v;
+
+        if( !parse_uint( &q, &v ) || *q != '\0' )
+        {
+            rtos_printf( "usage: limit speed <km/h> | limit rpm <rpm>\n" );
+        }
+        else if( str_eq( what, "speed" ) && v >= 10 && v <= 300 )
+        {
+            ulOverspeedLimit = v * 100;
+            rtos_printf( "[shell] overspeed limit set to %u km/h\n", v );
+        }
+        else if( str_eq( what, "rpm" ) && v >= 1000 && v <= 10000 )
+        {
+            ulRedlineLimit = v;
+            rtos_printf( "[shell] redline set to %u rpm\n", v );
+        }
+        else
+        {
+            rtos_printf( "limit: speed 10-300 km/h, rpm 1000-10000\n" );
+        }
+    }
+    else if( str_eq( cmd, "clear" ) )
+    {
+        console_write( "\033[2J\033[H", 7 );
+    }
+    else
+    {
+        rtos_printf( "unknown command '%s', type help\n", cmd );
+    }
+}
+
+static void vShellTask( void * pv )
+{
+    char line[ 64 ], echo[ 80 ], c, prev = 0;
+    uint32_t len = 0, e;
+
+    ( void ) pv;
+
+    for( ; ; )
+    {
+        int run = 0;
+
+        ( void ) xQueueReceive( xShellQueue, &c, portMAX_DELAY );
+        e = 0;
+
+        /* this key and any others already waiting, echoed in one write */
+        do
+        {
+            if( c == '\r' || c == '\n' )
+            {
+                if( !( c == '\n' && prev == '\r' ) )    /* CR LF is one Enter */
+                {
+                    echo[ e++ ] = '\n';
+                    run = 1;
+                }
+            }
+            else if( c == '\b' || c == 0x7f )
+            {
+                if( len > 0 )
+                {
+                    len--;
+                    echo[ e++ ] = '\b';
+                    echo[ e++ ] = ' ';
+                    echo[ e++ ] = '\b';
+                }
+            }
+            else if( c == 0x03 )                        /* Ctrl-C: drop the line */
+            {
+                len = 0;
+                echo[ e++ ] = '^';
+                echo[ e++ ] = 'C';
+                echo[ e++ ] = '\n';
+                run = 1;
+            }
+            else if( c >= ' ' && c <= '~' && len < sizeof( line ) - 1 )
+            {
+                line[ len++ ] = c;
+                echo[ e++ ] = c;
+            }
+
+            prev = c;
+        } while( !run && e < sizeof( echo ) - 3 &&
+                 xQueueReceive( xShellQueue, &c, 0 ) == pdPASS );
+
+        if( e > 0 )
+        {
+            console_write( echo, e );
+        }
+
+        if( run )
+        {
+            line[ len ] = '\0';
+            shell_command( line );
+            len = 0;
+            console_write( SHELL_PROMPT, sizeof( SHELL_PROMPT ) - 1 );
+        }
+    }
+}
+
 int main( void )
 {
     mmu_enable();
@@ -817,14 +1090,16 @@ int main( void )
     gic_init();
 
     xQueue = xQueueCreate( 4, sizeof( uint32_t ) );
+    xShellQueue = xQueueCreate( 128, sizeof( char ) );
 
     xTaskCreate( vRealTimeTask, "rt10ms", configMINIMAL_STACK_SIZE * 2, NULL, 4, NULL );
     xTaskCreate( vHeartbeatTask, "heartbeat", configMINIMAL_STACK_SIZE * 2, NULL, 3, NULL );
     xTaskCreate( vProducerTask, "producer", configMINIMAL_STACK_SIZE * 2, NULL, 2, NULL );
     xTaskCreate( vConsumerTask, "consumer", configMINIMAL_STACK_SIZE * 2, NULL, 2, NULL );
     xTaskCreate( vVehicleTask, "vehicle", configMINIMAL_STACK_SIZE * 2, NULL, 3, NULL );
+    xTaskCreate( vShellTask, "shell", configMINIMAL_STACK_SIZE * 2, NULL, 1, NULL );
 
-    rtos_printf( "[rtos] 5 tasks created, starting the scheduler\n" );
+    rtos_printf( "[rtos] 6 tasks created, starting the scheduler; type help for commands\n" );
     vTaskStartScheduler();
 
     rtos_printf( "[rtos] FATAL: scheduler did not start\n" );

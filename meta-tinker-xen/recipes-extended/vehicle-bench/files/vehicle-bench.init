@@ -53,11 +53,15 @@ pause)
     # stop the simulated vehicle's frames (or resume them): signal-loss test
     killall -USR1 vehicle-sim
     ;;
+reverse)
+    # hold the simulated vehicle in reverse (or release it): rear camera test
+    killall -USR2 vehicle-sim
+    ;;
 restart)
     $0 stop; $0 start
     ;;
 *)
-    echo "Usage: $0 {start|stop|restart|pause}"
+    echo "Usage: $0 {start|stop|restart|pause|reverse}"
     exit 1
     ;;
 esac

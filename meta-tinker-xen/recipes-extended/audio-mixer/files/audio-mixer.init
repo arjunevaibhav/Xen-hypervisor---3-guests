@@ -1,0 +1,54 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          audio-mixer
+# Required-Start:    xenbr0
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Audio pipeline: chimes, media1 and android1 sound to the speaker
+### END INIT INFO
+#
+# audio-mixer mixes the vehicle chimes (highest priority, the guests are
+# turned down while one plays), media1's video sound (UDP 5601) and
+# android1's sound (TCP 5602) on xenbr0 into the speaker output.
+# vehicle-chimes turns the FreeRTOS guest's warnings into chimes.
+# Settings: /etc/default/audio-mixer. Test: "audio-mixer -c warn".
+
+ENABLED=1
+DEVICE=plughw:CARD=Audio,DEV=1
+GAIN=100,100
+CHIMES=1
+OPTS=""
+PIDDIR=/var/run/audio-mixer
+LOG=/var/log/audio-mixer.log
+[ -r /etc/default/audio-mixer ] && . /etc/default/audio-mixer
+
+case "$1" in
+start)
+    [ "$ENABLED" = 1 ] || exit 0
+    echo "Starting audio-mixer on $DEVICE"
+    mkdir -p $PIDDIR
+    ( while :; do audio-mixer -D "$DEVICE" -g "$GAIN" $OPTS; sleep 2; done ) >>$LOG 2>&1 </dev/null &
+    echo $! > $PIDDIR/audio-mixer.pid
+    if [ "$CHIMES" = 1 ]; then
+        ( while :; do vehicle-chimes; sleep 2; done ) >>$LOG 2>&1 </dev/null &
+        echo $! > $PIDDIR/vehicle-chimes.pid
+    fi
+    ;;
+stop)
+    for p in $PIDDIR/*.pid; do
+        [ -f "$p" ] && kill "$(cat $p)" 2>/dev/null
+        rm -f "$p"
+    done
+    killall vehicle-chimes 2>/dev/null
+    # not "killall audio-mixer": this script has that name too
+    for p in $(pidof audio-mixer); do [ "$p" = $$ ] || kill $p; done
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit 0

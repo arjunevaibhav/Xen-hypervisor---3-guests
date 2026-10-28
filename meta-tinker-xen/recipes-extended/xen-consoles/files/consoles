@@ -1,0 +1,35 @@
+#!/bin/sh
+# consoles: dom0, FreeRTOS (rtos1), Android (android1) and media1 consoles
+# side by side in one tmux session on the serial line. Running it again (or after a
+# detach with Ctrl-b d) reattaches to the same session.
+# A guest pane that loses its console (Ctrl-] or the guest stopped) waits for
+# Enter and reconnects.
+
+SESSION=consoles
+
+# The serial line has no window size; ask the PC terminal for it (busybox
+# resize). picocom/minicom on a modern PC terminal are xterm-compatible.
+export TERM=${CONSOLES_TERM:-xterm-256color}
+resize >/dev/null 2>&1
+
+if ! tmux has-session -t $SESSION 2>/dev/null; then
+    guest() {
+        echo "while :; do xl console $1; echo; echo '[$1 console closed - press Enter to reconnect]'; read x; done"
+    }
+    tmux new-session -d -s $SESSION -n consoles
+    tmux select-pane -t $SESSION:0.0 -T "dom0 (Yocto)"
+    tmux split-window -h -t $SESSION:0.0 "$(guest rtos1)"
+    tmux select-pane -t $SESSION:0.1 -T "rtos1 (FreeRTOS)"
+    tmux split-window -v -t $SESSION:0.1 "$(guest android1)"
+    tmux select-pane -t $SESSION:0.2 -T "android1 (Android)"
+    tmux split-window -v -t $SESSION:0.2 "$(guest media1)"
+    tmux select-pane -t $SESSION:0.3 -T "media1 (Yocto media)"
+    tmux select-pane -t $SESSION:0.0
+fi
+
+# Kernel messages written straight to hvc0 would scribble over the panes:
+# keep only emergencies while attached, restore the old level afterwards
+old_level=$(cut -f1 /proc/sys/kernel/printk)
+dmesg -n 1
+tmux attach-session -t $SESSION
+dmesg -n "$old_level"

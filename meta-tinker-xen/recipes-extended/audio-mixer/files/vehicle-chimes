@@ -1,0 +1,19 @@
+#!/bin/sh
+# vehicle-chimes: the FreeRTOS guest's vehicle warnings as chimes.
+#
+# Follows rtos1's console log (written by xenconsoled, as for cluster-hdmi)
+# and asks audio-mixer for a warning chime when the real-time vehicle task
+# raises an alert (overspeed, redline, signal lost) and a softer one when it
+# clears. The reverse chime comes from rear-camera.
+#
+#   vehicle-chimes [rtos console log]
+
+LOG=${1:-/var/log/xen/console/guest-rtos1.log}
+
+# -F: keeps following when the log is created later or trimmed
+tail -n 0 -F "$LOG" 2>/dev/null | while read -r line; do
+    case "$line" in
+    *"ALERT "*|*"SIGNAL LOST"*)        audio-mixer -c warn ;;
+    *" cleared"*|*"SIGNAL OK again"*)  audio-mixer -c info ;;
+    esac
+done

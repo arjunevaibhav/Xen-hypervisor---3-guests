@@ -1,0 +1,12 @@
+root
+root@tinker-board:~# dmesg -n 1
+root@tinker-board:~# xl sched-rtds -d rtos1 -v all
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0      1000      1000        yes
+root@tinker-board:~# xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   320     1     r-----      39.6
+rtos1                                        1     4     1     -b----       0.8
+android1                                     2   511     2     r-----      20.6
+media1                                       3   191     2     r-----      11.6
+root@tinker-board:~# 

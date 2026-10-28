@@ -1,0 +1,14 @@
+# dom0's audio pipeline (/etc/init.d/audio-mixer): every sound goes through
+# audio-mixer to the board's speaker output (3.5 mm jack, onboard USB codec).
+#
+# ALSA output device ("aplay -L" lists them). The onboard codec by name
+# (card "Audio"): its card number changes when another USB sound device,
+# e.g. a webcam's microphone, is plugged in. Its device 0 runs at 8 kHz
+# only; device 1 takes 44.1-192 kHz.
+DEVICE=plughw:CARD=Audio,DEV=1
+# Guest sound levels in percent: media1,android1
+GAIN=100,100
+# Vehicle warnings from the FreeRTOS guest as chimes (vehicle-chimes): 1 or 0
+CHIMES=1
+# More audio-mixer options, e.g. -v (log when a source starts and stops)
+OPTS=""

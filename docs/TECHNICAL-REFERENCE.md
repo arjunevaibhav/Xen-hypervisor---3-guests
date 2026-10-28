@@ -1317,9 +1317,10 @@ static bool timerfd_may_use_alarm(void)
 | `hw-watchdog` | S05 | opens /dev/watchdog (dw_wdt), writes every 5 s, never closes cleanly | – |
 | `xenbr0` | S79 | bridge 192.168.100.1/24, ip_forward, `iptables -t nat ... MASQUERADE` | – |
 | `xencommons` | S80 | xenstored, xenconsoled (`--log=guest`) | `/etc/default/xencommons` |
-| `xen-guests` | S90 / K10 | start rtos1 (`rtos1-start`) and android1; stop in reverse (`xl shutdown`, 30 s, then destroy) | `/etc/default/xen-guests` |
+| `xen-guests` | S90 / K10 | start rtos1 (`rtos1-start`), android1 and media1; stop in reverse (`xl shutdown`, 30 s, then destroy) | `/etc/default/xen-guests` |
 | `vehicle-bench` | S92 / K08 | vcan0 + vehicle-sim + can2rtos loop; real bus listen-only | `/etc/default/vehicle-bench` |
-| `cluster-hdmi` | S93 | waits for /dev/fb0, runs the dashboard | `/etc/default/cluster-hdmi` |
+| `cluster-hdmi` | S93 | waits for /dev/fb0, runs the dashboard (ENABLED=0 since Part 6: display-map runs it) | `/etc/default/cluster-hdmi` |
+| `display-map` | S93 / K07 | one viewer per screen (HDMI + USB displays), see 9.10 | `/etc/default/display-map` |
 | `ignition-watch` | S94 / K05 | ACC GPIO → poweroff (ENABLED=0) | `/etc/default/ignition-watch` |
 | `android-hdmi` | – | Android PV screen on HDMI (ENABLED=0) | `/etc/default/android-hdmi` |
 
@@ -1392,6 +1393,206 @@ elif [ $seen_on = 1 ]; then
 fi
 ```
 
+### 9.10 Part 6: four domains, a screen per OS, Android 10 (2026-10-27)
+
+**Status: built, not tested on hardware.** Android 10 (LineageOS 17.1): source synced, first build
+started.
+
+Build 2026-10-27 14:02: `bitbake tinker-xen-test-image`, 4540 tasks, no warnings/errors.
+`tinker-xen-test-image-tinker-board.wic` 3,543,864,320 bytes, sha256 `0fe2d29426b6153e…`.
+GPT: p6 boot 145.6 MiB, p7 root 577.8 MiB, p8 android-system 1.8 GiB, p9 android-data 550 MiB,
+**p10 media-root 298.3 MiB** (`media-guest-image-tinker-board.ext4`, 312,797,184 bytes).
+Verified in the rootfs: no ffmpeg/libav in dom0; `display-map`, `media-guest`,
+`kernel-module-udl`, `/boot/zImage → zImage-5.15.201-yocto-standard`;
+`XEN_GUESTS="rtos1 android1 media1"`; `BUDGET=1000`; boot.scr `dom0_mem=384M`.
+
+**Size reduction, build 2026-10-27 14:54** (4540 tasks, all succeeded):
+`tinker-xen-test-image-tinker-board.wic` **1,571,959,808 bytes** (was 3.54 GB), sha256 `27cb7ba8c8d2b29f…`.
+GPT: p6 boot **48.0 MiB** (`--fixed-size 48M`), p7 root **166.0 MiB** (rootfs 72 MB), p8
+android-system **612.8 MiB** (642,617,344 bytes), p9 android-data 550 MiB, p10 media-root
+**106.3 MiB** (111,470,592 bytes).
+
+| Change | File |
+|---|---|
+| remove `${datadir}/qemu/*` except `keymaps` (220 MB of firmware) | `recipes-devtools/qemu/qemu_%.bbappend` (`do_install:append`) |
+| `IMAGE_ROOTFS_EXTRA_SPACE` 65536 → 32768 | `tinker-xen-test-image.bb` |
+| `IMAGE_ROOTFS_EXTRA_SPACE` 262144 → 65536 | `media-guest-image.bb` |
+| boot `--size 114688K` → `--fixed-size 48M` | `wic/tinker-xen.wks` |
+| system.img: `e2fsck -fy`, `resize2fs -M`, grow to +10 %, `dd if=/dev/null … seek=N` (no `truncate` in HOSTTOOLS), `e2fsck -fy` (fixes resize inode 7 `i_size`), `e2fsck -fn` | `android-guest.bb` |
+| `dom0_mem=320M` | `xen-boot.cmd` |
+| media1 `memory = 192` | `media1.cfg` |
+| rtos1 `memory = 4`; `LENGTH = 4M - 32K`; `GUEST_RAM_MB 4` (`_end` = 0x4002ad18, 172 KB) | `rtos1.cfg`, `guest.ld`, `main.c` |
+
+#### Resource plan
+
+| Domain | Memory | vCPUs | CPUs | Scheduler | Display |
+|---|---|---|---|---|---|
+| Domain-0 | **320 MB** (`dom0_mem=320M`; 512 → 384 → 320) | 1 | Pool-0 (0–2) | credit2 | owns HDMI + USB displays |
+| rtos1 | **4 MB** (was 16) | 1 | CPU 3, pool `rt` | RTDS, **period 1000 µs, budget 1000 µs** (was 200), extratime 1 | via cluster-hdmi (dom0) |
+| android1 | 512 MB (was 768; ~768 again for Android 10) | 2 | `cpus = "0-2"` | credit2 | vfb, VNC :5900 (still commented out for Android 7) |
+| media1 | **192 MB** (was 256) | 2 | `cpus = "0-2"` | credit2 | vfb 800×480, VNC :5901 |
+
+Total **1028 MB** (≈ 1.28 GB with Android 10 at 768 MB) of 2 GB, minus the 98 MB U-Boot reservation.
+
+`rtos1.cfg` is **not** pinned with `cpus = "3"`: the `rt` pool already confines it, and a hard
+affinity outside Pool-0 at create time (before the pool move) could fail the create.
+
+#### dom0 image (`tinker-xen-test-image.bb`)
+
+- Removed: `ffmpeg`, `nature-video` (recipe deleted; the clip moved to `media-player`).
+- Added: `media-guest`, `display-map`, `kernel-module-udl`.
+- `do_image_wic[depends] += "media-guest-image:do_image_complete"`.
+- The SSH setup moved into `classes/tinker-ssh.bbclass` (`inherit tinker-ssh`), shared with media1.
+
+#### Kernel (`xen-dom0-display.cfg`)
+
+```
+CONFIG_DRM_UDL=m      # DisplayLink DL-1x0/DL-1x5 (USB 2.0) adapters
+```
+
+DL-3xxx/DL-5xxx/DL-6xxx need the closed `evdi` + DisplayLinkManager stack: not supported.
+
+#### media1 guest
+
+| File | Content |
+|---|---|
+| `recipes-core/images/media-guest-image.bb` | `core-image-minimal` + `media-player ffmpeg`; `IMAGE_FSTYPES = "ext4"`; `IMAGE_ROOTFS_EXTRA_SPACE = "262144"`; `inherit tinker-ssh`; postprocess: hostname `media1`, static `eth0` `MEDIA_GUEST_IP ?= "192.168.100.4"`/24 gw .1, plain `/etc/resolv.conf` (8.8.8.8) |
+| `recipes-extended/media-guest/files/media1.cfg` | `kernel = "/boot/zImage"` (dom0's 5.15: blk/net/fb/kbd frontends built in); `extra = "console=hvc0 root=/dev/xvda rw rootwait rootfstype=ext4 xen_fbfront.video=2,800,480"`; `disk = [ 'phy:/dev/disk/by-partlabel/media-root,xvda,w' ]`; `vif = [ 'bridge=xenbr0' ]`; `vfb = [ 'vnc=1,vnclisten=127.0.0.1,vncdisplay=1' ]` |
+| `recipes-extended/media-player/` | `media-play [-f fbdev] [-d secs] [-l] file\|dir…`: ffmpeg `-f fbdev`, `-pix_fmt bgra`, scale+pad to the framebuffer; pictures with `-loop 1 -framerate 1 -t SECS`. `media-player` init (S94): loops `/home/root/media`, or `/usr/share/media-player/sixes-river-800x480.mp4` while empty |
+| `wic/tinker-xen.wks` | `part --source rawcopy --sourceparams="file=media-guest-image-${MACHINE}.ext4" --part-name media-root` (partition 10) |
+| `xen-guests` | `XEN_GUESTS="rtos1 android1 media1"`; RDEPENDS `media-guest` |
+| `xen-consoles` | 4th tmux pane: `xl console media1` |
+
+#### display-map (`recipes-extended/display-map`)
+
+`/etc/default/display-map`:
+
+```
+SCREENS="hdmi=rearcam:vnc:5900 usb1=vnc:5901 usb2=cluster usb3=console"
+INPUT_hdmi="/dev/input/event*"          # other screens: none unless INPUT_<screen> is set
+```
+
+- Screen → framebuffer: `hdmi` = the fb whose `/sys/class/graphics/fbN/name` contains `rockchip`;
+  `usbN` = the N-th fb whose name contains `udl`, sorted by `readlink -f fbN/device` (USB port path).
+- Sources: `vnc:<port>` → `android-hdmi -f <fb> -p <port> -I <glob>`; `cluster` →
+  `cluster-hdmi -f <fb> -i $IFACE`; `console` → `con2fb <fb> 1` (`FBIOPUT_CON2FBMAP`), then waits
+  until the display goes away; `rearcam:vnc:<port>` / `rearcam:cluster` → `rear-camera -f <fb>
+  -i $IFACE -- <viewer>`; `rearcam` → `rear-camera` alone (see 9.11).
+- One background loop per screen: waits for the fb, restarts the viewer, re-resolves after an unplug.
+  Log: `/var/log/display-map.log`. Init S93 / K07.
+- Writes `ENABLED=0` to `/etc/default/android-hdmi` and `/etc/default/cluster-hdmi` (the
+  single-screen services).
+
+Viewer changes:
+
+- `android-hdmi`: new `-I <glob>|none` (input devices to forward; default `/dev/input/event*`).
+- `android-hdmi` and `cluster-hdmi`: switch tty1 to `KD_GRAPHICS` only if
+  `FBIOGET_CON2FBMAP` for console 1 equals the minor of their own fb (`console_on()`).
+
+#### Android 10 (LineageOS 17.1): host setup and sync
+
+| Item | Value |
+|---|---|
+| Host | Ubuntu 22.04.5, 8 threads, 15 GB RAM, **16 GB swap** (`/swapfile`, was 2 GB) |
+| Packages | LineageOS build list + `python2` (2.7.18) + `git-lfs` 3.0.2 |
+| Tree | `~/lineage-17.1`, **58 GB** after sync |
+| Init | `repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --depth=1 -g default,-darwin,-mips,-notdefault` |
+| Sync | `repo sync -c -j8 --no-tags --no-clone-bundle --optimized-fetch --prune` |
+| Local manifest | `.repo/local_manifests/tinker-xen.xml`: `remove-project` for `android_external_chromium-webview_prebuilt_{arm64,x86,x86_64}` |
+| WebView ARM | re-synced, `git lfs pull` → `webview.apk` 98,126,751 bytes |
+| Target | `lineage_arm-userdebug` (`vendor/lineage/build/target/product/lineage_arm.mk`: inherits `aosp_arm.mk`, `TARGET_USES_64_BIT_BINDER := true`) |
+
+Work still to do for the Xen guest:
+
+1. Plain `lineage_arm-userdebug` build (`source build/envsetup.sh; lunch lineage_arm-userdebug; m -j8`).
+2. Guest kernel: Android 10 userspace needs the 64-bit binder ABI (`CONFIG_ANDROID_BINDER_IPC_32BIT`
+   off) and `CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder"`; the 4.14 base is an
+   Android 10 launch kernel version.
+3. Graphics without a GPU: SwiftShader (GLES) plus a composer/gralloc that works on the Xen PV
+   framebuffer. Highest risk; no known Android 10 ARM32 software-rendering setup.
+4. Vendor init/fstab for Xen (xvda system, vendor, xvdb data, hvc0 console, eth0 192.168.100.3),
+   a new `android-guest` recipe and wks partitions (`android-vendor`).
+
+Expected sizes: build output 60–90 GB; card: system 1.5–2 GB, vendor 0.1–0.3 GB, data ~2 GB → whole
+card ~5–5.5 GB (8 GB minimum, 16 GB recommended).
+
+Rejected: **Android 17** (64-bit only, RAM/GPU/kernel requirements, ~400 GB / 32–64 GB host).
+Fallbacks: Android 9 (from source; Replicant 9 ran software-rendered on ARMv7) or 7.1.1
+(`armeabi-v7a-25_r18`, Google APIs, the last prebuilt ARM32 image).
+
+### 9.11 Rear camera and audio pipeline (2026-10-27)
+
+**Status: host-tested (logic, rendering, mixing), not tested on hardware.**
+
+**CAN:** new frame `0x0C2` gear, DLC 2: byte 0 selector `'P' 'R' 'N' 'D'`, byte 1 forward gear
+1–6 (0 otherwise). `vehicle-sim` cycle: 50–52 s stand (D), 52–58 s reverse 0→4→0 km/h, 58–60 s P;
+SIGUSR2 (`vehicle-bench reverse`) holds R at 3 km/h. `cluster-hdmi` shows the selector when it is
+not D (falls back to the speed-derived gear after 1 s without 0x0C2) and redraws its static layer
+on SIGCONT; `android-hdmi` requests a full (non-incremental) VNC update on SIGCONT. can2rtos and
+FreeRTOS ignore 0x0C2.
+
+**`rear-camera`** (`recipes-extended/rear-camera`): `rear-camera [-f fb] [-i if] [-d /dev/video0]
+[-s 640x480] [-r 15] [-n] [-T] [-g WxH] [-- viewer args]`. Forks/execs the viewer; on reverse
+(0x0C2 byte 0 == 'R', or SIGUSR1 manual, or -T) SIGSTOPs it and waits (`waitpid WUNTRACED`) until
+it has stopped, opens V4L2 (YUYV only, 4 mmap buffers, MJPEG-only cameras refused), draws nearest-
+neighbour scaled, aspect-kept, mirrored (-n off) BT.601 YUYV→RGB at ≤ 15 fps, fixed guide lines
+(3 bands) and a banner. Exit: 1 s hold after R ends, or 1 s without 0x0C2 → STREAMOFF, SIGCONT.
+Camera errors/unplug → colour bars + "NO CAMERA", reopen every 2 s. Viewer exit → rear-camera
+exits 1 (display-map restarts). SIGTERM → SIGTERM + SIGCONT to the viewer. Reverse chime via
+`/run/audio-mixer/chime` (O_NONBLOCK; no-op when the mixer is down). display-map sources
+`rearcam:cluster`, `rearcam:vnc:<port>`, `rearcam`; default `usb2=rearcam:cluster`.
+Kernel: `CONFIG_USB_VIDEO_CLASS=m` was already set; image adds `kernel-module-uvcvideo`.
+
+**`audio-mixer`** (`recipes-extended/audio-mixer`, init S91): ALSA `snd_pcm_set_params` S16_LE
+stereo 48 kHz, 80 ms latency, 20 ms (960-frame) mix periods; the blocking `snd_pcm_writei` paces
+the loop (clock_nanosleep when no card; card reopened every 2 s, alsa-lib error output silenced).
+
+| Source | Transport | Format | Buffering |
+|---|---|---|---|
+| media (media1) | UDP 192.168.100.1:5601, only from .4 | S16LE 2 ch 48 kHz | > 300 ms buffered → drop to 100 ms |
+| android (android1) | TCP 192.168.100.1:5602, only from .3, one connection (new replaces old), SO_RCVBUF 16 KB | S16LE 2 ch 44.1 kHz | read only up to 100 ms ahead → TCP back-pressure paces the guest |
+| chimes | FIFO `/run/audio-mixer/chime` (O_RDWR), one name per line; `audio-mixer -c NAME` | synthesised sine, 5 ms ramps | queue of 8, duplicates dropped |
+
+Per source: 32768-frame ring, 60 ms prebuffer before playing, linear-interpolation resampling
+(16.16 step), gain `-g media%,android%`. Chimes: `warn` 3× 880 Hz 160 ms, `reverse` 2× 1250 Hz
+90 ms, `info` 660+880 Hz. Ducking: guests × 0.25 while a chime plays or is queued (one-pole,
+~10 ms). `vehicle-chimes`: `tail -n 0 -F` of `guest-rtos1.log`; `ALERT `/`SIGNAL LOST` → warn,
+` cleared`/`SIGNAL OK again` → info. Config `/etc/default/audio-mixer` (DEVICE, GAIN, CHIMES, OPTS).
+
+**media1:** `media-play -a URL` (default `udp://192.168.100.1:5601?pkt_size=1920`, `""` = off). A
+video with an audio stream (probed with `ffmpeg -i | grep Audio:`; an output without streams is an
+ffmpeg error) gets a second output `-map 0:a:0 -ac 2 -ar 48000 -f s16le`; `-re` paces it.
+
+**Board test 2026-10-27 (Step 40):** uvcvideo STREAMON oopsed in `dma_common_alloc_pages`
+(`memset(page_address())` = NULL) because xen-swiotlb's `.alloc_pages` path took a CMA page and
+dom0's CMA (64 MiB at 0x70000000, bank 1) is highmem; kernel 0003 frees a highmem CMA page and
+allocates from lowmem. After the oops the stream mutex/USB device lock stays held: later USB
+enumeration and `lsusb` hang until reboot. Codec card "Audio" (0bda:49f6): pcm0 is 8 kHz only,
+pcm1/pcm2 44.1–192 kHz → `DEVICE=plughw:CARD=Audio,DEV=1`. Init `stop` used `killall
+audio-mixer`, which matched the init script itself → pidof loop excluding `$$`. Android 7 has no
+`mkfifo`/`netcat` links (toybox applets only).
+
+**Android screen:** the 2026-10-25 "timer freeze" (section Y) was s2idle suspend after the 60 s
+screen timeout (`PM: suspend entry (s2idle)` at 162 s in guest-android1.log); nothing wakes the
+guest. Fix: `write /sys/power/wake_lock xen` in `on init`, `svc power stayon true` and
+`screen_off_timeout 2147483647` at boot_completed (service xen-stayon). android1.cfg: vfb on,
+`xen_fbfront.depth=16 xen_fbfront.video=2,800,480 qemu=0` (kernel cmdline `qemu=0` →
+`ro.kernel.qemu=0` via init's emulator pass, HWUI off); default.prop `ro.config.low_ram=true`
+(`ActivityManager.isHighEndGfx()` false → ImageWallpaper draws with Canvas, not GLES 2.0).
+Verified live: 6+ min with the screen, launcher focused, no new suspend entries.
+display-map default `hdmi=rearcam:vnc:5900 usb1=vnc:5901 usb2=cluster usb3=console`.
+
+**android1 (Android 7):** the SDK image's only audio HAL is `audio.primary.goldfish.so`, which
+writes 44.1 kHz stereo S16 to `/dev/eac` (O_RDWR); `ro.hardware=xen` and empty
+`ro.product.board`/`ro.board.platform` meant no primary HAL loaded at all. The build adds
+`/system/lib/hw/audio.primary.xen.so → audio.primary.goldfish.so` (debugfs `symlink`, e2fsck
+clean). `init.xen.rc`: `on post-fs` `exec … /xen-audio.sh setup` makes `/dev/eac` a FIFO
+(root:audio 0660) before audioserver starts; service `xen-audio` (su domain, SELinux permissive)
+sets `tcp_wmem` to `4096 16384 32768` and runs `netcat 192.168.100.1 5602 < /dev/eac` in a loop.
+The HAL's input stream would also read `/dev/eac` (recording would eat playback data; no mic
+anyway). Latency ≈ pipe 64 KB (370 ms) + send buffer + 100 ms ring. Android 10 (Q goldfish HAL uses
+tinyalsa) needs a different path: not done.
+
 ---
 
 ## 10. Build and flash procedure
@@ -1435,6 +1636,33 @@ Expected for the final image: `917560` bytes, `6a53ae892f2dc3bce53696a0c1b1275e1
 
 Insert the card, connect the UART, start `picocom -b 115200 /dev/ttyUSB0`, power on,
 **do not press keys** until `tinker-board login:` appears. Log in as `root` (no password).
+
+### 10.5 Hardware test after flashing (Step 40 image)
+
+```
+cat /sys/class/drm/card0-HDMI-A-1/status          connected
+grep ^SCREENS /etc/default/display-map             SCREENS="hdmi=rearcam:vnc:5900 usb1=vnc:5901 usb2=cluster usb3=console"
+tail -3 /var/log/display-map.log                   rear-camera: /dev/fb0 800x480 ... viewer started
+                                                   android-hdmi: connected to 127.0.0.1:5900, guest 800x480
+adb connect 192.168.100.3:5555
+adb shell getprop sys.boot_completed               1
+adb shell cat /sys/power/wake_lock                 xen
+adb shell dumpsys power | grep -E "mWakefulness=|mStayOn="     Awake / true
+adb shell dumpsys window | grep -m1 mCurrentFocus  com.android.launcher3/...Launcher
+grep -A4 Mouse /proc/bus/input/devices             H: Handlers=eventN
+ls -l /proc/$(pidof android-hdmi)/fd | grep event  the mouse's eventN is open
+/etc/init.d/vehicle-bench reverse                  rear-camera: in reverse; /dev/video0 640x480 YUYV
+/etc/init.d/vehicle-bench reverse                  rear-camera: out of reverse
+dmesg | grep -i -A3 "Oops\|NULL pointer"           (nothing: patch 0003)
+audio-mixer -c warn                                (chime)
+grep -E "^rate|^state" /proc/asound/card*/pcm1p/sub0/hw_params /proc/asound/card*/pcm1p/sub0/status
+                                                   rate: 48000 / state: RUNNING
+amixer -c Audio sget PCM,1                         Playback 175 [100%] [on]
+tail /var/log/audio-mixer.log                      playing on plughw:CARD=Audio,DEV=1; android: connected from 192.168.100.3
+adb shell am start -a android.intent.action.VIEW -t audio/ogg \
+  -d file:///system/media/audio/ringtones/Andromeda.ogg -n com.android.music/.AudioPreview
+netstat -tn | grep 5602                            Recv-Q drains back to 0 after the ringtone
+```
 
 ---
 
@@ -1483,6 +1711,21 @@ adb logcat
 adb kill-server                         (after use)
 ```
 
+### 11.3a One HDMI display: which OS it shows
+
+`sed -i 's/^SCREENS=.*/SCREENS="hdmi=<source>"/' /etc/default/display-map` then
+`/etc/init.d/display-map restart`:
+
+| OS | `<source>` | Expected in `/var/log/display-map.log` | Other checks |
+|---|---|---|---|
+| android1 | `rearcam:vnc:5900` | `connected to 127.0.0.1:5900`, `guest 800x480 on 800x480` | `adb shell getprop sys.boot_completed` → 1 |
+| media1 | `vnc:5901` | `connected to 127.0.0.1:5901` | `xl list \| grep media1` |
+| rtos1 + car | `rearcam:cluster` | `cluster-hdmi: /dev/fb0 800x480 32 bpp` | `grep vehicle /var/log/xen/console/guest-rtos1.log \| tail -3` |
+| dom0 | `console` | `hdmi (/dev/fb0): console` | login prompt on the display (USB keyboard) |
+| rear camera | (`rearcam:` sources) | `rear-camera: in reverse`, `/dev/video0 640x480 YUYV` | `/etc/init.d/vehicle-bench reverse` (toggle) |
+
+Black screen: `cat /sys/class/drm/card0-HDMI-A-1/status` must be `connected`.
+
 ### 11.4 Automotive bench
 
 ```
@@ -1492,6 +1735,11 @@ grep vehicle /var/log/xen/console/guest-rtos1.log | tail
 /etc/init.d/vehicle-bench pause               → "[vehicle] SIGNAL OK again"
 tail /var/log/vehicle-bench.log               can2rtos: 10s: frames 1001, max gap 24.9 ms, dropped 0
 cluster-hdmi -g 1280x720 -S /tmp/c.ppm        dashboard snapshot without monitor
+/etc/init.d/vehicle-bench reverse             hold reverse: rear camera on the cluster screen
+candump vcan0,0C2:7FF                         gear frames: 0C2 [2] 52 00 = 'R'
+tail /var/log/display-map.log                 rear-camera: in reverse / /dev/video0 640x480 YUYV
+audio-mixer -c warn                           warning chime (also reverse, info)
+tail /var/log/audio-mixer.log                 media: UDP ..., android: connected from 192.168.100.3
 ```
 
 Real car (read-only): plug a USB CAN adapter, then in `/etc/default/vehicle-bench`:
@@ -1529,6 +1777,77 @@ speaker-test -c 2 -t sine                          sound (ALSA card 0)
 reboot                                              → guests stopped, Reset cause: RST
 poweroff                                            → "reboot: Power down"
 ```
+
+### 11.7 Logs
+
+`/var/log` is a link to `/var/volatile/log` (tmpfs): **all logs are lost at every reboot**. Save
+them first (below). U-Boot and early Xen output exist only on the UART: start
+`picocom -b 115200 /dev/ttyUSB0` before power-on to see them. Type or paste one short line at a
+time: Xen buffers only 128 characters of UART input for dom0 (`SERIAL_RX_SIZE`), longer pastes
+lose characters.
+
+Boot (U-Boot → Xen → dom0):
+
+```
+xl dmesg                                       Xen log: PSCI, CPUs, schedulers, guest creation
+cat /var/log/dmesg                             dom0 kernel log saved at boot
+dmesg                                          dom0 kernel log now (dmesg -w: follow)
+cat /var/log/boot                              init scripts ("Starting ..." lines)
+```
+
+Yocto Linux (dom0):
+
+```
+cat /var/log/messages                          syslog, all services (tail -f to follow)
+cat /var/log/cluster-hdmi.log                  dashboard
+cat /var/log/vehicle-bench.log                 vehicle-sim / can2rtos
+cat /var/log/ignition-watch.log                ignition (when enabled)
+cat /var/log/android-hdmi.log                  Android screen viewer (when enabled)
+cat /var/log/xen/xen-hotplug.log               vif/disk hotplug scripts
+```
+
+FreeRTOS (rtos1), written by xenconsoled (`XENCONSOLED_TRACE=guest` in `/etc/default/xencommons`):
+
+```
+cat /var/log/xen/console/guest-rtos1.log       full console (tail -f to follow)
+grep '10 ms task' /var/log/xen/console/guest-rtos1.log    timing reports
+grep ALERT /var/log/xen/console/guest-rtos1.log           vehicle warnings
+xl console rtos1                               live console (Ctrl-] leaves)
+cat /var/log/xen/xl-rtos1.log                  xl (toolstack) log
+```
+
+Android (android1):
+
+```
+cat /var/log/xen/console/guest-android1.log    kernel + init console from boot
+xl console android1                            live console (Ctrl-] leaves)
+adb connect 192.168.100.3:5555                 needed before the adb lines
+adb logcat -d                                  app/framework log (without -d: follow)
+adb logcat -d -b crash                         crashes only
+adb shell dmesg                                Android kernel log
+adb shell getprop sys.boot_completed           1 = boot finished
+cat /var/log/xen/xl-android1.log               xl log (.1, .2: earlier starts)
+cat /var/log/xen/qemu-dm-android1.log          QEMU device model log
+```
+
+`Ctrl-C` stops the following forms (`tail -f`, `dmesg -w`, `adb logcat`). A frozen Android guest
+makes `adb logcat` hang: `Ctrl-C` returns the prompt.
+
+Save everything to the SD card before a reboot (one line at a time):
+
+```
+D=/home/root/logs-$(date +%H%M%S)
+mkdir -p $D
+cp -r /var/log/* $D/
+xl dmesg > $D/xen-dmesg.txt
+dmesg > $D/dom0-dmesg-now.txt
+xl list > $D/xl-list.txt
+adb connect 192.168.100.3:5555
+adb logcat -d > $D/android-logcat.txt
+sync; ls $D
+```
+
+On the PC (card in a reader): `/media/$USER/root/home/root/logs-*`.
 
 ---
 
@@ -1638,6 +1957,13 @@ started with `bootz`/`go`, so nothing was written to the card before it was prov
   power-cycled; use a solid 5 V / 3 A supply with a short cable.
 - **Not tested on hardware:** guest internet (no Ethernet), HDMI picture (no monitor), ignition (not
   wired), real CAN bus (no adapter).
+- **Part 6 tested on hardware 2026-10-27** (`diagnostics/part6/RESULTS.md`): dom0 320 MB, android1
+  512 MB, media1 192 MB, rtos1 4 MB, shrunk android-system (613 MB), RTDS 1000/1000 at boot
+  (`xl sched-rtds -d rtos1 -v all`), media1 on dom0's kernel. **Still untested:** display-map on
+  real displays, udl USB displays, HDMI pixel-clock patch 0002.
+- **USB displays:** only DisplayLink DL-1x0/DL-1x5 (udl); no GPU, so all screens are CPU-copied
+  (VNC raw encoding) at 500 MHz.
+- **Android 10:** in progress; software rendering on ARM32 without a GPU is unproven.
 
 ---
 
@@ -1650,6 +1976,10 @@ failure is fixed from the PC.
 |---|---|
 | A guest misbehaves | `xl destroy <name>; /etc/init.d/xen-guests start`. Don't autostart: `XEN_GUESTS=""` in `/etc/default/xen-guests` |
 | Xen or dom0 hangs | the hardware watchdog resets the board after ~45 s; otherwise power-cycle |
+| dom0 shell blocked, Xen alive | `Ctrl-a` ×3 (input to Xen), `r` = scheduler dump, `R` = reboot the machine; `Ctrl-a` ×3 back to dom0 |
+| USB enumeration / `lsusb` hangs | a uvcvideo oops left the device lock held (before kernel 0003): reboot |
+| Android unreachable 1–2 min after boot | s2idle suspend: check `/sys/power/wake_lock` (`xen`) and `PM: suspend entry` in `/var/log/xen/console/guest-android1.log` |
+| Android screen off again | headless: drop `vfb` in `/etc/xen/android1.cfg`, extra `video=vfb:640x480-16@60 vfb.videomemorysize=4194304` instead of the xen_fbfront/qemu options |
 | Xen does not boot | press a key at "Hit any key to stop autoboot", then `sysboot mmc 1:6 any ${scriptaddr} /native/extlinux.conf` (Linux without Xen). boot.scr also falls back by itself |
 | Debug a Xen boot | at the U-Boot prompt `loady ${xen_addr}` a debug Xen and run the xen-boot.cmd lines by hand; nothing is written |
 | Android data broken | reflash the card (or `dd` android-userdata.img to p9) |
@@ -1687,6 +2017,8 @@ Rules agreed at the start and followed throughout:
 | Wire and test ignition-watch | optocoupler on pin 7, power-hold relay |
 | Real CAN adapter | candleLight/PEAK, listen-only, adapt IDs to the car |
 | Android display | needs GLES 2.0 (virtio-gpu/virgl not available in Xen 4.16 ARM) or a fix for the vtimer freeze |
+| Android 10 guest | build `lineage_arm-userdebug`, binder-64 guest kernel, SwiftShader + PV-framebuffer composer (9.10) |
+| Part 6 bring-up | flash with Android 7 first; check xl list, RTOS timing, media1, display-map, temperature |
 | Newer Xen (4.17+) | upstream RTDS fixes, cpupool improvements; would drop patches 0004/0005 |
 | Upstreaming | Xen 0001/0002/0003, kernel 0001 are upstream candidates |
 | Security hardening | keep secure DDR regions, put the PSCI monitor in TrustZone RAM |
@@ -1722,6 +2054,8 @@ Rules agreed at the start and followed throughout:
 | 10-25 08:31 | 20261025083123 | 59e8c585 | automotive bench + dashboard |
 | 10-25 14:52 | (ignition build) | 0a623c4a | burst fix, ignition – hit the RTDS panic |
 | **10-25 15:14** | **20261025094250** | **99a3fec6** | **RTDS fix – final, flashed and verified** |
+| 10-27 16:19 | 20261027104724 | – | Part 6 + rear camera/audio (flashed; webcam oops, 8 kHz output) |
+| **10-27 17:25** | **20261027115058** | **a1263bb0** | **kernel 0003, Android screen + keep-awake, 48 kHz output, audio fixes – to flash** |
 
 ### 18.2 Log index (`~/yocto-rk3288/diagnostics/`)
 

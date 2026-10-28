@@ -35,7 +35,10 @@ fdt set /chosen \#size-cells <1>
 # its own cpupool with the real-time RTDS scheduler (see rtos1-start): RTDS is
 # "experimental" in Xen 4.16 and hit an assertion (rt.c:587) when it scheduled
 # all 4 CPUs while a 2-vCPU guest was created.
-fdt set /chosen xen,xen-bootargs "console=dtuart dtuart=serial2 dom0_mem=512M dom0_max_vcpus=1 sched=credit2 loglvl=all guest_loglvl=all"
+# dom0_mem=320M: dom0 is the base image plus the Xen backends, QEMU for the
+# guests' screens and the display, vehicle and console services (video
+# playback is in the media1 guest).
+fdt set /chosen xen,xen-bootargs "console=dtuart dtuart=serial2 dom0_mem=320M dom0_max_vcpus=1 sched=credit2 loglvl=all guest_loglvl=all"
 fdt mknod /chosen module@4000000
 fdt set /chosen/module@4000000 compatible "xen,linux-zimage" "xen,multiboot-module"
 fdt set /chosen/module@4000000 reg <${dom0_addr} 0x${dom0_size}>

@@ -1,0 +1,52 @@
+ls /dev/fb* /dev/dri 2>&1; grep . /sys/class/graphics/fb*/naame
+/dev/fb0
+
+/dev/dri:
+by-path  card0
+rockchipdrmfb
+root@tinker-board:~# cat /sys/class/drm/card*-*/status 2>&1; ls /sys/class/drm/
+connected
+card0           card0-HDMI-A-1  version
+root@tinker-board:~# cat /var/log/display-map.log | tail
+hdmi (/dev/fb0): vnc:5900
+android-hdmi: /dev/fb0 800x480, 32 bpp
+root@tinker-board:~# ps | grep -E "[a]ndroid-hdmi|[c]luster-hdmi|[d]isplay-map"  | head
+  659 root      0:00 {S93display-map} /bin/sh /etc/rc5.d/S93display-map start
+  660 root      0:00 {S93display-map} /bin/sh /etc/rc5.d/S93display-map start
+  661 root      0:00 {S93display-map} /bin/sh /etc/rc5.d/S93display-map start
+  662 root      0:00 {S93display-map} /bin/sh /etc/rc5.d/S93display-map start
+  685 root      0:00 android-hdmi -f /dev/fb0 -p 5900 -I /dev/input/event*
+root@tinker-board:~# dmesg | grep -iE "drm|hdmi|vop|udl" | tail -15
+[    0.076798] platform ff980000.hdmi: Fixing up cyclic dependency with ff940000.vop
+[    0.076959] platform ff980000.hdmi: Fixing up cyclic dependency with ff930000.vop
+[    3.933566] rockchip-vop ff930000.vop: Adding to iommu group 0
+[    3.934674] rockchip-vop ff940000.vop: Adding to iommu group 1
+[    3.965675] rockchip-drm display-subsystem: bound ff930000.vop (ops vop_component_ops [rockchipdrm])
+[    3.967577] rockchip-drm display-subsystem: bound ff940000.vop (ops vop_component_ops [rockchipdrm])
+[    3.968019] dwhdmi-rockchip ff980000.hdmi: Detected HDMI TX controller v2.01a with HDCP (DWC HDMI 2.0 TX PHY)
+[    3.975390] rockchip-drm display-subsystem: bound ff980000.hdmi (ops dw_hdmi_rockchip_ops [rockchipdrm])
+[    4.338927] rockchip-drm display-subsystem: [drm] fb0: rockchipdrmfb frame buffer device
+[    4.340438] [drm] Initialized rockchip 1.0.0 20140818 for display-subsystem on minor 0
+root@tinker-board:~# lsusb
+Bus 003 Device 001: ID 1d6b:0002
+Bus 001 Device 001: ID 1d6b:0002
+Bus 001 Device 002: ID 05e3:0608
+Bus 002 Device 001: ID 1d6b:0002
+Bus 003 Device 002: ID 0bda:49f6
+root@tinker-board:~# sed -i 's/^SCREENS=.*/SCREENS="hdmi=vnc:5901 usb1=cluster ussb2=console"/' /etc/default/display-map
+root@tinker-board:~# grep ^SCREENS /etc/default/display-map
+SCREENS="hdmi=vnc:5901 usb1=cluster usb2=console"
+root@tinker-board:~# /etc/init.d/display-map restart
+Starting display-map: hdmi=vnc:5901
+Starting display-map: usb1=cluster
+Starting display-map: usb2=console
+root@tinker-board:~# sleep 5; tail -4 /var/log/display-map.log
+tail -5 /var/log/display-map.log
+android-hdmi: /dev/fb0 800x480, 32 bpp
+hdmi (/dev/fb0): vnc:5901
+android-hdmi: /dev/fb0 800x480, 32 bpp
+android-hdmi: guest 800x480 on 800x480 monitor at +0+0
+android-hdmi: connected to 127.0.0.1:5901
+root@tinker-board:~# ps | grep [a]ndroid-hdmi
+ 2983 root      0:02 android-hdmi -f /dev/fb0 -p 5901 -I /dev/input/event*
+root@tinker-board:~# 

@@ -3,9 +3,11 @@
  * can2rtos: read-only gateway from a CAN bus to the FreeRTOS guest.
  *
  * Receives the speed (0x0C0) and engine (0x0C1) frames, and for every speed
- * frame writes "V <seq> <speed 0.01 km/h> <rpm>\n" to the FreeRTOS guest's
+ * frame writes "\036V <seq> <speed 0.01 km/h> <rpm>\n" to the FreeRTOS guest's
  * console (the pty that xenconsoled gives it), which the guest's vehicle
- * task reads. This program never transmits on the CAN bus; for a real bus
+ * task reads. The RS byte (036) tells the guest this is a frame, not keys
+ * typed in "xl console rtos1"; each frame is one write(), so typed keys
+ * cannot land inside it. This program never transmits on the CAN bus; for a real bus
  * also put the interface in listen-only mode (vehicle-bench does that).
  *
  *   can2rtos [-i vcan0] [-d rtos1]
@@ -113,7 +115,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		n = snprintf(line, sizeof(line), "V %u %u %u\n", ++seq,
+		n = snprintf(line, sizeof(line), "\036V %u %u %u\n", ++seq,
 			     f.data[0] << 8 | f.data[1], rpm);
 		{
 			/* 10 s statistics: frames passed on, largest gap between writes */

@@ -1,0 +1,98 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          display-map
+# Required-Start:    xen-guests vehicle-bench
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: One screen per OS: guests, cluster and dom0 console on HDMI + USB displays
+### END INIT INFO
+#
+# Starts one viewer per screen listed in SCREENS (/etc/default/display-map):
+# android-hdmi for a guest's PV framebuffer, cluster-hdmi for the instrument
+# cluster, con2fb for dom0's text console; rear-camera around a viewer (it
+# pauses the viewer and shows the camera in reverse). Each screen waits for its display
+# (HDMI creates its framebuffer on the first hotplug, USB adapters when they
+# are plugged in) and is picked up again after an unplug.
+
+SCREENS="hdmi=vnc:5900"
+IFACE=vcan0
+PIDDIR=/var/run/display-map
+LOG=/var/log/display-map.log
+[ -r /etc/default/vehicle-bench ] && . /etc/default/vehicle-bench
+[ -r /etc/default/display-map ] && . /etc/default/display-map
+
+# /dev/fbN of a screen name, empty if it is not connected
+screen_fb() {
+    case "$1" in
+    hdmi)
+        for f in /sys/class/graphics/fb*; do
+            grep -qs rockchip $f/name && { echo /dev/${f##*/}; return; }
+        done
+        ;;
+    usb*)
+        # USB adapters in USB port order
+        for f in /sys/class/graphics/fb*; do
+            grep -qs udl $f/name && echo "$(readlink -f $f/device) ${f##*/}"
+        done | sort | sed -n "${1#usb}p" | sed 's,.* ,/dev/,'
+        ;;
+    esac
+}
+
+# Keep one screen's viewer running (in the background)
+run_screen() {
+    screen=$1 source=$2
+    eval input=\${INPUT_$screen:-none}
+    while :; do
+        fb=$(screen_fb $screen)
+        if [ -z "$fb" ] || [ ! -c "$fb" ]; then
+            sleep 2
+            continue
+        fi
+        echo "$screen ($fb): $source"
+        case "$source" in
+        vnc:*)   android-hdmi -f $fb -p ${source#vnc:} -I "$input" ;;
+        cluster) cluster-hdmi -f $fb -i $IFACE ;;
+        rearcam:vnc:*)
+            rear-camera -f $fb -i $IFACE -- android-hdmi -f $fb -p ${source#rearcam:vnc:} -I "$input" ;;
+        rearcam:cluster)
+            rear-camera -f $fb -i $IFACE -- cluster-hdmi -f $fb -i $IFACE ;;
+        rearcam) rear-camera -f $fb -i $IFACE ;;
+        console)
+            con2fb $fb 1
+            # until the display goes away
+            while [ -c $fb ] && [ "$(screen_fb $screen)" = $fb ]; do sleep 2; done
+            ;;
+        *)       echo "$screen: unknown source $source"; return 1 ;;
+        esac
+        sleep 2
+    done
+}
+
+case "$1" in
+start)
+    mkdir -p $PIDDIR
+    for entry in $SCREENS; do
+        screen=${entry%%=*}
+        echo "Starting display-map: $entry"
+        run_screen $screen ${entry#*=} >>$LOG 2>&1 </dev/null &
+        echo $! > $PIDDIR/$screen.pid
+    done
+    ;;
+stop)
+    for p in $PIDDIR/*.pid; do
+        [ -f "$p" ] && kill "$(cat $p)" 2>/dev/null
+        rm -f "$p"
+    done
+    # rear-camera first: it lets a viewer it has paused finish too
+    killall rear-camera 2>/dev/null
+    killall android-hdmi cluster-hdmi 2>/dev/null
+    ;;
+restart)
+    $0 stop; $0 start
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit 0

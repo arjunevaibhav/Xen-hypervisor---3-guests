@@ -7,8 +7,10 @@ ip route add default via 192.168.100.1 dev eth0
 # Android 7 ignores net.dns1: DNS goes through netd's resolver, which needs
 # a default network. This kernel has no policy routing, so the network is
 # only a resolver context; traffic uses the main table route above.
+# Wait for the end of boot: system_server resets netd when it starts, which
+# drops a network created before that (google.com did not resolve).
 n=0
-while [ ! -S /dev/socket/netd ] && [ $n -lt 60 ]; do
+while [ "$(getprop sys.boot_completed)" != 1 ] && [ $n -lt 300 ]; do
     sleep 1
     n=$((n + 1))
 done

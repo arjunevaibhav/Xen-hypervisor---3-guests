@@ -1,0 +1,65 @@
+#!/bin/sh
+# media-play: show videos and pictures full screen on the framebuffer, with
+# ffmpeg (software decode). Directories are played in name order. A video's
+# sound goes to dom0's audio-mixer (S16LE stereo 48 kHz, UDP over xenbr0),
+# which plays it on the board's speaker output.
+#
+#   media-play [-f /dev/fb0] [-d seconds per picture] [-a url|-a ""] [-l] file|dir ...
+#   -a: where the sound goes, "" for none
+#   -l: loop over the list forever
+#
+# Copy files into the guest with scp (media1 is 192.168.100.4 on xenbr0),
+# e.g. "scp -r photos root@192.168.100.4:/home/root/media/".
+
+FBDEV=/dev/fb0
+SECS=5
+# 1920 bytes: 10 ms of sound per datagram
+AUDIO="udp://192.168.100.1:5601?pkt_size=1920"
+LOOP=0
+usage="usage: $0 [-f fbdev] [-d seconds] [-a url] [-l] file|dir ..."
+while getopts f:d:a:l opt; do
+    case $opt in
+    f) FBDEV=$OPTARG ;;
+    d) SECS=$OPTARG ;;
+    a) AUDIO=$OPTARG ;;
+    l) LOOP=1 ;;
+    *) echo "$usage"; exit 2 ;;
+    esac
+done
+shift $((OPTIND - 1))
+[ $# -gt 0 ] || { echo "$usage"; exit 2; }
+
+size=$(cat /sys/class/graphics/${FBDEV#/dev/}/virtual_size) || exit 1
+w=${size%,*} h=${size#*,}
+# keep the aspect ratio, black bars around
+fit="scale=$w:$h:force_original_aspect_ratio=decrease,pad=$w:$h:-1:-1"
+
+play() {
+    case "$(echo "${1##*.}" | tr A-Z a-z)" in
+    jpg|jpeg|png|bmp|gif|webp|tif|tiff)
+        ffmpeg -hide_banner -loglevel error -nostdin -re -loop 1 -framerate 1 -t "$SECS" \
+            -i "$1" -vf "$fit" -pix_fmt bgra -f fbdev $FBDEV ;;
+    mp4|mkv|webm|avi|mov|m4v|mpg|mpeg|ts|ogv)
+        # an output without streams is an error: sound only when there is some
+        if [ -n "$AUDIO" ] && ffmpeg -hide_banner -nostdin -i "$1" 2>&1 | grep -q "Audio:"; then
+            ffmpeg -hide_banner -loglevel error -nostdin -re -i "$1" \
+                -map 0:v:0 -vf "$fit" -pix_fmt bgra -f fbdev $FBDEV \
+                -map 0:a:0 -ac 2 -ar 48000 -f s16le "$AUDIO"
+        else
+            ffmpeg -hide_banner -loglevel error -nostdin -re -i "$1" \
+                -vf "$fit" -pix_fmt bgra -an -f fbdev $FBDEV
+        fi ;;
+    *)  return 0 ;;
+    esac
+}
+
+while :; do
+    for arg in "$@"; do
+        if [ -d "$arg" ]; then
+            for f in "$arg"/*; do [ -f "$f" ] && play "$f"; done
+        else
+            play "$arg"
+        fi
+    done
+    [ $LOOP = 1 ] || break
+done

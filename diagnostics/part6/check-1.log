@@ -1,0 +1,352 @@
+root
+root@tinker-board:~# dmesg -n 1
+root@tinker-board:~# xl list
+Name                                        ID   Mem VCPUs	State	Time(s)
+Domain-0                                     0   320     1     r-----      91.8
+rtos1                                        1     4     1     -b----       2.4
+android1                                     2   511     2     r-----      54.3
+media1                                       3   191     2     -b----      64.8
+root@tinker-board:~# xl cpupool-list
+Name               CPUs   Sched     Active   Domain count
+Pool-0               3   credit2       y          3
+rt                   1      rtds       y          1
+root@tinker-board:~# cat /etc/default/xen-guests | grep ^XEN
+XEN_GUESTS="rtos1 android1 media1"
+root@tinker-board:~# xl sched-rtds -d rtos1
+Name                                ID    Period    Budget  Extratime
+rtos1                                1     10000      4000        yes
+root@tinker-board:~# grep '10 ms task' /var/log/xen/console/guest-rtos1.log | taiil -3
+[rtos] 10 ms task: 1000 periods, min 9954 us, max 10049 us; heartbeats 79, queue messages 31 (report 8)
+[rtos] 10 ms task: 1000 periods, min 9952 us, max 10043 us; heartbeats 89, queue messages 35 (report 9)
+[rtos] 10 ms task: 1000 periods, min 9964 us, max 10035 us; heartbeats 99, queue messages 39 (report 10)
+root@tinker-board:~# grep -c vehicle /var/log/xen/console/guest-rtos1.log
+133
+root@tinker-board:~# free -m
+              total        used        free      shared  buff/cache   available
+Mem:            282          45         182           0          54         228
+Swap:             0           0           0
+root@tinker-board:~# cat /sys/class/thermal/thermal_zone1/temp
+45454
+root@tinker-board:~# ping -c 2 -W 2 192.168.100.4
+PING 192.168.100.4 (192.168.100.4): 56 data bytes
+64 bytes from 192.168.100.4: seq=0 ttl=64 time=28.726 ms
+64 bytes from 192.168.100.4: seq=1 ttl=64 time=0.778 ms
+
+--- 192.168.100.4 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.778/14.752/28.726 ms
+root@tinker-board:~# netstat -ltn | grep 590
+tcp        0      0 127.0.0.1:5901          0.0.0.0:*               LISTEN      
+root@tinker-board:~# grep -n BUDGET= $(which rtos1-start)
+10:BUDGET=${BUDGET:-1000}
+root@tinker-board:~# xl sched-rtds -d rtos1 -v all -p 1000 -b 1000 -e 1; echo rc==$?
+rc=0
+root@tinker-board:~# xl sched-rtds -d rtos1 -v all
+Name                                ID VCPU    Period    Budget  Extratime
+rtos1                                1    0      1000      1000        yes
+root@tinker-board:~# xl dmesg | grep -i rtds | tail -5
+(XEN) Initializing RTDS scheduler
+root@tinker-board:~# grep -aE "media-player|login:|Kernel panic|xenfb|fb0" /var/llog/xen/console/guest-media1.log | tail -6
+Starting media-player (/home/root/media on /dev/fb0)
+media1 login: 
+root@tinker-board:~# cat /var/log/display-map.log | tail -8
+root@tinker-board:~# adb connect 192.168.100.3:5555
+* daemon not running. starting it now on port 5037 *
+adb shell getprop sys.boot_completed
+xl dmesg | grep -iE "error|panic|fault" | tail -5
+ADB server didn't ACK
+* failed to start daemon *
+error: cannot connect to daemon
+root@tinker-board:~# adb shell getprop sys.boot_completed
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+error: device not found
+root@tinker-board:~# xl dmesg | grep -iE "error|panic|fault" | tail -5
+root@tinker-board:~# adb connect 192.168.100.3:5555
+connected to 192.168.100.3:5555
+root@tinker-board:~# adb shell getprop sys.boot_completed
+1
+root@tinker-board:~# adb shell cat /proc/meminfo | head -3
+head: invalid option -- '3'
+BusyBox v1.35.0 () multi-call binary.
+
+Usage: head [OPTIONS] [FILE]...
+root@tinker-board:~# adb shell df /system /data
+Filesystem      1K-blocks   Used Available Use% Mounted on
+/dev/block/xvda    587248 527716     46984  92% /system
+/dev/block/xvdb    545068  40060    493744   8% /data
+root@tinker-board:~# uptime
+ 12:38:50 up 4 min,  load average: 2.43, 1.55, 0.66
+root@tinker-board:~# xl console media1
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.201-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 SMP Mon Feb 23 04:44:11 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [410fc0d1] revision 1 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: XENVM-4.16
+[    0.000000] random: crng init done
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Xen 4.16 support found
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x44000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000040000000-0x000000004bffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x000000004bffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000004bffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 16 pages/cpu s35468 r8192 d21876 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 48720
+[    0.000000] Kernel command line: console=hvc0 root=/dev/xvda rw rootwait rootfstype=ext4 xen_fbfront.video=2,800,480
+[    0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 102632K/196608K available (15360K kernel code, 2246K rwdata, 5684K rodata, 2048K init, 412K bss, 28440K reserved, 65536K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=2.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[    0.000001] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[    0.000025] Switching to timer-based delay loop, resolution 41ns
+[    0.000352] Console: colour dummy device 80x30
+[    0.002586] printk: console [hvc0] enabled
+[    0.002679] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=240000)
+[    0.002777] CPU: Testing write buffer coherency: ok
+[    0.002862] CPU0: Spectre v2: using BPIALL workaround
+[    0.002916] pid_max: default: 32768 minimum: 301
+[    0.040231] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.040327] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.041654] /cpus/cpu@0 missing clock-frequency property
+[    0.041761] /cpus/cpu@1 missing clock-frequency property
+[    0.041828] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.043647] xen:grant_table: Grant tables using version 1 layout
+[    0.043774] Grant table initialized
+[    0.043905] xen:events: Using FIFO-based ABI
+[    0.043991] Xen: initializing cpu0
+[    0.044143] Setting up static identity map for 0x40300000 - 0x403000ac
+[    0.044524] rcu: Hierarchical SRCU implementation.
+[    0.045202] EFI services will not be available.
+[    0.045487] smp: Bringing up secondary CPUs ...
+[    0.105093] Xen: initializing cpu1
+[    0.105384] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.105411] CPU1: Spectre v2: using BPIALL workaround
+[    0.106211] smp: Brought up 1 node, 2 CPUs
+[    0.106274] SMP: Total of 2 processors activated (96.00 BogoMIPS).
+[    0.106337] CPU: All CPU(s) started in SVC mode.
+[    0.107647] devtmpfs: initialized
+[    0.109995] VFP support v0.3: implementor 41 architecture 3 part 30 variant d rev 0
+[    0.110402] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.110522] futex hash table entries: 512 (order: 3, 32768 bytes, linear)
+[    0.112856] pinctrl core: initialized pinctrl subsystem
+[    0.114648] DMI not present or invalid.
+[    0.115790] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.119471] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.121992] thermal_sys: Registered thermal governor 'step_wise'
+[    0.122213] No ATAGs?
+[    0.122431] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 0
+[    0.122525] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 0
+[    0.122605] hw-breakpoint: Failed to enable monitor mode on CPU 0.
+[    0.122826] hw-breakpoint: Debug register access (0xee104e11) caused undefined instruction on CPU 1
+[    0.122934] hw-breakpoint: Debug register access (0xee103e11) caused undefined instruction on CPU 1
+[    0.125817] Serial: AMBA PL011 UART driver
+[    0.158986] xen:balloon: Initialising balloon driver
+[    0.160626] iommu: Default domain type: Translated 
+[    0.160688] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.161533] vgaarb: loaded
+[    0.162304] SCSI subsystem initialized
+[    0.163113] usbcore: registered new interface driver usbfs
+[    0.163233] usbcore: registered new interface driver hub
+[    0.163342] usbcore: registered new device driver usb
+[    0.164364] pps_core: LinuxPPS API ver. 1 registered
+[    0.164429] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.164542] PTP clock support registered
+[    0.164730] EDAC MC: Ver: 3.0.0
+[    0.170634] clocksource: Switched to clocksource arch_sys_counter
+[    0.256549] NET: Registered PF_INET protocol family
+[    0.256764] IP idents hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.257640] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.257740] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.257823] TCP established hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.257917] TCP bind hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.258036] TCP: Hash tables configured (established 2048 bind 2048)
+[    0.258175] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.258270] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.258497] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.261299] RPC: Registered named UNIX socket transport module.
+[    0.261369] RPC: Registered udp transport module.
+[    0.261421] RPC: Registered tcp transport module.
+[    0.261471] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.261552] PCI: CLS 0 bytes, default 64
+[    0.262769] Initialise system trusted keyrings
+[    0.263147] workingset: timestamp_bits=14 max_order=16 bucket_order=2
+[    0.273118] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.274389] NFS: Registering the id_resolver key type
+[    0.274468] Key type id_resolver registered
+[    0.274514] Key type id_legacy registered
+[    0.274862] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.274934] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.275051] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.275733] Key type asymmetric registered
+[    0.275788] Asymmetric key parser 'x509' registered
+[    0.275932] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.276008] io scheduler mq-deadline registered
+[    0.276061] io scheduler kyber registered
+[    1.448864] Console: switching to colour frame buffer device 100x30
+[    2.235379] xen:xen_evtchn: Event-channel device installed
+[    2.312800] Serial: 8250/16550 driver, 5 ports, IRQ sharing enabled
+[    2.325873] SuperH (H)SCI(F) driver initialized
+[    2.326485] msm_serial: driver initialized
+[    2.326538] STMicroelectronics ASC driver initialized
+[    2.326977] STM32 USART driver initialized
+[    2.345338] brd: module loaded
+[    2.353689] loop: module loaded
+[    2.353813] Invalid max_queues (4), will use default max: 2.
+[    2.592220] CAN device driver interface
+[    2.594877] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
+[    2.595485] e1000e: Intel(R) PRO/1000 Network Driver
+[    2.595545] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    2.595697] igb: Intel(R) Gigabit Ethernet Network Driver
+[    2.595755] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    2.598822] xen_netfront: Initialising Xen virtual ethernet driver
+[    2.920237] pegasus: Pegasus/Pegasus II USB Ethernet driver
+[    2.920374] usbcore: registered new interface driver pegasus
+[    2.920495] usbcore: registered new interface driver asix
+[    2.920664] usbcore: registered new interface driver ax88179_178a
+[    2.920800] usbcore: registered new interface driver cdc_ether
+[    2.920928] usbcore: registered new interface driver smsc75xx
+[    2.921099] usbcore: registered new interface driver smsc95xx
+[    2.921223] usbcore: registered new interface driver net1080
+[    2.921342] usbcore: registered new interface driver cdc_subset
+[    2.921456] usbcore: registered new interface driver zaurus
+[    2.921698] usbcore: registered new interface driver cdc_ncm
+[    2.923360] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.923446] ehci-pci: EHCI PCI platform driver
+[    2.923560] ehci-platform: EHCI generic platform driver
+[    2.923738] ehci-omap: OMAP-EHCI Host Controller driver
+[    2.923906] ehci-orion: EHCI orion driver
+[    2.924066] SPEAr-ehci: EHCI SPEAr driver
+[    2.924228] ehci-st: EHCI STMicroelectronics driver
+[    2.924412] ehci-atmel: EHCI Atmel driver
+[    2.924578] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.924676] ohci-pci: OHCI PCI platform driver
+[    2.924800] ohci-platform: OHCI generic platform driver
+[    2.924977] SPEAr-ohci: OHCI SPEAr driver
+[    2.925154] ohci-st: OHCI STMicroelectronics driver
+[    2.925337] ohci-atmel: OHCI Atmel driver
+[    2.925749] usbcore: registered new interface driver usb-storage
+[    2.974829] input: Xen Virtual Keyboard as /devices/virtual/input/input0
+[    3.001422] input: Xen Virtual Pointer as /devices/virtual/input/input1
+[    3.275446] i2c_dev: i2c /dev entries driver
+[    3.287658] sdhci: Secure Digital Host Controller Interface driver
+[    3.287743] sdhci: Copyright(c) Pierre Ossman
+[    3.288983] Synopsys Designware Multimedia Card Interface Driver
+[    3.290271] sdhci-pltfm: SDHCI platform and OF driver helper
+[    3.294676] ledtrig-cpu: registered to indicate activity on CPUs
+[    3.296061] usbcore: registered new interface driver usbhid
+[    3.296134] usbhid: USB HID core driver
+[    3.301535] NET: Registered PF_INET6 protocol family
+[    3.304571] Segment Routing with IPv6
+[    3.304671] In-situ OAM (IOAM) with IPv6
+[    3.304825] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    3.305588] NET: Registered PF_PACKET protocol family
+[    3.305708] can: controller area network core
+[    3.305943] NET: Registered PF_CAN protocol family
+[    3.306019] can: raw protocol
+[    3.306070] can: broadcast manager protocol
+[    3.306128] can: netlink gateway - max_hops=1
+[    3.306530] Key type dns_resolver registered
+[    3.308315] NET: Registered PF_VSOCK protocol family
+[    3.308955] ThumbEE CPU extension supported.
+[    3.309030] Registering SWP/SWPB emulation handler
+[    3.309619] Loading compiled-in X.509 certificates
+[    3.342802] xen_netfront: backend supports XDP headroom
+[    3.401876] blkfront: xvda: flush diskcache: enabled; persistent grants: enabled; indirect descriptors: enabled; bounce buffer: enabled
+[    3.451485] clk: Disabling unused clocks
+[    3.493989] EXT4-fs (xvda): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    3.494158] VFS: Mounted root (ext4 filesystem) on device 202:0.
+[    3.496030] devtmpfs: mounted
+[    3.505885] Freeing unused kernel image (initmem) memory: 2048K
+[    3.517414] Run /sbin/init as init process
+INIT: version 3.01 booting
+Starting udev
+[    4.991903] udevd[93]: starting version 3.2.10
+[    5.071829] udevd[94]: starting eudev-3.2.10
+[    6.339174] EXT4-fs (xvda): re-mounted. Opts: (null). Quota mode: disabled.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+INIT: Entering runlevel: 5
+Configuring network interfaces... done.
+Starting Dropbear SSH server: Generating 2048 bit rsa key, this may take a while...
+Public key portion is:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8GJIm4zv83ijOGUXryab8LLz41jDy/tM0FNGmg45Oj8YkIESygOQg3dxWr4/LlaGB4duIFlXs7p7U29iy1WT2GkAo33kdIMfg/bcq0WhgJMUFNxA8xdC4vDbfYP/Rpi1lzPz17TP6SRfCXFGYybkvsEtYQobfhP9gDBihK07wpBmDUMaRJIztLamMo4rd+UZjMw6Eg4Vr1HG4vHV3aROzysXVAFHi+f2EVgp/P6gon0HcrQGzVfvkfRi6SCYdiG3/dE7P6lHV8GOzP0l1cCGw+g8DYzPJF6JGmNau30OpgtBoumcqsH6OgSz/hvmHfp1O/EVcuRInzpVRDzT3lCkZ root@media1
+Fingerprint: sha1!! f7:69:2e:b8:55:84:f1:55:76:a3:1c:8c:95:24:0d:ca:47:f9:d4:68
+dropbear.
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+Starting syslogd/klogd: done
+Starting media-player (/home/root/media on /dev/fb0)
+
+Poky (Yocto Project Reference Distro) 4.0.35 media1 /dev/hvc0
+
+media1 login: 
+Poky (Yocto Project Reference Distro) 4.0.35 media1 /dev/hvc0
+
+media1 login: root
+root@media1:~# free -m
+              total        used        free      shared  buff/cache   available
+Mem:            166          41          99           0          26         118
+Swap:             0           0           0
+root@media1:~# ps | grep [f]fmpeg | wc -l
+1
+root@media1:~# cat /sys/class/graphics/fb0/virtual_size
+800,480
+root@media1:~# tail -3 /var/log/media-player.log
+root@media1:~# df -h /
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                94.1M     28.6M     58.1M  33% /
+root@media1:~# root@tinker-board:~# 
+root@tinker-board:~# adb shell cat /proc/meminfo | head -n 3
+MemTotal:         495728 kB
+MemFree:           48588 kB
+MemAvailable:     282648 kB
+root@tinker-board:~# xl console media1
+
+root@media1:~# head -c 1536000 /dev/fb0 | md5sum; sleep 1; head -c 1536000 /dev/
+fb0 | md5sum
+head: invalid option -- 'c'
+BusyBox v1.35.0 () multi-call binary.
+
+Usage: head [OPTIONS] [FILE]...
+d41d8cd98f00b204e9800998ecf8427e  -
+head: invalid option -- 'c'
+BusyBox v1.35.0 () multi-call binary.
+
+Usage: head [OPTIONS] [FILE]...
+d41d8cd98f00b204e9800998ecf8427e  -
+root@media1:~# root@tinker-board:~# 
+root@tinker-board:~# grep -a vehicle /var/log/xen/console/guest-rtos1.log | tail  -2
+[vehicle] 10s: frames 1000, lost 0, bad 0, max gap 54983 us,  speed 135 km/h, rpm 4590; alerts: overspeed 5, redline 9, signal lost 62
+[vehicle] overspeed cleared: 114 km/h
+root@tinker-board:~# xl dmesg > /home/root/xl-dmesg-part6.txt; ps | grep -c [q]emmu
+2
+root@tinker-board:~# cat /sys/class/thermal/thermal_zone1/temp
+46363
+root@tinker-board:~# xl console media1
+
+root@media1:~# dd if=/dev/fb0 bs=1536000 count=1 2>/dev/null | md5sum; sleep 1; 
+dd if=/dev/fb0 bs=1536000 count=1 2>/dev/null | md5sum
+444e6a062b823a0fcdd541fa178ea53f  -
+8a4d38206f6eb81d78e76a87cc68d79b  -
+root@media1:~# root@tinker-board:~# 
+root@tinker-board:~# 

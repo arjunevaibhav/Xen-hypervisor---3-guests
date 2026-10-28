@@ -1,0 +1,23 @@
+# Which OS is shown on which screen (/etc/init.d/display-map).
+#
+# Screens: "hdmi" is the board's HDMI output; "usb1", "usb2", ... are USB
+# display adapters (udl driver: DisplayLink DL-1x0/DL-1x5, USB 2.0), numbered
+# by the USB port they are plugged into. A screen that is not connected is
+# waited for, so adapters can be plugged in later.
+#
+# Each entry is <screen>=<source>:
+#   vnc:<port>  a guest's PV framebuffer (QEMU's VNC server on 127.0.0.1;
+#               vncdisplay=N in the guest's xl config is port 5900+N)
+#   cluster     instrument cluster: vehicle CAN data and the FreeRTOS
+#               (rtos1) real-time status, drawn by dom0
+#   console     dom0's text console (tty1)
+#   rearcam:<source>  <source> (vnc:<port> or cluster), replaced by the rear
+#               camera (USB webcam, rear-camera) while the car is in reverse
+#   rearcam     the rear camera alone, black when not in reverse
+SCREENS="hdmi=rearcam:vnc:5900 usb1=vnc:5901 usb2=cluster usb3=console"
+
+# Input devices (touchscreen, mouse, keyboard) a guest screen forwards to its
+# guest: a glob over /dev/input, or "none". Screens not listed get none.
+# dom0's text console reads the keyboard itself, wherever it is shown.
+INPUT_hdmi="/dev/input/event*"
+#INPUT_usb1="/dev/input/by-path/*usb-0:1.3*-event*"

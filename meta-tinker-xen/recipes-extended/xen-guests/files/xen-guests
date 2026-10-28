@@ -11,7 +11,7 @@
 # its own RTDS cpupool; any other name is started with xl create
 # /etc/xen/<name>.cfg. Disable with XEN_GUESTS="" in /etc/default/xen-guests.
 
-XEN_GUESTS="rtos1 android1"
+XEN_GUESTS="rtos1 android1 media1"
 SHUTDOWN_TIMEOUT=30
 [ -r /etc/default/xen-guests ] && . /etc/default/xen-guests
 

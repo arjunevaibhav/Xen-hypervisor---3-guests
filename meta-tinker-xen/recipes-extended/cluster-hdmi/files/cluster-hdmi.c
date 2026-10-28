@@ -2,7 +2,7 @@
 /*
  * cluster-hdmi: instrument-cluster dashboard on dom0's HDMI framebuffer.
  *
- * Shows speed, rpm and gear decoded from the vehicle CAN bus (receive only),
+ * Shows speed, rpm and gear from the vehicle CAN bus (receive only),
  * and the verdicts of the FreeRTOS guest's real-time vehicle task (overspeed,
  * redline, signal loss, 10 ms task timing), read from its console log that
  * xenconsoled writes (XENCONSOLED_TRACE=guest).
@@ -30,11 +30,13 @@
 #include <sys/mman.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <time.h>
 #include <unistd.h>
 
 #define ID_SPEED	0x0C0
 #define ID_ENGINE	0x0C1
+#define ID_GEAR		0x0C2	/* byte 0 selector P/R/N/D, byte 1 gear */
 #define RPM_MAX		7000
 #define REDLINE_RPM	6000
 #define LOG_LIMIT	(2 * 1024 * 1024)	/* guest console logs are truncated above this */
@@ -55,11 +57,33 @@ static void restore_console(void)
 	}
 }
 
+/* Is the text console (tty1) on this framebuffer? With several screens it
+ * may be on another one, which must keep showing text. */
+static int console_on(int fd)
+{
+	struct fb_con2fbmap map = { .console = 1 };
+	struct stat st;
+
+	if (fstat(fd, &st) || ioctl(fd, FBIOGET_CON2FBMAP, &map))
+		return 0;
+	return map.framebuffer == minor(st.st_rdev);
+}
+
 static void on_signal(int sig)
 {
 	(void)sig;
 	restore_console();
 	_exit(0);
+}
+
+/* rear-camera stops this program (SIGSTOP) while it shows the camera on the
+ * same screen; on SIGCONT everything is drawn again */
+static volatile sig_atomic_t redraw;
+
+static void on_cont(int sig)
+{
+	(void)sig;
+	redraw = 1;
 }
 
 static uint32_t rgb(unsigned int r, unsigned int g, unsigned int b)
@@ -198,7 +222,8 @@ static void text_box(int x, int y, int w, int h, int align, uint32_t fg, uint32_
 /* ---- vehicle and RTOS state ------------------------------------------- */
 
 static unsigned int speed100, rpm, frames_10s;
-static struct timespec last_frame;
+static struct timespec last_frame, last_gear;
+static char selector;	/* from the gear frame, 0 when the bus has none */
 static int rtos_overspeed, rtos_redline, rtos_signal = -1, rtos_have_report;
 static unsigned int rt_min, rt_max, rtos_frames;
 static time_t rtos_last_report;
@@ -367,7 +392,10 @@ static void draw_dynamic(const char *ifname)
 	snprintf(t, sizeof(t), "%4u", signal_ok ? rpm : 0);
 	text_box(bx, H * 10 / 40, bw, H * 7 / 40, 0, c_text, c_bg, signal_ok ? t : "----");
 	g = gear(kmh);
-	snprintf(t, sizeof(t), "GEAR %c", !signal_ok ? '-' : g ? (char)('0' + g) : 'N');
+	if (selector && since(&last_gear) > 1.0)
+		selector = 0;	/* no gear frames any more: guess from speed */
+	snprintf(t, sizeof(t), "GEAR %c", !signal_ok ? '-' :
+		 selector && selector != 'D' ? selector : g ? (char)('0' + g) : 'N');
 	text_box(bx, by + bh * 3 / 2, bw, H * 3 / 40, 0, c_text, c_bg, t);
 
 	/* warning lamps from the FreeRTOS real-time checks */
@@ -423,9 +451,10 @@ int main(int argc, char **argv)
 	const char *fbdev = "/dev/fb0", *ifname = "vcan0", *snap = NULL;
 	const char *log = "/var/log/xen/console/guest-rtos1.log";
 	struct sockaddr_can addr = { .can_family = AF_CAN };
-	struct can_filter flt[2] = {
+	struct can_filter flt[3] = {
 		{ .can_id = ID_SPEED, .can_mask = CAN_SFF_MASK },
 		{ .can_id = ID_ENGINE, .can_mask = CAN_SFF_MASK },
+		{ .can_id = ID_GEAR, .can_mask = CAN_SFF_MASK },
 	};
 	struct timespec start, last_draw = { 0 }, last_rate;
 	unsigned int frames = 0;
@@ -473,14 +502,17 @@ int main(int argc, char **argv)
 			return 1;
 		}
 		ioctl(fd, FBIOBLANK, FB_BLANK_UNBLANK);
-		tty_fd = open("/dev/tty1", O_RDWR);
-		if (tty_fd >= 0)
-			ioctl(tty_fd, KDSETMODE, KD_GRAPHICS);
+		if (console_on(fd)) {
+			tty_fd = open("/dev/tty1", O_RDWR);
+			if (tty_fd >= 0)
+				ioctl(tty_fd, KDSETMODE, KD_GRAPHICS);
+		}
 	}
 	W = var.xres;
 	H = var.yres;
 	signal(SIGTERM, on_signal);
 	signal(SIGINT, on_signal);
+	signal(SIGCONT, on_cont);
 
 	c_bg = rgb(8, 10, 16);
 	c_panel = rgb(28, 32, 44);
@@ -512,7 +544,10 @@ int main(int argc, char **argv)
 		if (poll(&p, s >= 0, 20) > 0 && read(s, &f, sizeof(f)) == sizeof(f) && f.can_dlc >= 2) {
 			unsigned int v = f.data[0] << 8 | f.data[1];
 
-			if (f.can_id == ID_SPEED) {
+			if (f.can_id == ID_GEAR) {
+				selector = f.data[0];
+				clock_gettime(CLOCK_MONOTONIC, &last_gear);
+			} else if (f.can_id == ID_SPEED) {
 				speed100 = v;
 				frames++;
 				clock_gettime(CLOCK_MONOTONIC, &last_frame);
@@ -536,6 +571,10 @@ int main(int argc, char **argv)
 			rtos_line("[vehicle] SIGNAL OK again (seq 1)");
 			rtos_line("[rtos] 10 ms task: 1000 periods, min 9997 us, max 10003 us; heartbeats 9");
 			rtos_line("[vehicle] 10s: frames 1000, lost 0");
+		}
+		if (redraw) {
+			redraw = 0;
+			draw_static(ifname);
 		}
 		if (since(&last_draw) >= 0.1) {	/* 10 frames per second */
 			poll_rtos_log(log);

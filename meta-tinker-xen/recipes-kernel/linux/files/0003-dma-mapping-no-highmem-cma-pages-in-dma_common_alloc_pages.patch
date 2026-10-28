@@ -1,0 +1,37 @@
+From: Arjune <arjunevaibhavpatil1434@gmail.com>
+Subject: [PATCH] dma-mapping: don't hand out highmem CMA pages from dma_common_alloc_pages
+
+dma_common_alloc_pages() (used by dma_map_ops with .alloc_pages, e.g.
+xen-swiotlb in a Xen dom0) clears the new page with
+memset(page_address(page)), and dma_vmap_noncontiguous() returns
+page_address() of it. A page from a CMA area in highmem has no kernel
+address, so both get NULL.
+
+On the Tinker Board RK3288 under Xen, dom0's CMA area is its second RAM
+bank at 0x70000000, above lowmem, and the first USB webcam stream oopses
+in uvc_alloc_urb_buffers() -> dma_alloc_noncontiguous() ->
+dma_common_alloc_pages() (NULL pointer write in mmioset). Native Linux
+uses dma-direct, which handles highmem, and is not affected.
+
+Give a highmem CMA page back and allocate from lowmem instead.
+
+Upstream-Status: Pending
+---
+--- a/kernel/dma/ops_helpers.c	2026-10-27 16:41:21.261308893 +0530
++++ b/kernel/dma/ops_helpers.c	2026-10-27 16:41:21.306310949 +0530
+@@ -65,6 +65,15 @@
+ 	struct page *page;
+ 
+ 	page = dma_alloc_contiguous(dev, size, gfp);
++	/*
++	 * The page is cleared (and used by dma_vmap_noncontiguous()) through
++	 * page_address(), which a highmem page doesn't have: take one from
++	 * lowmem instead when the CMA area is in highmem.
++	 */
++	if (page && PageHighMem(page)) {
++		dma_free_contiguous(dev, page, size);
++		page = NULL;
++	}
+ 	if (!page)
+ 		page = alloc_pages_node(dev_to_node(dev), gfp, get_order(size));
+ 	if (!page)

@@ -8,8 +8,12 @@
  * This is a minimal VNC client: raw encoding into /dev/fb0, centred, and
  * dom0 evdev input sent back as VNC pointer and key events.
  *
- *   android-hdmi [-H host] [-p port] [-f /dev/fb0]
+ *   android-hdmi [-H host] [-p port] [-f /dev/fb0] [-I input-glob | -I none]
  *   android-hdmi [-H host] [-p port] -t X,Y   (one tap at guest X,Y, then exit)
+ *
+ * -I picks the input devices forwarded to the guest (default all of
+ * /dev/input/event*); with one screen per guest (display-map) each viewer
+ * gets its own, or none.
  */
 
 #include <errno.h>
@@ -30,6 +34,8 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -63,6 +69,28 @@ static void on_signal(int sig)
 	_exit(0);
 }
 
+/* rear-camera stops this program (SIGSTOP) while it shows the camera on the
+ * same screen; on SIGCONT the whole guest screen is fetched again */
+static volatile sig_atomic_t refresh;
+
+static void on_cont(int sig)
+{
+	(void)sig;
+	refresh = 1;
+}
+
+/* Is the text console (tty1) on this framebuffer? With several screens it
+ * may be on another one, which must keep showing text. */
+static int console_on(int fd)
+{
+	struct fb_con2fbmap map = { .console = 1 };
+	struct stat st;
+
+	if (fstat(fd, &st) || ioctl(fd, FBIOGET_CON2FBMAP, &map))
+		return 0;
+	return map.framebuffer == minor(st.st_rdev);
+}
+
 static int fb_open(const char *dev)
 {
 	fb_fd = open(dev, O_RDWR);
@@ -87,12 +115,15 @@ static int fb_open(const char *dev)
 	ioctl(fb_fd, FBIOBLANK, FB_BLANK_UNBLANK);
 
 	/* keep the text console from drawing over the picture */
-	tty_fd = open("/dev/tty1", O_RDWR);
-	if (tty_fd >= 0)
-		ioctl(tty_fd, KDSETMODE, KD_GRAPHICS);
+	if (console_on(fb_fd)) {
+		tty_fd = open("/dev/tty1", O_RDWR);
+		if (tty_fd >= 0)
+			ioctl(tty_fd, KDSETMODE, KD_GRAPHICS);
+	}
 	signal(SIGTERM, on_signal);
 	signal(SIGINT, on_signal);
 	signal(SIGPIPE, SIG_IGN);
+	signal(SIGCONT, on_cont);
 	return 0;
 }
 
@@ -389,6 +420,7 @@ struct input {
 
 static struct input inputs[MAX_INPUTS];
 static int ninputs;
+static const char *input_glob = "/dev/input/event*";
 static unsigned int mouse_buttons;
 
 #define TEST(bits, b) ((bits)[(b) / 8] & (1 << ((b) % 8)))
@@ -399,7 +431,7 @@ static void scan_inputs(void)
 	size_t i;
 	int j;
 
-	if (glob("/dev/input/event*", 0, NULL, &g))
+	if (!strcmp(input_glob, "none") || glob(input_glob, 0, NULL, &g))
 		return;
 	for (i = 0; i < g.gl_pathc && ninputs < MAX_INPUTS; i++) {
 		uint8_t evbits[EV_MAX / 8 + 1] = { 0 }, absbits[ABS_MAX / 8 + 1] = { 0 };
@@ -530,14 +562,15 @@ int main(int argc, char **argv)
 	int port = 5900, opt;
 	time_t last_scan = 0;
 
-	while ((opt = getopt(argc, argv, "H:p:f:t:")) != -1) {
+	while ((opt = getopt(argc, argv, "H:p:f:t:I:")) != -1) {
 		switch (opt) {
 		case 'H': host = optarg; break;
 		case 'p': port = atoi(optarg); break;
 		case 'f': fbdev = optarg; break;
 		case 't': tap = optarg; break;
+		case 'I': input_glob = optarg; break;
 		default:
-			fprintf(stderr, "usage: %s [-H host] [-p port] [-f fbdev | -t X,Y]\n", argv[0]);
+			fprintf(stderr, "usage: %s [-H host] [-p port] [-f fbdev] [-I input-glob|none] [-t X,Y]\n", argv[0]);
 			return 2;
 		}
 	}
@@ -578,6 +611,12 @@ int main(int argc, char **argv)
 				continue;
 			}
 			printf("android-hdmi: connected to %s:%d\n", host, port);
+			if (request_update(0))
+				goto lost;
+		}
+		if (refresh) {
+			refresh = 0;
+			fb_clear();
 			if (request_update(0))
 				goto lost;
 		}

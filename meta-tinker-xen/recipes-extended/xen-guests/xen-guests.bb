@@ -1,6 +1,6 @@
 SUMMARY = "Tinker Board Xen system services: guest autostart and hardware watchdog"
 DESCRIPTION = "xen-guests starts the guests in /etc/default/xen-guests at boot \
-(rtos1 through rtos1-start, android1 with xl create) and keeps the onboard \
+(rtos1 through rtos1-start, android1 and media1 with xl create) and keeps the onboard \
 USB hub out of runtime suspend (adb in dom0 resets it otherwise); \
 hw-watchdog keeps the RK3288 hardware watchdog alive from dom0 so a hung \
 system resets itself."
@@ -34,4 +34,4 @@ FILES:${PN} = "${sysconfdir}/init.d/xen-guests ${sysconfdir}/default/xen-guests 
     ${sysconfdir}/udev/rules.d/50-tinker-usb-hub.rules"
 FILES:${PN}-watchdog = "${sysconfdir}/init.d/hw-watchdog"
 CONFFILES:${PN} = "${sysconfdir}/default/xen-guests"
-RDEPENDS:${PN} = "xen-tools-xl freertos-xen-guest android-guest"
+RDEPENDS:${PN} = "xen-tools-xl freertos-xen-guest android-guest media-guest"
